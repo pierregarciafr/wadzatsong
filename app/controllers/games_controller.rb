@@ -8,6 +8,7 @@ class GamesController < ApplicationController
     @game.status = :created
     @game.save!
     redirect_to edit_game_path(@game)
+  end
 
   def show
     @game = Game.last
