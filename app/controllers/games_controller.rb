@@ -28,6 +28,7 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
+    authorize @game
     @game.update(game_params)
     redirect_to game_path(@game)
   end
