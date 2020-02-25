@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Cleaning database..."
+Game.destroy_all
 User.destroy_all
 Track.destroy_all
 Playlist.destroy_all
@@ -48,6 +49,7 @@ track10 = Track.new(title: "Poker Face", artist: "Lady Gaga", url_preview: "http
   puts "Created #{track.title}"
 end
 
+Game.create(status: 0, user: user1 , playlist: playlist3 )
 
 
 puts "Finished..."
