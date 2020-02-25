@@ -6,7 +6,7 @@ class GamePolicy < ApplicationPolicy
   # end
 
   def show?
-    @game.user == user || @game.participants.include?(user)
+    record.user == user || @game.participants.include?(user)
   end
 
   def create?
@@ -18,7 +18,7 @@ class GamePolicy < ApplicationPolicy
   end
 
   def update?
-    @game.user == user || @game.participants.include?(user)
+    record.user == user || @game.participants.include?(user)
   end
 
 

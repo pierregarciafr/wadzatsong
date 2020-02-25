@@ -5,7 +5,7 @@
         <li><%= playlist.name %></li>
       <% end%>
     </ul>
-    <%= simple_form_for [ @game ] do |f| %>
+    <%= simple_form_for [ @game] do |f| %>
       <%= f.input :playlist, as: :radio_buttons, collection: @playlists %>
       <%= f.submit "Next", class: "btn btn-primary" %>
     <% end %>
