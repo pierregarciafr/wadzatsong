@@ -1,4 +1,17 @@
 
+<%# @game.playlist.tracks.each do |track| %>
+  <!-- <li> --><%#= track.title %><!-- </li> -->
+    <%#= simple_form_for [ @game, @answer ] do |f| %>
+    <%#= f.input :content %>
+    <%#= f.hidden_field :track, value: track.id %>
+    <%#= f.submit %>
+      <%# @answers.select {|answer| answer.track == track}.each do |answer|%>
+        <%#= answer.content %>
+      <%# end %>
+    <%# end %>
+<%# end %>
+
+
 <h1>show.html.erb</h1>
 <%= @game.id %>
 <%= @game.playlist_id %>
@@ -14,6 +27,7 @@
     <% end %>
 <% end %>
 
+
 <%# counter = 0 %>
 <%# while counter <= @game.playlist.tracks.length %>
   <%#= @game.playlist.tracks[counter].title %>
@@ -28,4 +42,20 @@
       <%# end %>
   <%# end %>
 <%# end %>
+
+
+
+<%= @current_track.title %>
+<%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true) %>
+<%= simple_form_for [ @game, @answer ] do |f| %>
+  <%= f.input :content %>
+  <%= f.hidden_field :track, value: @current_track.id %>
+  <%= f.submit %>
+
+    <% @answers.select {|answer| answer.track == @current_track}.each do |answer|%>
+      <%= answer.content %>
+    <% end %>
+
+<% end %>
+
 
