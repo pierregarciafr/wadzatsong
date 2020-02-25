@@ -1,0 +1,22 @@
+
+.image {
+  text-align: center;
+  padding-top: 500px;
+  font-family: $logo-font;
+}
+
+.content {
+
+  h1 {
+    font-family: $logo-font;
+    text-align: center;
+    font-size: 100px;
+    margin-top: 50px;
+  }
+
+  h3 {
+    font-family: $body-font;
+    font-weight: 300;
+    text-align: center;
+  }
+}

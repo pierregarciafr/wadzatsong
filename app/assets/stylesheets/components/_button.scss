@@ -1,15 +1,14 @@
 .btn-flat {
-  width: 80%;
-  height: 100px;
   color: white;
   background: $my-pink;
-  padding: 8px 24px;
+  padding: 80px 250px;
   border-radius: 50px;
   font-weight: bold;
   font-size: 50px;
   opacity: 0.8;
   transition: opacity 0.3s ease;
   border: 1px solid white;
+  width: 700px;
 
     &:hover {
       opacity: 1;
@@ -21,4 +20,9 @@
 .modes {
   position: absolute;
   bottom: 0;
+}
+
+.home {
+  background: white;
+  color: black;
 }
