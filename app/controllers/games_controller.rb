@@ -1,6 +1,13 @@
 class GamesController < ApplicationController
 
-authorize @game
+  def create
+    # @game = policy_scope(Game.find(params[:id]))
+    @game = Game.new
+    authorize @game
+    @game.user = current_user
+    @game.status = :created
+    @game.save!
+    redirect_to edit_game_path(@game)
 
   def show
     @game = Game.last
@@ -12,21 +19,16 @@ authorize @game
     @game = Game.new()
   end
 
-  def create
-    @game = policy_scope(Game.find(params[:id]))
-    @game = Game.new(games_params)
-    @game.user = current_user
-    if @game.save
-      redirect_to edit_game_path(@game)
-    else
-      render :new
-    end
-  end
-
   def edit
     @game = Game.find(params[:id])
     @playlists = Playlist.all
     authorize @game
+  end
+
+  private
+
+  def game_params
+    params.require(:game).permit(:status)
   end
 
   def update

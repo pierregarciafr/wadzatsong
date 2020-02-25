@@ -1,10 +1,11 @@
 <div class="container">
 
   <h1>GUESS WHAT</h1>
-<div class="modes">
-  <p class="btn btn-flat">MODE PARTY</p>
-  <p class="btn btn-flat">MODE SOLO</p>
-</div>
+  <div class="modes">
+    <%= simple_form_for @game do |f| %>
+      <%= f.submit "MODE PARTY", class: "btn btn-flat" %>
+      <% end %>
+    <p class="btn btn-flat">MODE SOLO</p>
+  </div>
 
-  <%#= link_to "MODE PARTY", edit_game_path(@game), class: "btn btn-flat" %>
 </div>
