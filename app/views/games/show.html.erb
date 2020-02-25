@@ -1,0 +1,15 @@
+<% @game.playlist.tracks.each do |track| %>
+  <li><%= track.title %></li>
+    <%= simple_form_for [ @game, @answer ] do |f| %>
+    <%= f.input :content %>
+    <%= f.hidden_field :track, value: track.id %>
+    <%= f.submit %>
+    <% @answers.select {|answer| answer.track == track}.each do |answer|%>
+      <%= answer.content %>
+    <% end %>
+<% end %>
+
+
+<% end %>
+
+
