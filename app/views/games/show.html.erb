@@ -1,0 +1,13 @@
+Game : <%= @game.id %>
+<br>
+User : <%= @game.user %>
+<br>
+User_id :<%= @game.user.id %>
+<br>
+Playlist : <%= @game.playlist %>
+<br>
+Playlist_id : <%= @game.playlist.id %>
+<br>
+<div id="qr-code">
+  <img src="https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Fgoogle.com&amp;size=100x100" alt="" title="" />
+</div>
