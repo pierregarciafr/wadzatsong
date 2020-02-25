@@ -9,10 +9,11 @@ class AnswersController < ApplicationController
     @answer.save
     @tracks = @game.playlist.tracks
       if @answer.content == @track.title
-        @track.guessed = true
-        @track.save
+        @answer.status = true
+        @answer.save
       end
     redirect_to game_path(@game)
+    authorize @game
   end
 
   private

@@ -4,7 +4,8 @@ class GamesController < ApplicationController
     @game = Game.last
     @answer = Answer.new
     @answers = @game.answers
-    @tracks = @game.playlist.tracks
+    @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
+    authorize @game
   end
 
 

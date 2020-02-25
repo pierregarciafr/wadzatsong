@@ -26,14 +26,14 @@
 <%# end %>
 
 
-<%= @tracks.where(guessed: false).first.title %>
-<% audio_tag("#{@tracks.where(guessed: false).first.preview}", autoplay: true) %>
+<%= @current_track.title %>
+<%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true) %>
 <%= simple_form_for [ @game, @answer ] do |f| %>
   <%= f.input :content %>
-  <%= f.hidden_field :track, value: @tracks.where(guessed: false).first.id %>
+  <%= f.hidden_field :track, value: @current_track.id %>
   <%= f.submit %>
 
-    <% @answers.select {|answer| answer.track == @tracks.where(guessed: false).first}.each do |answer|%>
+    <% @answers.select {|answer| answer.track == @current_track}.each do |answer|%>
       <%= answer.content %>
     <% end %>
 
