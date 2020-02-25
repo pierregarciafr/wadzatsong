@@ -1,11 +1,17 @@
 class AnswersController < ApplicationController
   def create
+    @track = Track.find(params[:answer][:track])
     @game = Game.find(params[:game_id])
     @answer = Answer.new(params_answer)
     @answer.game = @game
     @answer.user = current_user
-    @answer.track = Track.find(params[:answer][:track])
+    @answer.track = @track
     @answer.save
+    @tracks = @game.playlist.tracks
+      if @answer.content == @track.title
+        @track.guessed = true
+        @track.save
+      end
     redirect_to game_path(@game)
   end
 

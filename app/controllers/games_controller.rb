@@ -4,6 +4,7 @@ class GamesController < ApplicationController
     @game = Game.last
     @answer = Answer.new
     @answers = @game.answers
+    @tracks = @game.playlist.tracks
   end
 
 
