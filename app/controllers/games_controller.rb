@@ -11,20 +11,21 @@ class GamesController < ApplicationController
   end
 
   def show
-
+    # !!! 2 show !!!
     # case @game.status
     # game.started
     #  when 0
+
     #@game = Game.find(params[:id])
     @game = Game.last
     @answer = Answer.new
+    @playlist = @game.playlist
     @answers = @game.answers
     authorize @game
   end
 
   def new
     @game = Game.new()
-
   end
 
   def edit
@@ -39,14 +40,6 @@ class GamesController < ApplicationController
     @game.update(game_params)
     authorize @game
     redirect_to game_path(@game)
-  end
-
-  def show
-    @game = Game.last
-    @answer = Answer.new
-    @playlist = @game.playlist
-    @answers = @game.answers
-    authorize @game
   end
 
   private

@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :games, only: [ :create,  :edit, :update, :show ] do
     get 'start', on: :member
-    resources :participations, only: [ :new, :create]
+    resources :participations, only: [ :edit, :update, :show ]
     resources :answers, only: [ :create, :show ]
   end
-
+  resources :participations, only: [ :new, :create ]
 end
