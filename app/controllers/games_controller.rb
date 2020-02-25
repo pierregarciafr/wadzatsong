@@ -28,15 +28,18 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
-    authorize @game
+    @game.playlist_id = params[:game][:playlist]
     @game.update(game_params)
+    authorize @game
     redirect_to game_path(@game)
   end
 
   def show
     @game = Game.last
     @answer = Answer.new
+    @playlist = @game.playlist
     @answers = @game.answers
+    authorize @game
   end
 
   private
