@@ -14,7 +14,7 @@ class GamesController < ApplicationController
     @answer = Answer.new
     @answers = @game.answers
   end
-  
+
   def new
     @game = Game.new()
   end
@@ -23,12 +23,6 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @playlists = Playlist.all
     authorize @game
-  end
-
-  private
-
-  def game_params
-    params.require(:game).permit(:status)
   end
 
   def update
@@ -43,13 +37,9 @@ class GamesController < ApplicationController
     @answers = @game.answers
   end
 
+  private
 
-private
-
-def game_params
-params.require(:game).permit(:status, :playlist_id)
-end
-
-
-
+  def game_params
+  params.require(:game).permit(:status, :playlist_id)
+  end
 end
