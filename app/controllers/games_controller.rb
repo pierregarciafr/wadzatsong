@@ -14,4 +14,9 @@ class GamesController < ApplicationController
   #     render :new
   #   end
   # end
+
+  def edit
+    @game = Game.find(params[:id])
+    @playlists = Playlist.all
+  end
 end
