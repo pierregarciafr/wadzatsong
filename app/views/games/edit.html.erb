@@ -3,6 +3,7 @@
     <% @playlists.each do |playlist| %>
       <div class="playlist_card">
         <h1><%= playlist.name %></h1>
+        <%= image_tag(playlist.picture) %>
       </div>
     <% end  %>
   </div>
