@@ -1,5 +1,12 @@
 class GamesController < ApplicationController
 
+  def show
+    @game = Game.last
+    @answer = Answer.new
+    @answers = @game.answers
+  end
+
+
   def new
     @game = Game.new()
   end
@@ -26,5 +33,6 @@ class GamesController < ApplicationController
 
 
   end
+
 
 end
