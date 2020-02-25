@@ -6,6 +6,7 @@ class AnswersController < ApplicationController
     @answer.user = current_user
     @answer.track = Track.find(params[:answer][:track])
     @answer.save
+    redirect_to game_path(@game)
   end
 
   private
