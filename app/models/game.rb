@@ -6,4 +6,19 @@ class Game < ApplicationRecord
   has_many :answers
   # has_many :tracks, through: :playlists
   enum status: [ :created, :running, :paused, :finished ]
+  validates :token, presence: true, uniqueness: true
+  before_save :set_token
+
+
+  private
+
+  def set_token
+    # while !self.valid?
+      puts 'coucou'
+      self.token = SecureRandom.hex(3)
+    # end
+  end
 end
+
+
+
