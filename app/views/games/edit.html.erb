@@ -1,7 +1,14 @@
 <div class="container">
+  <div class="playlist_grid">
+    <% @playlists.each do |playlist| %>
+      <div class="playlist_card">
+        <h1><%= playlist.name %></h1>
+      </div>
+    <% end  %>
+  </div>
   <h1>test</h1>
     <%= simple_form_for [ @game] do |f| %>
-      <%= f.input :playlist, as: :radio_buttons, collection: @playlists %>
+        <%= f.input :playlist, as: :radio_buttons, collection: @playlists %>
       <%= f.submit "Next", class: "btn btn-primary" %>
     <% end %>
 </div>
