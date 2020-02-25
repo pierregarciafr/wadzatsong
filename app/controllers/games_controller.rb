@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-
+authorize @game
   def new
     @game = Game.new()
   end
@@ -22,9 +22,23 @@ class GamesController < ApplicationController
   end
 
   def update
-
-
-
+    @game = Game.find(params[:id])
+    @game.update(game_params)
+    redirect_to game_path(@game)
   end
+
+  def show
+    @game = Game.last
+    @answer = Answer.new
+    @answers = @game.answers
+  end
+
+
+private
+
+def game_params
+params.require(:game).permit(:status, :playlist_id)
+end
+
 
 end
