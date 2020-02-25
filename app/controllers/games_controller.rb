@@ -8,6 +8,7 @@ class GamesController < ApplicationController
     @game.status = :created
     @game.save!
     redirect_to edit_game_path(@game)
+  end
 
   def show
     @game = Game.last
@@ -27,6 +28,7 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
+    authorize @game
     @game.update(game_params)
     redirect_to game_path(@game)
   end
