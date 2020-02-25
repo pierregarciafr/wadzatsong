@@ -1,35 +1,57 @@
 class GamesController < ApplicationController
 
   def create
-    @game = policy_scope(Game.find(params[:id]))
+    # @game = policy_scope(Game.find(params[:id]))
+    @game = Game.new
+    authorize @game
+    @game.user = current_user
+    @game.status = :created
+    @game.save!
+    redirect_to edit_game_path(@game)
   end
 
   def show
+
     # case @game.status
     # game.started
     #  when 0
-        @game = Game.find(params[:id])
-
-
-        # create the Chatroom instance
-        # edit the channel QR code avec l'URL vers la chatroom :
-          # send Get request CURL -i http(s)://api.qrserver.com/v1/create-qr-code/?data=[URL-encoded-text]&size=[pixels]x[pixels]
-        #  JAVASCRIPT Fetch QR Code
-
-        # wait for participant to connect in the channel with the QR code
-        # broadcast the view#start
-
-        # /////
-        # le participant est connecté sur l'app
-        # il reçoit le code de la Chatroom
-        #
-
-
-      # else
-
-      # end
-    # end
+    #@game = Game.find(params[:id])
+    @game = Game.last
+    @answer = Answer.new
+    @answers = @game.answers
     authorize @game
+  end
+
+  def new
+    @game = Game.new()
+  end
+
+  def edit
+    @game = Game.find(params[:id])
+    @playlists = Playlist.all
+    authorize @game
+  end
+
+  def update
+    @game = Game.find(params[:id])
+    @game.playlist_id = params[:game][:playlist]
+    @game.update(game_params)
+    authorize @game
+    redirect_to game_path(@game)
+  end
+
+  def show
+    @game = Game.last
+    @answer = Answer.new
+    @playlist = @game.playlist
+    @answers = @game.answers
+    authorize @game
+  end
+
+  private
+
+  def game_params
+  params.require(:game).permit(:status, :playlist_id, :user_id)
   end
 
 end

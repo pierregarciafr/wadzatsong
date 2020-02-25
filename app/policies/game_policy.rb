@@ -7,6 +7,7 @@ class GamePolicy < ApplicationPolicy
 
   def show?
     record.user == user || record.participants.include?(user)
+
   end
 
   def create?
