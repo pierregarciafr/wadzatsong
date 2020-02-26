@@ -13,6 +13,7 @@ Game.destroy_all
 User.destroy_all
 Track.destroy_all
 Playlist.destroy_all
+Participation.destroy_all
 
 puts "Creating users..."
 
