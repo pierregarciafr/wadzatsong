@@ -1,12 +1,14 @@
 <div class="container">
+  <div class="playlist_grid">
+    <% @playlists.each do |playlist| %>
+      <div class="playlist_card playlist_image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path playlist.picture %>)"  >
+        <h1><%= playlist.name %></h1>
+      </div>
+    <% end  %>
+  </div>
   <h1>test</h1>
-    <ul>
-      <% @playlists.each do |playlist| %>
-        <li><%= playlist.name %></li>
-      <% end%>
-    </ul>
     <%= simple_form_for [ @game] do |f| %>
-      <%= f.input :playlist, as: :radio_buttons, collection: @playlists %>
+        <%= f.input :playlist, as: :radio_buttons, collection: @playlists %>
       <%= f.submit "Next", class: "btn btn-primary" %>
     <% end %>
 </div>

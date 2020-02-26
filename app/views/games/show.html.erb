@@ -15,6 +15,7 @@
 <h1>show.html.erb</h1>
 <%= @game.id %>
 <%= @game.playlist_id %>
+
 <% @game.playlist.tracks.each do |track| %>
   <li><%= track.title %></li>
     <%= simple_form_for [ @game, @answer ] do |f| %>

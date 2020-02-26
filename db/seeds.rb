@@ -7,10 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Cleaning database..."
+
+Answer.destroy_all
 Game.destroy_all
 User.destroy_all
 Track.destroy_all
 Playlist.destroy_all
+
 puts "Creating users..."
 
 user1 = User.new(password: "password", pseudo: "Mick", email: "mick@jagger.com")
@@ -21,12 +24,12 @@ user2 = User.new(password: "password", pseudo: "Gaga", email: "lady@gaga.com")
   puts "Created #{user.pseudo}"
 end
 
-playlist1 = Playlist.new(name:"Classic Rock")
-playlist2 = Playlist.new(name:"Variété française")
-playlist3 = Playlist.new(name:"Disney")
-playlist4 = Playlist.new(name:"Années 90")
-playlist5 = Playlist.new(name:"RnB US")
-playlist6 = Playlist.new(name:"French touch")
+playlist1 = Playlist.new(name:"Classic Rock", picture:'classicrock.jpg')
+playlist2 = Playlist.new(name:"Variété française", picture:'french.jpg')
+playlist3 = Playlist.new(name:"Disney", picture:'disney.jpg')
+playlist4 = Playlist.new(name:"Années 90", picture:'90s.jpg')
+playlist5 = Playlist.new(name:"RnB US", picture:'rapus.jpg')
+playlist6 = Playlist.new(name:"French touch", picture:'frenchtouch.jpg')
 
 [ playlist1, playlist2, playlist3, playlist4, playlist5, playlist6].each do |playlist|
   playlist.save
