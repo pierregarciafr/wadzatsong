@@ -16,10 +16,11 @@ class GamesController < ApplicationController
     #  when 0
 
     #@game = Game.find(params[:id])
-    @game = Game.last
+    @game = Game.find(params[:id])
     @answer = Answer.new
     @playlist = @game.playlist
     @answers = @game.answers
+    @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
     authorize @game
   end
 

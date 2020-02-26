@@ -1,12 +1,19 @@
-<div class="container">
+<div id="homepage">
+<p class="nav-item">
+  <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+</p>
+    <div class="content">
+      <div class="image">
+        <%= image_tag "logo-guesswhat.png" %>
+      </div>
+      <h1>GUESS WHAT</h1>
+      <h2>SHARE MUSIC ANYWHERE</h2>
+    </div>
 
-  <h1>GUESS WHAT</h1>
-  <div class="modes">
-    <%= simple_form_for @game do |f| %>
-      <%= f.submit "MODE PARTY", class: "btn btn-flat" %>
-      <% end %>
-    <p class="btn btn-flat">MODE SOLO</p>
+    <div class="text-center">
+        <%= simple_form_for @game do |f| %>
+          <%= f.submit "Créer une partie", class: "btn-home" %>
+        <% end %>
     <%= link_to("Rejoindre party", new_participation_path , class: "btn btn-flat") %> ></p>
-  </div>
-
+    </div>
 </div>
