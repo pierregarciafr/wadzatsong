@@ -1,9 +1,8 @@
 <div class="container">
   <div class="playlist_grid">
     <% @playlists.each do |playlist| %>
-      <div class="playlist_card">
+      <div class="playlist_card playlist_image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path playlist.picture %>)"  >
         <h1><%= playlist.name %></h1>
-        <%= image_tag(playlist.picture) %>
       </div>
     <% end  %>
   </div>

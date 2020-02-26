@@ -14,5 +14,15 @@ border-radius: 4px;
 display:flex;
 justify-content: center;
 align-items: center;
+}
 
+.playlist_image {
+ background-size: cover;
+ object-fit: cover;
+}
+
+.playlist_card h1 {
+color: white;
+font-size: 70px;
+text-align: center;
 }
