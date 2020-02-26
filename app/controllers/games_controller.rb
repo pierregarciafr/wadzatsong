@@ -27,6 +27,11 @@ class GamesController < ApplicationController
     authorize @game
   end
 
+  def created
+    @game = Game.find(params[:id])
+    # wait until @participation.game.exists?
+  end
+
   def running
     @game = Game.find(params[:id])
     @game.running!

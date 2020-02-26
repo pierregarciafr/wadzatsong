@@ -1,6 +1,18 @@
-<%= link_to running_game_path(@game), method: :patch do %>
-    <i class="fas fa-play"></i>
-    <% end %>
+<% if @game.created? %>
+  <div class="btn-home">
+    <div class="text-center">
+
+      Token :
+        <%= @game.token %>
+      </div>
+
+    </div>
+      <%= link_to running_game_path(@game), method: :patch do %>
+        <i class="fas fa-play fa-5x"></i>
+      <% end %>
+</div>
+<% end %>
+
 
 <% if @game.running? %>
   <ul class="list-inline d-flex align-items-center">
@@ -9,9 +21,9 @@
   </ul>
   <div class="d-none">
     <%= simple_form_for [ @game, @answer ] do |f| %>
-      <%= f.input :content %>
-      <%= f.hidden_field :track, value: @current_track.id %>
-      <%= f.submit %>
+    <%= f.input :content %>
+    <%= f.hidden_field :track, value: @current_track.id %>
+    <%= f.submit %>
     <% end %>
   </div>
   <div class="buzzer">
@@ -23,11 +35,11 @@
 
 
 <% if@game.paused? %>
-<div>
+  <div>
     <%= simple_form_for [ @game, @answer ] do |f| %>
-      <%= f.input :content %>
-      <%= f.hidden_field :track, value: @current_track.id %>
-      <%= f.submit %>
+    <%= f.input :content %>
+    <%= f.hidden_field :track, value: @current_track.id %>
+    <%= f.submit %>
     <% end %>
   </div>
 <% end %>

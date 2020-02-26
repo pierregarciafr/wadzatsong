@@ -7,14 +7,12 @@ class Game < ApplicationRecord
   # has_many :tracks, through: :playlists
   enum status: [ :created, :running, :paused, :finished ]
   validates :token, uniqueness: true
-  after_initialize :set_token
-
+  before_validation :set_token
 
   private
 
   def set_token
-    raise
-    until self.valid?
+    if self.id.nil?
       self.token = SecureRandom.hex(3)
     end
   end
