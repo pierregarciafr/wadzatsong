@@ -22,7 +22,6 @@ class GamesController < ApplicationController
   def paused
     @game = Game.find(params[:id])
     @game.paused!
-    @game.save
     redirect_to game_path(@game)
     authorize @game
   end

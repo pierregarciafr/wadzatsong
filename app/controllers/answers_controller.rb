@@ -13,7 +13,6 @@ class AnswersController < ApplicationController
         @answer.save
       end
     @game.running!
-    @game.save
     redirect_to game_path(@game)
     authorize @game
   end

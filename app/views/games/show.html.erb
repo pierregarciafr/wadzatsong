@@ -3,22 +3,26 @@
     <% end %>
 
 <% if @game.running? %>
-  <ul class="list-inline d-flex align-items-center">
-    <li class="list-inline-item"><%= @current_track.title %></li>
-    <li class="list-inline-item"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true) %></li>
-  </ul>
-  <div class="d-none">
-    <%= simple_form_for [ @game, @answer ] do |f| %>
-      <%= f.input :content %>
-      <%= f.hidden_field :track, value: @current_track.id %>
-      <%= f.submit %>
-    <% end %>
-  </div>
-  <div class="buzzer">
-    <%= link_to paused_game_path(@game), method: :patch do %>
-    <i class="fas fa-microphone"></i>
-    <% end %>
-  </div>
+  <% if @current_track %>
+    <ul class="list-inline d-flex align-items-center">
+      <li class="list-inline-item"><%= @current_track.title %></li>
+      <li class="list-inline-item"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
+    </ul>
+    <div class="d-none">
+      <%= simple_form_for [ @game, @answer ] do |f| %>
+        <%= f.input :content %>
+        <%= f.hidden_field :track, value: @current_track.id %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+    <div class="buzzer">
+      <%= link_to paused_game_path(@game), method: :patch do %>
+      <i class="fas fa-microphone"></i>
+      <% end %>
+    </div>
+  <% else %>
+    <h3>Party is finished!</h3>
+  <% end %>
 <% end %>
 
 

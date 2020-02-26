@@ -24,3 +24,11 @@ require("channels")
 import "bootstrap";
 // import { getCode } from '../plugins/fetch';
 
+const buzzer = document.querySelector(".buzzer");
+if(buzzer) {
+  buzzer.addEventListener('click', () => {
+    const song = document.getElementById("song");
+    time = song.currentTime;
+
+  })
+}
