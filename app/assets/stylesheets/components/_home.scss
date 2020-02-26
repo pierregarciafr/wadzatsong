@@ -3,6 +3,10 @@
     background-size: 400% 400%;
     animation: gradient 5s ease infinite;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 
   @keyframes gradient {
     0% {

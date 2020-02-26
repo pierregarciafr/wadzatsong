@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: $my-pink;
   height: 140px;
 }
 
@@ -17,4 +17,12 @@
   font-family: $logo-font;
   font-size: 3rem;
   margin-top: 20px;
+}
+
+.nav-link {
+  color:  #DCDCDC;
+  text-decoration: none;
+  font-size: 30px;
+  margin-top: 20px;
+  padding-left: 850px;
 }
