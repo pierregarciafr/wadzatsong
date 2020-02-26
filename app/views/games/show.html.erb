@@ -3,13 +3,17 @@
   <div class="created-game">
     <% if @game.created? %>
     <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
+    <div class="btn-home">
+    <div class="text-center">
+      Token :
+        <%= @game.token %>
+      </div>
+    </div>
     <%= link_to running_game_path(@game), method: :patch do %>
           <div class="play-btn"></div>
-        <% end %>
-    <% end %>
+        <% end %>    
   </div>
-
-
+  
   <% if @game.running? %>
     <% if @current_track %>
       <ul class="list-inline d-flex align-items-center">
@@ -41,7 +45,6 @@
       <h3>Party is finished!</h3>
     <% end %>
   <% end %>
-
 
   <% if@game.paused? %>
   <div id="answer-form">

@@ -12,6 +12,8 @@ class ParticipationsController < ApplicationController
     @participation.game = Game.find_by(token: token)
     @participation.save!
     authorize @participation
+    raise
+    redirect_to running_game_path(@participation.game), method: :patch
   end
 
   def edit
