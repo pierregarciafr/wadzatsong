@@ -1,6 +1,4 @@
-<%= link_to running_game_path(@game), method: :patch do %>
-    <i class="fas fa-play"></i>
-    <% end %>
+
 
 <% if @game.running? %>
   <% if @current_track %>
@@ -38,6 +36,59 @@
 <% end %>
 
 
+<div class="container">
+
+  <div class="created-game">
+    <% if @game.created? %>
+    <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
+    <%= link_to running_game_path(@game), method: :patch do %>
+          <div class="play-btn"></div>
+        <% end %>
+    <% end %>
+  </div>
+
+
+  <% if @game.running? %>
+    <ul class="list-inline d-flex align-items-center">
+      <li class="list-inline-item"><%= @current_track.title %></li>
+      <li class="list-inline-item"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true) %></li>
+    </ul>
+    <div class="d-none">
+      <%= simple_form_for [ @game, @answer ] do |f| %>
+        <%= f.input :content %>
+        <%= f.hidden_field :track, value: @current_track.id %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+
+    <div class="buzzer-content">
+      <%= link_to paused_game_path(@game), method: :patch do %>
+        <div class="buzzer">
+          <div class="wave">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  <% end %>
+
+
+
+  <% if@game.paused? %>
+  <div>
+      <%= simple_form_for [ @game, @answer ] do |f| %>
+        <%= f.input :content %>
+        <%= f.hidden_field :track, value: @current_track.id %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
 
 
