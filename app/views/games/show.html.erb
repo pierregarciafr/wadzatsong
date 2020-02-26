@@ -11,9 +11,9 @@
     </div>
     <%= link_to running_game_path(@game), method: :patch do %>
           <div class="play-btn"></div>
-        <% end %>    
+        <% end %>
   </div>
-  
+
   <% if @game.running? %>
     <% if @current_track %>
       <ul class="list-inline d-flex align-items-center">

@@ -16,7 +16,6 @@ class GamesController < ApplicationController
     @answers = @game.answers
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
     authorize @game
-
   end
 
   def paused
