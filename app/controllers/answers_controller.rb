@@ -13,7 +13,6 @@ class AnswersController < ApplicationController
         @answer.save
       end
     @game.running!
-    @game.save
     redirect_to game_path(@game)
     authorize @game
   end
@@ -21,6 +20,6 @@ class AnswersController < ApplicationController
   private
 
   def params_answer
-    params.require(:answer).permit(:content)
+    params.require(:answer).permit(:content, :answering_time)
   end
 end

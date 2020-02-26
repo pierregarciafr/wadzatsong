@@ -1,7 +1,7 @@
 <div class="container">
 
 
-      <%= simple_form_for @game do |f| %>
+  <%= simple_form_for @game do |f| %>
     <div class="playlist_grid">
       <% @playlists.each do |playlist| %>
           <div class="playlist_card playlist_image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path playlist.picture %>)"  >
@@ -11,8 +11,9 @@
             </h1>
           </div>
         <% end %>
-  </div>
-  <%= f.submit "Next", class: "btn btn-flat" %>
-    <% end %>
-
+      </div>
+    <div class="btn-editgame">
+      <%= f.submit "Next", class: "btn btn-flat" %>
+      <% end %>
+    </div>
 </div>
