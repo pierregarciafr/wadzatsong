@@ -26,6 +26,11 @@ class GamesController < ApplicationController
     redirect_to game_path(@game, current_time: params[:current_time])
   end
 
+  def created
+    @game = Game.find(params[:id])
+    # wait until @participation.game.exists?
+  end
+
   def running
     @game = Game.find(params[:id])
     @game.running!
