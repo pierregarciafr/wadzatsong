@@ -1,5 +1,7 @@
 <div id="homepage">
-  <div class="container">
+<p class="nav-item">
+  <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+</p>
     <div class="content">
       <div class="image">
         <%= image_tag "logo-guesswhat.png" %>
@@ -8,15 +10,10 @@
       <h2>SHARE MUSIC ANYWHERE</h2>
     </div>
 
-
-    <div class="modes d-flex">
-      <button class="btn-home">
+    <div class="text-center">
         <%= simple_form_for @game do |f| %>
-          <%= f.submit "MODE PARTIE" %>
+          <%= f.submit "Créer une partie", class: "btn-home" %>
         <% end %>
-      </button>
-      <button class="btn-home"> MODE SOLO </button>
+    <%= link_to("Rejoindre party", new_participation_path , class: "btn btn-flat") %> ></p>
     </div>
-  </div>
 </div>
-

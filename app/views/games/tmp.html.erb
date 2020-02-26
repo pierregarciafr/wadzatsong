@@ -1,0 +1,9 @@
+tmp.html.erb
+
+  <h1>test</h1>
+    <%= simple_form_for [ @game] do |f| %>
+        <%= f.input :playlist, as: :radio_buttons, collection: @playlists %>
+      <%= f.submit "Next", class: "btn btn-primary" %>
+    <% end %>
+
+

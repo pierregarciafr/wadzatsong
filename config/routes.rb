@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :games, only: [ :create,  :edit, :update, :show ] do
     patch 'running', on: :member
     patch 'paused', on: :member
-    resources :participations, only: [ :new, :create]
+    resources :participations, only: [ :edit, :update, :show ]
     resources :answers, only: [ :create, :show ]
   end
-
+  resources :participations, only: [ :new, :create ]
 end

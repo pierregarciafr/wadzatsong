@@ -8,6 +8,7 @@
 
 puts "Cleaning database..."
 
+Participation.destroy_all
 Answer.destroy_all
 Game.destroy_all
 User.destroy_all
@@ -54,6 +55,6 @@ track10 = Track.new(title: "Poker Face", artist: "Lady Gaga", url_preview: "http
 end
 
 Game.create(status: 0, user: user1 , playlist: playlist3 )
-
+p Game.all.last
 
 puts "Finished..."
