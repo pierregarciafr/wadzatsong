@@ -1,15 +1,43 @@
-
-<%= @current_track.title %>
-<%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true) %>
-<%= simple_form_for [ @game, @answer ] do |f| %>
-  <%= f.input :content %>
-  <%= f.hidden_field :track, value: @current_track.id %>
-  <%= f.submit %>
-
-    <% @answers.select {|answer| answer.track == @current_track}.each do |answer|%>
-      <%= answer.content %>
+<%= link_to running_game_path(@game), method: :patch do %>
+    <i class="fas fa-play"></i>
     <% end %>
 
+<% if @game.running? %>
+  <ul class="list-inline d-flex align-items-center">
+    <li class="list-inline-item"><%= @current_track.title %></li>
+    <li class="list-inline-item"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true) %></li>
+  </ul>
+  <div class="d-none">
+    <%= simple_form_for [ @game, @answer ] do |f| %>
+      <%= f.input :content %>
+      <%= f.hidden_field :track, value: @current_track.id %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+  <div class="buzzer">
+    <%= link_to paused_game_path(@game), method: :patch do %>
+    <i class="fas fa-microphone"></i>
+    <% end %>
+  </div>
 <% end %>
+
+
+<% if@game.paused? %>
+<div>
+    <%= simple_form_for [ @game, @answer ] do |f| %>
+      <%= f.input :content %>
+      <%= f.hidden_field :track, value: @current_track.id %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
 
 

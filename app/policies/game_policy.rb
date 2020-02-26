@@ -22,5 +22,12 @@ class GamePolicy < ApplicationPolicy
     record.user == user || record.participants.include?(user)
   end
 
+  def paused?
+    true
+  end
+
+  def running?
+    true
+  end
 
 end

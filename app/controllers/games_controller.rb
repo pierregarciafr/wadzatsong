@@ -18,6 +18,21 @@ class GamesController < ApplicationController
     authorize @game
   end
 
+  def paused
+    @game = Game.find(params[:id])
+    @game.paused!
+    @game.save
+    redirect_to game_path(@game)
+    authorize @game
+  end
+
+  def running
+    @game = Game.find(params[:id])
+    @game.running!
+    redirect_to game_path(@game)
+    authorize @game
+  end
+
   def new
     @game = Game.new()
   end
