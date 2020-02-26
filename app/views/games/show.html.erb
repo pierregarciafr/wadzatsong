@@ -1,25 +1,26 @@
 <div class="container">
-
   <div class="created-game">
     <% if @game.created? %>
-    <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
+    <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer :loud_sound:</h1>
     <div class="btn-home">
-    <div class="text-center">
-      Token :
-        <%= @game.token %>
+      <div class="text-center">
+        Token :
+          <%= @game.token %>
       </div>
     </div>
     <%= link_to running_game_path(@game), method: :patch do %>
           <div class="play-btn"></div>
-        <% end %>    
+    <% end %>
+    <% end %>
   </div>
-  
+
   <% if @game.running? %>
     <% if @current_track %>
       <ul class="list-inline d-flex align-items-center">
         <li class="list-inline-item"><%= @current_track.title %></li>
         <li class="list-inline-item"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
       </ul>
+
       <div class="d-none">
         <%= simple_form_for [ @game, @answer ] do |f| %>
           <%= f.input :content %>
@@ -41,24 +42,19 @@
           </div>
         <% end %>
       </div>
-    <% else %>
-      <h3>Party is finished!</h3>
-    <% end %>
+      <% else %>
+        <h3>Party is finished!</h3>
+      <% end %>
   <% end %>
 
   <% if@game.paused? %>
-  <div id="answer-form">
-      <%= simple_form_for [ @game, @answer ] do |f| %>
-        <%= f.input :content %>
-        <%= f.hidden_field :track, value: @current_track.id %>
-        <%= f.hidden_field :answering_time, value: params[:current_time] %>
-        <%= f.submit %>
-      <% end %>
+    <div id="answer-form">
+        <%= simple_form_for [ @game, @answer ] do |f| %>
+          <%= f.input :content %>
+          <%= f.hidden_field :track, value: @current_track.id %>
+          <%= f.hidden_field :answering_time, value: params[:current_time] %>
+          <%= f.submit %>
+        <% end %>
     </div>
   <% end %>
-
-
-</div>
-
-
 </div>
