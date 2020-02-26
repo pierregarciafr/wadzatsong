@@ -8,15 +8,15 @@
       <li class="list-inline-item"><%= @current_track.title %></li>
       <li class="list-inline-item"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
     </ul>
-    <div class="d-none">
-      <%= simple_form_for [ @game, @answer ] do |f| %>
-        <%= f.input :content %>
-        <%= f.hidden_field :track, value: @current_track.id %>
-        <%= f.submit %>
-      <% end %>
-    </div>
+    <!-- <div class="d-none"> -->
+      <%#= simple_form_for [ @game, @answer ] do |f| %>
+        <%#= f.input :content %>
+        <%#= f.hidden_field :track, value: @current_track.id %>
+        <%#= f.submit %>
+      <%# end %>
+   <!--  </div> -->
     <div class="buzzer">
-      <%= link_to paused_game_path(@game), method: :patch do %>
+      <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
       <i class="fas fa-microphone"></i>
       <% end %>
     </div>
@@ -27,10 +27,11 @@
 
 
 <% if@game.paused? %>
-<div>
+<div id="answer-form">
     <%= simple_form_for [ @game, @answer ] do |f| %>
       <%= f.input :content %>
       <%= f.hidden_field :track, value: @current_track.id %>
+      <%= f.hidden_field :answering_time, value: params[:current_time] %>
       <%= f.submit %>
     <% end %>
   </div>

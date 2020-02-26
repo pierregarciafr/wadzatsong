@@ -24,11 +24,13 @@ require("channels")
 import "bootstrap";
 // import { getCode } from '../plugins/fetch';
 
-const buzzer = document.querySelector(".buzzer");
-if(buzzer) {
-  buzzer.addEventListener('click', () => {
+const buzz = document.getElementById("buzz");
+if(buzz) {
+  buzz.addEventListener('click', () => {
     const song = document.getElementById("song");
-    time = song.currentTime;
-
+    const time = Math.floor(song.currentTime);
+    const current_time = `?current_time=${time}`;
+    buzz.href = buzz.href + current_time;
+    console.log(buzz.href);
   })
 }

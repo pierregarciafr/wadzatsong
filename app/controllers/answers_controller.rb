@@ -20,6 +20,6 @@ class AnswersController < ApplicationController
   private
 
   def params_answer
-    params.require(:answer).permit(:content)
+    params.require(:answer).permit(:content, :answering_time)
   end
 end
