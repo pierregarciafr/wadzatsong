@@ -21,10 +21,9 @@ class GamesController < ApplicationController
 
   def paused
     @game = Game.find(params[:id])
-    @game.paused!
-    @game.save
-    redirect_to game_path(@game)
     authorize @game
+    @game.paused!
+    redirect_to game_path(@game, current_time: params[:current_time])
   end
 
   def running
