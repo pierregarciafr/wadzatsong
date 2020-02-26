@@ -11,11 +11,6 @@ class GamesController < ApplicationController
   end
 
   def show
-
-    # case @game.status
-    # game.started
-    #  when 0
-    #@game = Game.find(params[:id])
     @game = Game.find(params[:id])
     @answer = Answer.new
     @answers = @game.answers
@@ -40,14 +35,6 @@ class GamesController < ApplicationController
     authorize @game
     redirect_to game_path(@game)
   end
-
-  # def show
-  #   @game = Game.last
-  #   @answer = Answer.new
-  #   @playlist = @game.playlist
-  #   @answers = @game.answers
-  #   authorize @game
-  # end
 
   private
 
