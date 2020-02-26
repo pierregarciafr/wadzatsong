@@ -53,7 +53,7 @@ track10 = Track.new(title: "Poker Face", artist: "Lady Gaga", url_preview: "http
   puts "Created #{track.title}"
 end
 
-Game.create(status: 0, user: user1 , playlist: playlist3 )
+Game.create(status: 0, user: user1 , playlist: playlist3, token: SecureRandom.hex(3))
 p Game.all.last
 
 puts "Finished..."
