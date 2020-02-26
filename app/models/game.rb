@@ -13,6 +13,7 @@ class Game < ApplicationRecord
   private
 
   def set_token
+    raise
     until self.valid?
       self.token = SecureRandom.hex(3)
     end

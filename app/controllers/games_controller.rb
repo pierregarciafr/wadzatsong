@@ -10,10 +10,6 @@ class GamesController < ApplicationController
   end
 
   def show
-    # !!! 2 show !!!
-    # case @game.status
-    # game.started
-    #  when 0
     @game = Game.find(params[:id])
     @answer = Answer.new
     @playlist = @game.playlist
@@ -21,6 +17,21 @@ class GamesController < ApplicationController
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
     authorize @game
 
+  end
+
+  def paused
+    @game = Game.find(params[:id])
+    @game.paused!
+    @game.save
+    redirect_to game_path(@game)
+    authorize @game
+  end
+
+  def running
+    @game = Game.find(params[:id])
+    @game.running!
+    redirect_to game_path(@game)
+    authorize @game
   end
 
   def new
@@ -35,8 +46,8 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
-    @game.playlist_id = params[:game][:playlist]
-    @game.update(game_params)
+    @game.playlist_id = params[:playlist_id]
+    @game.save
     authorize @game
     redirect_to game_path(@game)
   end
@@ -44,7 +55,7 @@ class GamesController < ApplicationController
   private
 
   def game_params
-  params.require(:game).permit(:status, :playlist_id, :user_id)
+    params.require(:game).permit(:status, :playlist_id)
   end
 
 end

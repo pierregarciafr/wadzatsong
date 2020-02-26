@@ -27,4 +27,12 @@ class GamePolicy < ApplicationPolicy
     true
   end
 
+  def paused?
+    true
+  end
+
+  def running?
+    true
+  end
+
 end
