@@ -1,13 +1,13 @@
 class ParticipationsController < ApplicationController
 
   def new
-    @participation = Participation.new()
-
+    # @participation = Participation.new()
+    # # authorize @participation
+    # @participation.user = user
   end
 
-  def create
-    @participation = Participation.find(params[:id])
-    @participation.user = current_user
+  def edit
+     # @participation = Participation.find(params[:id])
   end
 
 end
