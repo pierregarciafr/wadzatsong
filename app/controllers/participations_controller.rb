@@ -1,8 +1,8 @@
 class ParticipationsController < ApplicationController
 
   def new
-    # @participation = Participation.new()
-    # # authorize @participation
+    @participation = Participation.new()
+    authorize @participation
     # @participation.user = user
   end
 

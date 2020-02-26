@@ -6,6 +6,6 @@ class ParticipationPolicy < ApplicationPolicy
   end
 #
   def new?
-    record.user == current_user
+    true
   end
 end

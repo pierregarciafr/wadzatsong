@@ -2,9 +2,8 @@ class GamesController < ApplicationController
 
   def create
     # @game = policy_scope(Game.find(params[:id]))
-    @game = Game.new
+    @game = Game.new(user: current_user)
     authorize @game
-    @game.user = current_user
     @game.status = :created
     @game.save!
     redirect_to edit_game_path(@game)
@@ -25,7 +24,7 @@ class GamesController < ApplicationController
   end
 
   def new
-    @game = Game.new()
+    @game = Game.new(user: current_user)
   end
 
   def edit
