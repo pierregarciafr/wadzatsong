@@ -16,6 +16,7 @@ class GamesController < ApplicationController
     @answers = @game.answers
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
     authorize @game
+
   end
 
   def paused
@@ -34,7 +35,7 @@ class GamesController < ApplicationController
   end
 
   def new
-    @game = Game.new(user: current_user)
+    @game = Game.new(user: current_user) if current_user
   end
 
   def edit

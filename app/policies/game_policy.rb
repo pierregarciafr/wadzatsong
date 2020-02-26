@@ -11,7 +11,7 @@ class GamePolicy < ApplicationPolicy
   end
 
   def show?
-    false
+    record.user == user
   end
 
   def create?
@@ -24,7 +24,7 @@ class GamePolicy < ApplicationPolicy
   end
 
   def update?
-    false
+    true
   end
 
   def paused?
