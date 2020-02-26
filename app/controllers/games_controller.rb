@@ -2,29 +2,30 @@ class GamesController < ApplicationController
 
   def create
     # @game = policy_scope(Game.find(params[:id]))
-    @game = Game.new
+    @game = Game.new(user: current_user)
     authorize @game
-    @game.user = current_user
     @game.status = :created
     @game.save!
     redirect_to edit_game_path(@game)
   end
 
   def show
-
+    # !!! 2 show !!!
     # case @game.status
     # game.started
     #  when 0
+
     #@game = Game.find(params[:id])
     @game = Game.find(params[:id])
     @answer = Answer.new
+    @playlist = @game.playlist
     @answers = @game.answers
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
     authorize @game
   end
 
   def new
-    @game = Game.new()
+    @game = Game.new(user: current_user)
   end
 
   def edit
@@ -40,14 +41,6 @@ class GamesController < ApplicationController
     authorize @game
     redirect_to game_path(@game)
   end
-
-  # def show
-  #   @game = Game.last
-  #   @answer = Answer.new
-  #   @playlist = @game.playlist
-  #   @answers = @game.answers
-  #   authorize @game
-  # end
 
   private
 

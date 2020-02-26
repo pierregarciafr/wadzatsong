@@ -1,13 +1,17 @@
 class GamePolicy < ApplicationPolicy
-  # class Scope < Scope
-  #   def resolve
-  #     scope.where(user: @game.user)
-  #   end
-  # end
+  class Scope < Scope
+    def resolve
+      scope.where(user: @participation.user)
+    end
+  end
+
+  def new?
+    true
+    # record.user == user ## || record.game.user == user
+  end
 
   def show?
-    record.user == user || record.participants.include?(user)
-
+    false
   end
 
   def create?
@@ -16,10 +20,11 @@ class GamePolicy < ApplicationPolicy
 
   def edit?
     true
+    # record.user == user
   end
 
   def update?
-    record.user == user || record.participants.include?(user)
+    false
   end
 
 

@@ -10,11 +10,10 @@
       <h2>SHARE MUSIC ANYWHERE</h2>
     </div>
 
-
     <div class="text-center">
         <%= simple_form_for @game do |f| %>
           <%= f.submit "Créer une partie", class: "btn-home" %>
         <% end %>
-      <button class="btn-home"> Rejoindre une partie </button>
+    <%= link_to("Rejoindre party", new_participation_path , class: "btn btn-flat") %> ></p>
     </div>
 </div>
