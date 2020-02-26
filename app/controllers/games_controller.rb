@@ -35,7 +35,8 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
-    @game.playlist_id = params[:game][:playlist]
+    # @game.playlist_id = params[:game][:playlist]
+    @game.playlist_id = params[:playlist_id]
     @game.update(game_params)
     authorize @game
     redirect_to game_path(@game)

@@ -6,9 +6,28 @@
       </div>
     <% end  %>
   </div>
+
+
   <h1>test</h1>
     <%= simple_form_for [ @game] do |f| %>
         <%= f.input :playlist, as: :radio_buttons, collection: @playlists %>
       <%= f.submit "Next", class: "btn btn-primary" %>
     <% end %>
+
+
+
+
+    <div class="playlist_grid">
+      <%= simple_form_for [ @game] do |f| %>
+        <% @playlists.each do |playlist| %>
+          <div class="playlist_card playlist_image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path playlist.picture %>)"  >
+            <%= radio_button_tag 'playlist_id', playlist.id %>
+            <h1>
+              <%= label_tag playlist.name  %>
+            </h1>
+          </div>
+        <% end %>
+      <%= f.submit "Next", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
