@@ -42,19 +42,34 @@
           </div>
         <% end %>
       </div>
-      <% else %>
-        <h3>Party is finished!</h3>
-      <% end %>
+    <% else %>
+      <h3>Party is finished!</h3>
+        <ul>
+          <%= @game.id %>
+        <% @game.playlist.tracks.each do |track| %>
+
+          <li>
+          <%= track.title %> (<%= track.artist %>)
+          - <% track.answers.each do |answer| %>
+          <%= answer.status %> - <%= answer.user.pseudo %> - <%= answer.answering_time %>
+          <%= answer.game.id %>
+          <% end %>
+          <% end %>
+          </li>
+        </ul>
+    <% end %>
   <% end %>
 
   <% if@game.paused? %>
-    <div id="answer-form">
-        <%= simple_form_for [ @game, @answer ] do |f| %>
-          <%= f.input :content %>
-          <%= f.hidden_field :track, value: @current_track.id %>
-          <%= f.hidden_field :answering_time, value: params[:current_time] %>
-          <%= f.submit %>
-        <% end %>
+
+  <div class="form-container">
+      <%= simple_form_for [ @game, @answer ] do |f| %>
+        <%= f.input :content %>
+        <%= f.hidden_field :track, value: @current_track.id %>
+        <%= f.hidden_field :answering_time, value: params[:current_time] %>
+        <%= f.submit %>
+      <% end %>
+
     </div>
   <% end %>
 </div>
