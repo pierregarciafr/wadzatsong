@@ -1,7 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: $my-pink;
-  height: 140px;
+  height: 80px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,14 +9,14 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 80px;
+  width: 56px;
   margin-left: 10px;
 }
 
 .brand h1 {
   font-family: $logo-font;
-  font-size: 3rem;
-  margin-top: 20px;
+  font-size: 2rem;
+  margin: 6px 0 0 0;
 }
 
 .nav-link {
