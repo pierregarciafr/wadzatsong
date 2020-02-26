@@ -1,4 +1,9 @@
 <h1>Welcome</h1>
 Votre token
+<%= simple_form_for @participation do |p| %>
+<%= p.text_field :token %>
+<%= p.submit %>
+<% end %>
+
 
 

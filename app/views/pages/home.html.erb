@@ -10,12 +10,13 @@
       <h2>SHARE MUSIC ANYWHERE</h2>
     </div>
 
-    <% if user_signed_in? %>
-      <div class="text-center">
-          <%= simple_form_for @game do |f| %>
-            <%= f.submit "Créer une partie", class: "btn-home" %>
-          <% end %>
-      <%= link_to("Rejoindre party", new_participation_path , class: "btn btn-flat") %> ></p>
-      </div>
-    <% end %>
+  <% if user_signed_in? %>
+    <div class="text-center">
+        <%= simple_form_for @game do |f| %>
+          <%= f.submit "Créer une partie", class: "btn-home" %>
+        <% end %>
+    <%= link_to("Rejoindre party", new_participation_path , class: "btn btn-home") %></p>
+    </div>
+  <% end %>
+
 </div>
