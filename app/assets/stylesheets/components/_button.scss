@@ -20,9 +20,32 @@
 .modes {
   position: absolute;
   bottom: 0;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0.5em;
+  width: 100%;
+
 }
 
-.home {
-  background: white;
-  color: black;
+.btn-home {
+  background-image: linear-gradient(to right, #ECE9E6, #FFFFFF) !important;
+  color: black !important;
+  border-radius: 50px;
+  font-size: 50px;
+  width: 700px;
+  height: 250px;
+  margin-bottom: 50px;
+
+
+    &:hover {
+      background-position: right center;
+    }
 }
+
+
+
+
+// .home {
+//   background: white;
+//   color: black;
+// }
