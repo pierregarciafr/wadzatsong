@@ -11,9 +11,16 @@ class GamesController < ApplicationController
   end
 
   def show
+
+    # case @game.status
+    # game.started
+    #  when 0
+    #@game = Game.find(params[:id])
     @game = Game.last
     @answer = Answer.new
     @answers = @game.answers
+    @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
+    authorize @game
   end
 
   def new
@@ -47,4 +54,5 @@ class GamesController < ApplicationController
   def game_params
   params.require(:game).permit(:status, :playlist_id, :user_id)
   end
+
 end
