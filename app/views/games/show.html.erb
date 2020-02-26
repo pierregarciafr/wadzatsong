@@ -6,24 +6,24 @@
 
     <% if @game.created? %>
       <p>Bienvenue <%= @user.pseudo %> !</p>
-      Connected
-      <p> This is <%= @game.user.pseudo %>'s game</p>
-      <% if @game.participants != nil %>
-      <p> <%= @game.participants %> is participating</p>
-      <% end %>
+      Connected on <%= @game.user.pseudo %>'s game</p>
+<!--       <%# if @participation != nil %>
+      <p><%#= participation.game.user %> is participating</p>
+       <%# end %> -->
+    <%# end %>
 
-<!--
-<div id="running-game" data-game-id="<%#=# @game.id %>">
-  <%# @game.answers.each do |answer| %>
-    <div class="message-container">
-      <i class="author">
-        <span><%#= answer.user.pseudo %></span>
-        <small><%#=# answer.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-      </i>
-      <p><%#=# answer.content %></p>
-    </div>
-  <%# end %>
-</div> -->
+      <!--
+      <div id="running-game" data-game-id="<%#=# @game.id %>">
+        <%# @game.answers.each do |answer| %>
+          <div class="message-container">
+            <i class="author">
+              <span><%#= answer.user.pseudo %></span>
+              <small><%#=# answer.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+            </i>
+            <p><%#=# answer.content %></p>
+          </div>
+        <%# end %>
+      </div> -->
 
 
 

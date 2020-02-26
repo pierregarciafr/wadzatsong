@@ -11,7 +11,8 @@ class GamePolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user
+    true
+    # record.user == user ## || record.game.user == user
   end
 
   def create?
