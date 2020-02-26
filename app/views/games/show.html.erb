@@ -1,7 +1,13 @@
 <div class="container">
-  <%= link_to running_game_path(@game), method: :patch do %>
-      <i class="fas fa-play"></i>
-      <% end %>
+
+  <div class="created-game">
+    <% if @game.created? %>
+    <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
+    <%= link_to running_game_path(@game), method: :patch do %>
+          <div class="play-btn"></div>
+        <% end %>
+    <% end %>
+  </div>
 
   <% if @game.running? %>
     <ul class="list-inline d-flex align-items-center">
