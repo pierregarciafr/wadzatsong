@@ -33,6 +33,9 @@ class AnswersController < ApplicationController
 
   end
 
+
+
+
   private
 
   def params_answer
