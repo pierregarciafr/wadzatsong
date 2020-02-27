@@ -7,7 +7,13 @@
     </div>
   </div>
 
-  <% if @game.created? %>
+    <% if @game.created? %>
+      <p>Bienvenue <%= @user.pseudo %> !</p>
+      Connected
+      <p> This is <%= @game.user.pseudo %>'s game</p>
+      <% if @game.participants != nil %>
+      <p> <%#= @game.participants %> Estelle is participating</p>
+      <% end %>
 
     <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer :loud_sound:</h1>
     <div class="btn-home">
@@ -15,6 +21,7 @@
         <p>Your token :
           <%= @game.token %></p>
       </div>
+
     </div>
 
     <%= link_to running_game_path(@game), method: :patch do %>
@@ -26,13 +33,11 @@
 
     <h1><%= @participation.pseudo %> a rejoint le game</h1>
     <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
-    <div class="btn-home">
 
       <div class="text-center">
-        <p>Your token :
-          <%= @game.token %></p>
+        <p> <strong>Your token :
+          <%= @game.token %></p></strong>
       </div>
-    </div>
 
     <%= link_to running_game_path(@game), method: :patch do %>
       <div class="play-btn"></div>
@@ -42,17 +47,9 @@
   <% if @game.running? %>
     <% if @current_track %>
       <ul class="list-inline d-flex align-items-center">
-        <li class="list-inline-item"><%= @current_track.title %></li>
+<!--         <li class="list-inline-item"><%= @current_track.title %></li> -->
         <li class="list-inline-item audio" data-time="<%= @answering_time %>"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
       </ul>
-
-      <div class="d-none">
-        <%= simple_form_for [ @game, @answer ] do |f| %>
-          <%= f.input :content %>
-          <%= f.hidden_field :track, value: @current_track.id %>
-          <%= f.submit %>
-        <% end %>
-      </div>
 
       <div class="buzzer-content">
        <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>

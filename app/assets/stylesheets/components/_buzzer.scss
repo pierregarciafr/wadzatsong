@@ -1,11 +1,10 @@
 .buzzer {
-  margin-top: 500px;
-  position: absolute;
+  top: 50%;
   background: white;
   border-radius: 50%;
-  width: 400px;
-  height: 400px;
-  margin-left: 160px;
+  width: 150px;
+  height: 150px;
+  margin: 50% auto;
   box-shadow: 0 10px 12px rgba(0,0,0,0.2);
 }
 
