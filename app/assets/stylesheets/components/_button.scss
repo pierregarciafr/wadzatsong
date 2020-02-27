@@ -1,17 +1,14 @@
 .btn-flat {
   color: white;
   background: $my-pink;
-  padding: 80px 250px;
   border-radius: 50px;
   font-weight: bold;
-  font-size: 50px;
-  opacity: 0.8;
+  opacity: 1;
   transition: opacity 0.3s ease;
   border: 1px solid white;
-  width: 700px;
 
     &:hover {
-      opacity: 1;
+      opacity: 0.8;
       background-position: right center;
       color: white;
     }
@@ -22,12 +19,9 @@
   background: white !important;
   color: black !important;
   border-radius: 50px;
-  font-size: 50px;
-  width: 700px;
-  height: 200px;
   margin-bottom: 50px;
   font-weight: bold;
-  border: 4px solid black;
+  border: 1px solid black;
 
     &:hover {
       opacity: 1;
@@ -37,17 +31,8 @@
 }
 
 
-.btn-editgame {
-  position: absolute;
-  bottom: 60px;
-}
-
 .btn-home2 {
   color: black !important;
-  font-size: 50px;
-  width: 700px;
-  height: 200px;
-  margin-bottom: 80px;
   font-weight: bold;
 
     &:hover {
