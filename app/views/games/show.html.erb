@@ -60,6 +60,7 @@
         <%= '<i class="fas fa-record-vinyl"></i>'.html_safe * (Game::NUMBER_OF_ROUNDS - Answer.where(status:true).count) %>
       </div>
       <div class="buzzer-content">
+        <!-- creer une variable idBuzzer = 'buzz' + user.id -->
        <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
           <div class="buzzer">
             <div class="wave">

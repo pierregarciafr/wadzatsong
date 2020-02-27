@@ -34,6 +34,10 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     authorize @game
     @game.paused!
+    GameChannel.broadcast_to(
+      @game,
+      { status: "pause", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
+    )
     redirect_to game_path(@game, current_time: params[:current_time])
   end
 
