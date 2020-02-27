@@ -1,11 +1,13 @@
 <div class="container">
 
+
   <!-- <div class="created-game">
     <div id="answers" data-game-id="<%= @game.id %>">
       <h1>Bienvenue <%= @user.pseudo %> !</h1>
       <h1>Connected on <%= @game.user.pseudo %>'s game</h1>
     </div>
   </div> -->
+
 
     <% if @game.created? %>
       <p>Bienvenue <%= @user.pseudo %> !</p>
@@ -14,6 +16,7 @@
       <% if @game.participants != nil %>
       <p> <%#= @game.participants %> Estelle is participating</p>
       <% end %>
+
 
     <div class="play">
       <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
@@ -66,34 +69,55 @@
           </div>
         <% end %>
       </div>
-    <% else %>
-      <h3>Party is finished!</h3>
-        <ul>
-          <%= @game.id %>
-        <% @game.playlist.tracks.each do |track| %>
 
-          <li>
-          <%= track.title %> (<%= track.artist %>)
-          - <% track.answers.each do |answer| %>
-          <%= answer.status %> - <%= answer.user.pseudo %> - <%= answer.answering_time %>
-          <%= answer.game.id %>
-          <% end %>
-          <% end %>
-          </li>
-        </ul>
+    <% else %>
+      <h3><%= @game.playlist.name.capitalize %> party is finished!</h3>
+
+      <table>
+        <thead>
+            <tr>
+                <th colspan="3">Results</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <td>Track :</td>
+              <td>Guessed by :</td>
+              <td>Score :</td>
+          </tr>
+
+          <% @game.playlist.tracks.each do |track| %>
+            <tr>
+              <td><%= track.title %> (<%= track.artist %>) </td>
+              <% if Answer.last.status = true  %>
+                <td><%= Answer.last.user.pseudo %></td>
+                <td><%= Answer.last.answering_time %></td>
+              <% else %>
+                <td>No winner</td>
+                <td>No winner</td>
+              <% end  %>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+
+      <h2>The big winner is :</h2>
+
+
+
+
     <% end %>
   <% end %>
 
-  <% if @game.paused? %>
+  <% if@game.paused? %>
+    <div class="form-container">
 
-  <div class="form-container">
       <%= simple_form_for [ @game, @answer ] do |f| %>
         <%= f.input :content %>
         <%= f.hidden_field :track, value: @current_track.id %>
         <%= f.hidden_field :answering_time, value: params[:current_time] %>
         <%= f.submit id:"answer"%>
       <% end %>
-
     </div>
   <% end %>
 </div>
