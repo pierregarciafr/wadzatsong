@@ -1,16 +1,42 @@
 <div class="container">
-  <div class="created-game">
+    <div class="created-game">
+
+     <div id="participation" data-game-id="<%= @game.id %>">
+
+
     <% if @game.created? %>
+      <p>Bienvenue <%= @user.pseudo %> !</p>
+      Connected
+      <p> This is <%= @game.user.pseudo %>'s game</p>
+      <% if @game.participants != nil %>
+      <p> <%= @game.participants %> is participating</p>
+      <% end %>
+
+<!--
+<div id="running-game" data-game-id="<%#=# @game.id %>">
+  <%# @game.answers.each do |answer| %>
+    <div class="message-container">
+      <i class="author">
+        <span><%#= answer.user.pseudo %></span>
+        <small><%#=# answer.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      </i>
+      <p><%#=# answer.content %></p>
+    </div>
+  <%# end %>
+</div> -->
+
+
+
     <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
     <div class="btn-home">
       <div class="text-center">
-        Token :
-          <%= @game.token %>
+        <p>Your token :
+          <%= @game.token %></p>
       </div>
     </div>
     <%= link_to running_game_path(@game), method: :patch do %>
           <div class="play-btn"></div>
-    <% end %>
+      <% end %>
     <% end %>
   </div>
 
@@ -42,19 +68,35 @@
           </div>
         <% end %>
       </div>
-      <% else %>
-        <h3>Party is finished!</h3>
-      <% end %>
+    <% else %>
+      <h3>Party is finished!</h3>
+        <ul>
+          <%= @game.id %>
+        <% @game.playlist.tracks.each do |track| %>
+
+          <li>
+          <%= track.title %> (<%= track.artist %>)
+          - <% track.answers.each do |answer| %>
+          <%= answer.status %> - <%= answer.user.pseudo %> - <%= answer.answering_time %>
+          <%= answer.game.id %>
+          <% end %>
+          <% end %>
+          </li>
+        </ul>
+    <% end %>
   <% end %>
 
   <% if@game.paused? %>
-    <div id="answer-form">
-        <%= simple_form_for [ @game, @answer ] do |f| %>
-          <%= f.input :content %>
-          <%= f.hidden_field :track, value: @current_track.id %>
-          <%= f.hidden_field :answering_time, value: params[:current_time] %>
-          <%= f.submit %>
-        <% end %>
+
+  <div class="form-container">
+      <%= simple_form_for [ @game, @answer ] do |f| %>
+        <%= f.input :content %>
+        <%= f.hidden_field :track, value: @current_track.id %>
+        <%= f.hidden_field :answering_time, value: params[:current_time] %>
+        <%= f.submit %>
+      <% end %>
+
     </div>
   <% end %>
+</div>
 </div>

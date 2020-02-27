@@ -1,5 +1,9 @@
 class ParticipationsController < ApplicationController
 
+  def index
+    @participations = Participation.all
+  end
+
   def new
     @participation = Participation.new()
     authorize @participation
@@ -11,9 +15,14 @@ class ParticipationsController < ApplicationController
     token = @participation.token
     @participation.game = Game.find_by(token: token)
     @participation.save!
+###
+#     Game.broadcast_to(
+#   @chatroom,
+#   render_to_string(partial: "message", locals: { message: @message })
+# )
+###
     authorize @participation
-    raise
-    redirect_to running_game_path(@participation.game), method: :patch
+    redirect_to game_path(@participation.game)
   end
 
   def edit
