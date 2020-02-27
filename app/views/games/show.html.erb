@@ -1,11 +1,11 @@
 <div class="container">
 
-  <div class="created-game">
+  <!-- <div class="created-game">
     <div id="answers" data-game-id="<%= @game.id %>">
       <h1>Bienvenue <%= @user.pseudo %> !</h1>
       <h1>Connected on <%= @game.user.pseudo %>'s game</h1>
     </div>
-  </div>
+  </div> -->
 
     <% if @game.created? %>
       <p>Bienvenue <%= @user.pseudo %> !</p>
@@ -15,14 +15,16 @@
       <p> <%#= @game.participants %> Estelle is participating</p>
       <% end %>
 
-    <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer :loud_sound:</h1>
-    <div class="btn-home">
+    <div class="play">
+      <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
+    </div>
+
       <div class="text-center">
-        <p>Your token :
-          <%= @game.token %></p>
+        <p><strong>Your token :
+          <%= @game.token %></p></strong>
       </div>
 
-    </div>
+
 
     <%= link_to running_game_path(@game), method: :patch do %>
       <div class="play-btn"></div>
