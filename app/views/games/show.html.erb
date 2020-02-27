@@ -25,7 +25,9 @@
   <% if @game.ready? %>
 
     <h1><%= @participation.pseudo %> a rejoint le game</h1>
-        <div class="btn-home">
+    <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
+    <div class="btn-home">
+
       <div class="text-center">
         <p>Your token :
           <%= @game.token %></p>
@@ -41,7 +43,7 @@
     <% if @current_track %>
       <ul class="list-inline d-flex align-items-center">
         <li class="list-inline-item"><%= @current_track.title %></li>
-        <li class="list-inline-item"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
+        <li class="list-inline-item audio" data-time="<%= @answering_time %>"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
       </ul>
 
       <div class="d-none">
@@ -90,7 +92,7 @@
         <%= f.input :content %>
         <%= f.hidden_field :track, value: @current_track.id %>
         <%= f.hidden_field :answering_time, value: params[:current_time] %>
-        <%= f.submit %>
+        <%= f.submit id:"answer"%>
       <% end %>
 
     </div>

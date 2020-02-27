@@ -18,6 +18,14 @@ class GamesController < ApplicationController
     @playlist = @game.playlist
     @answers = @game.answers
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
+
+    if @current_track.answers.empty?
+      @answering_time = 0
+    else
+      @answering_time = @current_track.answers.last.answering_time
+    end
+    authorize @game
+
   end
 
   def paused
