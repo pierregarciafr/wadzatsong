@@ -56,43 +56,8 @@
         <li class="d-none list-inline-item audio" data-time="<%= @answering_time %>"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
       </ul>
       <div class="song-count d-flex justify-content-around align-items-center">
-        <% if Answer.where(status:true).count == 0 %>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl"></i>
-          <i class="fas fa-record-vinyl"></i>
-          <i class="fas fa-record-vinyl"></i>
-          <i class="fas fa-record-vinyl"></i>
-        <% elsif Answer.where(status:true).count == 1 %>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl"></i>
-          <i class="fas fa-record-vinyl"></i>
-          <i class="fas fa-record-vinyl"></i>
-          <i class="fas fa-record-vinyl"></i>
-        <% elsif Answer.where(status:true).count == 2 %>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl"></i>
-          <i class="fas fa-record-vinyl"></i>
-          <i class="fas fa-record-vinyl"></i>
-        <% elsif Answer.where(status:true).count == 3 %>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl"></i>
-          <i class="fas fa-record-vinyl"></i>
-        <% elsif Answer.where(status:true).count == 4 %>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl"></i>
-        <% elsif Answer.where(status:true).count == 5 %>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl guessed"></i>
-          <i class="fas fa-record-vinyl guessed"></i>
-        <% end %>
+        <%= '<i class="fas fa-record-vinyl guessed"></i>'.html_safe * Answer.where(status:true).count %>
+        <%= '<i class="fas fa-record-vinyl"></i>'.html_safe * (Game::NUMBER_OF_ROUNDS - Answer.where(status:true).count) %>
       </div>
       <div class="buzzer-content">
        <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
