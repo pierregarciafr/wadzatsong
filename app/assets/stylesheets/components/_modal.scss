@@ -1,0 +1,24 @@
+#message-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .form-modal {
+    color: black;
+    width: 80%;
+    height: 20%;
+    background-color: white;
+    text-align: center;
+    border-radius: 0.6em;
+
+      p {
+        padding: 50px;
+      }
+  }
+}
