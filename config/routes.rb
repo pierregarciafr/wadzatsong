@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     get 'ready', on: :member
     patch 'running', on: :member
     patch 'paused', on: :member
-    resources :participations, only: [ :edit, :update, :show ]
+    resources :participations, only: [ :edit, :update ]
     resources :answers, only: [ :create, :show ]
   end
-  resources :participations, only: [ :new, :create ]
+  resources :participations, only: [ :new, :create, :show ]
 end

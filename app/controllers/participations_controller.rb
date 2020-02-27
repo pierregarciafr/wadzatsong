@@ -14,16 +14,33 @@ class ParticipationsController < ApplicationController
     authorize @participation
     @participation.user = current_user
     token = @participation.token
-    @participation.game = Game.find_by(token: token)
-    @participation.save
+    @game = Game.find_by(token: token)
+    @participation.game = @game
+    if @participation.save
+      redirect_to participation_path(@participation)
+    else
+      render :new
+    end
     # @game.ready!
-    redirect_to game_path(@participation.game)
+  end
+
+  def show
+    @participation = Participation.find(params[:id])
+    authorize @participation
+    # @participation.game.running!
+    # redirect_to game_path(@participation.game)
+
+    if @participation.game.running?
+      redirect_to game_path(@participation.game)
+    else
+      render :show
+      # @participation.game.running!
+    end
   end
 
   def edit
      # @participation = Participation.find(params[:id])
   end
-
 
   private
 

@@ -1,12 +1,11 @@
 <div class="game-container" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path @playlist.picture %>)">
 
 
-  <!-- <div class="created-game">
+
+  <div class="created-game">
     <div id="answers" data-game-id="<%= @game.id %>">
-      <h1>Bienvenue <%= @user.pseudo %> !</h1>
-      <h1>Connected on <%= @game.user.pseudo %>'s game</h1>
     </div>
-  </div> -->
+  </div>
 
 <% if @game.created? %>
   <div class="top-container">
