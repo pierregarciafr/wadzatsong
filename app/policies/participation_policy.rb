@@ -1,8 +1,8 @@
 class ParticipationPolicy < ApplicationPolicy
   class Scope < Scope
-    def resolve
-      scope.where(record.user = user)
-    end
+    # def resolve
+    #   scope.where(record.user = user)
+    # end
   end
 #
   def new?
@@ -11,5 +11,9 @@ class ParticipationPolicy < ApplicationPolicy
 
   def create?
     true
+  end
+
+  def show?
+    record.user == user
   end
 end
