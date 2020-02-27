@@ -1,16 +1,16 @@
 <div class="container">
-    <div class="created-game">
+  <div class="created-game">
 
-     <div id="participation" data-game-id="<%= @game.id %>">
+   <div id="participation" data-game-id="<%= @game.id %>">
 
 
-    <% if @game.created? %>
-      <p>Bienvenue <%= @user.pseudo %> !</p>
-      Connected
-      <p> This is <%= @game.user.pseudo %>'s game</p>
-      <% if @game.participants != nil %>
-      <p> <%= @game.participants %> is participating</p>
-      <% end %>
+  <% if @game.created? %>
+    <p>Bienvenue <%= @user.pseudo %> !</p>
+    Connected
+    <p> This is <%= @game.user.pseudo %>'s game</p>
+    <% if @game.participants != nil %>
+    <p> <%= @game.participants %> is participating</p>
+    <% end %>
 
 <!--
 <div id="running-game" data-game-id="<%#=# @game.id %>">
@@ -70,53 +70,46 @@
       </div>
 
     <% else %>
-      <h3>Party is finished!</h3>
-
-          <%= @game.id %>
-
-          <% @game.playlist.tracks.each do |track| %>
-            <li>
-              <%= track.title %> (<%= track.artist %>)
-              <% track.answers.each do |answer| %>
-              <%= answer.status %> - <%= answer.user.pseudo %> - <%= answer.answering_time %>
-              <%= answer.game.id %>
-              <% end %>
-            <% end %>
-            </li>
+      <h3><%= @game.playlist.name.capitalize %> party is finished!</h3>
 
       <table>
         <thead>
             <tr>
-                <th colspan="2">Results</th>
+                <th colspan="3">Results</th>
             </tr>
         </thead>
         <tbody>
+          <tr>
+              <td>Track :</td>
+              <td>Guessed by :</td>
+              <td>Score :</td>
+          </tr>
+
+          <% @game.playlist.tracks.each do |track| %>
             <tr>
-                <td>Track :</td>
-                <td>Guessed by :</td>
-                <td>Score :</td>
+              <td><%= track.title %> (<%= track.artist %>) </td>
+              <% if Answer.last.status = true  %>
+                <td><%= Answer.last.user.pseudo %></td>
+                <td><%= Answer.last.answering_time %></td>
+              <% else %>
+                <td>No winner</td>
+                <td>No winner</td>
+              <% end  %>
             </tr>
-            <tr>
-                <% @game.playlist.tracks.each do |track| %>
-                  <td> <%= track.title %> (<%= track.artist %>) </td>
-                  <td> </td>
-                  <td> </td>
-                <% end %>
-            </tr>
+            <% end %>
         </tbody>
-    </table>
+      </table>
+
+      <h2>The big winner is :</h2>
 
 
 
 
-
-        <% end %>
-
+    <% end %>
   <% end %>
 
   <% if@game.paused? %>
-
-  <div class="form-container">
+    <div class="form-container">
       <%= simple_form_for [ @game, @answer ] do |f| %>
         <%= f.input :content %>
         <%= f.hidden_field :track, value: @current_track.id %>
