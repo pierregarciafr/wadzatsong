@@ -8,7 +8,7 @@ class AnswersController < ApplicationController
     @answer.track = @track
     @answer.save # remplacer par answersave = @answer.save
     @tracks = @game.playlist.tracks
-      if (@answer.content.downcase == @track.title.downcase) || (@answer.content.downcase == @track.artist.downcase)
+      if (String::Similarity.cosine @answer.content.downcase, @track.title.downcase) >= 0.8 || (String::Similarity.cosine @answer.content.downcase, @track.artist.downcase) >= 0.8
         @answer.status = true
         @answer.save
       else

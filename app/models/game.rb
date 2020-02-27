@@ -9,6 +9,8 @@ class Game < ApplicationRecord
   validates :token, uniqueness: true
   before_validation :set_token
 
+  NUMBER_OF_ROUNDS = 5
+
   private
 
   def set_token
