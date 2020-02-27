@@ -68,10 +68,50 @@
           </div>
         <% end %>
       </div>
+
     <% else %>
       <h3>Party is finished!</h3>
 
-    <% end %>
+          <%= @game.id %>
+
+          <% @game.playlist.tracks.each do |track| %>
+            <li>
+              <%= track.title %> (<%= track.artist %>)
+              <% track.answers.each do |answer| %>
+              <%= answer.status %> - <%= answer.user.pseudo %> - <%= answer.answering_time %>
+              <%= answer.game.id %>
+              <% end %>
+            <% end %>
+            </li>
+
+      <table>
+        <thead>
+            <tr>
+                <th colspan="2">Results</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Track :</td>
+                <td>Guessed by :</td>
+                <td>Score :</td>
+            </tr>
+            <tr>
+                <% @game.playlist.tracks.each do |track| %>
+                  <td> <%= track.title %> (<%= track.artist %>) </td>
+                  <td> </td>
+                  <td> </td>
+                <% end %>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+        <% end %>
+
   <% end %>
 
   <% if@game.paused? %>
@@ -83,7 +123,6 @@
         <%= f.hidden_field :answering_time, value: params[:current_time] %>
         <%= f.submit id:"answer"%>
       <% end %>
-
     </div>
   <% end %>
 </div>
