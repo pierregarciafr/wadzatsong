@@ -58,15 +58,13 @@
       </div>
       <div class="buzzer-content">
        <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
-          <div class="display-container">
-            <div class="buzzer">
-              <div class="wave">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
+          <div class="buzzer">
+            <div class="wave">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
           </div>
         <% end %>
