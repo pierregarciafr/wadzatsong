@@ -112,11 +112,13 @@
   <div class="dashboard-container mt-5">
     <h2>The big winner is :</h2>
   </div>
-    <div class="text-center">
-      <% @game=Game.new(user: current_user) %>
-      <%= simple_form_for @game do |f| %>
-      <%= f.submit "Rejouer", class: "btn-home mt-5" %>
-      <% end %>
+    <div class="bottom">
+      <div class="text-center mt-5">
+        <% @game=Game.new(user: current_user) %>
+        <%= simple_form_for @game do |f| %>
+        <%= f.submit "Rejouer", class: "btn-edit replay" %>
+        <% end %>
+      </div>
     </div>
   <% end %>
 <% end %>
