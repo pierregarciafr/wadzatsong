@@ -8,25 +8,26 @@
     </div>
   </div> -->
 
-
-    <% if @game.created? %>
-      <p>Bienvenue <%= @user.pseudo %> !</p>
-      Connected
-      <p> This is <%= @game.user.pseudo %>'s game</p>
+<% if @game.created? %>
+  <div class="top-container">
+    <div class="welcome-top"><p> This is <%= @game.user.pseudo %>'s game</p>
       <% if @game.participants != nil %>
-      <p> <%#= @game.participants %> Estelle is participating</p>
+          <% @game.participants.each do |participant| %>
+          <p><%= participant.pseudo %> is participating</p>
+        <%end  %>
       <% end %>
-
-
-    <div class="play">
-      <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
     </div>
+  </div>
 
-      <div class="text-center">
-        <p><strong>Your token :
-          <%= @game.token %></p></strong>
-      </div>
-
+  <div class="play">
+    <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
+  </div>
+  <div class="welcome-top">
+    <div class="text-center">
+      <p><strong>Your token :
+        <%= @game.token %></p></strong>
+    </div>
+  </div>
 
 
     <%= link_to running_game_path(@game), method: :patch do %>
@@ -89,17 +90,14 @@
                         <td><%= answer.user.pseudo %> </td>
                           <% if answer.answering_time < 3 %>
                             <td class="top-score">+ 1000 </td>
-
-                          <% elsif answer.answering_time < 5 %>
-                            <td>+ 200 </td>
-                          <% elsif answer.answering_time < 10 %>
-                            <td>+ 50 </td>
+                            <% elsif answer.answering_time < 5 %>
+                              <td>+ 200 </td>
+                            <% elsif answer.answering_time < 10 %>
+                              <td>+ 50 </td>
+                            <% else %>
+                              <td>+ 10 </td>
+                            <% end %>
                           <% else %>
-                            <td>+ 10 </td>
-
-                             <% end %>
-
-                      <% else %>
                         <td> - </td>
                         <td> - </td>
                       <% end %>
