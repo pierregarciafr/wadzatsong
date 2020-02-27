@@ -24,7 +24,6 @@ class ParticipationsController < ApplicationController
      # @participation = Participation.find(params[:id])
   end
 
-
   private
 
   def participation_params

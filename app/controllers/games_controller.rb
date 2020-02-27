@@ -13,7 +13,12 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     authorize @game
     @answer = Answer.new
-    @participation = Participation.new
+
+    # if @participation != nil
+      @participation = Participation.find_by(token: @game.token)
+    # else
+    #  @participation = Participation.new
+
     @user = current_user
     @playlist = @game.playlist
     @answers = @game.answers
