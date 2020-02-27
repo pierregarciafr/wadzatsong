@@ -71,38 +71,43 @@
       </div>
 
     <% else %>
-      <h3><%= @game.playlist.name.capitalize %> party is finished!</h3>
-
-      <table>
-        <thead>
-            <tr>
+    <div class="display-container">
+      <div class='dashboard-container'>
+        <h3 ><%= @game.playlist.name.capitalize %> party is finished!</h3>
+          <table class="dashboard-table">
+            <thead>
+              <tr>
                 <th colspan="3">Results</th>
-            </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Track :</td>
-            <td>Guessed by :</td>
-            <td>Score :</td>
-          </tr>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='dashboard-titles'>
+                <td>Track :</td>
+                <td>Guessed by :</td>
+                <td>Score :</td>
+              </tr>
 
-          <% @game.playlist.tracks.each do |track| %>
-            <tr>
-              <td><%= track.title %> (<%= track.artist %>) </td>
-              <% track.answers.each do |answer| %>
-                <% if answer.status = true %>
-                  <td><%= answer.user.pseudo %></td>
-                  <td><%= answer.answering_time %></td>
-                <% else %>
-                  <td> - </td>
-                  <td> - </td>
-                <% end %>
-              <% end %>
-            <% end  %>
-            </tr>
-        </tbody>
-      </table>
+              <% @game.playlist.tracks.each do |track| %>
+                <tr >
+                  <td><%= track.title %> (<%= track.artist %>) </td>
+                    <% track.answers.each do |answer| %>
+                      <% if answer.status = true %>
+                        <td><%= answer.user.pseudo %></td>
+                        <td><%= answer.answering_time %></td>
+                      <% else %>
+                        <td> - </td>
+                        <td> - </td>
+                      <% end %>
+                    <% end %>
+                  <% end  %>
+                </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  <div class="dashboard-container mt-5">
     <h2>The big winner is :</h2>
+  </div>
   <% end %>
 <% end %>
 
