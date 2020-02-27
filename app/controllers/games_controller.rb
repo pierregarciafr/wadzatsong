@@ -19,7 +19,7 @@ class GamesController < ApplicationController
     @answers = @game.answers
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
 
-    if @current_track.answers.empty?
+    if @current_track.answers.empty? || @current_track.answers.last == true
       @answering_time = 0
     else
       @answering_time = @current_track.answers.last.answering_time
@@ -49,6 +49,10 @@ class GamesController < ApplicationController
   def running
     @game = Game.find(params[:id])
     @game.running!
+    GameChannel.broadcast_to(
+      @game,
+      status: "running"
+    )
     redirect_to game_path(@game)
     authorize @game
   end
