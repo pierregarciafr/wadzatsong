@@ -1,7 +1,5 @@
 <div class="game-container" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path @playlist.picture %>)">
 
-
-
   <div class="created-game">
     <div id="answers" data-game-id="<%= @game.id %>">
     </div>
@@ -115,7 +113,14 @@
     <p>The big winner is</p>
     <span class="particletext confetti"> <%= @user.pseudo %> </span>
   </div>
-
+    <div class="bottom">
+      <div class="text-center mt-5">
+        <% @game=Game.new(user: current_user) %>
+        <%= simple_form_for @game do |f| %>
+        <%= f.submit "Rejouer", class: "btn-edit replay" %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 <% end %>
 
