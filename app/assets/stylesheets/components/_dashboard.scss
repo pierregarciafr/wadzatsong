@@ -13,6 +13,45 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   padding: 20px;
   opacity: 0.9;
+
+  .particletext {
+    text-align:center;
+    font-size:48px;
+    position: relative;
+    &.confetti {
+      .particle {
+        opacity:0;
+        position: absolute;
+        animation: confetti 3s ease-in infinite;
+        &.c1 {
+          background-color:rgba(76,175,80,0.5);
+        }
+        &.c2 {
+          background-color:rgba(156,39,176,0.5);
+        }
+      }
+    }
+  }
+}
+
+@keyframes confetti {
+   0% {
+      opacity:0;
+      transform:translateY(0%) rotate(0deg);
+   }
+   10% {
+      opacity:1;
+   }
+   35% {
+      transform:translateY(-800%) rotate(270deg);
+   }
+   80% {
+      opacity:1;
+   }
+   100% {
+      opacity:0;
+      transform:translateY(2000%) rotate(1440deg);
+   }
 }
 
 .dashboard-table {
