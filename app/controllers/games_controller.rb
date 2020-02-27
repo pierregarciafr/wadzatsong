@@ -22,7 +22,7 @@ class GamesController < ApplicationController
 
      authorize @game
      if @current_track
-      if @current_track.answers.empty?
+      if @current_track.answers.empty? || @current_track.answers.last == true
         @answering_time = 0
       else
         @answering_time = @current_track.answers.last.answering_time
