@@ -81,33 +81,30 @@
         </thead>
         <tbody>
           <tr>
-              <td>Track :</td>
-              <td>Guessed by :</td>
-              <td>Score :</td>
+            <td>Track :</td>
+            <td>Guessed by :</td>
+            <td>Score :</td>
           </tr>
 
           <% @game.playlist.tracks.each do |track| %>
             <tr>
               <td><%= track.title %> (<%= track.artist %>) </td>
-              <% if Answer.last.status = true  %>
-                <td><%= Answer.last.user.pseudo %></td>
-                <td><%= Answer.last.answering_time %></td>
-              <% else %>
-                <td>No winner</td>
-                <td>No winner</td>
-              <% end  %>
+              <% track.answers.each do |answer| %>
+                <% if answer.status = true %>
+                  <td><%= answer.user.pseudo %></td>
+                  <td><%= answer.answering_time %></td>
+                <% else %>
+                  <td> - </td>
+                  <td> - </td>
+                <% end %>
+              <% end %>
+            <% end  %>
             </tr>
-            <% end %>
         </tbody>
       </table>
-
-      <h2>The big winner is :</h2>
-
-
-
-
-    <% end %>
+    <h2>The big winner is :</h2>
   <% end %>
+<% end %>
 
   <% if@game.paused? %>
     <div class="form-container">
