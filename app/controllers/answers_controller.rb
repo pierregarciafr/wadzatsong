@@ -33,6 +33,20 @@ class AnswersController < ApplicationController
 
   end
 
+
+def score(answer)
+  score = 0
+  if answer.answering_time < 3
+  score = 1000
+  elsif answer.answering_time < 5
+  score = 200
+  elsif answer.answering_time < 10
+  score = 50
+  else
+  score = 10
+end
+
+
   private
 
   def params_answer

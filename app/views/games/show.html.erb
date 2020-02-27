@@ -89,13 +89,16 @@
                         <td><%= answer.user.pseudo %> </td>
                           <% if answer.answering_time < 3 %>
                             <td class="top-score">+ 1000 </td>
+
                           <% elsif answer.answering_time < 5 %>
                             <td>+ 200 </td>
                           <% elsif answer.answering_time < 10 %>
                             <td>+ 50 </td>
                           <% else %>
                             <td>+ 10 </td>
-                          <% end %>
+
+                             <% end %>
+
                       <% else %>
                         <td> - </td>
                         <td> - </td>
