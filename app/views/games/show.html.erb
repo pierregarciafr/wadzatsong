@@ -1,4 +1,4 @@
-<div class="container">
+<div class="game-container" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path @playlist.picture %>)">
 
   <!-- <div class="created-game">
     <div id="answers" data-game-id="<%= @game.id %>">
@@ -50,7 +50,7 @@
     <% if @current_track %>
       <ul class="list-inline d-flex align-items-center">
 <!--         <li class="list-inline-item"><%= @current_track.title %></li> -->
-        <li class="list-inline-item audio" data-time="<%= @answering_time %>"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
+        <li class="d-none list-inline-item audio" data-time="<%= @answering_time %>"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
       </ul>
 
       <div class="buzzer-content">
