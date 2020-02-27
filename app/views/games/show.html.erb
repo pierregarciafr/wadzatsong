@@ -44,7 +44,7 @@
     <% if @current_track %>
       <ul class="list-inline d-flex align-items-center">
         <li class="list-inline-item"><%= @current_track.title %></li>
-        <li class="list-inline-item"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
+        <li class="list-inline-item audio" data-time="<%= @answering_time %>"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
       </ul>
 
       <div class="d-none">
@@ -93,7 +93,7 @@
         <%= f.input :content %>
         <%= f.hidden_field :track, value: @current_track.id %>
         <%= f.hidden_field :answering_time, value: params[:current_time] %>
-        <%= f.submit %>
+        <%= f.submit id:"answer"%>
       <% end %>
 
     </div>

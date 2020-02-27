@@ -6,10 +6,13 @@ class AnswersController < ApplicationController
     @answer.game = @game
     @answer.user = current_user
     @answer.track = @track
-    @answer.save
+    # @answer.save
     @tracks = @game.playlist.tracks
       if (@answer.content.downcase == @track.title.downcase) || (@answer.content.downcase == @track.artist.downcase)
         @answer.status = true
+        @answer.save
+      else
+        @answer.status = false
         @answer.save
       end
     @game.running!
