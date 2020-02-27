@@ -1,31 +1,13 @@
 <div class="container">
-    <div class="created-game">
 
-     <div id="participation" data-game-id="<%= @game.id %>">
+  <div class="created-game">
+    <div id="answers" data-game-id="<%= @game.id %>">
+      <h1>Bienvenue <%= @user.pseudo %> !</h1>
+      <h1>Connected on <%= @game.user.pseudo %>'s game</h1>
+    </div>
+  </div>
 
-
-    <% if @game.created? %>
-      <p>Bienvenue <%= @user.pseudo %> !</p>
-      Connected on <%= @game.user.pseudo %>'s game</p>
-<!--       <%# if @participation != nil %>
-      <p><%#= participation.game.user %> is participating</p>
-       <%# end %> -->
-    <%# end %>
-
-      <!--
-      <div id="running-game" data-game-id="<%#=# @game.id %>">
-        <%# @game.answers.each do |answer| %>
-          <div class="message-container">
-            <i class="author">
-              <span><%#= answer.user.pseudo %></span>
-              <small><%#=# answer.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-            </i>
-            <p><%#=# answer.content %></p>
-          </div>
-        <%# end %>
-      </div> -->
-
-
+  <% if @game.created? %>
 
     <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer :loud_sound:</h1>
     <div class="btn-home">
@@ -34,11 +16,26 @@
           <%= @game.token %></p>
       </div>
     </div>
+
     <%= link_to running_game_path(@game), method: :patch do %>
-          <div class="play-btn"></div>
-      <% end %>
+      <div class="play-btn"></div>
     <% end %>
-  </div>
+  <% end %>
+
+  <% if @game.ready? %>
+
+    <h1><%= @participation.pseudo %> a rejoint le game</h1>
+        <div class="btn-home">
+      <div class="text-center">
+        <p>Your token :
+          <%= @game.token %></p>
+      </div>
+    </div>
+
+    <%= link_to running_game_path(@game), method: :patch do %>
+      <div class="play-btn"></div>
+    <% end %>
+  <% end %>
 
   <% if @game.running? %>
     <% if @current_track %>
@@ -86,7 +83,7 @@
     <% end %>
   <% end %>
 
-  <% if@game.paused? %>
+  <% if @game.paused? %>
 
   <div class="form-container">
       <%= simple_form_for [ @game, @answer ] do |f| %>
@@ -99,4 +96,4 @@
     </div>
   <% end %>
 </div>
-</div>
+

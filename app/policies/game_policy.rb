@@ -28,6 +28,10 @@ class GamePolicy < ApplicationPolicy
     true
   end
 
+  def ready?
+    true
+  end
+
   def paused?
     true
   end

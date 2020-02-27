@@ -6,15 +6,29 @@ class AnswersController < ApplicationController
     @answer.game = @game
     @answer.user = current_user
     @answer.track = @track
-    @answer.save
+    @answer.save # remplacer par answersave = @answer.save
+
     @tracks = @game.playlist.tracks
       if (@answer.content.downcase == @track.title.downcase) || (@answer.content.downcase == @track.artist.downcase)
         @answer.status = true
         @answer.save
       end
     @game.running!
+
+    # chatroom ----
+
+    # if @answer.save     # if answersave
+    #   GameChannel.broadcast_to(@game, render_to_string(partial: 'message', locals: { message: @message}))
+    #   redirect_to game_path(@game)
+    # else
+    #   render "games/show"
+    # end
+
+    # ----- fin chatroom
+
     redirect_to game_path(@game)
     authorize @game
+
   end
 
   private
