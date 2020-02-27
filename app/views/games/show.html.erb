@@ -70,19 +70,7 @@
       </div>
     <% else %>
       <h3>Party is finished!</h3>
-        <ul>
-          <%= @game.id %>
-        <% @game.playlist.tracks.each do |track| %>
 
-          <li>
-          <%= track.title %> (<%= track.artist %>)
-          - <% track.answers.each do |answer| %>
-          <%= answer.status %> - <%= answer.user.pseudo %> - <%= answer.answering_time %>
-          <%= answer.game.id %>
-          <% end %>
-          <% end %>
-          </li>
-        </ul>
     <% end %>
   <% end %>
 
