@@ -5,17 +5,27 @@ class GamesController < ApplicationController
     @game = Game.new(user: current_user)
     authorize @game
     @game.status = :created
-    @game.save!
+    @game.save
     redirect_to edit_game_path(@game)
   end
 
   def show
     @game = Game.find(params[:id])
+    authorize @game
     @answer = Answer.new
+    @participation = Participation.new
+    @user = current_user
     @playlist = @game.playlist
     @answers = @game.answers
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
+
+    if @current_track.answers.empty?
+      @answering_time = 0
+    else
+      @answering_time = @current_track.answers.last.answering_time
+    end
     authorize @game
+
   end
 
   def paused
@@ -27,7 +37,13 @@ class GamesController < ApplicationController
 
   def created
     @game = Game.find(params[:id])
-    # wait until @participation.game.exists?
+  end
+
+  def ready
+    @game = Game.find(params[:id])
+    @participation = Participation.where(game_id: params[:id]).last
+    @game.ready!
+    redirect_to game_path(@game)
   end
 
   def running
