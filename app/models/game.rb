@@ -5,7 +5,7 @@ class Game < ApplicationRecord
   has_many :participants, through: :participations, source: :user
   has_many :answers
   # has_many :tracks, through: :playlists
-  enum status: [ :created, :running, :paused, :finished ]
+  enum status: [ :created, :ready, :running, :paused, :finished ]
   validates :token, uniqueness: true
   before_validation :set_token
 

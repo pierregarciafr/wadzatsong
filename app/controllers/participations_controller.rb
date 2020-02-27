@@ -11,17 +11,12 @@ class ParticipationsController < ApplicationController
 
   def create
     @participation = Participation.new(participation_params)
+    authorize @participation
     @participation.user = current_user
     token = @participation.token
     @participation.game = Game.find_by(token: token)
-    @participation.save!
-###
-#     Game.broadcast_to(
-#   @chatroom,
-#   render_to_string(partial: "message", locals: { message: @message })
-# )
-###
-    authorize @participation
+    @participation.save
+    # @game.ready!
     redirect_to game_path(@participation.game)
   end
 
