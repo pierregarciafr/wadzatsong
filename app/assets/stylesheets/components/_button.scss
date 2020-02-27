@@ -22,6 +22,7 @@
   margin-bottom: 50px;
   font-weight: bold;
   border: 1px solid black;
+  padding: 1rem 5rem;
 
     &:hover {
       opacity: 1;
@@ -42,12 +43,27 @@
     }
 }
 
+.btn-edit {
+  background: $my-pink;
+  color: white;
+  border-radius: 50px;
+  margin-bottom: 50px;
+  font-weight: bold;
+  border: 1px solid white;
+  padding: 1rem 5rem;
+
+    &:hover {
+      opacity: 1;
+      background-position: right center;
+      color: white;
+    }
+}
+
 
 .play-btn {
-  margin-top: 200%;
   margin-left: 35%;
-  width: 200px;
-  height: 200px;
+  width: 80px;
+  height: 80px;
   background: radial-gradient( rgba(200, 0, 128, 0.8) 60%, rgba(255, 255, 255, 1) 62%);
   border-radius: 50%;
   position: relative;

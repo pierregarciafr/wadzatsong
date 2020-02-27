@@ -1,22 +1,32 @@
-<div class="container">
+<div class="game-container" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path @playlist.picture %>)">
+
 
 
   <div class="created-game">
-
-
     <div id="answers" data-game-id="<%= @game.id %>">
     </div>
   </div>
 
-  <% if @game.created? %>
 
-    <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer :loud_sound:</h1>
-    <div class="btn-home">
-      <div class="text-center">
-        <p>Your token :
-          <%= @game.token %></p>
-      </div>
+    <% if @game.created? %>
+      <p>Bienvenue <%= @user.pseudo %> !</p>
+      Connected
+      <p> This is <%= @game.user.pseudo %>'s game</p>
+      <% if @game.participants != nil %>
+      <p> <%#= @game.participants %> Estelle is participating</p>
+      <% end %>
+
+
+    <div class="play">
+      <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
     </div>
+
+      <div class="text-center">
+        <p><strong>Your token :
+          <%= @game.token %></p></strong>
+      </div>
+
+
 
     <%= link_to running_game_path(@game), method: :patch do %>
       <div class="play-btn"></div>
@@ -27,13 +37,11 @@
 
     <h1><%= @participation.pseudo %> a rejoint le game</h1>
     <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
-    <div class="btn-home">
 
       <div class="text-center">
-        <p>Your token :
-          <%= @game.token %></p>
+        <p> <strong>Your token :
+          <%= @game.token %></p></strong>
       </div>
-    </div>
 
     <%= link_to running_game_path(@game), method: :patch do %>
       <div class="play-btn"></div>
@@ -43,18 +51,13 @@
   <% if @game.running? %>
     <% if @current_track %>
       <ul class="list-inline d-flex align-items-center">
-        <li class="list-inline-item"><%= @current_track.title %></li>
-        <li class="list-inline-item audio" data-time="<%= @answering_time %>"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
+<!--         <li class="list-inline-item"><%= @current_track.title %></li> -->
+        <li class="d-none list-inline-item audio" data-time="<%= @answering_time %>"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
       </ul>
-
-      <div class="d-none">
-        <%= simple_form_for [ @game, @answer ] do |f| %>
-          <%= f.input :content %>
-          <%= f.hidden_field :track, value: @current_track.id %>
-          <%= f.submit %>
-        <% end %>
+      <div class="song-count d-flex justify-content-around align-items-center">
+        <%= '<i class="fas fa-record-vinyl guessed"></i>'.html_safe * Answer.where(status:true).count %>
+        <%= '<i class="fas fa-record-vinyl"></i>'.html_safe * (Game::NUMBER_OF_ROUNDS - Answer.where(status:true).count) %>
       </div>
-
       <div class="buzzer-content">
        <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
           <div class="buzzer">
@@ -68,35 +71,60 @@
           </div>
         <% end %>
       </div>
-    <% else %>
-      <h3>Party is finished!</h3>
-        <ul>
-          <%= @game.id %>
-        <% @game.playlist.tracks.each do |track| %>
 
-          <li>
-          <%= track.title %> (<%= track.artist %>)
-          - <% track.answers.each do |answer| %>
-          <%= answer.status %> - <%= answer.user.pseudo %> - <%= answer.answering_time %>
-          <%= answer.game.id %>
-          <% end %>
-          <% end %>
-          </li>
-        </ul>
+    <% else %>
+      <h3><%= @game.playlist.name.capitalize %> party is finished!</h3>
+
+      <table>
+        <thead>
+            <tr>
+                <th colspan="3">Results</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <td>Track :</td>
+              <td>Guessed by :</td>
+              <td>Score :</td>
+          </tr>
+
+          <% @game.playlist.tracks.each do |track| %>
+            <tr>
+              <td><%= track.title %> (<%= track.artist %>) </td>
+              <% if Answer.last.status = true  %>
+                <td><%= Answer.last.user.pseudo %></td>
+                <td><%= Answer.last.answering_time %></td>
+              <% else %>
+                <td>No winner</td>
+                <td>No winner</td>
+              <% end  %>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+
+      <h2>The big winner is :</h2>
+
     <% end %>
   <% end %>
 
-  <% if @game.paused? %>
+  <% if@game.paused? %>
+    <div class="form-container">
 
-  <div class="form-container">
       <%= simple_form_for [ @game, @answer ] do |f| %>
         <%= f.input :content %>
         <%= f.hidden_field :track, value: @current_track.id %>
         <%= f.hidden_field :answering_time, value: params[:current_time] %>
         <%= f.submit id:"answer"%>
       <% end %>
-
     </div>
   <% end %>
 </div>
+
+<div id="message-modal">
+  <div class="form-modal">
+    <p> <strong><%= @user.pseudo %></strong> a été plus rapide que toi 🚀 il donne une réponse... </p>
+  </div>
+</div>
+
 

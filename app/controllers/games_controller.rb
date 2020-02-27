@@ -2,6 +2,7 @@ class GamesController < ApplicationController
 
   def create
     # @game = policy_scope(Game.find(params[:id]))
+    Answer.destroy_all
     @game = Game.new(user: current_user)
     authorize @game
     @game.status = :created
@@ -18,13 +19,14 @@ class GamesController < ApplicationController
     @playlist = @game.playlist
     @answers = @game.answers
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
-
-    if @current_track.answers.empty? || @current_track.answers.last == true
-      @answering_time = 0
-    else
-      @answering_time = @current_track.answers.last.answering_time
+     authorize @game
+     if @current_track
+      if @current_track.answers.empty? || @current_track.answers.last == true
+        @answering_time = 0
+      else
+        @answering_time = @current_track.answers.last.answering_time
+      end
     end
-    authorize @game
 
   end
 

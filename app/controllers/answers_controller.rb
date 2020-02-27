@@ -8,29 +8,16 @@ class AnswersController < ApplicationController
     @answer.track = @track
     @answer.save # remplacer par answersave = @answer.save ?
     @tracks = @game.playlist.tracks
-    check_answer(@answer, @track) # @answer.status = check_answer(@answer, @track) # modif --- call of check_answer
-    # @answer.save # modif
+    
+    check_answer(@answer, @track)
 
-    # if (@answer.content.downcase == @track.title.downcase) || (@answer.content.downcase == @track.artist.downcase)
-    #   @answer.status = true
-    #   @answer.save
-    # else
-    #   @answer.status = false
-    #   @answer.save
-    # end
-
-    # chatroom ----
-
-    if @answer.save     # if answersave
+    if @answer.save    
       GameChannel.broadcast_to(@game, @answer)
+      @game.running!
       redirect_to game_path(@game)
     else
       render "games/show"
     end
-
-    # ----- fin chatroom
-
-    @game.running! # --- modif
 
     # redirect_to game_path(@game)
     authorize @game
@@ -40,12 +27,10 @@ class AnswersController < ApplicationController
   private
 
   def check_answer(answer, track)
-    if (answer.content.downcase == track.title.downcase) || (answer.content.downcase == track.artist.downcase)
-      answer.status = true
-      # answer.save
+     if (String::Similarity.cosine @answer.content.downcase, @track.title.downcase) >= 0.8 || (String::Similarity.cosine @answer.content.downcase, @track.artist.downcase) >= 0.8
+     answer.status = true
     else
       answer.status = false
-      # answer.save
     end
   end
 
