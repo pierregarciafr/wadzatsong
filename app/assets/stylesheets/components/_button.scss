@@ -22,6 +22,7 @@
   margin-bottom: 50px;
   font-weight: bold;
   border: 1px solid black;
+  padding: 1rem 5rem;
 
     &:hover {
       opacity: 1;
@@ -34,6 +35,22 @@
 .btn-home2 {
   color: black !important;
   font-weight: bold;
+
+    &:hover {
+      opacity: 1;
+      background-position: right center;
+      color: white;
+    }
+}
+
+.btn-edit {
+  background: $my-pink;
+  color: white;
+  border-radius: 50px;
+  margin-bottom: 50px;
+  font-weight: bold;
+  border: 1px solid white;
+  padding: 1rem 5rem;
 
     &:hover {
       opacity: 1;

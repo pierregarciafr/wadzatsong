@@ -56,7 +56,10 @@
 <!--         <li class="list-inline-item"><%= @current_track.title %></li> -->
         <li class="d-none list-inline-item audio" data-time="<%= @answering_time %>"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
       </ul>
-
+      <div class="song-count d-flex justify-content-around align-items-center">
+        <%= '<i class="fas fa-record-vinyl guessed"></i>'.html_safe * Answer.where(status:true).count %>
+        <%= '<i class="fas fa-record-vinyl"></i>'.html_safe * (Game::NUMBER_OF_ROUNDS - Answer.where(status:true).count) %>
+      </div>
       <div class="buzzer-content">
        <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
           <div class="buzzer">
@@ -72,6 +75,7 @@
       </div>
 
     <% else %>
+
     <div class="display-container">
       <div class='dashboard-container'>
         <h3 >Your results :</h3>
@@ -111,6 +115,7 @@
   <div class="dashboard-container mt-5">
     <h2>The big winner is :</h2>
   </div>
+
   <% end %>
 <% end %>
 
@@ -126,4 +131,11 @@
     </div>
   <% end %>
 </div>
+
+<div id="message-modal">
+  <div class="form-modal">
+    <p> <strong><%= @user.pseudo %></strong> a été plus rapide que toi 🚀 il donne une réponse... </p>
+  </div>
+</div>
+
 

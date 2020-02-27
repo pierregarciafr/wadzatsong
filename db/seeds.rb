@@ -48,7 +48,7 @@ track7 = Track.new(title: "London Calling", artist: "The Clash", url_preview: "h
 track8 = Track.new(title: "California Love", artist: "2pac", url_preview: "https://cdns-preview-4.dzcdn.net/stream/c-40b01772972d99e577c98d3a41d3d24e-2.mp3", playlist_id: playlist5.id)
 track9 = Track.new(title: "Go Your Own Way", artist: "Fleetwood Mac", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-c4ecacbbdb8880240d2796565e060bdf-8.mp3", playlist_id: playlist1.id)
 track10 = Track.new(title: "Poker Face", artist: "Lady Gaga", url_preview: "https://cdns-preview-f.dzcdn.net/stream/c-fc31a3c3db5e7283e3a70528f67c89c2-6.mp3", playlist_id: playlist3.id)
-track11 = Track.new(title: "Under Pressure", artist: "Queen", url_preview: "https://cdns-preview-1.dzcdn.net/stream/c-1fd0525f2f9cbf39468204210e8c1610-11.mp3", playlist_id: playlist6.id)
+track11 = Track.new(title: "Under Pressure", artist: "Queen", url_preview: "https://cdns-preview-1.dzcdn.net/stream/c-1fd0525f2f9cbf39468204210e8c1610-11.mp3", playlist_id: playlist1.id)
 
 [ track1, track2, track3, track4, track5, track6, track7, track8, track9, track10, track11 ].each do |track|
   track.save
