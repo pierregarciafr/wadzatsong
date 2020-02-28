@@ -53,7 +53,7 @@
       <ul class="list-inline d-flex align-items-center">
 <!--         <li class="list-inline-item"><%= @current_track.title %></li> -->
 
-        
+
 
 <!--          creer une data-audio-id = user.id -->
         <li class="d-none list-inline-item audio" data-time="<%= @answering_time %>" id="<%= @user.id %>"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
@@ -145,18 +145,20 @@
     </div>
   <% end %>
 
-
-  <div class="speech-bubble speech-bubble-left">
-    <p>
-      <% if Answer.last.status == true %>
-        <%= "Bien joué petit génie de la zik ! 🕺" %>
-        <% elsif Answer.last.status == false %>
-        <%= "Même ma petite soeur connaît ça ! Try again ! " %>
-        <% else %>
-        <%= "nil" %>
-      <% end %>
-    </h2>
-  </p>
+  <% if Answer.last %>
+    <div class="speech-bubble speech-bubble-left">
+      <p>
+        <% if Answer.last.status == true %>
+          <%= "Bien joué petit génie de la zik ! 🕺" %>
+          <% elsif Answer.last.status == false %>
+          <%= "Même ma petite soeur connaît ça ! Try again ! " %>
+          <% else %>
+          <%= "nil" %>
+        <% end %>
+      </h2>
+      </p>
+    </div>
+  <% end %>
 
 </div>
 
