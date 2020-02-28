@@ -8,11 +8,11 @@ class AnswersController < ApplicationController
     @answer.track = @track
     @answer.save # remplacer par answersave = @answer.save ?
     @tracks = @game.playlist.tracks
-    
+
     check_answer(@answer, @track)
 
-    if @answer.save    
-      GameChannel.broadcast_to(@game, @answer)
+    if @answer.save
+      # GameChannel.broadcast_to(@game, @answer)
       @game.running!
       redirect_to game_path(@game)
     else

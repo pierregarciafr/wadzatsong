@@ -19,17 +19,21 @@ if (answersContainer) {
         // console.log(data.status);
 
         if (data.status === "connection") {
+          window.location.reload();
+          if (data.user) {
           const content = '<p>' + data.user + ' a rejoint la partie !</p>';
           answersContainer.insertAdjacentHTML('beforeend',content);
+          }
         };
 
         if (data.status === "running") {
-
+          // console.log(data.status);
+          window.location.reload();
           // const p = window.location.reload();
           // $.when(p).done(function() {
-          const idPlayer = (data.joinedPlayerId).toString();
-          console.log(idPlayer);
-          const audioElt = document.getElementById(idPlayer);
+          // const idPlayer = (data.joinedPlayerId).toString();
+          // console.log(idPlayer);
+          // const audioElt = document.getElementById(idPlayer);
           // songElt = audioElt.getElementById("song");
           // audioElt.muted = true;
           //

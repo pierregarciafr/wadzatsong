@@ -34,10 +34,12 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     authorize @game
     @game.paused!
-    GameChannel.broadcast_to(
-      @game,
-      { status: "paused", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
-    )
+    if @game.participants.any?
+      GameChannel.broadcast_to(
+        @game,
+        { status: "paused", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
+      )
+    end
     redirect_to game_path(@game, current_time: params[:current_time])
   end
 
@@ -55,10 +57,12 @@ class GamesController < ApplicationController
   def running
     @game = Game.find(params[:id])
     @game.running!
-    GameChannel.broadcast_to(
-      @game,
-      { status: "running", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
-    )
+    if @game.participants.any?
+      GameChannel.broadcast_to(
+        @game,
+        { status: "running", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
+      )
+    end
     redirect_to game_path(@game)
     authorize @game
   end
