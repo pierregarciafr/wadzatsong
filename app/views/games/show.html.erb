@@ -53,7 +53,7 @@
       <ul class="list-inline d-flex align-items-center">
 <!--         <li class="list-inline-item"><%= @current_track.title %></li> -->
 
-        
+
 
 <!--          creer une data-audio-id = user.id -->
         <li class="d-none list-inline-item audio" data-time="<%= @answering_time %>" id="<%= @user.id %>"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
@@ -116,6 +116,22 @@
           </table>
       </div>
     </div>
+    <% total = 0 %>
+    <% @user.answers.where(status:true).each do |answer| %>
+      <% if answer.answering_time < 3  %>
+        <% total += 1000 %>
+      <% elsif answer.answering_time < 5 %>
+        <% total += 200 %>
+      <% elsif answer.answering_time < 10 %>
+        <% total += 50 %>
+      <% else%>
+        <% total += 10 %>
+      <% end %>
+    <% end %>
+    <%= @user.pseudo %>
+    <%= total %>
+
+
   <div class="dashboard-container text-center mt-5">
     <p>The big winner is</p>
     <span class="particletext confetti"> <%= @user.pseudo %> </span>
