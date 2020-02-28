@@ -48,7 +48,10 @@ input[type="radio"], input[type="checkbox"] {
 
 
 .playlist_grid input:checked + label {
-  border: 3px solid #bc4e9c;
+  // border: 8px solid #bc4e9c;
+  border: 8px solid;
+  border-image-source: $my-pink;
+  border-image-slice: 1;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   // border-radius: 4px;
 }
