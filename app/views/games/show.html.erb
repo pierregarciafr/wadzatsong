@@ -102,8 +102,8 @@
               <% @game.playlist.tracks.each do |track| %>
                 <tr >
                   <td><%= track.title %> <%#= track.artist %> </td>
-                    <% track.answers.each do |answer| %>
-                      <% if answer.status = true %>
+                    <% track.answers.where(status:true).each do |answer| %>
+                      <%# if answer.status == true %>
                         <td><%= answer.user.pseudo %> </td>
                           <% if answer.answering_time < 3 %>
                             <td class="top-score">+ 1000 </td>
@@ -114,10 +114,10 @@
                             <% else %>
                               <td>+ 10 </td>
                             <% end %>
-                          <% else %>
-                        <td> - </td>
-                        <td> - </td>
-                      <% end %>
+                          <%# else %>
+                       <!--  <td> - </td>
+                        <td> - </td> -->
+                      <%# end %>
                     <% end %>
                   <% end  %>
                 </tr>
