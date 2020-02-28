@@ -1,15 +1,15 @@
 <div class="game-container" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path @playlist.picture %>)">
 
-
-
   <div class="created-game">
-    <div id="answers" data-game-id="<%= @game.id %>">
+    <div >
     </div>
   </div>
 
 <% if @game.created? %>
   <div class="top-container">
-    <div class="welcome-top"><p> This is <%= @game.user.pseudo %>'s game</p>
+    <div class="welcome-top" id="answers" data-game-id="<%= @game.id %>">
+      <p><%= @game.user.pseudo %> a créé une partie</p>
+
       <% if @game.participants != nil %>
           <% @game.participants.each do |participant| %>
           <p><%= participant.pseudo %> is participating</p>
@@ -27,7 +27,6 @@
         <%= @game.token %></p></strong>
     </div>
   </div>
-
 
     <%= link_to running_game_path(@game), method: :patch do %>
       <div class="play-btn"></div>
@@ -53,7 +52,8 @@
     <% if @current_track %>
       <ul class="list-inline d-flex align-items-center">
 <!--         <li class="list-inline-item"><%= @current_track.title %></li> -->
-        <li class="list-inline-item audio" data-time="<%= @answering_time %>"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
+<!--          creer une data-audio-id = user.id -->
+        <li class="list-inline-item audio" data-time="<%= @answering_time %>" id="<%= @user.id %>"><%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %></li>
       </ul>
       <div class="song-count d-flex justify-content-around align-items-center">
         <%= '<i class="fas fa-record-vinyl guessed"></i>'.html_safe * Answer.where(status:true).count %>

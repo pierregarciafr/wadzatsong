@@ -26,15 +26,17 @@ class ParticipationsController < ApplicationController
 
   def show
     @participation = Participation.find(params[:id])
+    GameChannel.broadcast_to(
+      @participation.game,
+      status: 'connection',
+      participation: @participation.id,
+      user: @participation.user.pseudo
+    )
     authorize @participation
-    # @participation.game.running!
-    # redirect_to game_path(@participation.game)
-
     if @participation.game.running?
       redirect_to game_path(@participation.game)
     else
       render :show
-      # @participation.game.running!
     end
   end
 
