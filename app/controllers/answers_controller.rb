@@ -11,13 +11,13 @@ class AnswersController < ApplicationController
 
     check_answer(@answer, @track)
 
-    if @answer.save
+    @answer.save
       # GameChannel.broadcast_to(@game, @answer)
-      @game.running!
-      redirect_to game_path(@game)
-    else
-      render "games/show"
-    end
+    @game.running!
+    redirect_to game_path(@game)
+    # else
+    #   render 'games/show'
+
 
     # redirect_to game_path(@game)
     authorize @game
