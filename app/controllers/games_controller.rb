@@ -14,12 +14,11 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     authorize @game
     @answer = Answer.new
-    @participation = Participation.new
+    @participation = Participation.find_by(token: @game.token)
     @user = current_user
     @playlist = @game.playlist
     @answers = @game.answers
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
-
      authorize @game
      if @current_track
       if @current_track.answers.empty? || @current_track.answers.last == true
@@ -27,7 +26,6 @@ class GamesController < ApplicationController
       else
         @answering_time = @current_track.answers.last.answering_time
       end
-
     end
 
   end
@@ -36,6 +34,12 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     authorize @game
     @game.paused!
+    if @game.participants.any?
+      GameChannel.broadcast_to(
+        @game,
+        { status: "paused", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
+      )
+    end
     redirect_to game_path(@game, current_time: params[:current_time])
   end
 
@@ -53,6 +57,12 @@ class GamesController < ApplicationController
   def running
     @game = Game.find(params[:id])
     @game.running!
+    if @game.participants.any?
+      GameChannel.broadcast_to(
+        @game,
+        { status: "running", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
+      )
+    end
     redirect_to game_path(@game)
     authorize @game
   end

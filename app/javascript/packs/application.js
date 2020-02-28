@@ -22,6 +22,7 @@ require("channels")
 // WRITE YOUR OWN JS STARTING FROM HERE 👇
 // ----------------------------------------------------
 import "bootstrap";
+import { confetti } from '../components/confettis';
 // import { getCode } from '../plugins/fetch';
 
 const buzz = document.getElementById("buzz");
@@ -35,10 +36,11 @@ if(buzz) {
   })
 }
 
-const audio = document.querySelector(".audio")
-const song = document.getElementById("song")
-if (song) {
-  song.currentTime = audio.dataset.time
-}
+  const audio = document.querySelector(".audio");
+  const song = document.getElementById("song");
+  if (song) {
+    song.currentTime = audio.dataset.time;
+  }
 
 
+confetti();
