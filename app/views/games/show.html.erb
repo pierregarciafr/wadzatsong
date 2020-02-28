@@ -78,6 +78,21 @@
         <% end %>
       </div>
 
+     <% if Answer.last %>
+    <div class="speech-bubble speech-bubble-left">
+      <p>
+        <% if Answer.last.status == true %>
+          <%= "Bien joué petit génie de la zik 🕺" %>
+          <% elsif Answer.last.status == false %>
+          <%= "Même ma petite soeur connaît ça... Try again ! " %>
+          <% else %>
+          <%= "nil" %>
+        <% end %>
+      </h2>
+      </p>
+    </div>
+    <% end %>
+
     <% else %>
 
     <div class="display-container">
@@ -159,20 +174,7 @@
     </div>
   <% end %>
 
-  <% if Answer.last %>
-    <div class="speech-bubble speech-bubble-left">
-      <p>
-        <% if Answer.last.status == true %>
-          <%= "Bien joué petit génie de la zik 🕺" %>
-          <% elsif Answer.last.status == false %>
-          <%= "Même ma petite soeur connaît ça... Try again ! " %>
-          <% else %>
-          <%= "nil" %>
-        <% end %>
-      </h2>
-      </p>
-    </div>
-  <% end %>
+
 
 </div>
 
