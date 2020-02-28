@@ -8,30 +8,24 @@
 <% if @game.created? %>
   <div class="top-container">
     <div class="welcome-top" id="answers" data-game-id="<%= @game.id %>">
-      <p><%= @game.user.pseudo %> a créé une partie</p>
-
-      <% if @game.participants != nil %>
-          <% @game.participants.each do |participant| %>
-          <p><%= participant.pseudo %> is participating</p>
-        <%end  %>
-      <% end %>
-    </div>
+      <h3><%= @game.user.pseudo %>, ta partie va pouvoir démarrer !</h3>
+      <br>
+      <p>Voici le code à communiquer à tes adversaires : </p>
+      <strong><%= @game.token %></p></strong>
+        <% if @game.participants != nil %>
+            <% @game.participants.each do |participant| %>
+            <p><%= participant.pseudo %> is participating</p>
+          <%end %>
+        <% end %>
+      <br>
+      <br>
+    <p>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</p>
   </div>
-
-  <div class="play">
-    <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
-  </div>
-  <div class="welcome-top">
-    <div class="text-center">
-      <p><strong>Your token :
-        <%= @game.token %></p></strong>
-    </div>
-  </div>
-
-    <%= link_to running_game_path(@game), method: :patch do %>
-      <div class="play-btn"></div>
-    <% end %>
+</div>
+  <%= link_to running_game_path(@game), method: :patch do %>
+    <div class="play-btn mt-5"></div>
   <% end %>
+<% end %>
 
   <% if @game.ready? %>
 
@@ -162,13 +156,12 @@
 
   <% if@game.paused? %>
     <div class='display-container'>
-      <div class="form-container">
-
+      <div class="form-container text-center">
         <%= simple_form_for [ @game, @answer ] do |f| %>
-          <%= f.input :content, autofocus: true %>
+          <%= f.input :content, autofocus: true, label: false%>
           <%= f.hidden_field :track, value: @current_track.id %>
           <%= f.hidden_field :answering_time, value: params[:current_time] %>
-          <%= f.submit id:"answer"%>
+          <%= f.submit "Réponse ?", class: 'btn btn-flat', id:"answer"%>
         <% end %>
       </div>
     </div>
