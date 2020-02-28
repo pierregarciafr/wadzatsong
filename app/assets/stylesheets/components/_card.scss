@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 .playlist_card {
@@ -48,7 +48,27 @@ input[type="radio"], input[type="checkbox"] {
 
 
 .playlist_grid input:checked + label {
-  border: 1px solid #bc4e9c;
+  border: 3px solid #bc4e9c;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   // border-radius: 4px;
 }
+
+
+.top-container {
+  padding-top: 40px;
+
+}
+
+.welcome-top  {
+  font-size: 1rem;
+  margin: 0px 30px;
+  padding: 10px;
+  background: white;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  text-align: center;
+  opacity: 0.9;
+  p {
+    margin: 0px;
+  }
+}
+

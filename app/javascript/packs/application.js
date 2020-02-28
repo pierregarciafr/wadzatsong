@@ -22,6 +22,7 @@ require("channels")
 // WRITE YOUR OWN JS STARTING FROM HERE 👇
 // ----------------------------------------------------
 import "bootstrap";
+import { confetti } from '../components/confettis';
 // import { getCode } from '../plugins/fetch';
 
 const buzz = document.getElementById("buzz");
@@ -42,4 +43,4 @@ if(buzz) {
   }
 
 
-
+confetti();
