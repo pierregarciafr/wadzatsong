@@ -144,6 +144,20 @@
       </div>
     </div>
   <% end %>
+
+
+  <div class="speech-bubble speech-bubble-left">
+    <p>
+      <% if Answer.last.status == true %>
+        <%= "Bien joué petit génie de la zik ! 🕺" %>
+        <% elsif Answer.last.status == false %>
+        <%= "Même ma petite soeur connaît ça ! Try again ! " %>
+        <% else %>
+        <%= "nil" %>
+      <% end %>
+    </h2>
+  </p>
+
 </div>
 
 <!-- <div id="message-modal">
