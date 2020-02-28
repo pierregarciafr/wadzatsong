@@ -136,7 +136,7 @@
       <div class="form-container">
 
         <%= simple_form_for [ @game, @answer ] do |f| %>
-          <%= f.input :content %>
+          <%= f.input :content, autofocus: true %>
           <%= f.hidden_field :track, value: @current_track.id %>
           <%= f.hidden_field :answering_time, value: params[:current_time] %>
           <%= f.submit id:"answer"%>
