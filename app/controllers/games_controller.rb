@@ -45,6 +45,7 @@ class GamesController < ApplicationController
 
   def created
     @game = Game.find(params[:id])
+    @main_user = @game.user
   end
 
   def ready
@@ -58,9 +59,18 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @game.running!
     if @game.participants.any?
+      @answers = @game.answers
+      @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
+      if @current_track.answers.empty? || @current_track.answers.last == true
+        @answering_time = 0
+      else
+        @answering_time = @current_track.answers.last.answering_time
+      end
+
       GameChannel.broadcast_to(
         @game,
-        { status: "running", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
+        render_to_string(partial: "game_running", locals: { answering_time: @answering_time, current_track: @current_track, game: @game })
+        # { status: "running", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
       )
     end
     redirect_to game_path(@game)

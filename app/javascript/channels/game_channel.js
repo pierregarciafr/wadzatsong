@@ -15,20 +15,24 @@ if (answersContainer) {
     {
       received(data) {
       // window.location.reload();
-        console.log(id);
         // console.log(data.status);
+        console.log(data)
 
         if (data.status === "connection") {
-          window.location.reload();
+          // window.location.reload();
           if (data.user) {
-          const content = '<p>' + data.user + ' a rejoint la partie !</p>';
-          answersContainer.insertAdjacentHTML('beforeend',content);
+            const content = '<p>' + data.user + ' a rejoint la partie !</p>';
+            answersContainer.insertAdjacentHTML('beforeend',content);
           }
         };
 
         if (data.status === "running") {
+          const runningContainer = document.getElementById('running-html')
+          runningContainer.innerHTML = data;
           // console.log(data.status);
-          window.location.reload();
+          // window.location.reload();
+          // playerElt.play();
+
           // const p = window.location.reload();
           // $.when(p).done(function() {
           // const idPlayer = (data.joinedPlayerId).toString();
@@ -38,15 +42,17 @@ if (answersContainer) {
           // audioElt.muted = true;
           //
 
-          console.log(data.joinedPlayerId);
-          console.log(audioElt);
+          // console.log(data.joinedPlayerId);
+          // console.log(audioElt);
         // });
           // data.joinedPlayerId;
 
         };
         if (data.status === "paused") {
-          // console.log (data.status)
+          console.log (data.status)
           window.location.reload();
+          // window.location.reload();
+          // playerElt.pause();
         };
       }
   });
