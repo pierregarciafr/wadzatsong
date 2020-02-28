@@ -1,4 +1,4 @@
-<div class="game-container" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path @playlist.picture %>)">
+<div class="game-container">
 
   <div class="created-game">
     <div >
@@ -67,13 +67,17 @@
         <!-- creer une variable idBuzzer = 'buzz' + user.id -->
        <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
           <div class="buzzer">
-            <div class="wave">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
+            <div id="album-art">
+              <img src="https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="active" id="_1">
+              <div class="wave">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
             </div>
+
           </div>
         <% end %>
       </div>
