@@ -1,0 +1,30 @@
+.speech-bubble {
+  position: fixed;
+  top: 80%;
+  left: 15%;
+  background-color: white;
+  width: 70%;
+  margin: auto;
+  color: transparent;
+  text-align: center;
+  border-radius: 10px;
+  margin-top: 50px;
+  box-shadow: 17px 17px 0px -1px #DCDCDC;
+
+    p {
+    color: black;
+    }
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 15px solid;
+  border-right-color: white;
+  top: 50%;
+  right: 100%;
+  margin-top: -15px;
+
+}
