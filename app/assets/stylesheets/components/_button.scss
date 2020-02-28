@@ -16,13 +16,14 @@
 
 
 .btn-home {
-  background: white !important;
-  color: black !important;
+  background: rgba(255,255,255,0.6) !important;
+  color: white !important;
   border-radius: 50px;
   margin-bottom: 50px;
   font-weight: bold;
-  border: 1px solid black;
-  padding: 1rem 5rem;
+  border: 1px solid White;
+  letter-spacing: 3px;
+  padding: 1rem 4rem;
 
     &:hover {
       opacity: 1;
@@ -33,8 +34,10 @@
 
 
 .btn-home2 {
-  color: black !important;
-  font-weight: bold;
+  color: white !important;
+  font-weight: lighter;
+  letter-spacing: 3px;
+  font-size: 12px;
 
     &:hover {
       opacity: 1;

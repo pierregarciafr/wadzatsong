@@ -13,9 +13,9 @@
   <% if user_signed_in? %>
     <div class="text-center">
         <%= simple_form_for @game do |f| %>
-          <%= f.submit "Créer une partie", class: "btn-home" %>
+          <%= f.submit "CREE UNE PARTIE", class: "btn-home" %>
         <% end %>
-    <%= link_to "Rejoindre une partie", new_participation_path , class: "btn-home2" %></p>
+    <%= link_to "REJOINS UNE PARTIE", new_participation_path , class: "btn-home2" %></p>
     </div>
   <% end %>
 </div>
