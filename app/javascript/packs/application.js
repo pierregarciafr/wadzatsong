@@ -35,11 +35,11 @@ if(buzz) {
   })
 }
 
-const audio = document.querySelector(".audio")
-const song = document.getElementById("song")
-if (song) {
-  song.currentTime = audio.dataset.time;
-  song.play();
-}
+  const audio = document.querySelector(".audio");
+  const song = document.getElementById("song");
+  if (song) {
+    song.currentTime = audio.dataset.time;
+  }
+
 
 
