@@ -4,3 +4,6 @@
 import { createConsumer } from "@rails/actioncable"
 
 export default createConsumer()
+
+// This will ready a consumer that'll connect against /cable on your server by default.
+// The connection !!! won't be established !!! until you've also specified at least one subscription you're interested in having.

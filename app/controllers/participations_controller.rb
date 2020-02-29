@@ -16,8 +16,17 @@ class ParticipationsController < ApplicationController
     token = @participation.token
     @game = Game.find_by(token: token)
     @participation.game = @game
-    if @participation.save
-      redirect_to participation_path(@participation)
+    if @participation.save && @game
+      GameChannel.broadcast_to(
+        @game,
+        game: @game,
+        status: 'connection',
+        participation: @participation.id,
+        hostUser: @game.user,
+        joinedUser: @game.participants.first
+      )
+      # redirect_to participation_path(@participation)
+      redirect_to game_path(@game)
     else
       render :new
     end

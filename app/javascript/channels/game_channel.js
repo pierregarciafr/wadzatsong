@@ -11,24 +11,36 @@ if (answersContainer) {
   const id = answersContainer.dataset.gameId; // .gameId ?
 
   consumer.subscriptions.create(
-    { channel: "GameChannel", id: id },
+    { channel: "GameChannel", id: id }, // { channel : "Game" ?, game : id, participation: id })
     {
       received(data) {
       // window.location.reload();
-        console.log(id);
         // console.log(data.status);
 
+
         if (data.status === "connection") {
-          window.location.reload();
-          if (data.user) {
-          const content = '<p>' + data.user + ' a rejoint la partie !</p>';
-          answersContainer.insertAdjacentHTML('beforeend',content);
+                    console.log('coucou');
+
+          if (data.joinedUser) {
+            const content = `<h4>${data.joinedUser.pseudo} a rejoint la partie de ${data.hostUser.pseudo} !</h4>`;
+            // .log(`content: ${content}`);
+            answersContainer.insertAdjacentHTML('beforeend',content);
           }
         };
 
         if (data.status === "running") {
-          // console.log(data.status);
           window.location.reload();
+          console.log('coucou');
+
+          console.log(data);
+
+          const runningContainer = document.getElementById('game-running-track')
+          runningContainer.innerHTML = '<h1>A BOIRE !!!</h1>';
+
+          // console.log(data.status);
+          // window.location.reload();
+          // playerElt.play();
+
           // const p = window.location.reload();
           // $.when(p).done(function() {
           // const idPlayer = (data.joinedPlayerId).toString();
@@ -38,15 +50,17 @@ if (answersContainer) {
           // audioElt.muted = true;
           //
 
-          console.log(data.joinedPlayerId);
-          console.log(audioElt);
+          // console.log(data.joinedPlayerId);
+          // console.log(audioElt);
         // });
           // data.joinedPlayerId;
 
         };
         if (data.status === "paused") {
-          // console.log (data.status)
+          console.log (data.status)
           window.location.reload();
+          // window.location.reload();
+          // playerElt.pause();
         };
       }
   });
