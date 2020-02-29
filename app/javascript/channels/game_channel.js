@@ -16,19 +16,24 @@ if (answersContainer) {
       received(data) {
       // window.location.reload();
         // console.log(data.status);
-        console.log(data)
+
 
         if (data.status === "connection") {
-          // window.location.reload();
-          if (data.user) {
-            const content = '<p>' + data.user + ' a rejoint la partie !</p>';
+
+          if (data.joinedUser) {
+            const content = `<p>${data.joinedUser.pseudo} a rejoint la partie de ${data.hostUser.pseudo} !</p>`;
+            // .log(`content: ${content}`);
             answersContainer.insertAdjacentHTML('beforeend',content);
           }
         };
 
         if (data.status === "running") {
+          console.log('coucou');
+
+          // console.log(data);
+
           const runningContainer = document.getElementById('running-html')
-          runningContainer.innerHTML = data;
+          runningContainer.innerHTML = 'A BOIRE !!!';
           // console.log(data.status);
           // window.location.reload();
           // playerElt.play();

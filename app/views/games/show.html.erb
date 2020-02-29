@@ -18,9 +18,8 @@
       </div>
     </div>
     <% if @game.user == current_user %>
-
-    <div class="play">
-    <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
+      <div class="play">
+      <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
     </div>
 
     <div class="welcome-top">
@@ -59,9 +58,13 @@
         <% end %>
         <% end %>
 
+
         <% if @game.running? %>
         <% if @current_track %>
         <div id="running-html">
+
+          <!-- debut de la section mise dans partial -->
+
           <ul class="list-inline d-flex align-items-center">
             <!--         <li class="list-inline-item"><%= @current_track.title %></li> -->
 
@@ -89,6 +92,8 @@
             </div>
             <% end %>
           </div>
+
+          <!-- fin de la section mise dans partial -->
         </div>
 
         <% else %>

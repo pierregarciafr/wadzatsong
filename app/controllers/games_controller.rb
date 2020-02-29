@@ -30,19 +30,6 @@ class GamesController < ApplicationController
 
   end
 
-  def paused
-    @game = Game.find(params[:id])
-    authorize @game
-    @game.paused!
-    if @game.participants.any?
-      GameChannel.broadcast_to(
-        @game,
-        { status: "paused", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
-      )
-    end
-    redirect_to game_path(@game, current_time: params[:current_time])
-  end
-
   def created
     @game = Game.find(params[:id])
     @main_user = @game.user
@@ -68,14 +55,43 @@ class GamesController < ApplicationController
       end
 
       GameChannel.broadcast_to(
-        #"game_#{@game.id}" au lieu de @game ??
         @game,
-        render_to_string(partial: "game_running", locals: { answering_time: @answering_time, current_track: @current_track, game: @game })
+        partial: "game_running",
+        locals: {
+          answering_time: @answering_time,
+          current_track: @current_track,
+          game: @game }
+        )
+
+        # Victor :
+        # render_to_string(partial: "game_running", locals:
+        #   { answering_time: @answering_time,
+        #     current_track: @current_track,
+        #     game: @game })
+
         # { status: "running", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
-      )
+        #         game: @game,
+        # status: 'connection',
+        # participation: @participation.id,
+        # hostUser: @game.user,
+        # joinedUser: @game.participants.first
+
     end
     redirect_to game_path(@game)
     authorize @game
+  end
+
+  def paused
+    @game = Game.find(params[:id])
+    authorize @game
+    @game.paused!
+    if @game.participants.any?
+      GameChannel.broadcast_to(
+        @game,
+        { status: "paused", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
+      )
+    end
+    redirect_to game_path(@game, current_time: params[:current_time])
   end
 
   def new
