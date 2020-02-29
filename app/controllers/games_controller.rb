@@ -54,21 +54,29 @@ class GamesController < ApplicationController
       else
         @answering_time = @current_track.answers.last.answering_time
       end
-      GameChannel.broadcast_to(
-        @game,
-        status: "running",
-        partial: "game_running",
-        locals: {
-          answering_time: @answering_time,
-          current_track: @current_track,
-          game: @game }
-        )
+      # GameChannel.broadcast_to(
+      #   @game,
+      #   status: "running",
+      #   partial: "game_running",
+      #   locals: {
+      #     answering_time: @answering_time,
+      #     current_track: @current_track,
+      #     game: @game }
+      #   )
 
         # Victor :
-        # render_to_string(partial: "game_running", locals:
-        #   { answering_time: @answering_time,
-        #     current_track: @current_track,
-        #     game: @game })
+        GameChannel.broadcast_to(
+        @game,
+        status: 'running',
+        content: render_to_string(
+          partial: "game_running",
+          locals: {
+            answering_time: @answering_time,
+            current_track: @current_track,
+            game: @game,
+            user: @user
+          })
+        )
 
     end
     redirect_to game_path(@game)

@@ -6,6 +6,57 @@ const buzzerElt = document.getElementById('buzzer');
 const playerElt = document.getElementById('song');
 
 const answerElt = document.getElementById('answer');
+const gameElt = document.getElementById('game-container');
+
+if (gameElt) {
+  const id = gameElt.dataset.gameId; // .gameId ?
+
+  consumer.subscriptions.create(
+    { channel: "GameChannel", id: id }, // { channel : "Game" ?, game : id, participation: id })
+    {
+      received(data) {
+      // window.location.reload();
+      console.log(data.status);
+
+        if (data.status === "connection") {
+          console.log('connection game-container');
+          const testElt = document.getElementById('test');
+          testElt.textContent = 'TEST';
+
+          if (data.joinedUser) {
+            // const content = `<h4>${data.joinedUser.pseudo} a rejoint la partie de ${data.hostUser.pseudo} !</h4>`;
+            // // .log(`content: ${content}`);
+            // gameElt.insertAdjacentHTML('beforeend',content);
+          }
+        };
+
+        if (data.status === "running") {
+          // window.location.reload();
+          console.log(data.content);
+          console.log('running game-container');
+
+          if (data) {
+            gameElt.insertAdjacentHTML('beforeend',data.content);
+
+            // const content = `<h4>${data.joinedUser.pseudo} a rejoint la partie de ${data.hostUser.pseudo} !</h4>`;
+            // .log(`content: ${content}`);
+            //gameElt.insertAdjacentHTML('afterbegin',data);
+          }
+
+
+
+        }
+
+        if (data.status === "paused") {
+          // window.location.reload();
+          console.log(data);
+          console.log('paused game-container');
+
+        }
+
+      }
+    });
+  };
 
 if (answersContainer) {
   const id = answersContainer.dataset.gameId; // .gameId ?
@@ -17,9 +68,8 @@ if (answersContainer) {
       // window.location.reload();
         // console.log(data.status);
 
-
         if (data.status === "connection") {
-                    console.log('coucou');
+                    console.log('connection answers');
 
           if (data.joinedUser) {
             const content = `<h4>${data.joinedUser.pseudo} a rejoint la partie de ${data.hostUser.pseudo} !</h4>`;
@@ -29,40 +79,24 @@ if (answersContainer) {
         };
 
         if (data.status === "running") {
-          window.location.reload();
-          console.log('coucou');
+        //   window.location.reload();
+          console.log(data)
+          console.log('running answers');
 
-          console.log(data);
+        //   console.log(data);
 
-          const runningContainer = document.getElementById('game-running-track')
-          runningContainer.innerHTML = '<h1>A BOIRE !!!</h1>';
+        //   // const runningContainer = document.getElementById('game-running-track')
+        //   // runningContainer.innerHTML = '';
 
-          // console.log(data.status);
-          // window.location.reload();
-          // playerElt.play();
-
-          // const p = window.location.reload();
-          // $.when(p).done(function() {
-          // const idPlayer = (data.joinedPlayerId).toString();
-          // console.log(idPlayer);
-          // const audioElt = document.getElementById(idPlayer);
-          // songElt = audioElt.getElementById("song");
-          // audioElt.muted = true;
-          //
-
-          // console.log(data.joinedPlayerId);
-          // console.log(audioElt);
-        // });
-          // data.joinedPlayerId;
-
-        };
+        // };
         if (data.status === "paused") {
-          console.log (data.status)
-          window.location.reload();
+          console.log(data)
+          console.log('paused answers');
           // window.location.reload();
           // playerElt.pause();
         };
       }
+    }
   });
 }
 

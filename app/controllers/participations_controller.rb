@@ -21,6 +21,7 @@ class ParticipationsController < ApplicationController
         @game,
         game: @game,
         status: 'connection',
+        token: token,
         participation: @participation.id,
         hostUser: @game.user,
         joinedUser: @game.participants.first
