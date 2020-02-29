@@ -6,6 +6,8 @@ const buzzerElt = document.getElementById('buzzer');
 const playerElt = document.getElementById('song');
 
 const answerElt = document.getElementById('answer');
+const runningElt = document.getElementById('running')
+
 
 if (answersContainer) {
   const id = answersContainer.dataset.gameId; // .gameId ?
@@ -16,24 +18,28 @@ if (answersContainer) {
       received(data) {
       // window.location.reload();
         // console.log(data.status);
-
-
         if (data.status === "connection") {
+          console.log('coucou');
 
           if (data.joinedUser) {
-            const content = `<p>${data.joinedUser.pseudo} a rejoint la partie de ${data.hostUser.pseudo} !</p>`;
+            const content = `<h4>${data.joinedUser.pseudo} a rejoint la partie de ${data.hostUser.pseudo} !</h4>`;
             // .log(`content: ${content}`);
             answersContainer.insertAdjacentHTML('beforeend',content);
           }
         };
+      };
+    };
+
+
 
         if (data.status === "running") {
+          // window.location.reload();
           console.log('coucou');
 
-          // console.log(data);
+          console.log(data);
 
-          const runningContainer = document.getElementById('running-html')
-          runningContainer.innerHTML = 'A BOIRE !!!';
+          answersContainer.innerHTML = '<h1>A BOIRE !!!</h1>';
+
           // console.log(data.status);
           // window.location.reload();
           // playerElt.play();

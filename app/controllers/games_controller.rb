@@ -20,8 +20,8 @@ class GamesController < ApplicationController
     @playlist = @game.playlist
     @answers = @game.answers
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
-     authorize @game
-     if @current_track
+    authorize @game
+    if @current_track
       if @current_track.answers.empty? || @current_track.answers.last == true
         @answering_time = 0
       else
@@ -54,9 +54,9 @@ class GamesController < ApplicationController
       else
         @answering_time = @current_track.answers.last.answering_time
       end
-
       GameChannel.broadcast_to(
         @game,
+        status: "running",
         partial: "game_running",
         locals: {
           answering_time: @answering_time,
@@ -69,13 +69,6 @@ class GamesController < ApplicationController
         #   { answering_time: @answering_time,
         #     current_track: @current_track,
         #     game: @game })
-
-        # { status: "running", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
-        #         game: @game,
-        # status: 'connection',
-        # participation: @participation.id,
-        # hostUser: @game.user,
-        # joinedUser: @game.participants.first
 
     end
     redirect_to game_path(@game)
