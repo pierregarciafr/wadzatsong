@@ -15,7 +15,8 @@ class GamesController < ApplicationController
     authorize @game
     @answer = Answer.new
     @participation = Participation.find_by(token: @game.token)
-    @user = current_user
+    @user = @game.user # MJ
+    # @partipants = @game.participants # player 2
     @playlist = @game.playlist
     @answers = @game.answers
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
