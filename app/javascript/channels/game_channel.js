@@ -11,7 +11,7 @@ if (answersContainer) {
   const id = answersContainer.dataset.gameId; // .gameId ?
 
   consumer.subscriptions.create(
-    { channel: "GameChannel", id: id },
+    { channel: "GameChannel", id: id }, // { channel : "Game" ?, game : id, participation: id })
     {
       received(data) {
       // window.location.reload();

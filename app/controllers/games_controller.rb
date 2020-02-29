@@ -68,6 +68,7 @@ class GamesController < ApplicationController
       end
 
       GameChannel.broadcast_to(
+        #"game_#{@game.id}" au lieu de @game ??
         @game,
         render_to_string(partial: "game_running", locals: { answering_time: @answering_time, current_track: @current_track, game: @game })
         # { status: "running", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
