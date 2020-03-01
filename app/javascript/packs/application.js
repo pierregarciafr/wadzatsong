@@ -23,6 +23,7 @@ require("channels")
 // ----------------------------------------------------
 import "bootstrap";
 import { confetti } from '../components/confettis';
+import { SpeechToText } from '../components/speechtotext';
 // import { getCode } from '../plugins/fetch';
 
 const buzz = document.getElementById("buzz");
@@ -44,3 +45,5 @@ if(buzz) {
 
 
 confetti();
+
+SpeechToText ()
