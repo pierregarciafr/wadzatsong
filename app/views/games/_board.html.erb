@@ -1,0 +1,12 @@
+<div id="board">
+  <div id="song-counter" class="song-count d-flex justify-content-around align-items-center">
+    <%= '<i class="fas fa-record-vinyl guessed"></i>'.html_safe * Answer.where(status:true).count %>
+    <%= '<i class="fas fa-record-vinyl"></i>'.html_safe * (Game::NUMBER_OF_ROUNDS - Answer.where(status:true).count) %>
+  </div>
+
+  <ul id="player" class="list-inline d-flex align-items-center">
+    <li class="d-none list-inline-item audio" data-time="<%= @answering_time %>">
+      <%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %>
+    </li>
+  </ul>
+</div>

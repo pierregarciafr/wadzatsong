@@ -34,7 +34,7 @@ if (gameElt) {
           // window.location.reload();
           console.log(data.content);
           console.log('running game-container');
-
+          gameElt.textContent = '';
           if (data) {
             gameElt.insertAdjacentHTML('beforeend',data.content);
 
@@ -42,21 +42,20 @@ if (gameElt) {
             // .log(`content: ${content}`);
             //gameElt.insertAdjacentHTML('afterbegin',data);
           }
-
-
-
         }
-
         if (data.status === "paused") {
           // window.location.reload();
-          console.log(data);
+          console.log(data.content);
           console.log('paused game-container');
-
+          // gameElt.textContent = '';
+          if (data) {
+            gameElt.insertAdjacentHTML('beforeend',data.content);
         }
-
       }
-    });
-  };
+    }
+  });
+}
+
 
 if (answersContainer) {
   const id = answersContainer.dataset.gameId; // .gameId ?
@@ -88,7 +87,7 @@ if (answersContainer) {
         //   // const runningContainer = document.getElementById('game-running-track')
         //   // runningContainer.innerHTML = '';
 
-        // };
+        };
         if (data.status === "paused") {
           console.log(data)
           console.log('paused answers');
@@ -97,6 +96,6 @@ if (answersContainer) {
         };
       }
     }
-  });
+  );
 }
 

@@ -25,8 +25,6 @@
       <div id="running-html">
 
         <!-- debut de la section mise dans partial par Victor -->
-
-
  <!--        <%= render 'game_running',
           answering_time: @answering_time,
           current_track: @current_track,
@@ -130,9 +128,12 @@
   <% if@game.paused? %>
     <div class='display-container'>
       <!-- debut de la section a mettre dans partial -->
-      <%= render 'game_paused',
-          answer: @answer,
-          game: @game %>
+<!--       <%#= render 'game_paused',
+        game: @game,
+        current_track: @current_track,
+        answer: @answer,
+        user: @user %> -->
+
       <!-- fin de la section a mettre dans partial -->
 
     </div>
