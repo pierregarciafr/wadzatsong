@@ -24,7 +24,7 @@
           <% if @game.user == current_user %>
             <h3><%= @game.user.pseudo %>, ta partie va pouvoir démarrer !</h3>
             <br>
-            <p>Voici le code à communiquer à tes adversaires : </p>
+            <p>Voici le code à communiquer à tes potes : </p>
             <strong><p><%= @game.token %></p></strong>
 
             <br>
@@ -200,7 +200,7 @@
   <% if@game.paused? %>
     <div class='display-container'>
       <!-- debut de la section a mettre dans partial -->
-      
+
       <div class="load">
         <i class="fa fa-microphone fa-3x"></i>
       </div>
