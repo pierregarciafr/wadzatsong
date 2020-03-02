@@ -81,7 +81,6 @@
 
     <% if @current_track %>
       <div id="running-html">
-
         <!-- debut de la section mise dans partial par Victor -->
         <ul class="list-inline d-flex align-items-center">
           <!--          creer une data-audio-id = user.id -->
@@ -130,13 +129,9 @@
           <!-- creer une variable idBuzzer = 'buzz' + user.id -->
           <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
 
-<!--           <figure class="profile">
-            <img src="http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-cat-200x200.jpg" alt="Cat" title="Cat" />
-          </figure> -->
-
-          <div class="load">
-            <i class="fa fa-microphone fa-3x"></i>
-          </div>
+          <figure class="profile">
+            <%= image_tag "image.png", class: "logo-show" %>
+          </figure>
 
           <% end %>
         </div>
@@ -238,16 +233,24 @@
   <% if@game.paused? %>
     <div class='display-container'>
       <!-- debut de la section a mettre dans partial -->
-      <div class="form-container text-center">
+      
+      <div class="load">
+        <i class="fa fa-microphone fa-3x"></i>
+      </div>
+
+      <div class="d-none form-container text-center">
         <%= simple_form_for [ @game, @answer ] do |f| %>
           <%= f.input :content, autofocus: true, label: false%>
           <%= f.hidden_field :track, value: @current_track.id %>
           <%= f.hidden_field :answering_time, value: params[:current_time] %>
           <%= f.submit "Réponse ?", class: 'btn btn-flat', id:"answer"%>
         <% end %>
-      </div>
-      <!-- fin de la section a mettre dans partial -->
 
+        <div class="speechtotext-container">
+          <i class="fa fa-microphone speechtotext"></i>
+        </div>
+
+      <!-- fin de la section a mettre dans partial -->
     </div>
   <% end %>
   <!-- -----------------------  -->
