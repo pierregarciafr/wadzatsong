@@ -73,13 +73,16 @@
 
 
 .load {
-  margin: 288px auto;
+  top: 50%;
+  left: 54%;
+  margin-top: -60px;
+  position: absolute;
+  margin-left: -60px;
   width: 100px;
   height: 100px;
   /** height is required as absolute value **/
   background-color: white;
   border-radius: 100px;
-  position:relative;
   animation: pulse 2000ms linear infinite;
   -webkit-animation: pulse 2000ms linear infinite;
   -moz-animation: pulse 2000ms linear infinite;
