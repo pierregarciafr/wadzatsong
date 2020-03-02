@@ -10,12 +10,14 @@
       game_participants: @game_participants,
       playlist: @playlist %>
   </div>
+    <div id="test">
+    </div>
+
   <div id="game-container" data-game-id="<%= @game.id %>">
+
     <% if @game.paused? %>
       <%= render 'game_paused' %>
     <% end %>
-    <div id="test">
-    </div>
   <!-- ------------------------------- -->
     <% if @game.created? %>
       <div class="show-created-html" id="game-created-html">
@@ -51,12 +53,33 @@
           <% end %>
           <!-- fin de la section mise dans partial par Victor -->
         </div>
+        <!--- fin du conflit - version pullée -->
+        <!-- message pour bonne ou mauvaise réponse -->
+        <% if Answer.last %>
+          <!--           <div class="speech-bubble speech-bubble-left"> -->
+          <!--             <p> -->
+          <% if Answer.last.status == true %>
+              <div class="speech-bubble speech-bubble-left good-answer">
+                <p><%= "Bien joué petit génie de la zik 🕺" %></p>
+              </div>
+              <% elsif Answer.last.status == false %>
+              <div class="speech-bubble speech-bubble-left bad-answer">
+                <p>Même ma petite soeur connaît ça ! Try again !</p>
+              </div>
+              <% else %>
+                <%= "nil" %>
+          <% end %>
+        <% end %>
+        <!-- fin de la section mise dans partial par Victor -->
+
     <!-- - - - - - - - - - - - -->
       <% else %> <!-- si current_track == nil -->
     <!-- fin de partie - résultats par chansons -->
 
         <div id="game-finished">
         <!-- debut de la section a mettre dans partial-finished -->
+
+        <!-- game paused - formulaire de réponse -->
 
           <%#= render 'game_finished',
             answering_time: @answering_time,
