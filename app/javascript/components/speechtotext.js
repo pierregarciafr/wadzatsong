@@ -1,11 +1,9 @@
-
-
-
 const SpeechToText = () => {
 const SpeechRecognition = window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 const recognition = new SpeechRecognition();
-const form = document.querySelector('.answer-form')
+const form = document.querySelector('#new_answer');
 if (form) {
+
   recognition.start();
   recognition.onresult = (event) => {
   const vocalinput = event.results[0][0].transcript;
