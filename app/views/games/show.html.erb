@@ -89,10 +89,30 @@
             <%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %>
           </li>
         </ul>
+
+        <!-- notif good answers -->
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="players"><%= @user.pseudo.chars.first.capitalize %>
+              <% if @user.answers.where(status:true).count > 0 %>
+                <div class="notif"><%= @user.answers.where(status:true).count %></div>
+              <% end %>
+            </div>
+          </div>
+          <% if @game.participants[0] %>
+            <div class="player2">
+              <%= @game.participants[0].pseudo.chars.first.capitalize %>
+              <%= @game.participants[0].answers.where(status:true).count %>
+            </div>
+          <% end %>
+        </div>
+        <!-- fin notif good answers -->
+
         <div class="song-count d-flex justify-content-around align-items-center">
           <%= '<i class="fas fa-circle guessed"></i>'.html_safe * Answer.where(status:true).count %>
           <%= '<i class="fas fa-circle"></i>'.html_safe * (Game::NUMBER_OF_ROUNDS - Answer.where(status:true).count) %>
         </div>
+
         <div class="buzzer-content">
           <!-- creer une variable idBuzzer = 'buzz' + user.id -->
           <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
