@@ -1,0 +1,36 @@
+<div class="top-container">
+  <div class="welcome-top" id="answers" data-game-id="<%= @game.id %>">
+    <% if @game.user == current_user %>
+      <h4><%= @game.user.pseudo %>, invite tes potes à jouer avec toi !</h4>
+    <br>
+  <div class="token-card">
+    <div class="avatar-key d-flex justify-content-around align-items-center">
+      <i class="fas fa-key"></i>
+    </div>
+    <h6 class="mt-3">Voici le code pour rejoindre ta partie : </h6>
+    <strong><h2 class="mt-3 "><%= @game.token %></h2></strong>
+  </div>
+      <br>
+      <br>
+      <p>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</p>
+    <% else %>
+      <h3>Tu as rejoint la partie de <%= @game.user.pseudo %> !</h3>
+      <% if @game.participants != nil %>
+        <% @game.participants.each do |participant| %>
+          <p><%= participant.pseudo %> is participating</p>
+        <% end %>
+      <% end %>
+    <% end%>
+  </div>
+</div>
+<% if @game.user == current_user %>
+  <%= link_to running_game_path(@game), method: :patch do %>
+    <div class="play-btn mt-5"></div>
+  <% end %>
+<% else %>
+  <div class="welcome-top">
+    <div class="text-center">
+      <p>Vous avez rejoint la partie de <%= @game.user.pseudo%> !</p>
+    </div>
+  </div>
+<% end %>
