@@ -1,3 +1,76 @@
+.profile {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -60px;
+  margin-left: -60px;
+  z-index: 10;
+
+  &:before{
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: -8px;
+    width: 110%;
+    height: 110%;
+    border: 2px solid #fff;
+    border-radius: 100%;
+    -webkit-animation: pulse1 3s linear  infinite;
+    animation: pulse1 3s linear infinite;
+  }
+
+  .logo-show{
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+  }
+}
+
+@keyframes pulse1 {
+  0%{
+    opacity: 0;
+    transform: scale(1);
+  }
+
+  20%{
+    opacity: 0;
+    transform: scale(1.05);
+  }
+
+  50%{
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  100%{
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+@-webkit-keyframes pulse1 {
+  0%{
+    opacity: 0;
+    transform: scale(1);
+  }
+
+  20%{
+    opacity: 0;
+    transform: scale(1.05);
+  }
+
+  50%{
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100%{
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
+
 .load {
   margin: 288px auto;
   width: 100px;
