@@ -101,9 +101,15 @@ class GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
     @game.playlist_id = params[:playlist_id]
-    @game.save
-    authorize @game
-    redirect_to game_path(@game)
+    if @game.playlist_id != nil
+        @game.save
+        authorize @game
+        redirect_to game_path(@game)
+    else
+        authorize @game
+        redirect_to edit_game_path(@game)
+    end
+
   end
 
   private
