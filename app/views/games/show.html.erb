@@ -4,51 +4,45 @@
 </head>
 
 <div class="game-container" style="background-image: linear-gradient(to right top, #df2866, #d8377f, #cc4794, #bc56a6, #aa63b3);">
+ 
 
- <!-- div toujours necessaire?  -->
+  <div id="game-container" data-game-id="<%= @game.id %>">
 
-  <div class="created-game">
-    <div >
-    </div>
+  <% if @game.paused? %>
+    <%= render 'game_paused' %>
+  <% end %>
+    
+    
+  <div id="test">
+
   </div>
 
   <!-- ------------------------------- -->
   <!-- game created -->
-
   <% if @game.created? %>
     <div class="show-created-html" id="game-created-html">
       <!-- debut de la section a mettre dans partial -->
+
       <div class="top-container">
         <%= render 'created' %>
+
       <!-- debut de la section a mettre dans partial -->
       </div>
   <% end %>
-
-  <!-- -------------------------- -->
-  <!-- game ready? bloc a supprimer je pense -->
-
-  <% if @game.ready? %>
-    <h1><%= @participation.pseudo %> a rejoint le game</h1>
-    <h1>Clique sur le bouton <strong>PLAY</strong> dès que ton adversaire a rejoint la partie pour la lancer 🔊</h1>
-    <div class="text-center">
-      <p> <strong>Your token :
-      <%= @game.token %></p></strong>
-    </div>
-      <%= link_to running_game_path(@game), method: :patch do %>
-        <div class="play-btn"></div>
-      <% end %>
-  <% end %>
-
   <!-- ----------------------------------------- -->
-
   <!-- game running  -->
-
-  <% if @game.running? %>
-    <!-- partie en cours -->
-    <!-- ========================================== -->
-
+    
     <% if @current_track %>
       <div id="running-html">
+
+        
+        <% if @game.running? %>
+          <%= render 'game_running',
+            answering_time: @answering_time,
+            current_track: @current_track,
+            game: @game %>
+        
+     
         <!-- debut de la section mise dans partial par Victor -->
         <ul class="list-inline d-flex align-items-center">
           <!--          creer une data-audio-id = user.id -->
@@ -56,12 +50,49 @@
             <%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %>
           </li>
         </ul>
-        <div class="song-count d-flex justify-content-around align-items-center">
-          <%= '<i class="fas fa-record-vinyl guessed"></i>'.html_safe * Answer.where(status:true).count %>
-          <%= '<i class="fas fa-record-vinyl"></i>'.html_safe * (Game::NUMBER_OF_ROUNDS - Answer.where(status:true).count) %>
+
+        <div class="navbar-game d-flex justify-content-around align items-center">
+
+          <div class="playlist-choice">
+            <%= link_to root_path do %>
+              <i class="fas fa-home"></i>
+            <% end %>
+          </div>
+
+          <div class="song-count d-flex justify-content-around align-items-center">
+            <%= '<i class="fas fa-circle icon guessed"></i>'.html_safe * Answer.where(status:true).count %>
+            <%= '<i class="fas fa-circle icon"></i>'.html_safe * (Game::NUMBER_OF_ROUNDS - Answer.where(status:true).count) %>
+          </div>
+
+          <!-- notif good answers -->
+          <div class="d-flex justify-content-around align-items-center players-all">
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="players"><%= @user.pseudo.chars.first.capitalize %>
+                <% if @user.answers.where(status:true).count > 0 %>
+                  <div class="notif"><%= @user.answers.where(status:true).count %></div>
+                <% end %>
+              </div>
+            </div>
+            <% if @game.participants[0] %>
+              <div class="players"><%= @game.participants[0].pseudo.chars.first.capitalize %>
+                <% if @game.participants[0].answers.where(status:true).count > 0 %>
+                  <div class="notif"><%= @game.participants[0].answers.where(status:true).count %></div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <!-- fin notif good answers -->
         </div>
+
+        <p class="playlist-name"><%= @playlist.name %></p>
+
+
         <div class="buzzer-content">
           <!-- creer une variable idBuzzer = 'buzz' + user.id -->
+          <div class="consigne text-center">
+            <p>Touche pour donner ta réponse</p>
+          </div>
+
           <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
 
           <figure class="profile">
@@ -70,19 +101,26 @@
 
           <% end %>
         </div>
+        
+        
+<!--- fin du conflit - version pullée --> 
         <!-- message pour bonne ou mauvaise réponse -->
         <% if Answer.last %>
-          <div class="speech-bubble speech-bubble-left">
-            <p>
+<!--           <div class="speech-bubble speech-bubble-left"> -->
+<!--             <p> -->
             <% if Answer.last.status == true %>
-              <%= "Bien joué petit génie de la zik 🕺" %>
+              <div class="speech-bubble speech-bubble-left good-answer">
+                <p><%= "Bien joué petit génie de la zik 🕺" %></p>
+              </div>
               <% elsif Answer.last.status == false %>
-                <%= "Même ma petite soeur connaît ça... Try again ! " %>
+              <div class="speech-bubble speech-bubble-left bad-answer">
+                <p>Même ma petite soeur connaît ça ! Try again !</p>
+              </div>
               <% else %>
                 <%= "nil" %>
             <% end %>
-            </p>
-          </div>
+<!--             </p> -->
+<!--           </div> -->
         <% end %>
         <!-- fin de la section mise dans partial par Victor -->
 
@@ -94,70 +132,10 @@
     <!-- résultats par chansons -->
       <div id="game-finished">
       <!-- debut de la section a mettre dans partial-finished -->
-        <div class="display-container">
-          <div class='dashboard-container'>
-            <p class="text-center">Your results :</p>
-            <table class="dashboard-table">
-              <thead class='dashboard-titles'>
-                <td>Track </td>
-                <td>Player </td>
-                <td>Pts </td>
-              </thead>
-              <tbody>
-                <% @game.playlist.tracks.each do |track| %>
-                  <tr >
-                    <td><%= track.title %> <%#= track.artist %> </td>
-                    <% track.answers.where(status:true).each do |answer| %>
-                      <% if answer.status == true %> <!-- j'ai retiré le comm. # -->
-                        <td><%= answer.user.pseudo %> </td>
-                        <% if answer.answering_time < 3 %>
-                          <td class="top-score">+ 1000 </td>
-                        <% elsif answer.answering_time < 5 %>
-                          <td>+ 200 </td>
-                        <% elsif answer.answering_time < 10 %>
-                          <td>+ 50 </td>
-                        <% else %>
-                          <td>+ 10 </td>
-                        <% end %>
-                      <% else %>
-                        <td> - </td>
-                        <td> - </td>
-                      <% end %>
-                    <% end %> <!-- fin de |answer| do -->
-                  </tr>
-                <% end  %>
-              </tbody>
-            </table>
-          </div>
-        </div>
-    <!-- -------------- -->
-    <!-- résulat total  -->
-        <div class="dashboard-container text-center mt-5">
-          <p>Score total :</p>
-          <% total = 0 %>
-          <% @user.answers.where(status:true).each do |answer| %>
-            <% if answer.answering_time < 3  %>
-              <% total += 1000 %>
-            <% elsif answer.answering_time < 5 %>
-              <% total += 200 %>
-            <% elsif answer.answering_time < 10 %>
-              <% total += 50 %>
-            <% else%>
-              <% total += 10 %>
-            <% end %>
-          <% end %>
-          <span class="particletext confetti"> <%= total %>  </span>
-        </div>
-      <!-- ---------------- -->
-      <!-- bouton rejouer -->
-        <div class="bottom">
-          <div class="text-center mt-5">
-            <% @game=Game.new(user: current_user) %>
-            <%= simple_form_for @game do |f| %>
-              <%= f.submit "Rejouer", class: "btn-edit replay" %>
-            <% end %>
-          </div>
-        </div>
+        <%= render 'game_running',
+    answering_time: @answering_time,
+    current_track: @current_track,
+    game: @game %>
       <!-- fin de la section a mettre dans partial game-finished -->
       </div>
     <!-- ----------- -->
@@ -167,6 +145,7 @@
   <!-- game paused - formulaire de réponse -->
   <% if@game.paused? %>
     <div class='display-container'>
+
       <!-- debut de la section a mettre dans partial -->
 
       <div class="load">
