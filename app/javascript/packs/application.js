@@ -46,4 +46,4 @@ if(buzz) {
 
 confetti();
 
-SpeechToText ()
+SpeechToText ();

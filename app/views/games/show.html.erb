@@ -200,29 +200,19 @@
     <div class='display-container'>
       <!-- debut de la section a mettre dans partial -->
       <p id="track-title"><%= @current_track.title %></p>
-      <div class="form-container text-center">
+      <div class="form-container text-center answer-form hidden">
         <%= simple_form_for [ @game, @answer ] do |f| %>
-          <%= f.input :content, autofocus: true, label: false, html: { id: "speechinput"}%>
+          <%= f.input :content, autofocus: true, label: false%>
           <%= f.hidden_field :track, value: @current_track.id %>
           <%= f.hidden_field :answering_time, value: params[:current_time] %>
           <%= f.submit "Réponse ?", class: 'btn btn-flat', id:"answer"%>
         <% end %>
 
-        <div class="speechtotext-container"> <!--page container -->
-          <div class="text-box" contenteditable="true"></div> <!--text box which will contain spoken text -->
-          <i class="fa fa-microphone speechtotext"></i> <!-- microphone icon to be clicked before speaking -->
-        <input type="text" x-webkit-speech>
+        <div class="speechtotext-container">
+          <i class="fa fa-microphone speechtotext"></i>
         </div>
 
-
-      </div>
-
-
-
-
-
       <!-- fin de la section a mettre dans partial -->
-
     </div>
   <% end %>
   <!-- -----------------------  -->
