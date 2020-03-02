@@ -41,11 +41,11 @@
 
         <% if @game.answers.any? %>
           <% if @game.answers.last.status == true %>
-              <div class="speech-bubble speech-bubble-left good-answer animated">
+              <div class="speech-bubble-good-answer animated">
                 <p><%= "Bien joué petit génie de la zik 🕺" %></p>
               </div>
               <% elsif @game.answers.last.status == false %>
-              <div class="speech-bubble speech-bubble-left bad-answer animated">
+              <div class="speech-bubble-bad-answer animated">
                 <p>Même ma petite soeur connaît ça ! Try again !</p>
               </div>
               <% else %>
