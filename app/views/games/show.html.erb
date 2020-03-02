@@ -94,6 +94,10 @@
         </div>
         <div class="buzzer-content">
           <!-- creer une variable idBuzzer = 'buzz' + user.id -->
+          <div class="consigne text-center">
+            <p>Touche pour donner ta réponse</p>
+          </div>
+
           <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
 
           <figure class="profile">
@@ -104,17 +108,21 @@
         </div>
         <!-- message pour bonne ou mauvaise réponse -->
         <% if Answer.last %>
-          <div class="speech-bubble speech-bubble-left">
-            <p>
+<!--           <div class="speech-bubble speech-bubble-left"> -->
+<!--             <p> -->
             <% if Answer.last.status == true %>
-              <%= "Bien joué petit génie de la zik 🕺" %>
+              <div class="speech-bubble speech-bubble-left good-answer">
+                <p><%= "Bien joué petit génie de la zik 🕺" %></p>
+              </div>
               <% elsif Answer.last.status == false %>
-                <%= "Même ma petite soeur connaît ça... Try again ! " %>
+              <div class="speech-bubble speech-bubble-left bad-answer">
+                <p>Même ma petite soeur connaît ça ! Try again !</p>
+              </div>
               <% else %>
                 <%= "nil" %>
             <% end %>
-            </p>
-          </div>
+<!--             </p> -->
+<!--           </div> -->
         <% end %>
         <!-- fin de la section mise dans partial par Victor -->
 
@@ -200,7 +208,7 @@
   <% if@game.paused? %>
     <div class='display-container'>
       <!-- debut de la section a mettre dans partial -->
-      
+
       <div class="load">
         <i class="fa fa-microphone fa-3x"></i>
       </div>
