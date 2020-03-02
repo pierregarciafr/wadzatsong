@@ -7,6 +7,10 @@
 
 <div class="buzzer-content">
   <!-- creer une variable idBuzzer = 'buzz' + user.id -->
+  <div class="consigne text-center">
+    <p>Touche pour donner ta réponse</p>
+  </div>
+
   <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
 
   <figure class="profile">
