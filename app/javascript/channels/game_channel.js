@@ -36,7 +36,6 @@ if (answersContainer) {
 
           const runningContainer = document.getElementById('game-running-track')
           runningContainer.innerHTML = '<h1>A BOIRE !!!</h1>';
-
           // console.log(data.status);
           // window.location.reload();
           // playerElt.play();
@@ -59,6 +58,7 @@ if (answersContainer) {
         if (data.status === "paused") {
           console.log (data.status)
           window.location.reload();
+
           // window.location.reload();
           // playerElt.pause();
         };
