@@ -1,0 +1,19 @@
+.players {
+  background-color: white;
+  color: #f80759;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.notif {
+  position:absolute;
+  color: white;
+  bottom: 22px;
+  left: 28px;
+}
