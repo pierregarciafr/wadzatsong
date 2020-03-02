@@ -72,7 +72,7 @@ if (answersContainer) {
                     console.log('connection answers');
 
           if (data.joinedUser) {
-            const content = `<h4>${data.joinedUser.pseudo} a rejoint la partie de ${data.hostUser.pseudo} !</h4>`;
+            const content = `<p>${data.joinedUser.pseudo} a rejoint ta partie !<p>`;
             // .log(`content: ${content}`);
             answersContainer.insertAdjacentHTML('beforeend',content);
           }

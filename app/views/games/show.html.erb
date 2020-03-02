@@ -18,16 +18,17 @@
   </div>
 
   <!-- ------------------------------- -->
-
   <!-- game created -->
   <% if @game.created? %>
     <div class="show-created-html" id="game-created-html">
       <!-- debut de la section a mettre dans partial -->
-      <%= render 'created' %>
-      <!-- debut de la section a mettre dans partial -->
-    </div>
-  <% end %>
 
+      <div class="top-container">
+        <%= render 'created' %>
+
+      <!-- debut de la section a mettre dans partial -->
+      </div>
+  <% end %>
   <!-- ----------------------------------------- -->
   <!-- game running  -->
     
