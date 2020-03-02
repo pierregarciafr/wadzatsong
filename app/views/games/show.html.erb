@@ -1,4 +1,9 @@
-<div class="game-container" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path @playlist.picture %>)">
+<head>
+  <meta charset="utf-8">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<div class="game-container" style="background-image: linear-gradient(to right top, #df2866, #d8377f, #cc4794, #bc56a6, #aa63b3);">
 
  <!-- div toujours necessaire?  -->
 
@@ -7,9 +12,9 @@
     </div>
   </div>
 
-<!-- ------------------------------- -->
+  <!-- ------------------------------- -->
 
-<!-- game created -->
+  <!-- game created -->
 
   <% if @game.created? %>
     <div class="show-created-html" id="game-created-html">
@@ -50,7 +55,7 @@
     </div>
   <% end %>
 
-<!-- -------------------------- -->
+  <!-- -------------------------- -->
 
   <!-- game ready? bloc a supprimer je pense -->
 
@@ -66,13 +71,13 @@
       <% end %>
   <% end %>
 
-<!-- ----------------------------------------- -->
+  <!-- ----------------------------------------- -->
 
-<!-- game running  -->
+  <!-- game running  -->
 
   <% if @game.running? %>
     <!-- partie en cours -->
-      <!-- ========================================== -->
+    <!-- ========================================== -->
 
     <% if @current_track %>
       <div id="running-html">
@@ -91,15 +96,15 @@
         <div class="buzzer-content">
           <!-- creer une variable idBuzzer = 'buzz' + user.id -->
           <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
-          <div class="buzzer">
-            <div class="wave">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+
+<!--           <figure class="profile">
+            <img src="http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-cat-200x200.jpg" alt="Cat" title="Cat" />
+          </figure> -->
+
+          <div class="load">
+            <i class="fa fa-microphone fa-3x"></i>
           </div>
+
           <% end %>
         </div>
         <!-- message pour bonne ou mauvaise réponse -->
@@ -216,7 +221,7 @@
 </div> <!-- div fermante du container -->
 
 
-<!-- le code qui suit était déja commenté, a supprimer?? -->
+<!-- modal 'quelqu'un est en train de donner une réponse' à intégrer après actioncable -->
 
 
 <!-- <div id="message-modal">

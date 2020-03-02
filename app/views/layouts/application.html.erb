@@ -12,9 +12,9 @@
   </head>
 
   <body>
-    <% unless params[:action] == "home" %>
-      <%= render 'shared/navbar' %>
-    <% end %>
+    <%# unless params[:action] == "home" %>
+      <%#= render 'shared/navbar' %>
+    <%# end %>
     <%= render 'shared/flashes' %>
     <%= yield %>
   </body>
