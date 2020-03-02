@@ -70,8 +70,13 @@ input[type="radio"], input[type="checkbox"] {
   text-align: center;
   opacity: 0.9;
   border-radius: 2px;
+
   p {
     margin: 0px;
+  }
+
+  h4 {
+    letter-spacing: 3px;
   }
 }
 
@@ -81,8 +86,9 @@ input[type="radio"], input[type="checkbox"] {
   padding: 30px;
   width: 80%;
   border-radius: 2px;
-  border: 1px solid white;
-  h2{
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  h2 {
     letter-spacing: 5px;
   }
 }
