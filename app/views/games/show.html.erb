@@ -91,7 +91,7 @@
 
         <div class="navbar-game d-flex justify-content-around align items-center">
 
-          <div class="playlist-choice">
+          <div class="home-game">
             <%= link_to root_path do %>
               <i class="fas fa-home"></i>
             <% end %>
@@ -136,15 +136,15 @@
           <% end %>
         </div>
         <!-- message pour bonne ou mauvaise réponse -->
-        <% if Answer.last %>
-          <div class="speech-bubble speech-bubble-left">
+        <% if @game.answers.any? %>
+          <div class="speech-bubble speech-bubble-left animated">
             <p>
-            <% if Answer.last.status == true %>
+            <% if @game.answers.last.status == true %>
               <%= "Bien joué petit génie de la zik 🕺" %>
-              <% elsif Answer.last.status == false %>
-                <%= "Même ma petite soeur connaît ça... Try again ! " %>
-              <% else %>
-                <%= "nil" %>
+            <% elsif @game.answers.last.status == false %>
+              <%= "Même ma petite soeur connaît ça... Try again ! " %>
+            <% else %>
+              <%= "nil" %>
             <% end %>
             </p>
           </div>
@@ -233,7 +233,7 @@
   <% if@game.paused? %>
     <div class='display-container'>
       <!-- debut de la section a mettre dans partial -->
-      
+
       <div class="load">
         <i class="fa fa-microphone fa-3x"></i>
       </div>
