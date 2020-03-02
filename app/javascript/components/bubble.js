@@ -8,7 +8,7 @@ const initRemoveBubble = () => {
     }
   };
   console.log("hok");
-  window.setTiemout(removeBubble, 2000);
+  window.setTimeout(removeBubble, 2000);
 };
 
 
