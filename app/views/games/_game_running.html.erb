@@ -1,18 +1,17 @@
+<ul class="list-inline d-flex align-items-center">
+  <!--          creer une data-audio-id = user.id -->
+  <li class="d-none list-inline-item audio" data-time="<%= @answering_time %>">
+    <%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %>
+  </li>
+</ul>
+
 <div class="buzzer-content">
   <!-- creer une variable idBuzzer = 'buzz' + user.id -->
-  <%= render 'games/board',
-    answering_time: @answering_time,
-    current_track: @current_track,
-    game: @game %>
-  <%= link_to paused_game_path(game), method: :patch, id:"buzz" do %>
-    <div class="buzzer">
-      <div class="wave">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
+  <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
+
+  <figure class="profile">
+    <%= image_tag "image.png", class: "logo-show" %>
+  </figure>
   <% end %>
 </div>
+
