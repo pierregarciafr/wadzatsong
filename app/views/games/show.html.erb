@@ -1,14 +1,25 @@
-<div class="game-container" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path @playlist.picture %>)">
+<head>
+  <meta charset="utf-8">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<div class="game-container" style="background-image: linear-gradient(to right top, #df2866, #d8377f, #cc4794, #bc56a6, #aa63b3);">
+ 
+
   <div id="game-container" data-game-id="<%= @game.id %>">
 
   <% if @game.paused? %>
     <%= render 'game_paused' %>
   <% end %>
-<!-- game created -->
+    
+    
   <div id="test">
 
   </div>
 
+  <!-- ------------------------------- -->
+
+  <!-- game created -->
   <% if @game.created? %>
     <div class="show-created-html" id="game-created-html">
       <!-- debut de la section a mettre dans partial -->
@@ -17,21 +28,77 @@
     </div>
   <% end %>
 
-<!-- ----------------------------------------- -->
-
-<!-- game running  -->
-
-  <% if @game.running? %>
-  <%= render 'game_running',
-    answering_time: @answering_time,
-    current_track: @current_track,
-    game: @game %>
-    <!-- partie en cours -->
-      <!-- ========================================== -->
-
+  <!-- ----------------------------------------- -->
+  <!-- game running  -->
+    
     <% if @current_track %>
       <div id="running-html">
 
+        
+        <% if @game.running? %>
+          <%= render 'game_running',
+            answering_time: @answering_time,
+            current_track: @current_track,
+            game: @game %>
+        
+     
+        <!-- debut de la section mise dans partial par Victor -->
+        <ul class="list-inline d-flex align-items-center">
+          <!--          creer une data-audio-id = user.id -->
+          <li class="d-none list-inline-item audio" data-time="<%= @answering_time %>" id="<%= @user.id %>">
+            <%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %>
+          </li>
+        </ul>
+
+        <div class="navbar-game d-flex justify-content-around align items-center">
+
+          <div class="playlist-choice">
+            <%= link_to root_path do %>
+              <i class="fas fa-home"></i>
+            <% end %>
+          </div>
+
+          <div class="song-count d-flex justify-content-around align-items-center">
+            <%= '<i class="fas fa-circle icon guessed"></i>'.html_safe * Answer.where(status:true).count %>
+            <%= '<i class="fas fa-circle icon"></i>'.html_safe * (Game::NUMBER_OF_ROUNDS - Answer.where(status:true).count) %>
+          </div>
+
+          <!-- notif good answers -->
+          <div class="d-flex justify-content-around align-items-center players-all">
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="players"><%= @user.pseudo.chars.first.capitalize %>
+                <% if @user.answers.where(status:true).count > 0 %>
+                  <div class="notif"><%= @user.answers.where(status:true).count %></div>
+                <% end %>
+              </div>
+            </div>
+            <% if @game.participants[0] %>
+              <div class="players"><%= @game.participants[0].pseudo.chars.first.capitalize %>
+                <% if @game.participants[0].answers.where(status:true).count > 0 %>
+                  <div class="notif"><%= @game.participants[0].answers.where(status:true).count %></div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <!-- fin notif good answers -->
+        </div>
+
+        <p class="playlist-name"><%= @playlist.name %></p>
+
+
+        <div class="buzzer-content">
+          <!-- creer une variable idBuzzer = 'buzz' + user.id -->
+          <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
+
+          <figure class="profile">
+            <%= image_tag "image.png", class: "logo-show" %>
+          </figure>
+
+          <% end %>
+        </div>
+        
+        
+<!--- fin du conflit - version pullée --> 
         <!-- message pour bonne ou mauvaise réponse -->
         <% if Answer.last %>
           <div class="speech-bubble speech-bubble-left">
@@ -69,14 +136,31 @@
   <!-- game paused - formulaire de réponse -->
   <% if@game.paused? %>
     <div class='display-container'>
+      
+      <div class="load">
+        <i class="fa fa-microphone fa-3x"></i>
+      </div>
 
+      <div class="d-none form-container text-center">
+        <%= simple_form_for [ @game, @answer ] do |f| %>
+          <%= f.input :content, autofocus: true, label: false%>
+          <%= f.hidden_field :track, value: @current_track.id %>
+          <%= f.hidden_field :answering_time, value: params[:current_time] %>
+          <%= f.submit "Réponse ?", class: 'btn btn-flat', id:"answer"%>
+        <% end %>
+
+        <div class="speechtotext-container">
+          <i class="fa fa-microphone speechtotext"></i>
+        </div>
+
+      <!-- fin de la section a mettre dans partial -->
     </div>
   <% end %>
   <!-- -----------------------  -->
 </div> <!-- div fermante du container -->
 
 
-<!-- le code qui suit était déja commenté, a supprimer?? -->
+<!-- modal 'quelqu'un est en train de donner une réponse' à intégrer après actioncable -->
 
 
 <!-- <div id="message-modal">

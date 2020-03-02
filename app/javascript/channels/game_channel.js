@@ -82,9 +82,7 @@ if (answersContainer) {
         //   window.location.reload();
           console.log(data)
           console.log('running answers');
-
         //   console.log(data);
-
         //   // const runningContainer = document.getElementById('game-running-track')
         //   // runningContainer.innerHTML = '';
 

@@ -23,10 +23,16 @@ require("channels")
 // ----------------------------------------------------
 import "bootstrap";
 import { confetti } from '../components/confettis';
+
+import { initRemoveBubble } from '../components/bubble';
+
+
+import { SpeechToText } from '../components/speechtotext';
+
 // import { getCode } from '../plugins/fetch';
 
 const buzz = document.getElementById("buzz");
-if(buzz) {
+if (buzz) {
   buzz.addEventListener('click', () => {
     const song = document.getElementById("song");
     const time = Math.floor(song.currentTime);
@@ -45,12 +51,9 @@ if(buzz) {
     song.currentTime = audio.dataset.time;
   }
 
+document.addEventListener('turbolinks:load', () => {
+  confetti();
+  initRemoveBubble();
+})
 
-confetti();
-
-// formulaire = document
-// if formulaire {
-//   code qui écoute
-//   .value = parole
-//   formulaire.submit
-// }
+SpeechToText ();

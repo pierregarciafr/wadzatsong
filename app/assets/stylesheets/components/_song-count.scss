@@ -1,9 +1,13 @@
 .song-count {
 color: white;
-font-size: 32px;
-padding: 24px 0;
+font-size: 12px;
 }
 
 .guessed {
-  color: #bc4e9c;
+  opacity: 1 !important;
+}
+
+.icon {
+  padding: 10px;
+  opacity: 0.5;
 }
