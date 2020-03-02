@@ -19,6 +19,7 @@ class GamesController < ApplicationController
     # @partipants = @game.participants # player 2
     @playlist = @game.playlist
     @answers = @game.answers
+    # test pour passage à la prochaine track
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
     authorize @game
     if @current_track
@@ -36,13 +37,6 @@ class GamesController < ApplicationController
     @main_user = @game.user
   end
 
-  def ready
-    @game = Game.find(params[:id])
-    @participation = Participation.where(game_id: params[:id]).last
-    @game.ready!
-    redirect_to game_path(@game)
-  end
-
   def running
     @game = Game.find(params[:id])
     @game.running!
@@ -54,21 +48,19 @@ class GamesController < ApplicationController
       else
         @answering_time = @current_track.answers.last.answering_time
       end
+
+      # Victor :
       GameChannel.broadcast_to(
-        @game,
-        status: "running",
+      @game,
+      status: 'running',
+      content: render_to_string(
         partial: "game_running",
         locals: {
           answering_time: @answering_time,
           current_track: @current_track,
-          game: @game }
-        )
-
-        # Victor :
-        # render_to_string(partial: "game_running", locals:
-        #   { answering_time: @answering_time,
-        #     current_track: @current_track,
-        #     game: @game })
+          game: @game
+        })
+      )
 
     end
     redirect_to game_path(@game)
@@ -77,13 +69,37 @@ class GamesController < ApplicationController
 
   def paused
     @game = Game.find(params[:id])
+    @answer = Answer.new()
     authorize @game
     @game.paused!
+    # ajouté par Pierre pour broadcaster des valeurs !nil
     if @game.participants.any?
+      @answers = @game.answers
+
+      @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
+      if @current_track.answers.empty? || @current_track.answers.last == true
+        @answering_time = 0
+      else
+        @answering_time = @current_track.answers.last.answering_time
+      end
+      # GameChannel.broadcast_to(
+      #   @game,
+      #   { status: "paused", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
+      # )
+
       GameChannel.broadcast_to(
         @game,
-        { status: "paused", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
-      )
+        status: 'paused',
+        content: render_to_string(
+          partial: "game_wait",
+          locals: {
+        current_track: @current_track,
+        game: @game,
+        answer: @answer,
+        user: current_user
+          }
+          )
+        )
     end
     redirect_to game_path(@game, current_time: params[:current_time])
   end
