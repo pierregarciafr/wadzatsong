@@ -97,13 +97,9 @@
           <!-- creer une variable idBuzzer = 'buzz' + user.id -->
           <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
 
-<!--           <figure class="profile">
-            <img src="http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-cat-200x200.jpg" alt="Cat" title="Cat" />
-          </figure> -->
-
-          <div class="load">
-            <i class="fa fa-microphone fa-3x"></i>
-          </div>
+          <figure class="profile">
+            <%= image_tag "image.png", class: "logo-show" %>
+          </figure>
 
           <% end %>
         </div>
@@ -205,7 +201,11 @@
   <% if@game.paused? %>
     <div class='display-container'>
       <!-- debut de la section a mettre dans partial -->
-      <div class="form-container text-center">
+      <div class="load">
+        <i class="fa fa-microphone fa-3x"></i>
+      </div>
+
+      <div class="d-none form-container text-center">
         <%= simple_form_for [ @game, @answer ] do |f| %>
           <%= f.input :content, autofocus: true, label: false%>
           <%= f.hidden_field :track, value: @current_track.id %>
