@@ -8,24 +8,34 @@
   margin: auto;
   color: transparent;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 1rem;
   margin-top: 50px;
-  // box-shadow: 11px 12px 1px -1px #bc4e9c;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+
+  -webkit-animation: neon1 1s ease-in-out infinite alternate;
+  -moz-animation: neon1 1s ease-in-out infinite alternate;
+  animation: neon1 1s ease-in-out infinite alternate;
 
     p {
     color: black;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    }
+
+    .good-answer {
+      border: 20px solid #3ed879;
+    }
+
+    .bad-answer {
+      border: 50px solid red;
     }
 }
 
-.speech-bubble:after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border: 15px solid;
-  border-right-color: white;
-  top: 50%;
-  right: 100%;
-  margin-top: -15px;
-
+@-webkit-keyframes neon1 {
+  from {
+    box-shadow: 0 0 20px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 3px #3ed879, 0 0 4px #3ed879, 0 0 7px #3ed879, 0 0 32px #3ed879, 0 0 20px #3ed879;
+  }
+  to {
+    box-shadow: 0 0 10px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #3ed879, 0 0 2px #3ed879, 0 0 2px #3ed879, 0 0 1px #3ed879, 0 0 7px #3ed879;
+  }
 }

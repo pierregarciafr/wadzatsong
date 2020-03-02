@@ -1,8 +1,27 @@
-<div class="form-container text-center">
-  <%= simple_form_for [ @game, @answer ] do |f| %>
-  <%= f.input :content, autofocus: true, label: false%>
-  <%= f.hidden_field :track, value: @current_track.id %>
-  <%= f.hidden_field :answering_time, value: params[:current_time] %>
-  <%= f.submit "Réponse ?", class: 'btn btn-flat', id:"answer"%>
-  <% end %>
-</div>
+<!-- RENDER NAVBAR -->
+<%#= render 'board',
+    answering_time: @answering_time,
+    current_track: @current_track,
+    game: @game %>
+
+
+
+<div class='display-container'>
+
+        <div class="load">
+          <i class="fa fa-microphone fa-3x"></i>
+        </div>
+
+        <div class="d-none form-container text-center">
+          <%= simple_form_for [ @game, @answer ] do |f| %>
+            <%= f.input :content, autofocus: true, label: false%>
+            <%= f.hidden_field :track, value: @current_track.id %>
+            <%= f.hidden_field :answering_time, value: params[:current_time] %>
+            <%= f.submit "Réponse ?", class: 'btn btn-flat', id:"answer"%>
+          <% end %>
+
+          <div class="speechtotext-container">
+            <i class="fa fa-microphone speechtotext"></i>
+          </div>
+        </div>
+      </div>

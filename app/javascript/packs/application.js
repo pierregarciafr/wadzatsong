@@ -36,6 +36,9 @@ if (buzz) {
     const current_time = `?current_time=${time}`;
     buzz.href = buzz.href + current_time;
     console.log(buzz.href);
+    // mettre le player en pause
+    // lancer la callback de saisie vocale
+
   })
 }
 
@@ -46,13 +49,12 @@ if (buzz) {
   }
 
 
+
+confetti();
+
 document.addEventListener('turbolinks:load', () => {
   confetti();
   removeBubble();
 })
   SpeechToText ();
-
-
-
-
 

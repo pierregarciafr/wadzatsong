@@ -5,6 +5,7 @@
 }
 .avatar-large {
   width: 56px;
+  height: 56px;
   border-radius: 50%;
 }
 .avatar-bordered {
@@ -19,3 +20,20 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
 }
+.avatar-key {
+  margin: 0px auto;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: white 1px solid;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: white;
+  i {
+    font-size: 40px;
+    margin:0px;
+    color: #bc4e9c;
+  }
+}
+

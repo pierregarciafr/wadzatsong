@@ -1,0 +1,34 @@
+<div class="navbar-game d-flex justify-content-around align items-center">
+
+  <div class="playlist-choice">
+    <%= link_to root_path do %>
+      <i class="fas fa-home"></i>
+    <% end %>
+  </div>
+
+  <div class="song-count d-flex justify-content-around align-items-center">
+    <%= '<i class="fas fa-circle icon guessed"></i>'.html_safe * Answer.where(status:true).count %>
+    <%= '<i class="fas fa-circle icon"></i>'.html_safe * (Game::NUMBER_OF_ROUNDS - Answer.where(status:true).count) %>
+  </div>
+
+  <!-- notif good answers -->
+  <div class="d-flex justify-content-around align-items-center players-all">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="players"><%= @user.pseudo.chars.first.capitalize %>
+        <% if @user.answers.where(status:true).count > 0 %>
+          <div class="notif"><%= @user.answers.where(status:true).count %></div>
+        <% end %>
+      </div>
+    </div>
+    <% if @game.participants[0] %>
+      <div class="players"><%= @game.participants[0].pseudo.chars.first.capitalize %>
+        <% if @game.participants[0].answers.where(status:true).count > 0 %>
+          <div class="notif"><%= @game.participants[0].answers.where(status:true).count %></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <!-- fin notif good answers -->
+</div>
+
+<p class="playlist-name"><%= @playlist.name %></p>

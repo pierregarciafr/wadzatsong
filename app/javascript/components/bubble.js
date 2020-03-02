@@ -1,3 +1,4 @@
+
 const removeBubble = () => {
   const bubble = document.querySelector(".speech-bubble");
   if (bubble) {
