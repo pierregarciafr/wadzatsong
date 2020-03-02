@@ -1,6 +1,11 @@
+<%= render 'board',
+    answering_time: @answering_time,
+    current_track: @current_track,
+    game: @game %>
+
 <div class="form-container text-center">
   <%= simple_form_for [ @game, @answer ] do |f| %>
-  <%= f.input :content, autofocus: true, label: false%>
+  <%= f.input :content, autofocus: true, label: false %>
   <%= f.hidden_field :track, value: @current_track.id %>
   <%= f.hidden_field :answering_time, value: params[:current_time] %>
   <%= f.submit "Réponse ?", class: 'btn btn-flat', id:"answer"%>
