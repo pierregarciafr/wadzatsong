@@ -19,6 +19,7 @@ class GamesController < ApplicationController
     # @partipants = @game.participants # player 2
     @playlist = @game.playlist
     @answers = @game.answers
+    # test pour passage à la prochaine track
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
     authorize @game
     if @current_track
@@ -57,8 +58,7 @@ class GamesController < ApplicationController
         locals: {
           answering_time: @answering_time,
           current_track: @current_track,
-          game: @game,
-          user: @user
+          game: @game
         })
       )
 
@@ -91,7 +91,7 @@ class GamesController < ApplicationController
         @game,
         status: 'paused',
         content: render_to_string(
-          partial: "game_paused",
+          partial: "game_wait",
           locals: {
         current_track: @current_track,
         game: @game,

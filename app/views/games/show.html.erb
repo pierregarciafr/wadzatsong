@@ -1,5 +1,9 @@
 <div class="game-container" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path @playlist.picture %>)">
-<div id="game-container" data-game-id="<%= @game.id %>">
+  <div id="game-container" data-game-id="<%= @game.id %>">
+
+  <% if @game.paused? %>
+    <%= render 'game_paused' %>
+  <% end %>
 <!-- game created -->
   <div id="test">
 
@@ -18,17 +22,15 @@
 <!-- game running  -->
 
   <% if @game.running? %>
+  <%= render 'game_running',
+    answering_time: @answering_time,
+    current_track: @current_track,
+    game: @game %>
     <!-- partie en cours -->
       <!-- ========================================== -->
 
     <% if @current_track %>
       <div id="running-html">
-
-        <!-- debut de la section mise dans partial par Victor -->
- <!--        <%= render 'game_running',
-          answering_time: @answering_time,
-          current_track: @current_track,
-          game: @game %> -->
 
         <!-- message pour bonne ou mauvaise réponse -->
         <% if Answer.last %>
@@ -54,70 +56,10 @@
     <!-- résultats par chansons -->
       <div id="game-finished">
       <!-- debut de la section a mettre dans partial-finished -->
-        <div class="display-container">
-          <div class='dashboard-container'>
-            <p class="text-center">Your results :</p>
-            <table class="dashboard-table">
-              <thead class='dashboard-titles'>
-                <td>Track </td>
-                <td>Player </td>
-                <td>Pts </td>
-              </thead>
-              <tbody>
-                <% @game.playlist.tracks.each do |track| %>
-                  <tr >
-                    <td><%= track.title %> <%#= track.artist %> </td>
-                    <% track.answers.where(status:true).each do |answer| %>
-                      <% if answer.status == true %> <!-- j'ai retiré le comm. # -->
-                        <td><%= answer.user.pseudo %> </td>
-                        <% if answer.answering_time < 3 %>
-                          <td class="top-score">+ 1000 </td>
-                        <% elsif answer.answering_time < 5 %>
-                          <td>+ 200 </td>
-                        <% elsif answer.answering_time < 10 %>
-                          <td>+ 50 </td>
-                        <% else %>
-                          <td>+ 10 </td>
-                        <% end %>
-                      <% else %>
-                        <td> - </td>
-                        <td> - </td>
-                      <% end %>
-                    <% end %> <!-- fin de |answer| do -->
-                  </tr>
-                <% end  %>
-              </tbody>
-            </table>
-          </div>
-        </div>
-    <!-- -------------- -->
-    <!-- résulat total  -->
-        <div class="dashboard-container text-center mt-5">
-          <p>Score total :</p>
-          <% total = 0 %>
-          <% @user.answers.where(status:true).each do |answer| %>
-            <% if answer.answering_time < 3  %>
-              <% total += 1000 %>
-            <% elsif answer.answering_time < 5 %>
-              <% total += 200 %>
-            <% elsif answer.answering_time < 10 %>
-              <% total += 50 %>
-            <% else%>
-              <% total += 10 %>
-            <% end %>
-          <% end %>
-          <span class="particletext confetti"> <%= total %>  </span>
-        </div>
-      <!-- ---------------- -->
-      <!-- bouton rejouer -->
-        <div class="bottom">
-          <div class="text-center mt-5">
-            <% @game=Game.new(user: current_user) %>
-            <%= simple_form_for @game do |f| %>
-              <%= f.submit "Rejouer", class: "btn-edit replay" %>
-            <% end %>
-          </div>
-        </div>
+        <%= render 'game_running',
+    answering_time: @answering_time,
+    current_track: @current_track,
+    game: @game %>
       <!-- fin de la section a mettre dans partial game-finished -->
       </div>
     <!-- ----------- -->
@@ -127,14 +69,6 @@
   <!-- game paused - formulaire de réponse -->
   <% if@game.paused? %>
     <div class='display-container'>
-      <!-- debut de la section a mettre dans partial -->
-<!--       <%#= render 'game_paused',
-        game: @game,
-        current_track: @current_track,
-        answer: @answer,
-        user: @user %> -->
-
-      <!-- fin de la section a mettre dans partial -->
 
     </div>
   <% end %>

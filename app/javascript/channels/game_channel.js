@@ -32,8 +32,8 @@ if (gameElt) {
 
         if (data.status === "running") {
           // window.location.reload();
-          console.log(data.content);
-          console.log('running game-container');
+          // console.log(data.content);
+          // console.log('running game-container');
           gameElt.textContent = '';
           if (data) {
             gameElt.insertAdjacentHTML('beforeend',data.content);
@@ -45,9 +45,10 @@ if (gameElt) {
         }
         if (data.status === "paused") {
           // window.location.reload();
-          console.log(data.content);
-          console.log('paused game-container');
-          // gameElt.textContent = '';
+          // console.log(data.content);
+          // console.log('paused game-container');
+          console.log('coucou');
+          gameElt.textContent = '';
           if (data) {
             gameElt.insertAdjacentHTML('beforeend',data.content);
         }
@@ -89,8 +90,9 @@ if (answersContainer) {
 
         };
         if (data.status === "paused") {
-          console.log(data)
-          console.log('paused answers');
+          // console.log(data)
+          // console.log('paused answers');
+          console.log('coucou2');
           // window.location.reload();
           // playerElt.pause();
         };

@@ -1,3 +1,8 @@
+<%= render 'board',
+    answering_time: @answering_time,
+    current_track: @current_track,
+    game: @game %>
+
 <div class="form-container text-center">
   <%= simple_form_for [ @game, @answer ] do |f| %>
   <%= f.input :content, autofocus: true, label: false %>
