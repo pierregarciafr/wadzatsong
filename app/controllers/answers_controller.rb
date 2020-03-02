@@ -16,7 +16,6 @@ class AnswersController < ApplicationController
       @game.running!
       # l'id de la premiere des tracks qui n'a pas encore été jouée
       @current_track = @game.playlist.tracks.where.not(id: @game.answers.where(status: true).pluck(:track_id)).first
-
       if @current_track
         GameChannel.broadcast_to(
         @game,
@@ -33,6 +32,17 @@ class AnswersController < ApplicationController
         # <%= link_to running_game_path(@game), method: :patch do %>
       else
         @game.finished!
+        GameChannel.broadcast_to(
+        @game,
+        status: 'finished',
+        content: render_to_string(
+          partial: "games/game_finished",
+          locals: {
+            answering_time: @answering_time,
+            current_track: @current_track,
+            game: @game
+          })
+        )
         redirect_to game_path(@game)
       end
 

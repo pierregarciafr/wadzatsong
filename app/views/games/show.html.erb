@@ -4,12 +4,6 @@
 </head>
 
 <div class="game-container" style="background-image: linear-gradient(to right top, #df2866, #d8377f, #cc4794, #bc56a6, #aa63b3);">
-  <div id="navbar">
-    <%= render 'games/navbar',
-      user: @user,
-      game_participants: @game_participants,
-      playlist: @playlist %>
-  </div>
     <div id="test">
     </div>
 
@@ -27,8 +21,13 @@
   <!-- ----------------------------------------- -->
     <% if @game.running? %>
       <% if @current_track %>
+        <div id="navbar">
+          <%= render 'games/navbar',
+            user: @user,
+            game_participants: @game_participants,
+            playlist: @playlist %>
+        </div>
         <div id="running-html">
-
           <%= render 'game_running',
             answering_time: @answering_time,
             current_track: @current_track,
@@ -81,8 +80,8 @@
 
         <!-- game paused - formulaire de réponse -->
 
-          <%#= render 'game_finished',
-            answering_time: @answering_time,
+          <%= render 'game_finished',
+            status: 'finished',
             current_track: @current_track,
             game: @game %>
 

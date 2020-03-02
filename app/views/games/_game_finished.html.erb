@@ -1,64 +1,64 @@
-        <div class="display-container">
-          <div class='dashboard-container'>
-            <p class="text-center">Your results :</p>
-            <table class="dashboard-table">
-              <thead class='dashboard-titles'>
-                <td>Track </td>
-                <td>Player </td>
-                <td>Pts </td>
-              </thead>
-              <tbody>
-                <% @game.playlist.tracks.each do |track| %>
-                  <tr >
-                    <td><%= track.title %> <%#= track.artist %> </td>
-                    <% track.answers.where(status:true).each do |answer| %>
-                      <% if answer.status == true %> <!-- j'ai retiré le comm. # -->
-                        <td><%= answer.user.pseudo %> </td>
-                        <% if answer.answering_time < 3 %>
-                          <td class="top-score">+ 1000 </td>
-                        <% elsif answer.answering_time < 5 %>
-                          <td>+ 200 </td>
-                        <% elsif answer.answering_time < 10 %>
-                          <td>+ 50 </td>
-                        <% else %>
-                          <td>+ 10 </td>
-                        <% end %>
-                      <% else %>
-                        <td> - </td>
-                        <td> - </td>
-                      <% end %>
-                    <% end %> <!-- fin de |answer| do -->
-                  </tr>
-                <% end  %>
-              </tbody>
-            </table>
-          </div>
-        </div>
-    <!-- -------------- -->
-    <!-- résulat total  -->
-        <div class="dashboard-container text-center mt-5">
-          <p>Score total :</p>
-          <% total = 0 %>
-          <% @user.answers.where(status:true).each do |answer| %>
-            <% if answer.answering_time < 3  %>
-              <% total += 1000 %>
-            <% elsif answer.answering_time < 5 %>
-              <% total += 200 %>
-            <% elsif answer.answering_time < 10 %>
-              <% total += 50 %>
-            <% else%>
-              <% total += 10 %>
-            <% end %>
-          <% end %>
-          <span class="particletext confetti"> <%= total %>  </span>
-        </div>
-      <!-- ---------------- -->
-      <!-- bouton rejouer -->
-        <div class="bottom">
-          <div class="text-center mt-5">
-            <% @game=Game.new(user: current_user) %>
-            <%= simple_form_for @game do |f| %>
-              <%= f.submit "Rejouer", class: "btn-edit replay" %>
-            <% end %>
-          </div>
-        </div>
+<div class="display-container">
+  <div class='dashboard-container'>
+    <p class="text-center">Your results :</p>
+    <table class="dashboard-table">
+      <thead class='dashboard-titles'>
+        <td>Track </td>
+        <td>Player </td>
+        <td>Pts </td>
+      </thead>
+      <tbody>
+        <% @game.playlist.tracks.each do |track| %>
+          <tr >
+            <td><%= track.title %> <%#= track.artist %> </td>
+            <% track.answers.where(status:true).each do |answer| %>
+              <% if answer.status == true %> <!-- j'ai retiré le comm. # -->
+                <td><%= answer.user.pseudo %> </td>
+                <% if answer.answering_time < 3 %>
+                  <td class="top-score">+ 1000 </td>
+                <% elsif answer.answering_time < 5 %>
+                  <td>+ 200 </td>
+                <% elsif answer.answering_time < 10 %>
+                  <td>+ 50 </td>
+                <% else %>
+                  <td>+ 10 </td>
+                <% end %>
+              <% else %>
+                <td> - </td>
+                <td> - </td>
+              <% end %>
+            <% end %> <!-- fin de |answer| do -->
+          </tr>
+        <% end  %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- -------------- -->
+<!-- résulat total  -->
+<div class="dashboard-container text-center mt-5">
+  <p>Score total :</p>
+  <% total = 0 %>
+  <% @game.user.answers.where(status:true).each do |answer| %>
+    <% if answer.answering_time < 3  %>
+      <% total += 1000 %>
+    <% elsif answer.answering_time < 5 %>
+      <% total += 200 %>
+    <% elsif answer.answering_time < 10 %>
+      <% total += 50 %>
+    <% else%>
+      <% total += 10 %>
+    <% end %>
+  <% end %>
+  <span class="particletext confetti"> <%= total %>  </span>
+</div>
+<!-- ---------------- -->
+<!-- bouton rejouer -->
+<div class="bottom">
+  <div class="text-center mt-5">
+    <% @game=Game.new(user: current_user) %>
+    <%= simple_form_for @game do |f| %>
+      <%= f.submit "Rejouer", class: "btn-edit replay" %>
+    <% end %>
+  </div>
+</div>
