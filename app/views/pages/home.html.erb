@@ -17,7 +17,7 @@
 
   <div class="content">
     <div class="image">
-      <%= image_tag "logo-guesswhat.png", class: "logo-gt" %>
+      <%= image_tag "image.png", class: "logo-gt" %>
     </div>
     <h1>GUESS WHAT</h1>
     <p>SHARE MUSIC ANYWHERE</p>
@@ -25,10 +25,12 @@
 
   <% if user_signed_in? %>
     <div class="text-center">
-      <%= simple_form_for @game do |f| %>
-        <%= f.submit "Créer une partie", class: "btn-home" %>
-      <% end %>
-      <%= link_to "Rejoindre une partie", new_participation_path , class: "btn-home2" %></p>
+
+        <%= simple_form_for @game do |f| %>
+          <%= f.submit "CREE UNE PARTIE", class: "btn-home" %>
+        <% end %>
+    <%= link_to "REJOINS UNE PARTIE", new_participation_path , class: "btn-home2" %></p>
+
     </div>
   <% end %>
 </div>
