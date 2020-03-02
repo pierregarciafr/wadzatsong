@@ -23,7 +23,7 @@ require("channels")
 // ----------------------------------------------------
 import "bootstrap";
 import { confetti } from '../components/confettis';
-// import { removeBubble } from '../components/bubble';
+import { removeBubble } from '../components/bubble';
 import { SpeechToText } from '../components/speechtotext';
 
 // import { getCode } from '../plugins/fetch';
@@ -53,7 +53,7 @@ confetti();
 
 document.addEventListener('turbolinks:load', () => {
   confetti();
-  // removeBubble();
+  removeBubble();
 })
   SpeechToText ();
 
