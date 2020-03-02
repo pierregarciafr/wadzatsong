@@ -19,8 +19,9 @@
 
     p {
     margin-top: 1rem;
-    color: black;
-    font-size: 0.8em;
+    color: #3ed879;
+    font-weight: bold;
+    font-size: 1em;
     text-transform: uppercase;
     }
 
@@ -33,7 +34,7 @@
 
 .speech-bubble-bad-answer {
   position: fixed;
-  padding: 15px;
+  // padding: 15px;
   top: 75%;
   left: 15%;
   background-color: white;
@@ -52,9 +53,18 @@
 
     p {
     margin-top: 1rem;
-    color: black;
-    font-size: 0.8em;
+    color: red;
+    font-size: 1em;
     text-transform: uppercase;
+    }
+
+    pre{
+      margin-top: 1rem;
+      color: red;
+      font-weight: bold;
+      font-size: 1em;
+      font-family: Muli;
+      text-transform: uppercase;
     }
 
     // .bad-answer {
@@ -64,18 +74,18 @@
 
 @-webkit-keyframes neon1 {
   from {
-    box-shadow: 0 0 20px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 3px #3ed879, 0 0 4px #3ed879, 0 0 7px #3ed879, 0 0 32px #3ed879, 0 0 20px #3ed879;
+    box-shadow: 0 0 6px #3ed879, 0 0 8px #3ed879, 0 0 14px #3ed879, 0 0 62px #3ed879, 0 0 40px #3ed879;
   }
   to {
-    box-shadow: 0 0 10px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #3ed879, 0 0 2px #3ed879, 0 0 2px #3ed879, 0 0 1px #3ed879, 0 0 7px #3ed879;
+    box-shadow: 0 0 10px #3ed879, 0 0 4px #3ed879, 0 0 4px #3ed879, 0 0 2px #3ed879, 0 0 14px #3ed879;
   }
 }
 
 @-webkit-keyframes neon2 {
   from {
-    box-shadow: 0 0 20px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 3px red, 0 0 4px red, 0 0 7px red, 0 0 32px red, 0 0 20px red;
+    box-shadow: 0 0 3px red, 0 0 4px red, 0 0 7px red, 0 0 32px red, 0 0 20px red;
   }
   to {
-    box-shadow: 0 0 10px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px red, 0 0 2px red, 0 0 2px red, 0 0 1px red, 0 0 7px red;
+    box-shadow: 0 0 5px red, 0 0 2px red, 0 0 2px red, 0 0 1px red, 0 0 7px red;
   }
 }
