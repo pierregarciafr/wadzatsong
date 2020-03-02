@@ -51,9 +51,15 @@ if (buzz) {
     song.currentTime = audio.dataset.time;
   }
 
+
+
+confetti();
+
 document.addEventListener('turbolinks:load', () => {
   confetti();
   initRemoveBubble();
 })
 
+
 SpeechToText ();
+
