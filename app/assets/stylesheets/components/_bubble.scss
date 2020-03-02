@@ -1,4 +1,4 @@
-.speech-bubble {
+.speech-bubble-good-answer {
   position: fixed;
   padding: 15px;
   top: 75%;
@@ -12,23 +12,50 @@
   margin-top: 50px;
   box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
 
-  -webkit-animation: neon1 1s ease-in-out infinite alternate;
-  -moz-animation: neon1 1s ease-in-out infinite alternate;
-  animation: neon1 1s ease-in-out infinite alternate;
 
+      -webkit-animation: neon1 1s ease-in-out infinite alternate;
+      -moz-animation: neon1 1s ease-in-out infinite alternate;
+      animation: neon1 1s ease-in-out infinite alternate;
     p {
     color: black;
     font-size: 0.8em;
     text-transform: uppercase;
     }
 
-    .good-answer {
-      border: 20px solid #3ed879;
+    // .good-answer {
+    //   border: 20px solid #3ed879;
+    // }
+
+}
+
+
+.speech-bubble-bad-answer {
+  position: fixed;
+  padding: 15px;
+  top: 75%;
+  left: 15%;
+  background-color: white;
+  width: 70%;
+  margin: auto;
+  color: transparent;
+  text-align: center;
+  border-radius: 1rem;
+  margin-top: 50px;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+
+
+      -webkit-animation: neon2 1s ease-in-out infinite alternate;
+      -moz-animation: neon2 1s ease-in-out infinite alternate;
+      animation: neon2 1s ease-in-out infinite alternate;
+    p {
+    color: black;
+    font-size: 0.8em;
+    text-transform: uppercase;
     }
 
-    .bad-answer {
-      border: 50px solid red;
-    }
+    // .bad-answer {
+    //   border: 50px solid red !important;
+    // }
 }
 
 @-webkit-keyframes neon1 {
@@ -37,5 +64,14 @@
   }
   to {
     box-shadow: 0 0 10px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #3ed879, 0 0 2px #3ed879, 0 0 2px #3ed879, 0 0 1px #3ed879, 0 0 7px #3ed879;
+  }
+}
+
+@-webkit-keyframes neon2 {
+  from {
+    box-shadow: 0 0 20px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 3px red, 0 0 4px red, 0 0 7px red, 0 0 32px red, 0 0 20px red;
+  }
+  to {
+    box-shadow: 0 0 10px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px red, 0 0 2px red, 0 0 2px red, 0 0 1px red, 0 0 7px red;
   }
 }
