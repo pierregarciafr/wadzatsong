@@ -49,7 +49,6 @@ if (buzz) {
   }
 
 
-
 confetti();
 
 document.addEventListener('turbolinks:load', () => {
