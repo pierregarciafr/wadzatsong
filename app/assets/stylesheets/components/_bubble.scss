@@ -13,10 +13,12 @@
   box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
 
 
-      -webkit-animation: neon1 1s ease-in-out infinite alternate;
-      -moz-animation: neon1 1s ease-in-out infinite alternate;
-      animation: neon1 1s ease-in-out infinite alternate;
+  -webkit-animation: neon1 1s ease-in-out infinite alternate;
+  -moz-animation: neon1 1s ease-in-out infinite alternate;
+  animation: neon1 1s ease-in-out infinite alternate;
+
     p {
+    margin-top: 1rem;
     color: black;
     font-size: 0.8em;
     text-transform: uppercase;
@@ -44,10 +46,12 @@
   box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
 
 
-      -webkit-animation: neon2 1s ease-in-out infinite alternate;
-      -moz-animation: neon2 1s ease-in-out infinite alternate;
-      animation: neon2 1s ease-in-out infinite alternate;
+  -webkit-animation: neon2 1s ease-in-out infinite alternate;
+  -moz-animation: neon2 1s ease-in-out infinite alternate;
+  animation: neon2 1s ease-in-out infinite alternate;
+
     p {
+    margin-top: 1rem;
     color: black;
     font-size: 0.8em;
     text-transform: uppercase;
