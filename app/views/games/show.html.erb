@@ -90,8 +90,8 @@
           </li>
         </ul>
         <div class="song-count d-flex justify-content-around align-items-center">
-          <%= '<i class="fas fa-record-vinyl guessed"></i>'.html_safe * Answer.where(status:true).count %>
-          <%= '<i class="fas fa-record-vinyl"></i>'.html_safe * (Game::NUMBER_OF_ROUNDS - Answer.where(status:true).count) %>
+          <%= '<i class="fas fa-circle guessed"></i>'.html_safe * Answer.where(status:true).count %>
+          <%= '<i class="fas fa-circle"></i>'.html_safe * (Game::NUMBER_OF_ROUNDS - Answer.where(status:true).count) %>
         </div>
         <div class="buzzer-content">
           <!-- creer une variable idBuzzer = 'buzz' + user.id -->
