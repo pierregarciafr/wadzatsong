@@ -67,12 +67,23 @@ input[type="radio"], input[type="checkbox"] {
   margin: 0px 30px;
   padding: 40px 10px;
   color: white;
-  // background: white;
   text-align: center;
   opacity: 0.9;
   border-radius: 2px;
   p {
     margin: 0px;
+  }
+}
+
+
+.token-card {
+  margin: 0px auto;
+  padding: 30px;
+  width: 80%;
+  border-radius: 2px;
+  border: 1px solid white;
+  h2{
+    letter-spacing: 5px;
   }
 }
 
