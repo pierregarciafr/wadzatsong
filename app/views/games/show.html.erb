@@ -81,7 +81,6 @@
 
     <% if @current_track %>
       <div id="running-html">
-
         <!-- debut de la section mise dans partial par Victor -->
         <ul class="list-inline d-flex align-items-center">
           <!--          creer une data-audio-id = user.id -->
@@ -205,16 +204,20 @@
   <% if@game.paused? %>
     <div class='display-container'>
       <!-- debut de la section a mettre dans partial -->
-      <div class="form-container text-center">
+      <p id="track-title"><%= @current_track.title %></p>
+      <div class="form-container text-center answer-form hidden">
         <%= simple_form_for [ @game, @answer ] do |f| %>
           <%= f.input :content, autofocus: true, label: false%>
           <%= f.hidden_field :track, value: @current_track.id %>
           <%= f.hidden_field :answering_time, value: params[:current_time] %>
           <%= f.submit "Réponse ?", class: 'btn btn-flat', id:"answer"%>
         <% end %>
-      </div>
-      <!-- fin de la section a mettre dans partial -->
 
+        <div class="speechtotext-container">
+          <i class="fa fa-microphone speechtotext"></i>
+        </div>
+
+      <!-- fin de la section a mettre dans partial -->
     </div>
   <% end %>
   <!-- -----------------------  -->
