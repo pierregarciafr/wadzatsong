@@ -38,19 +38,39 @@
 <!-- résulat total  -->
 <div class="dashboard-container text-center mt-5">
   <p>Score total :</p>
-  <% total = 0 %>
+  <% total_mj = 0 %>
   <% @game.user.answers.where(status:true).each do |answer| %>
     <% if answer.answering_time < 3  %>
-      <% total += 1000 %>
+      <% total_mj += 1000 %>
     <% elsif answer.answering_time < 5 %>
-      <% total += 200 %>
+      <% total_mj += 200 %>
     <% elsif answer.answering_time < 10 %>
-      <% total += 50 %>
+      <% total_mj += 50 %>
     <% else%>
-      <% total += 10 %>
+      <% total_mj += 10 %>
     <% end %>
   <% end %>
-  <span class="particletext confetti"> <%= total %>  </span>
+
+  <% total_player2 = 0 %>
+  <% @game.participants[0].answers.where(status:true).each do |answer| %>
+    <% if answer.answering_time < 3  %>
+      <% total_player2 += 1000 %>
+    <% elsif answer.answering_time < 5 %>
+      <% total_player2 += 200 %>
+    <% elsif answer.answering_time < 10 %>
+      <% total_player2 += 50 %>
+    <% else%>
+      <% total_player2 += 10 %>
+    <% end %>
+  <% end %>
+
+  <% if total_mj > total_player2 %>
+    <p>Gagnant: <%= @game.user.pseudo %></p>
+    <span class="particletext confetti"> <%= total_mj %> </span>
+  <% else %>
+    <p>Gagnant: <%= @game.participants[0].pseudo %></p>
+    <span class="particletext confetti"> <%= total_player2 %> </span>
+  <% end %>
 </div>
 <!-- ---------------- -->
 <!-- bouton rejouer -->
