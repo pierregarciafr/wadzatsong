@@ -48,7 +48,7 @@
 .home-game a {
   text-decoration: none;
   color:white;
-  }
+}
 
 .players-all {
   width: 80px;
@@ -58,4 +58,12 @@
   color:white;
   text-align: center;
   font-size: 17px;
+}
+
+.navbar-choice {
+  padding-top: 25px;
+  a {
+    text-decoration: none;
+    color: #bc4e9c;
+  }
 }
