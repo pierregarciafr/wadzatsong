@@ -55,10 +55,10 @@ if (gameElt) {
           gameElt.textContent = '';
           if (data) {
             const userIdClicked = data.user.id.toString();
+            const currentUserPageIdElt = gameElt.dataset.userId
             // console.log('Who clicked ?');
             // console.log(userIdClicked);
             // console.log('Whose page is it ?');
-            const currentUserPageIdElt = gameElt.dataset.userId
             // console.log(currentUserPageIdElt);
             if (userIdClicked !== currentUserPageIdElt) {
               gameElt.insertAdjacentHTML('beforeend',data.content);

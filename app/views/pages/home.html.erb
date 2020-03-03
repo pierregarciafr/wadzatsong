@@ -2,20 +2,23 @@
  <!--  <p class="nav-item text-right w-100">
     <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
   </p> -->
- <div class="nav-item dropdown text-right w-100">
-  <i class="fas fa-bars dropdown-toggle mr-3 mt-3 text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></i>
-  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-    <% if user_signed_in? %>
+  <div class="nav-item dropdown text-right w-100">
+    <i class="fas fa-bars dropdown-toggle mr-3 mt-3 text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></i>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+      <% if user_signed_in? %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-    <% else %>
+      <% else %>
       <%= link_to "Login", new_user_session_path, class: "nav-link" %>
       <%= link_to "Signup ", new_user_registration_path, class: "nav-link" %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
- </div>
 
-
-  <div class="content">
+  <% if user_signed_in? %>
+    <div class="content">
+  <% else %>
+    <div class="content padding-bottom">
+  <% end %>
     <div class="image">
       <%= image_tag "image.png", class: "logo-gt" %>
     </div>
@@ -25,12 +28,10 @@
 
   <% if user_signed_in? %>
     <div class="text-center">
-
-        <%= simple_form_for @game do |f| %>
-          <%= f.submit "CREE UNE PARTIE", class: "btn-home" %>
-        <% end %>
-    <%= link_to "REJOINS UNE PARTIE", new_participation_path , class: "btn-home2" %></p>
-
+      <%= simple_form_for @game do |f| %>
+        <%= f.submit "CREE UNE PARTIE", class: "btn-home" %>
+      <% end %>
+      <%= link_to "REJOINS UNE PARTIE", new_participation_path , class: "btn-home2" %>
     </div>
   <% end %>
 </div>

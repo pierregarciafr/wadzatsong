@@ -10,7 +10,6 @@
 }
 
 .content {
-
   h1 {
     font-family: $logo-font;
     text-align: center;
@@ -22,6 +21,9 @@
     font-family: $body-font;
     text-align: center;
   }
+}
+.padding-bottom {
+  padding-bottom: 40%;
 }
 
 .text-center {
