@@ -90,11 +90,6 @@ class GamesController < ApplicationController
       else
         @answering_time = @current_track.answers.last.answering_time
       end
-      # GameChannel.broadcast_to(
-      #   @game,
-      #   { status: "paused", hostPlayerId: @game.user.id, joinedPlayerId: @game.participants.first.id }
-      # )
-
       GameChannel.broadcast_to(
         @game,
         status: 'paused',

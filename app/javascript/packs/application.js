@@ -31,8 +31,19 @@ import { SpeechToText } from '../components/speechtotext';
 
 // import { getCode } from '../plugins/fetch';
 
+
+
+
+confetti();
+
+document.addEventListener('turbolinks:load', () => {
+  confetti();
+  removeBubbleGood();
+  removeBubbleBad();
+
 const buzz = document.getElementById("buzz");
 if (buzz) {
+  console.log(buzz);
   buzz.addEventListener('click', () => {
     const song = document.getElementById("song");
     const time = Math.floor(song.currentTime);
@@ -53,12 +64,6 @@ if (buzz) {
   }
 
 
-confetti();
-
-document.addEventListener('turbolinks:load', () => {
-  confetti();
-  removeBubbleGood();
-  removeBubbleBad();
 })
   SpeechToText ();
 
