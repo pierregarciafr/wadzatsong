@@ -50,13 +50,12 @@ track9 = Track.new(title: "Go Your Own Way", artist: "Fleetwood Mac", url_previe
 track10 = Track.new(title: "Poker Face", artist: "Lady Gaga", url_preview: "https://cdns-preview-f.dzcdn.net/stream/c-fc31a3c3db5e7283e3a70528f67c89c2-6.mp3", playlist_id: playlist3.id)
 track11 = Track.new(title: "Under Pressure", artist: "Queen", url_preview: "https://cdns-preview-1.dzcdn.net/stream/c-1fd0525f2f9cbf39468204210e8c1610-11.mp3", playlist_id: playlist1.id)
 track12 = Track.new(title: "Aicha", artist: "Khaled", url_preview: "https://cdns-preview-f.dzcdn.net/stream/c-fbe21fe13f5fe203ff0cb71b79dc8757-2.mp3", playlist_id: playlist2.id)
-track13 = Track.new(title: "Un autre monde", artist: "Telephone", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-d58d6e117229640041118b23517fc880-3.mp3", playlist_id: playlist2.id)
-track14 = Track.new(title: "Balance ton quoi", artist: "Angèle", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-ca57b0750b3e6b8f38230a9169f64d73-4.mp3", playlist_id: playlist2.id)
+track13 = Track.new(title: "Balance ton quoi", artist: "Angèle", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-ca57b0750b3e6b8f38230a9169f64d73-4.mp3", playlist_id: playlist2.id)
 
 
 
 
-[ track1, track2, track3, track4, track5, track6, track7, track8, track9, track10, track11, track12, track13, track14 ].each do |track|
+[ track1, track2, track3, track4, track5, track6, track7, track8, track9, track10, track11, track12, track13 ].each do |track|
   track.save
   puts "Created #{track.title}"
 end
