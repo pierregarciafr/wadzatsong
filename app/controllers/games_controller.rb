@@ -101,7 +101,8 @@ class GamesController < ApplicationController
         answer: @answer,
         user: current_user
           }
-          )
+          ),
+        user: current_user
         )
     end
     redirect_to game_path(@game, current_time: params[:current_time])
