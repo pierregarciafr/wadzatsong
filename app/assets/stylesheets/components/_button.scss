@@ -23,6 +23,7 @@
   font-weight: bold;
   border: 1px solid White;
   letter-spacing: 3px;
+  text-transform: uppercase;
   padding: 1rem 4rem;
 
     &:hover {
@@ -85,6 +86,22 @@
   border: 1px solid white;
   letter-spacing: 3px;
   padding: 1rem 4rem;
+
+    &:hover {
+      opacity: 1;
+      background-position: right center;
+      color: white;
+    }
+}
+
+.btn-edit-in {
+  background: $my-pink;
+  color: white;
+  border-radius: 50px;
+  // margin-bottom: 50px;
+  font-weight: bold;
+  border: 1px solid white;
+  padding: 10px;
 
     &:hover {
       opacity: 1;
@@ -184,4 +201,8 @@
     position: absolute;
     bottom: 0px;
     width: 100%;
+}
+
+.fa-redo {
+  color:white;
 }
