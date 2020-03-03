@@ -38,8 +38,9 @@
     <span class="particletext confetti"> <%= @game.user.pseudo %></span>
     <p><%= total_mj %> pts</p>
   <% else %>
-    <p>Gagnant: <%= @game.participants[0].pseudo %></p>
-    <span class="particletext confetti"> <%= total_player2 %> </span>
+    <p>Le gagnant est</p>
+    <span class="particletext confetti"> <%= @game.participants[0].pseudo %></span>
+    <p><%= total_player2 %> pts</p>
   <% end %>
 </div>
 
