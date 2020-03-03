@@ -80,6 +80,22 @@
     }
 }
 
+.btn-edit-in {
+  background: $my-pink;
+  color: white;
+  border-radius: 50px;
+  // margin-bottom: 50px;
+  font-weight: bold;
+  border: 1px solid white;
+  padding: 10px;
+
+    &:hover {
+      opacity: 1;
+      background-position: right center;
+      color: white;
+    }
+}
+
 
 .play-btn {
   // margin-left: 35%;
