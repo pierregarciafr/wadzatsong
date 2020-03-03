@@ -36,6 +36,7 @@ if (buzz) {
     const time = Math.floor(song.currentTime);
     const current_time = `?current_time=${time}`;
     buzz.href = buzz.href + current_time;
+    console.log("buzz")
     console.log(buzz.href);
     // mettre le player en pause
     // lancer la callback de saisie vocale

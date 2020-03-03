@@ -8,7 +8,8 @@ class AnswersController < ApplicationController
     @answer.track = @track
     @answer.save # remplacer par answersave = @answer.save ?
     @tracks = @game.playlist.tracks
-
+    @user = current_user
+    @playlist = @game.playlist
     check_answer(@answer, @track)
 
     if @answer.save
@@ -17,17 +18,24 @@ class AnswersController < ApplicationController
       # l'id de la premiere des tracks qui n'a pas encore été jouée
       @current_track = @game.playlist.tracks.where.not(id: @game.answers.where(status: true).pluck(:track_id)).first
       if @current_track
-        GameChannel.broadcast_to(
-        @game,
-        status: 'running',
-        content: render_to_string(
-          partial: "games/game_running",
-          locals: {
-            answering_time: @answering_time,
-            current_track: @current_track,
-            game: @game
-          })
-        )
+              GameChannel.broadcast_to(
+      @game,
+      status: 'running',
+      content: render_to_string(
+        partial: "games/game_running",
+        locals: {
+          answering_time: @answering_time,
+          current_track: @current_track,
+          game: @game
+        }),
+      navbar: render_to_string(
+        partial: "games/navbar",
+        locals: {
+            user: @user,
+            game_participants: @game_participants,
+            playlist: @playlist
+        })
+      )
         redirect_to game_path(@game)
         # <%= link_to running_game_path(@game), method: :patch do %>
       else

@@ -39,7 +39,9 @@ class GamesController < ApplicationController
 
   def running
     @game = Game.find(params[:id])
+    @user = current_user
     @game.running!
+    @playlist = @game.playlist
     if @game.participants.any?
       @answers = @game.answers
       @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
@@ -49,7 +51,6 @@ class GamesController < ApplicationController
         @answering_time = @current_track.answers.last.answering_time
       end
 
-      # Victor :
       GameChannel.broadcast_to(
       @game,
       status: 'running',
@@ -59,6 +60,13 @@ class GamesController < ApplicationController
           answering_time: @answering_time,
           current_track: @current_track,
           game: @game
+        }),
+      navbar: render_to_string(
+        partial: "navbar",
+        locals: {
+            user: @user,
+            game_participants: @game_participants,
+            playlist: @playlist
         })
       )
 
