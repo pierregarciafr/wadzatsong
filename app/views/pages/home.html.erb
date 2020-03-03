@@ -17,8 +17,9 @@
   <% if user_signed_in? %>
     <div class="content">
   <% else %>
-    <div class="content padding-bottom">
+    <div class="content padding-b-40">
   <% end %>
+
     <div class="image">
       <%= image_tag "image.png", class: "logo-gt" %>
     </div>
@@ -27,7 +28,7 @@
   </div>
 
   <% if user_signed_in? %>
-    <div class="text-center">
+    <div class="text-center  padding-b-10">
       <%= simple_form_for @game do |f| %>
         <%= f.submit "CREE UNE PARTIE", class: "btn-home" %>
       <% end %>
