@@ -35,6 +35,9 @@ if (gameElt) {
           // console.log('running game-container');
           gameElt.textContent = '';
           if (data) {
+            console.log('navbar:')
+            console.log(data.navbar)
+            gameElt.insertAdjacentHTML('beforeend',data.navbar);
             gameElt.insertAdjacentHTML('beforeend',data.content);
             console.log(data.current_track);
             // await new Promise(r => setTimeout(r, 2000));
