@@ -15,7 +15,7 @@
 }
 
 
-.btn-home {
+.btn-home { // class initiale du bouton de la homepage
   background: white !important;
   color: #bc4e9c !important;
   border-radius: 50px;
@@ -31,6 +31,18 @@
       background-position: right center;
       color: white;
     }
+}
+
+.btn-home1 {
+  background-color: rgba(255,255,255,0.9);
+  color: black;
+  border-radius: 50px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  border: 1px solid White;
+  letter-spacing: 1.5px;
+  padding: 1rem 4rem;
+  mix-blend-mode: color-dodge;
 }
 
 
@@ -54,7 +66,8 @@
   margin-bottom: 50px;
   font-weight: bold;
   border: 1px solid White;
-  letter-spacing: 3px;
+  // letter-spacing: 3px;
+  letter-spacing: 1.5px;
   padding: 1rem;
 
     &:hover {

@@ -15,9 +15,9 @@
   </div>
 
   <% if user_signed_in? %>
-    <div class="content">
+    <div class="content padding-t-10">
   <% else %>
-    <div class="content padding-b-40">
+    <div class="content padding-b-15">
   <% end %>
 
     <div class="image">
@@ -28,9 +28,9 @@
   </div>
 
   <% if user_signed_in? %>
-    <div class="text-center  padding-b-10">
+    <div class="text-center padding-b-10">
       <%= simple_form_for @game do |f| %>
-        <%= f.submit "Crée une partie", class: "btn-home" %>
+        <%= f.submit "Crée une partie", class: "btn-home1" %>
       <% end %>
       <%= link_to "REJOINS UNE PARTIE", new_participation_path , class: "btn-home2" %>
     </div>
