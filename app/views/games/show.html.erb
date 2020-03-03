@@ -7,7 +7,7 @@
     <div id="test">
     </div>
 
-  <div id="game-container" data-game-id="<%= @game.id %>">
+  <div id="game-container" data-game-id="<%= @game.id %>" >
 
     <% if @game.paused? %>
       <%= render 'game_paused' %>
@@ -59,7 +59,7 @@
     <% end %> <!-- end du if game.running? -->
 
     <% if @game.finished? %>
-    <div id="game-finished">
+    <div id="game-finished" style="background-image: linear-gradient(to right top, #df2866, #d8377f, #cc4794, #bc56a6, #aa63b3);">
         <!-- debut de la section a mettre dans partial-finished -->
 
 
