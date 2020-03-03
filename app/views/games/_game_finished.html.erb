@@ -78,6 +78,12 @@
     <span class="particletext confetti"> <%= total_player2 %> </span>
   <% end %>
 </div>
+<% RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"]) %>
+<% @game.playlist.tracks.each do |track| %>
+  <% result = RSpotify::Track.search("#{track.title}") %>
+    <div class="album-photo" style="background-image: url(<%= result[0].album.images[0]["url"] %>)" >
+    </div>
+  <% end %>
 <!-- ---------------- -->
 <!-- bouton rejouer -->
 <div class="bottom">
@@ -88,5 +94,7 @@
     <% end %>
   </div>
 </div>
+
+
 
 

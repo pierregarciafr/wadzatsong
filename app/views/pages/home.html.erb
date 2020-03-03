@@ -14,10 +14,6 @@
   </div>
  </div>
 
-<% RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"]) %>
-<% result = RSpotify::Track.search('another brick in the wall') %>
-<div class="album-photo" style="background-image: url(<%= result[0].album.images[0]["url"] %>)" >
-</div>
 
   <div class="content">
     <div class="image">
