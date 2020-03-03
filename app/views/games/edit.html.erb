@@ -1,4 +1,6 @@
 <div class="container">
+  <div class="d-flex flex-column justify-content-between"></div>
+
   <div class="navbar-choice">
     <div class="d-flex justify-content-between">
       <%= link_to root_path do %>
@@ -24,11 +26,11 @@
             </div>
           <% end %>
         </div>
-      <div>
-        <div class="text-center mt-5">
-          <%= f.submit "C'EST PARTI !", class: "btn-edit" %>
-          <% end %>
-        </div>
-      </div>
+  </div>
+  <div>
+    <div class="text-center my-3">
+      <%= f.submit "C'EST PARTI !", class: "btn-edit" %>
+      <% end %>
+    </div>
   </div>
 </div>
