@@ -4,6 +4,13 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+# Let's override Rails.application.default_url_options[:host] by adding the following in app/controllers/application_controller.rb:
+
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
+  end
+
+
   protected
 
     def configure_permitted_parameters
