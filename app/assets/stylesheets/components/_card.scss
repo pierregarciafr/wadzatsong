@@ -25,12 +25,15 @@ align-items: center;
   width: 100%;
   height: 20vh;
   margin: 0;
+  padding: 30% 2em; //
   color: white;
   font-size: 18px;
   text-align: center;
   display:flex;
   justify-content: center;
   align-items: center;
+  border-radius: 14%;
+
 }
 
 input[type="radio"], input[type="checkbox"] {
@@ -47,22 +50,52 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 
-.playlist_grid input:checked + label {
-  // border: 8px solid #bc4e9c;
-  border: 8px solid;
-  border-image-source: $my-pink;
-  border-image-slice: 1;
-  box-shadow: 0 0 5px rgba(0,0,0,0.5);
-  // border-radius: 4px;
-}
+//.playlist_grid input:checked + label {
+//   // border: 8px solid #bc4e9c;
+//   border: 8px solid;
+//   border-image-source: $my-pink;
+//   border-image-slice: 1;
+//   box-shadow: 0 0 5px rgba(0,0,0,0.5);
+//   border-radius: 14%;                   //////////
+// }
 
+.playlist_grid input:checked + label {
+  // display: flex;
+  align-items: center;
+  //width: 50vw;
+  // width: 100%;
+  // margin: auto;
+  // max-width: 100%;
+
+  position: relative;
+  padding: 30% 2.1em;
+  // box-sizing: border-box;
+
+  $border: 5px;
+  color: #FFF;
+  // background: #000;
+  // background-clip: padding-box; /* !importanté */
+  border: solid $border transparent; /* !importanté */
+  border-radius: 14%;
+
+  &:before {
+    content: '';
+    opacity: 0.5;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    // z-index: 1;
+    margin: -$border; /* !importanté */
+    border-radius: inherit; /* !importanté */
+    background: $my-pink;
+  }
+}
 
 .top-container {
   padding-top: 40px;
 
 }
 
-.welcome-top  {
+.welcome-top  {  ///// pas utilisee
   font-size: 1rem;
   margin: 0px 30px;
   padding: 40px 10px;
