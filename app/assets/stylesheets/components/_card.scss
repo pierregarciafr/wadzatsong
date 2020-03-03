@@ -49,7 +49,6 @@ input[type="radio"], input[type="checkbox"] {
   text-align: center;
 }
 
-
 //.playlist_grid input:checked + label {
 //   // border: 8px solid #bc4e9c;
 //   border: 8px solid;
@@ -83,7 +82,7 @@ input[type="radio"], input[type="checkbox"] {
     opacity: 0.5;
     position: absolute;
     top: 0; right: 0; bottom: 0; left: 0;
-    // z-index: 1;
+    z-index: 0;
     margin: -$border; /* !importanté */
     border-radius: inherit; /* !importanté */
     background: $my-pink;
@@ -135,15 +134,11 @@ input[type="radio"], input[type="checkbox"] {
   h2 {
     letter-spacing: 5px;
   }
-
   hr {
     border-top: 1px solid white;
     margin-top: 2rem;
   }
 }
-
-
-
 
 
 .card-song {
