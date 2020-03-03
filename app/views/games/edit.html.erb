@@ -1,14 +1,19 @@
 <div class="container">
-   <div class="navbar-choice">
-    <%= link_to root_path do %>
-      <i class="fas fa-home"></i>
-    <% end %>
+  <div class="navbar-choice">
+    <div class="d-flex justify-content-between">
+      <%= link_to root_path do %>
+        <i class="fas fa-home"></i>
+      <% end %>
+      <div class="edit-title text-center">
+        <p>Sélectionne ta playlist</p>
+      </div>
+    </div>
   </div>
 
   <div class="edit mt-3">
-    <div class="edit-title text-center">
+<!--     <div class="edit-title text-center">
       <p>Sélectionne ta playlist</p>
-    </div>
+    </div> -->
 
     <%= simple_form_for @game do |f| %>
       <div class="playlist_grid">
