@@ -4,7 +4,6 @@
 </head>
 
 <div class="game-container" style="background-image: linear-gradient(to right top, #df2866, #d8377f, #cc4794, #bc56a6, #aa63b3);">
-
   <div id="game-container" data-game-id="<%= @game.id %>" data-user-id="<%= current_user.id %>">
     <% if @game.paused? %>
       <%  @user = current_user %>
@@ -52,13 +51,22 @@
     <% end %> <!-- end du if game.running? -->
 
     <% if @game.finished? %>
-      <div id="game-finished">
-        <%= render 'game_finished',
-          status: 'finished',
-          current_track: @current_track,
-          game: @game %>
-      </div>
-    <% end %>
+
+    <div id="game-finished" style="background-image: linear-gradient(to right top, #df2866, #d8377f, #cc4794, #bc56a6, #aa63b3);">
+        <!-- debut de la section a mettre dans partial-finished -->
+
+
+        <!-- game paused - formulaire de réponse -->
+
+          <%= render 'game_finished',
+            status: 'finished',
+            current_track: @current_track,
+            game: @game %>
+
+        <!-- fin de la section a mettre dans partial game-finished -->
+        </div>
+        <% end %>
+
   <!-- -----------------------  -->
     <%# end %>
   </div> <!-- div fermante du container -->
