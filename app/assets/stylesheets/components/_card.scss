@@ -93,3 +93,18 @@ input[type="radio"], input[type="checkbox"] {
   }
 }
 
+.token-card-participant {
+  margin: 0px auto;
+  padding: 30px;
+  width: 80%;
+  border-radius: 2px;
+  border-top: 2px solid white;
+  h2 {
+    letter-spacing: 5px;
+  }
+
+  hr {
+    border-top: 1px solid white;
+    margin-top: 2rem;
+  }
+}

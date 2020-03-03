@@ -46,6 +46,23 @@
     }
 }
 
+.btn-home-participant {
+  background: white !important;
+  color: #bc4e9c !important;
+  border-radius: 50px;
+  margin-bottom: 50px;
+  font-weight: bold;
+  border: 1px solid White;
+  letter-spacing: 3px;
+  padding: 1rem;
+
+    &:hover {
+      opacity: 1;
+      background-position: right center;
+      color: white;
+    }
+}
+
 .btn-edit {
   background: $my-pink;
   color: white;
@@ -114,8 +131,8 @@
   opacity: 1;
   border-radius: 50%;
   border: 5px solid rgba(255, 255, 255, .75);
-  top: -24%;
-  left: -24%;
+  top: -30%;
+  left: -30%;
   background: rgba(198, 16, 0, 0);
 }
 
