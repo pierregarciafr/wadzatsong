@@ -24,8 +24,11 @@
         <%# end %>
 
       <% else %>
-        <h3>Tu as rejoint la partie de <%= @game.user.pseudo %> !</h3>
-
+        <div class="participant-created">
+          <h3>Tu as rejoint la partie de <strong><%= @game.user.pseudo %></strong> !</h3>
+          <br>
+          <p>Prépare toi à tout donner 🎶</p>
+        </div>
       <% end%>
     </div>
   </div>
