@@ -9,7 +9,7 @@ const answerElt = document.getElementById('answer');
 const gameElt = document.getElementById('game-container');
 
 if (gameElt) {
-  const id = gameElt.dataset.gameId; // .gameId ?
+  const id = gameElt.dataset.gameId;
 
   consumer.subscriptions.create(
     { channel: "GameChannel", id: id }, // { channel : "Game" ?, game : id, participation: id })
@@ -19,9 +19,6 @@ if (gameElt) {
       console.log(data.status);
 
         if (data.status === "connection") {
-          const testElt = document.getElementById('test');
-          testElt.textContent = '';
-
           if (data.joinedUser) {
             // const content = `<h4>${data.joinedUser.pseudo} a rejoint la partie de ${data.hostUser.pseudo} !</h4>`;
             // // .log(`content: ${content}`);
@@ -35,73 +32,65 @@ if (gameElt) {
           // console.log('running game-container');
           gameElt.textContent = '';
           if (data) {
-            console.log('navbar:')
-            console.log(data.navbar)
             gameElt.insertAdjacentHTML('beforeend',data.navbar);
             gameElt.insertAdjacentHTML('beforeend',data.content);
-            console.log(data.current_track);
-            // await new Promise(r => setTimeout(r, 2000));
-            // const content = `<h4>${data.joinedUser.pseudo} a rejoint la partie de ${data.hostUser.pseudo} !</h4>`;
-            // .log(`content: ${content}`);
-            //gameElt.insertAdjacentHTML('afterbegin',data);
+            console.log(data.answering_time);
+            const buzz = document.getElementById("buzz");
+            if (buzz) {
+              buzz.addEventListener('click', () => {
+                const song = document.getElementById("song");
+                const time = Math.floor(song.currentTime);
+                const current_time = `?current_time=${time}`;
+                buzz.href = buzz.href + current_time;
+              })
+            }
+              const audio = document.querySelector(".audio");
+              const song = document.getElementById("song");
+              if (song) {
+                song.currentTime = audio.dataset.time;
+              }
           }
         }
         if (data.status === "paused") {
-          // window.location.reload();
           gameElt.textContent = '';
           if (data) {
-            gameElt.insertAdjacentHTML('beforeend',data.content);
+            const userIdClicked = data.user.id.toString();
+            // console.log('Who clicked ?');
+            // console.log(userIdClicked);
+            // console.log('Whose page is it ?');
+            const currentUserPageIdElt = gameElt.dataset.userId
+            // console.log(currentUserPageIdElt);
+            if (userIdClicked !== currentUserPageIdElt) {
+              gameElt.insertAdjacentHTML('beforeend',data.content);
+            }
         }
       }
         if (data.status === "finished") {
-          // window.location.reload();
           console.log('FINISHED');
           gameElt.textContent = '';
           if (data) {
             gameElt.insertAdjacentHTML('beforeend',data.content);
         }
       }
-
-
     }
   });
 }
 
+if (answersContainer) {
+  const id = answersContainer.dataset.gameId;
 
-// if (answersContainer) {
-//   const id = answersContainer.dataset.gameId; // .gameId ?
-
-//   consumer.subscriptions.create(
-//     { channel: "GameChannel", id: id }, // { channel : "Game" ?, game : id, participation: id })
-//     {
-//       received(data) {
-//       // window.location.reload();
-//         // console.log(data.status);
-
-//         if (data.status === "connection") {
-//                     console.log('connection answers');
-
-//           if (data.joinedUser) {
-//             const content = `<p>${data.joinedUser.pseudo} a rejoint ta partie !<p>`;
-//             // .log(`content: ${content}`);
-//             answersContainer.insertAdjacentHTML('beforeend',content);
-//           }
-//         };
-
-//         if (data.status === "running") {
-//         //   window.location.reload();
-//         //   const runningContainer = document.getElementById('game-running-track')
-//         // runningContainer.innerHTML = '';
-
-//         };
-//         if (data.status === "paused") {
-//           // console.log(data)
-//           // console.log('paused answers');
-//           // window.location.reload();
-//           // playerElt.pause();
-//         };
-//       }
-//     }
-//   );
-// }
+  consumer.subscriptions.create(
+    { channel: "GameChannel", id: id },
+    {
+      received(data) {
+        if (data.status === "connection") {
+          if (data.joinedUser) {
+            const content = `<h4>${data.joinedUser.pseudo} a rejoint ta partie !<h4>`;
+            answersContainer.insertAdjacentHTML('beforeend',content);
+          }
+        };
+      }
+    }
+  );
+}
 

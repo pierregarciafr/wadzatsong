@@ -1,43 +1,5 @@
-<div class="display-container">
-  <div class='dashboard-container'>
-    <p class="text-center">Your results :</p>
-    <table class="dashboard-table">
-      <thead class='dashboard-titles'>
-        <td>Track </td>
-        <td>Player </td>
-        <td>Pts </td>
-      </thead>
-      <tbody>
-        <% @game.playlist.tracks.each do |track| %>
-          <tr >
-            <td><%= track.title %> <%#= track.artist %> </td>
-            <% track.answers.where(status:true).each do |answer| %>
-              <% if answer.status == true %> <!-- j'ai retiré le comm. # -->
-                <td><%= answer.user.pseudo %> </td>
-                <% if answer.answering_time < 3 %>
-                  <td class="top-score">+ 1000 </td>
-                <% elsif answer.answering_time < 5 %>
-                  <td>+ 200 </td>
-                <% elsif answer.answering_time < 10 %>
-                  <td>+ 50 </td>
-                <% else %>
-                  <td>+ 10 </td>
-                <% end %>
-              <% else %>
-                <td> - </td>
-                <td> - </td>
-              <% end %>
-            <% end %> <!-- fin de |answer| do -->
-          </tr>
-        <% end  %>
-      </tbody>
-    </table>
-  </div>
-</div>
-<!-- -------------- -->
-<!-- résulat total  -->
-<div class="dashboard-container text-center mt-5">
-  <p>Score total :</p>
+
+<div class="dashboard-container text-center">
   <% total_mj = 0 %>
   <% @game.user.answers.where(status:true).each do |answer| %>
     <% if answer %>
@@ -70,14 +32,17 @@
     <% end %>
   <% end %>
 
+
   <% if total_mj > total_player2 %>
-    <p>Gagnant: <%= @game.user.pseudo %></p>
-    <span class="particletext confetti"> <%= total_mj %> </span>
+    <p>Le gagnant est</p>
+    <span class="particletext confetti"> <%= @game.user.pseudo %></span>
+    <p><%= total_mj %> pts</p>
   <% else %>
     <p>Gagnant: <%= @game.participants[0].pseudo %></p>
     <span class="particletext confetti"> <%= total_player2 %> </span>
   <% end %>
 </div>
+
 <% RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"]) %>
 <% @game.playlist.tracks.each do |track| %>
   <% result = RSpotify::Track.search("#{track.title}") %>
@@ -85,16 +50,57 @@
     </div>
   <% end %>
 <!-- ---------------- -->
-<!-- bouton rejouer -->
-<div class="bottom">
-  <div class="text-center mt-5">
-    <% @game=Game.new(user: current_user) %>
-    <%= simple_form_for @game do |f| %>
-      <%= f.submit "Rejouer", class: "btn-edit replay" %>
-    <% end %>
-  </div>
+
+
+<div class="mx-2" >
+  <% Playlist.first.tracks.each do |track| %>
+   <div class="card-song">
+    <img src="https://i.scdn.co/image/ab67616d0000b273a69daf940429089524e93ceb" />
+    <div class="card-song-infos">
+     <h2><%= track.title %></h2>
+     <p><%= track.artist %></p>
+    </div>
+    <div class="result text-right">
+     <p><%#= User.last.pseudo %></p>
+     <p class="points">
+       <% @game.playlist.tracks.each do |track| %>
+         <tr >
+           <% track.answers.where(status:true).each do |answer| %>
+             <% if answer.status == true %> <!-- j'ai retiré le comm. # -->
+               <p><%= answer.user.pseudo %> </p>
+               <% if answer.answering_time < 3 %>
+                 <td class="top-score">+ 1000 </td>
+               <% elsif answer.answering_time < 5 %>
+                 <td>+ 200 </td>
+               <% elsif answer.answering_time < 10 %>
+                 <td>+ 50 </td>
+               <% else %>
+                 <td>+ 10 </td>
+               <% end %>
+             <% else %>
+               <td> - </td>
+               <td> - </td>
+             <% end %>
+           <% end %> <!-- fin de |answer| do -->
+         </tr>
+       <% end  %>
+     </p>
+    </div>
+    <i class="fab fa-spotify spotify"></i>
+   </div>
+  <% end %>
 </div>
 
 
+
+<!-- bouton rejouer -->
+<div class="replay">
+<div class="text-center mt-5">
+  <% @game=Game.new(user: current_user) %>
+  <%= simple_form_for @game do |f| %>
+    <%= f.submit "Rejouer", class: "btn-home" %>
+  <% end %>
+</div>
+</div>
 
 

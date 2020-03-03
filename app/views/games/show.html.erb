@@ -4,40 +4,32 @@
 </head>
 
 <div class="game-container" style="background-image: linear-gradient(to right top, #df2866, #d8377f, #cc4794, #bc56a6, #aa63b3);">
-    <div id="test">
-    </div>
-
-  <div id="game-container" data-game-id="<%= @game.id %>">
-
+  <div id="game-container" data-game-id="<%= @game.id %>" data-user-id="<%= current_user.id %>">
     <% if @game.paused? %>
-      <%= render 'game_paused' %>
+      <%  @user = current_user %>
+      <%= render 'game_paused',
+        user: @user %>
     <% end %>
-  <!-- ------------------------------- -->
+
     <% if @game.created? %>
       <div class="show-created-html" id="game-created-html">
         <%= render 'game_created' %>
       </div>
     <% end %>
-  <!-- ----------------------------------------- -->
 
     <% if @game.running? && @current_track %>
-        <div id="navbar">
-          <%= render 'games/navbar',
-            user: @user,
-            game_participants: @game_participants,
-            playlist: @playlist %>
-        </div>
+      <div id="navbar">
+        <%= render 'games/navbar',
+          user: @user,
+          game_participants: @game_participants,
+          playlist: @playlist %>
+      </div>
 
-        <div id="running-html">
-          <%= render 'game_running',
-            answering_time: @answering_time,
-            current_track: @current_track,
-            game: @game %>
-
-          <!-- debut de la section mise dans partial -->
-
-          <!--- fin du conflit - version pullée -->
-          <!-- message pour bonne ou mauvaise réponse -->
+      <div id="running-html">
+        <%= render 'game_running',
+          answering_time: @answering_time,
+          current_track: @current_track,
+          game: @game %>
 
         <% if @game.answers.any? %>
           <% if @game.answers.last.status == true %>
@@ -54,12 +46,13 @@
           <% end %>
         <% end %>
           <!-- fin de la section mise dans partial par Victor -->
-        </div>
+      </div>
     <!-- ----------- -->
     <% end %> <!-- end du if game.running? -->
 
     <% if @game.finished? %>
-    <div id="game-finished">
+
+    <div id="game-finished" style="background-image: linear-gradient(to right top, #df2866, #d8377f, #cc4794, #bc56a6, #aa63b3);">
         <!-- debut de la section a mettre dans partial-finished -->
 
 
@@ -73,6 +66,7 @@
         <!-- fin de la section a mettre dans partial game-finished -->
         </div>
         <% end %>
+
   <!-- -----------------------  -->
     <%# end %>
   </div> <!-- div fermante du container -->

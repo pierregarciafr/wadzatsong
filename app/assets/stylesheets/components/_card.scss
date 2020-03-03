@@ -108,3 +108,66 @@ input[type="radio"], input[type="checkbox"] {
     margin-top: 2rem;
   }
 }
+
+
+
+
+
+.card-song {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  position:relative;
+  border-radius: 15px;
+}
+.card-song img {
+ height: 100%;
+ width: 120px;
+ object-fit: cover;
+}
+.card-song h2 {
+ font-size: 16px;
+ font-weight: bold;
+ color: #BC4E9C;
+ margin: 0;
+width: 140px;
+}
+.card-song p {
+ font-size: 12px;
+ line-height: 1.4;
+ opacity: .7;
+ margin-bottom: 0;
+ margin-top: 8px;
+}
+.card-song .card-song-infos {
+ padding: 16px;
+ flex-grow:1;
+
+ p{
+  font-size: 1em;
+ }
+}
+.result {
+ padding-right: 12px;
+ color:#1db954;
+}
+.result p {
+ margin-top: 0;
+ font-size: 1em;
+ font-weight: 600;
+}
+.points {
+ font-size: 10px;
+ color: green;
+}
+.spotify {
+ position:absolute;
+ position: absolute;
+ right: 12px;
+ bottom: 12px;
+ color:#1ED760;
+}
