@@ -7,7 +7,7 @@
   </div>
 
   <div class="song-count d-flex justify-content-around align-items-center">
-    <%= '<i class="fas fa-circle icon guessed"></i>'.html_safe * Answer.where(status:true).count %>
+    <%= '<i class="fas fa-circle icon guessed flashit"></i>'.html_safe * Answer.where(status:true).count %>
     <%= '<i class="fas fa-circle icon"></i>'.html_safe * (Game::NUMBER_OF_ROUNDS - Answer.where(status:true).count) %>
   </div>
 
