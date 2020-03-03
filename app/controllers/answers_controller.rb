@@ -6,19 +6,18 @@ class AnswersController < ApplicationController
     @answer.game = @game
     @answer.user = current_user
     @answer.track = @track
-    @answer.save # remplacer par answersave = @answer.save ?
+    @answer.save
     @tracks = @game.playlist.tracks
     @user = current_user
     @playlist = @game.playlist
     check_answer(@answer, @track)
 
     if @answer.save
-      # GameChannel.broadcast_to(@game, @answer)
       @game.running!
       # l'id de la premiere des tracks qui n'a pas encore été jouée
       @current_track = @game.playlist.tracks.where.not(id: @game.answers.where(status: true).pluck(:track_id)).first
       if @current_track
-              GameChannel.broadcast_to(
+      GameChannel.broadcast_to(
       @game,
       status: 'running',
       content: render_to_string(

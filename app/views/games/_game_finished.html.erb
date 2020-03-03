@@ -12,7 +12,8 @@
           <tr >
             <td><%= track.title %> <%#= track.artist %> </td>
             <% track.answers.where(status:true).each do |answer| %>
-              <% if answer.status == true %> <!-- j'ai retiré le comm. # -->
+              <%# if answer.status == true %> <!-- j'ai retiré le comm. # -->
+
                 <td><%= answer.user.pseudo %> </td>
                 <% if answer.answering_time < 3 %>
                   <td class="top-score">+ 1000 </td>
@@ -23,10 +24,11 @@
                 <% else %>
                   <td>+ 10 </td>
                 <% end %>
-              <% else %>
-                <td> - </td>
-                <td> - </td>
-              <% end %>
+
+              <%# else %>
+<!--                 <td> - </td>
+                <td> - </td> -->
+              <%# end %>
             <% end %> <!-- fin de |answer| do -->
           </tr>
         <% end  %>
