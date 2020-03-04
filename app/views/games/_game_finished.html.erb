@@ -1,5 +1,6 @@
 
 <div class="dashboard-container text-center">
+
   <% total_mj = 0 %>
   <% @game.user.answers.where(status:true).each do |answer| %>
     <% if answer %>
@@ -35,6 +36,9 @@
 
   <% if total_mj > total_player2 %>
     <p>Le gagnant est</p>
+    RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"]) %>
+    <%= result[0].album.external_urls["spotify"] %>
+    <h1>test</h1>
     <span class="particletext confetti"> <%= @game.user.pseudo %></span>
     <p><%= total_mj %> pts</p>
   <% else %>
