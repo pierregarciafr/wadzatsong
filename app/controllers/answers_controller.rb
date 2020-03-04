@@ -45,6 +45,7 @@ class AnswersController < ApplicationController
         content: render_to_string(
           partial: "games/game_finished",
           locals: {
+            user: @user,
             answering_time: @answering_time,
             current_track: @current_track,
             game: @game

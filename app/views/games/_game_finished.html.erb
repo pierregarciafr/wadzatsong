@@ -90,16 +90,14 @@
   <% end %>
 </div>
 
-
-
 <!-- bouton rejouer -->
-<div class="replay">
-<div class="text-center mt-5">
-  <% @game=Game.new(user: current_user) %>
-  <%= simple_form_for @game do |f| %>
-    <%= f.submit "Rejouer", class: "btn-home" %>
-  <% end %>
-</div>
-</div>
+  <div class="replay">
+    <div class="text-center mt-5">
+      <% @game=Game.new(user: current_user) %>
+      <%= simple_form_for @game do |f| %>
+        <%= f.submit "Rejouer", class: "btn-home" %>
+      <% end %>
+    </div>
+  </div>
 
 

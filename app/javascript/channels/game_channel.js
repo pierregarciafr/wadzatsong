@@ -1,4 +1,5 @@
 import consumer from "./consumer";
+import { confetti } from '../components/confettis';
 
 const answersContainer = document.getElementById('answers');
 
@@ -49,7 +50,7 @@ if (gameElt) {
           gameElt.textContent = '';
           if (data) {
             const userIdClicked = data.user.id.toString();
-            const currentUserPageIdElt = gameElt.dataset.userId
+            const currentUserPageIdElt = gameElt.dataset.userId;
             // console.log('Who clicked ?');
             // console.log(userIdClicked);
             // console.log('Whose page is it ?');
@@ -59,11 +60,17 @@ if (gameElt) {
             }
         }
       }
-        if (data.status === "finished") {
-          console.log('FINISHED');
-          gameElt.textContent = '';
-          if (data) {
-            gameElt.insertAdjacentHTML('beforeend',data.content);
+      if (data.status === "finished") {
+        gameElt.textContent = '';
+        if (data) {
+          console.log(data);
+          // const userIdClicked = data.user.id.toString();
+          // const currentUserPageIdElt = gameElt.dataset.userId;
+          gameElt.insertAdjacentHTML('beforeend',data.content);
+          confetti();
+          // if (userIdClicked !== currentUserPageIdElt) {
+          //  document.querySelector('.replay').classList.add('d-none');
+          // }
         }
       }
     }
