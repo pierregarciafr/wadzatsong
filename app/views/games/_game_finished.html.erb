@@ -36,10 +36,11 @@
 
   <% if total_mj > total_player2 %>
     <p>Le gagnant est</p>
-    RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"]) %>
-    <%= result[0].album.external_urls["spotify"] %>
-    <h1>test</h1>
+    <%# RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"]) %>
+    <%# result = RSpotify::Track.search("another brick in the wall") %>
+    <%#= result[0].album.external_urls["spotify"] %>
     <span class="particletext confetti"> <%= @game.user.pseudo %></span>
+
     <p><%= total_mj %> pts</p>
   <% else %>
     <p>Gagnant: <%= @game.participants[0].pseudo %></p>
@@ -83,7 +84,10 @@
          </tr>
      </p>
     </div>
-    <i class="fab fa-spotify spotify"></i>
+    <% link = result[0].album.external_urls["spotify"] %>
+    <%= link_to "#{link}", target: :_blank do %>
+      <i class="fab fa-spotify spotify"></i>
+    <% end %>
    </div>
   <% end %>
 </div>
