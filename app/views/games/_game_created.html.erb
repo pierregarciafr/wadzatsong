@@ -13,9 +13,11 @@
       <br>
       <br>
       <!-- </div> -->
-      <%= link_to running_game_path(@game), method: :patch do %>
-        <div class="play-btn mt-5 pb-3"></div>
-      <% end %>
+      <div class="mt-5 pb-3">
+        <%= link_to running_game_path(@game), method: :patch do %>
+          <div class="play-btn "></div>
+        <% end %>
+      </div>
     <% else %>
       <div class="participant-created">
         <h3>Tu as rejoint la partie de <strong><%= @game.user.pseudo %></strong> !</h3>
