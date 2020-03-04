@@ -46,7 +46,7 @@ track5 = Track.new(title: "Gimme Shelter", artist: "The Rolling Stones", url_pre
 
 track6 = Track.new(title: "La groupie du pianiste", artist: "Michel Berger", url_preview: "https://cdns-preview-f.dzcdn.net/stream/c-fc071a2b3bc797a9793552c60e461806-3.mp3", playlist_id: playlist2.id)
 track7 = Track.new(title: "Dejeuner en paix", artist: "Stephan Eicher", url_preview: "https://cdns-preview-6.dzcdn.net/stream/c-660a5b28ca451ba42b1c38a89d93dfad-5.mp3", playlist_id: playlist2.id)
-track8 = Track.new(title: "Aicha", artist: "Khaled", url_preview: "https://cdns-preview-f.dzcdn.net/stream/c-fbe21fe13f5fe203ff0cb71b79dc8757-2.mp3", playlist_id: playlist2.id)
+track8 = Track.new(title: "Place des grands hommes", artist: "Patrick Bruel", url_preview: "https://cdns-preview-1.dzcdn.net/stream/c-11d15f3244a2b2bd079ba020988b608a-4.mp3", playlist_id: playlist2.id)
 track9 = Track.new(title: "Balance ton quoi", artist: "Angèle", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-ca57b0750b3e6b8f38230a9169f64d73-4.mp3", playlist_id: playlist2.id)
 track10 = Track.new(title: "Pour que tu m'aimes encore", artist: "Celine Dion", url_preview: "https://cdns-preview-a.dzcdn.net/stream/c-a480b87e307ebe9a11026eb14a467727-3.mp3", playlist_id: playlist2.id)
 
