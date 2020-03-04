@@ -20,8 +20,12 @@ puts "Creating users..."
 
 user1 = User.new(password: "password", pseudo: "Mick", email: "mick@jagger.com")
 user2 = User.new(password: "password", pseudo: "Gaga", email: "lady@gaga.com")
+user3 = User.new(password: "password", pseudo: "Ludo", email: "ludo@guesswhat.live")
+user4 = User.new(password: "password", pseudo: "Pierre", email: "pierre@guesswhat.live")
+user5 = User.new(password: "password", pseudo: "Estelle", email: "estelle@guesswhat.live")
+user6 = User.new(password: "password", pseudo: "Bertrand", email: "bertrand@guesswhat.live")
 
-[ user1, user2 ].each do |user|
+[ user1, user2, user3, user4, user5, user6 ].each do |user|
   user.save
   puts "Created #{user.pseudo}"
 end
@@ -62,7 +66,7 @@ track18 = Track.new(title: "Baby One More Time", artist: "Britney Spears", url_p
 track19 = Track.new(title: "Wannabe", artist: "Spice Girls", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-d6ef220200cf4b1a3fc7b5093dd403a9-7.mp3", playlist_id: playlist4.id)
 track20 = Track.new(title: "Smells Like Teen Spirit", artist: "Nirvana", url_preview: "https://cdns-preview-3.dzcdn.net/stream/c-358eb79e55e30b4719d976e15d41e230-6.mp3", playlist_id: playlist4.id)
 
-track21 = Track.new(title: "California Love", artist: "2pac", url_preview: "https://cdns-preview-4.dzcdn.net/stream/c-40b01772972d99e577c98d3a41d3d24e-2.mp3", playlist_id: playlist5.id)
+track21 = Track.new(title: "California Love", artist: "Tupac", url_preview: "https://cdns-preview-4.dzcdn.net/stream/c-40b01772972d99e577c98d3a41d3d24e-2.mp3", playlist_id: playlist5.id)
 track22 = Track.new(title: "The Real Slim Shady", artist: "Eminem", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-d28ee67c24d60e740866c7709d772f55-10.mp3", playlist_id: playlist5.id)
 track23 = Track.new(title: "Je danse le Mia", artist: "I am", url_preview: "https://cdns-preview-3.dzcdn.net/stream/c-30e264852c9f592ae6cdc0edfdefee05-14.mp3", playlist_id: playlist5.id)
 track24 = Track.new(title: "Pose ton Gun", artist: "Suprème N.T.M.", url_preview: "https://cdns-preview-1.dzcdn.net/stream/c-1c281fcb5b744461382588cb9579cf0e-3.mp3", playlist_id: playlist5.id)
