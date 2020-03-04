@@ -12,7 +12,7 @@ if (gameElt) {
   const id = gameElt.dataset.gameId;
 
   consumer.subscriptions.create(
-    { channel: "GameChannel", id: id }, // { channel : "Game" ?, game : id, participation: id })
+    { channel: "GameChannel", id: id },
     {
       received(data) {
       // window.location.reload();
@@ -20,16 +20,10 @@ if (gameElt) {
 
         if (data.status === "connection") {
           if (data.joinedUser) {
-            // const content = `<h4>${data.joinedUser.pseudo} a rejoint la partie de ${data.hostUser.pseudo} !</h4>`;
-            // // .log(`content: ${content}`);
-            // gameElt.insertAdjacentHTML('beforeend',content);
           }
         };
 
         if (data.status === "running") {
-          // window.location.reload();
-          // console.log(data.content);
-          // console.log('running game-container');
           gameElt.textContent = '';
           if (data) {
             gameElt.insertAdjacentHTML('beforeend',data.navbar);
