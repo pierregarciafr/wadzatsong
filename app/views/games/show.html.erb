@@ -33,12 +33,12 @@
 
         <% if @game.answers.any? %>
           <% if @game.answers.last.status == true %>
-              <% good_answers = ["Bien joué petit génie de la zik 🕺", "yes!! #{@game.answers.last.track.artist}, moi aussi j'adore", "bim! trop fort"] %>
+              <% good_answers = ["Bien joué petit génie de la zik 🕺", "Yes ! #{@game.answers.last.track.artist}, moi aussi j'adore 😍", "Yes ! Je te veux dans ma team !"] %>
               <div class="speech-bubble-good-answer animated">
                 <p><%= good_answers.sample %></p>
               </div>
               <% elsif @game.answers.last.status == false %>
-              <% bad_answers = ["Même ma petite soeur connaît ça !", "#{@game.answers.last.content} ??, sérieusement...", "#{@game.playlist.name}, c'est définitivement pas ton truc"] %>
+              <% bad_answers = ["Même ma petite soeur connaît ça ! 😔", "#{@game.answers.last.content} ?? Sérieusement... 🙄", "#{@game.playlist.name}, c'est définitivement pas ton truc"] %>
               <div class="speech-bubble-bad-answer animated">
                 <p><%= bad_answers.sample %></p>
                 <pre>Try again ⛔</pre>
