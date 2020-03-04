@@ -30,7 +30,7 @@ playlist1 = Playlist.new(name:"Classic Rock", picture:'classicrock.jpg')
 playlist2 = Playlist.new(name:"Variété française", picture:'french.jpg')
 playlist3 = Playlist.new(name:"Disney", picture:'disney.jpg')
 playlist4 = Playlist.new(name:"Années 90", picture:'90s.jpg')
-playlist5 = Playlist.new(name:"Rap R&B", picture:'rapus.jpg')
+playlist5 = Playlist.new(name:"Rap", picture:'rapus.jpg')
 playlist6 = Playlist.new(name:"French touch", picture:'frenchtouch.jpg')
 
 [ playlist1, playlist2, playlist3, playlist4, playlist5, playlist6].each do |playlist|
