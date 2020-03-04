@@ -48,31 +48,11 @@ input[type="radio"], input[type="checkbox"] {
   text-align: center;
 }
 
-//.playlist_grid input:checked + label {
-//   // border: 8px solid #bc4e9c;
-//   border: 8px solid;
-//   border-image-source: $my-pink;
-//   border-image-slice: 1;
-//   box-shadow: 0 0 5px rgba(0,0,0,0.5);
-//   border-radius: 14%;                   //////////
-// }
-
 .playlist_grid input:checked + label {
-  // display: flex;
   align-items: center;
-  //width: 50vw;
-  // width: 100%;
-  // margin: auto;
-  // max-width: 100%;
-
   position: relative;
-  // padding: 30% 2.1em;
-  // box-sizing: border-box;
-
   $border: 5px;
   color: #FFF;
-  // background: #000;
-  // background-clip: padding-box; /* !importanté */
   border: solid $border transparent; /* !importanté */
   border-radius: 14%;
   color: white;
@@ -87,7 +67,6 @@ input[type="radio"], input[type="checkbox"] {
     border-radius: inherit; /* !importanté */
     background: $my-pink;
     mix-blend-mode: screen;
-
   }
 }
 
@@ -96,7 +75,7 @@ input[type="radio"], input[type="checkbox"] {
 
 }
 
-.welcome-top  {  ///// pas utilisee
+.welcome-top  {
   font-size: 1rem;
   margin: 0px 30px;
   padding: 40px 10px;
