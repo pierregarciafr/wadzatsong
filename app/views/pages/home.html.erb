@@ -30,7 +30,6 @@
   <% if user_signed_in? %>
     <div class="text-center padding-b-10">
       <%= simple_form_for @game do |f| %>
-        <%= f.submit "CREE UNE PARTIE", class: "btn-home1" %>
         <%= f.submit "Crée une partie", class: "btn-home" %>
       <% end %>
       <%= link_to "REJOINS UNE PARTIE", new_participation_path , class: "btn-home2" %>
