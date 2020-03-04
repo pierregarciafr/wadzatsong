@@ -60,20 +60,25 @@ track16 = Track.new(title: "Wonderwall", artist: "Oasis", url_preview: "https://
 track17 = Track.new(title: "I Will Always Love You", artist: "Whitney Houston", url_preview: "https://cdns-preview-7.dzcdn.net/stream/c-7a42593ecbb6884418d6b1b2db3a4c8e-2.mp3", playlist_id: playlist4.id)
 track18 = Track.new(title: "Baby One More Time", artist: "Britney Spears", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-cd9497093c088d198b226e058044787d-4.mp3", playlist_id: playlist4.id)
 track19 = Track.new(title: "Wannabe", artist: "Spice Girls", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-d6ef220200cf4b1a3fc7b5093dd403a9-7.mp3", playlist_id: playlist4.id)
-track20 = Track.new(title: "Smells Like Teen Spirit", artist: "Nirvana", url_preview: "ttps://cdns-preview-3.dzcdn.net/stream/c-358eb79e55e30b4719d976e15d41e230-6.mp3", playlist_id: playlist4.id)
+track20 = Track.new(title: "Smells Like Teen Spirit", artist: "Nirvana", url_preview: "https://cdns-preview-3.dzcdn.net/stream/c-358eb79e55e30b4719d976e15d41e230-6.mp3", playlist_id: playlist4.id)
 
 track21 = Track.new(title: "California Love", artist: "2pac", url_preview: "https://cdns-preview-4.dzcdn.net/stream/c-40b01772972d99e577c98d3a41d3d24e-2.mp3", playlist_id: playlist5.id)
+track22 = Track.new(title: "The Real Slim Shady", artist: "Eminem", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-d28ee67c24d60e740866c7709d772f55-10.mp3", playlist_id: playlist5.id)
+track23 = Track.new(title: "Je danse le Mia", artist: "I am", url_preview: "https://cdns-preview-3.dzcdn.net/stream/c-30e264852c9f592ae6cdc0edfdefee05-14.mp3", playlist_id: playlist5.id)
+track24 = Track.new(title: "Pose ton Gun", artist: "Suprème N.T.M.", url_preview: "https://cdns-preview-1.dzcdn.net/stream/c-1c281fcb5b744461382588cb9579cf0e-3.mp3", playlist_id: playlist5.id)
+track25 = Track.new(title: "Walk This Way", artist: "Run DMC", url_preview: "https://cdns-preview-b.dzcdn.net/stream/c-b774279388cbde8bddee1415c77a14cc-3.mp3", playlist_id: playlist5.id)
 
-track22 = Track.new(title: "Around the World", artist: "Daft Punk", url_preview: "https://cdns-preview-a.dzcdn.net/stream/c-a2ce94cf0655f6cb526e94f5c046b7d5-6.mp3", playlist_id: playlist6.id)
-track23 = Track.new(title: "Sexy Boy", artist: "Air", url_preview: "https://cdns-preview-e.dzcdn.net/stream/c-eae6dede7f3d6501df832dc810c89476-6.mp3", playlist_id: playlist6.id)
-track24 = Track.new(title: "Lisztomania", artist: "Phoenix", url_preview: "https://cdns-preview-9.dzcdn.net/stream/c-9aa7c2d5711a7b042a24efbd96606d53-2.mp3", playlist_id: playlist6.id)
-track25 = Track.new(title: "Nightcall", artist: "Kavinski", url_preview: "https://cdns-preview-9.dzcdn.net/stream/c-9f86709aec7ca6f1f13d47e8492be971-9.mp3", playlist_id: playlist6.id)
-track26 = Track.new(title: "Flat Beat", artist: "Mister Oizo", url_preview: "https://cdns-preview-b.dzcdn.net/stream/c-b7fdcbb9ae75b759893dbf47cc14380e-6.mp3", playlist_id: playlist6.id)
+track26 = Track.new(title: "Around the World", artist: "Daft Punk", url_preview: "https://cdns-preview-a.dzcdn.net/stream/c-a2ce94cf0655f6cb526e94f5c046b7d5-6.mp3", playlist_id: playlist6.id)
+track27 = Track.new(title: "Sexy Boy", artist: "Air", url_preview: "https://cdns-preview-e.dzcdn.net/stream/c-eae6dede7f3d6501df832dc810c89476-6.mp3", playlist_id: playlist6.id)
+track28 = Track.new(title: "Lisztomania", artist: "Phoenix", url_preview: "https://cdns-preview-9.dzcdn.net/stream/c-9aa7c2d5711a7b042a24efbd96606d53-2.mp3", playlist_id: playlist6.id)
+track29 = Track.new(title: "Nightcall", artist: "Kavinski", url_preview: "https://cdns-preview-9.dzcdn.net/stream/c-9f86709aec7ca6f1f13d47e8492be971-9.mp3", playlist_id: playlist6.id)
+track30 = Track.new(title: "Flat Beat", artist: "Mister Oizo", url_preview: "https://cdns-preview-b.dzcdn.net/stream/c-b7fdcbb9ae75b759893dbf47cc14380e-6.mp3", playlist_id: playlist6.id)
 
 
-[ track1, track2, track3, track4, track5, track6, track7, track8, track9, track10, track11, track12, track13, track14, track15, track16, track17, track18, track19, track20, track21, track22, track23, track24, track25, track26 ].each do |track|
-  track.save
-  puts "Created #{track.title}"
+
+[ track1, track2, track3, track4, track5, track6, track7, track8, track9, track10, track11, track12, track13, track14, track15, track16, track17, track18, track19, track20, track21, track22, track23, track24, track25, track26, track27, track28, track29, track30 ].each do |track|
+track.save
+puts "Created #{track.title}"
 end
 
 Game.create(status: 0, user: user1 , playlist: playlist3)
