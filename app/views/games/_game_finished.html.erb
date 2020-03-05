@@ -68,7 +68,7 @@
   <% @game.playlist.tracks.each do |track| %>
     <% result = RSpotify::Track.search("#{track.title}") %>
     <div class="card-song">
-      <img src="<%= result[0].album.images[0]['url'] %>"/>
+      <img src="<%= result[0].album.images[0]["url"] %>"/>
     <div class="card-song-infos">
      <h2><%= track.title %></h2>
      <p><%= track.artist %></p>
