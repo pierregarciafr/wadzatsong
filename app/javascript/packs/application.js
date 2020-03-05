@@ -28,11 +28,12 @@ import { confetti } from '../components/confettis';
 import { removeBubbleGood } from '../components/bubble';
 import { removeBubbleBad } from '../components/bubble';
 import { SpeechToText } from '../components/speechtotext';
-import { countDown} from '../components/countDown';
+import { countDown } from '../components/countDown';
+import { songDelay } from '../components/songDelay';
 // import { getCode } from '../plugins/fetch';
 
 
-
+const countDownElt = document.getElementById("countdown");
 
 confetti();
 
@@ -40,7 +41,10 @@ document.addEventListener('turbolinks:load', () => {
   confetti();
   removeBubbleGood();
   removeBubbleBad();
-  countDown();
+  if (countDownElt) {
+    countDown();
+  }
+  songDelay();
 
 const buzz = document.getElementById("buzz");
 if (buzz) {

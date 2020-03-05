@@ -2,7 +2,7 @@ const three = document.getElementById("3");
 const two = document.getElementById("2");
 const one = document.getElementById("1");
 const buzzImgElt = document.getElementById("buzz-img");
-const countDownElt = document.getElementById("countdown");
+
 
 const countDown = () => {
   buzzImgElt.style.visibility = "hidden";
