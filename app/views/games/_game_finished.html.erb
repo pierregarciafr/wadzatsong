@@ -40,8 +40,10 @@
     <span class="particletext confetti"> <%= @game.user.pseudo %></span>
     <p><%= total_mj %> points</p>
   <% else %>
+
     <i class="fas fa-crown fa-4x"></i>
     <br>
+
     <span class="particletext confetti"> <%= @game.participants[0].pseudo %></span>
     <p><%= total_player2 %> points</p>
   <% end %>
@@ -67,20 +69,24 @@
     <div class="result text-right">
      <p><%#= User.last.pseudo %></p>
      <p class="points">
-      <tr >
+<!--       <tr > -->
         <% track.answers.where(status:true).each do |answer| %>
-          <p><%= answer.user.pseudo %> </p>
-            <% if answer.answering_time < 3 %>
-              <td class="top-score">+ 1000 </td>
-            <% elsif answer.answering_time < 5 %>
-              <td>+ 200 </td>
-            <% elsif answer.answering_time < 10 %>
-              <td>+ 50 </td>
-            <% else %>
-              <td>+ 10 </td>
-            <% end %>
+            <div class="user-result <%= answer.user == current_user ? "green" : ""%>" data-user="<%= answer.user.id  %>">
+              <p><%= answer.user.pseudo %> </p>
+              <% if answer.answering_time < 3 %>
+                <p>+ 1000 </p>
+              <% elsif answer.answering_time < 5 %>
+                <p>+ 200 </p>
+              <% elsif answer.answering_time < 10 %>
+                <p>+ 50 </p>
+              <% else %>
+                <p>+ 10 </p>
+              <% end %>
+            </div>
+
+
         <% end %> <!-- fin de |answer| do -->
-         </tr>
+<!--          </tr> -->
      </p>
     </div>
     <% link = result[0].album.external_urls["spotify"] %>

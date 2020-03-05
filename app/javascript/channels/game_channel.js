@@ -105,11 +105,21 @@ if (gameElt) {
         if (data) {
           console.log(data);
           // const userIdClicked = data.user.id.toString();
-          // const currentUserPageIdElt = gameElt.dataset.userId;
+          const currentUserPageIdElt = gameElt.dataset.userId;
           gameElt.insertAdjacentHTML('beforeend',data.content);
           confetti();
+
+          document.querySelectorAll('.user-result').forEach((user) => {
+            if (user.dataset.user == currentUserPageIdElt){
+              user.classList.add("green")
+             }
+            else {
+              user.classList.remove("green")
+            }
+           })
           // if (userIdClicked !== currentUserPageIdElt) {
-          //  document.querySelector('.replay').classList.add('d-none');
+          //  // document.querySelector('.replay').classList.add('d-none');
+
           // }
         }
       }
