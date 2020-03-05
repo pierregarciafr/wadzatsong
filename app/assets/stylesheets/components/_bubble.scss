@@ -1,17 +1,13 @@
 .speech-bubble-good-answer {
   position: fixed;
-  padding: 15px;
-  top: 75%;
-  left: 15%;
-  background-color: white;
-  width: 70%;
-  margin: auto;
-  color: transparent;
+  background-color: #3ed879;
+  bottom: 4%;
+  left: 10%;
+  padding: 15px 25px;
+  width: 80%;
   text-align: center;
   border-radius: 1rem;
-  margin-top: 50px;
-  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
-
+  border: solid white 5px;
 
   -webkit-animation: neon1 1s ease-in-out infinite alternate;
   -moz-animation: neon1 1s ease-in-out infinite alternate;
@@ -19,33 +15,29 @@
 
     p {
     margin-top: 1rem;
-    color: #3ed879;
+    color: white;
     font-weight: bold;
-    font-size: 1em;
+    font-size: 1.3em;
     text-transform: uppercase;
     }
 
-    // .good-answer {
-    //   border: 20px solid #3ed879;
-    // }
+    .fa-check-circle {
+      color: white;
+    }
 
 }
 
 
 .speech-bubble-bad-answer {
   position: fixed;
-  // padding: 15px;
-  top: 75%;
-  left: 15%;
-  background-color: white;
-  width: 70%;
-  margin: auto;
-  color: transparent;
+  background-color: #ff3333;
+  bottom: 4%;
+  left: 10%;
+  padding: 15px 25px;
+  width: 80%;
   text-align: center;
   border-radius: 1rem;
-  margin-top: 50px;
-  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
-
+  border: solid white 5px;
 
   -webkit-animation: neon2 1s ease-in-out infinite alternate;
   -moz-animation: neon2 1s ease-in-out infinite alternate;
@@ -53,39 +45,31 @@
 
     p {
     margin-top: 1rem;
-    color: red;
-    font-size: 1em;
+    color: white;
+    font-size: 1.3em;
+    font-weight: bold;
     text-transform: uppercase;
     }
 
-    pre{
-      margin-top: 1rem;
-      color: red;
-      font-weight: bold;
-      font-size: 1em;
-      font-family: Muli;
-      text-transform: uppercase;
+    .fa-times-circle {
+      color: white;
     }
-
-    // .bad-answer {
-    //   border: 50px solid red !important;
-    // }
 }
 
 @-webkit-keyframes neon1 {
   from {
-    box-shadow: 0 0 6px #3ed879, 0 0 8px #3ed879, 0 0 14px #3ed879, 0 0 62px #3ed879, 0 0 40px #3ed879;
+    box-shadow: 0 0 6px white, 0 0 8px white, 0 0 14px white, 0 0 62px white, 0 0 40px white;
   }
   to {
-    box-shadow: 0 0 10px #3ed879, 0 0 4px #3ed879, 0 0 4px #3ed879, 0 0 2px #3ed879, 0 0 14px #3ed879;
+    box-shadow: 0 0 10px white, 0 0 4px white, 0 0 4px white, 0 0 2px white, 0 0 14px white;
   }
 }
 
 @-webkit-keyframes neon2 {
   from {
-    box-shadow: 0 0 3px red, 0 0 4px red, 0 0 7px red, 0 0 32px red, 0 0 20px red;
+    box-shadow: 0 0 3px white, 0 0 4px white, 0 0 7px white, 0 0 32px white, 0 0 20px white;
   }
   to {
-    box-shadow: 0 0 5px red, 0 0 2px red, 0 0 2px red, 0 0 1px red, 0 0 7px red;
+    box-shadow: 0 0 5px white, 0 0 2px white, 0 0 2px white, 0 0 1px white, 0 0 7px white;
   }
 }
