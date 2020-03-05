@@ -4,15 +4,18 @@
   <% total_mj = 0 %>
   <% @game.user.answers.where(status:true).each do |answer| %>
     <% if answer %>
-      <% if answer.answering_time < 3  %>
-        <% total_mj += 1000 %>
-      <% elsif answer.answering_time < 5 %>
-        <% total_mj += 200 %>
-      <% elsif answer.answering_time < 10 %>
-        <% total_mj += 50 %>
+      <% if answer.answering_time < 2  %>
+        <% total_player2 += 500 %>
+      <% if answer.answering_time < 5  %>
+        <% total_player2 += 350 %>
+      <% elsif answer.answering_time < 8 %>
+        <% total_player2 += 175 %>
+      <% elsif answer.answering_time < 11 %>
+        <% total_player2 += 70 %>
+      <% elsif answer.answering_time < 15 %>
+        <% total_player2 += 35 %>
       <% else%>
-        <% total_mj += 10 %>
-      <% end %>
+        <% total_player2 += 10 %>
     <% end %>
   <% end %>
 
@@ -20,12 +23,16 @@
   <% if @game.participants[0]%>
     <% @game.participants[0].answers.where(status:true).each do |answer| %>
       <% if answer %>
-        <% if answer.answering_time < 3  %>
-          <% total_player2 += 1000 %>
-        <% elsif answer.answering_time < 5 %>
-          <% total_player2 += 200 %>
-        <% elsif answer.answering_time < 10 %>
-          <% total_player2 += 50 %>
+        <% if answer.answering_time < 2  %>
+          <% total_player2 += 500 %>
+        <% if answer.answering_time < 5  %>
+          <% total_player2 += 350 %>
+        <% elsif answer.answering_time < 8 %>
+          <% total_player2 += 175 %>
+        <% elsif answer.answering_time < 11 %>
+          <% total_player2 += 70 %>
+        <% elsif answer.answering_time < 15 %>
+          <% total_player2 += 35 %>
         <% else%>
           <% total_player2 += 10 %>
         <% end %>
