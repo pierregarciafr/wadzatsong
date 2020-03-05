@@ -5,7 +5,7 @@ const buzzImgElt = document.getElementById("buzz-img");
 const countDownElt = document.getElementById("countdown");
 
 const countDown = () => {
-  buzzImgElt.classList.add('d-none');
+  buzzImgElt.style.visibility = "hidden";
     if (three) {
       setTimeout(() => {
         three.classList.remove('d-block');
@@ -18,8 +18,7 @@ const countDown = () => {
           setTimeout (() => {
             one.classList.remove('d-block');
             one.classList.add('d-none');
-            buzzImgElt.classList.remove('d-none');
-            // countDownElt.style.visibility = "hidden";
+            buzzImgElt.style.visibility = "visible";
           }, 1000);
         }, 1000);
       }, 1000);
