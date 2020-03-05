@@ -68,7 +68,7 @@
   <% @game.playlist.tracks.each do |track| %>
     <% result = RSpotify::Track.search("#{track.title}") %>
     <div class="card-song">
-      <img src="<%= result[0].album.images[0]["url"] %>"/>
+      <img src="<%= result[0].album.images[0]['url'] %>"/>
     <div class="card-song-infos">
      <h2><%= track.title %></h2>
      <p><%= track.artist %></p>
@@ -80,12 +80,16 @@
         <% track.answers.where(status:true).each do |answer| %>
             <div class="user-result <%= answer.user == current_user ? "green" : ""%>" data-user="<%= answer.user.id  %>">
               <p><%= answer.user.pseudo %> </p>
-              <% if answer.answering_time < 3 %>
-                <p>+ 1000 </p>
+              <% if answer.answering_time < 2 %>
+                <p>+ 500 </p>
               <% elsif answer.answering_time < 5 %>
-                <p>+ 200 </p>
-              <% elsif answer.answering_time < 10 %>
-                <p>+ 50 </p>
+                <p>+ 350 </p>
+              <% elsif answer.answering_time < 8 %>
+                <p>+ 175 </p>
+              <% elsif answer.answering_time < 11 %>
+                <p>+ 70 </p>
+              <% elsif answer.answering_time < 15 %>
+                <p>+ 35 </p>
               <% else %>
                 <p>+ 10 </p>
               <% end %>
