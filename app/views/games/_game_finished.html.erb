@@ -5,17 +5,18 @@
   <% @game.user.answers.where(status:true).each do |answer| %>
     <% if answer %>
       <% if answer.answering_time < 2  %>
-        <% total_player2 += 500 %>
-      <% if answer.answering_time < 5  %>
-        <% total_player2 += 350 %>
+        <% total_mj += 500 %>
+      <% elsif answer.answering_time < 5  %>
+        <% total_mj += 350 %>
       <% elsif answer.answering_time < 8 %>
-        <% total_player2 += 175 %>
+        <% total_mj += 175 %>
       <% elsif answer.answering_time < 11 %>
-        <% total_player2 += 70 %>
+        <% total_mj += 70 %>
       <% elsif answer.answering_time < 15 %>
-        <% total_player2 += 35 %>
+        <% total_mj += 35 %>
       <% else%>
-        <% total_player2 += 10 %>
+        <% total_mj += 10 %>
+      <% end %>
     <% end %>
   <% end %>
 
@@ -25,7 +26,7 @@
       <% if answer %>
         <% if answer.answering_time < 2  %>
           <% total_player2 += 500 %>
-        <% if answer.answering_time < 5  %>
+        <% elsif answer.answering_time < 5  %>
           <% total_player2 += 350 %>
         <% elsif answer.answering_time < 8 %>
           <% total_player2 += 175 %>
@@ -46,8 +47,7 @@
     <br>
     <span class="particletext confetti"> <%= @game.user.pseudo %></span>
     <p><%= total_mj %> points</p>
-  <% else %>
-
+  <% else %> <%# elsif  @game.participants[0] %>
     <i class="fas fa-crown fa-4x"></i>
     <br>
 
@@ -90,8 +90,6 @@
                 <p>+ 10 </p>
               <% end %>
             </div>
-
-
         <% end %> <!-- fin de |answer| do -->
 <!--          </tr> -->
      </p>
