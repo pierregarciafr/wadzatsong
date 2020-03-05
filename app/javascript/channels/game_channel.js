@@ -86,7 +86,7 @@ if (answersContainer) {
       received(data) {
         if (data.status === "connection") {
           if (data.joinedUser) {
-            const content = `<h4>${data.joinedUser.pseudo} a rejoint ta partie !<h4>`;
+            const content = `<h5>${data.joinedUser.pseudo} a rejoint ta partie !<h5>`;
             answersContainer.insertAdjacentHTML('beforeend',content);
           }
         };

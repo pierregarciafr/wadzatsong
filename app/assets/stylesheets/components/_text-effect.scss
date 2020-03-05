@@ -4,18 +4,28 @@
     font-family: sans-serif;
     text-transform: uppercase;
     font-size: 1.1em;
+    font-weight: 500;
     letter-spacing: 4px;
     margin-top: 12vh;
     margin-bottom: 5vh;
-    opacity: 0.8;
+    opacity: 0.9;
   }
 }
 
 .participant-created {
   margin-top: 90%;
 
-  h3 {
+  h2 {
     letter-spacing: 3px;
+  }
+
+  h4 {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+  }
+
+  .fa-music {
+    color: #f9c6cf;
   }
 }
 

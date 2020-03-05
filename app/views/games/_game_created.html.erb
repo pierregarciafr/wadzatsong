@@ -2,13 +2,15 @@
 
   <div class="welcome-top" > <!--id="answers" data-game-id="<%= @game.id %>" -->
     <% if @game.user == current_user %>
-      <h4><%= @game.user.pseudo %>, invite tes potes à jouer avec toi !</h4>
+      <h3><%= @game.user.pseudo %>,</h3>
+      <h3>invite tes potes à jouer avec toi !</h3>
+      <br>
       <br>
       <div class="token-card">
         <div class="avatar-key d-flex justify-content-around align-items-center">
           <i class="fas fa-key"></i>
         </div>
-        <h6 class="mt-3">Le code pour rejoindre ta partie : </h6>
+        <br>
         <strong><h2 class="mt-3 "><%= @game.token %></h2></strong>
       </div>
       <br>
@@ -24,9 +26,11 @@
       </div>
     <% else %>
       <div class="participant-created">
-        <h3>Tu as rejoint la partie de <strong><%= @game.user.pseudo %></strong> !</h3>
+        <h2>Tu as rejoint la partie de <strong><%= @game.user.pseudo %></strong> !</h2>
         <br>
-        <p>Prépare toi à tout donner 🎶</p>
+        <h4>Prépare toi à tout donner</h4>
+        <br>
+        <i class="fas fa-music fa-2x"></i>
       </div>
     <% end%>
   </div>
