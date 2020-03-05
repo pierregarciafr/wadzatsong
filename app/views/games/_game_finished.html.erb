@@ -41,6 +41,7 @@
     <p><%= total_mj %> pts</p>
   <% else %>
     <p>Le gagnant est</p>
+
     <span class="particletext confetti"> <%= @game.participants[0].pseudo %></span>
     <p><%= total_player2 %> pts</p>
   <% end %>
@@ -66,26 +67,24 @@
     <div class="result text-right">
      <p><%#= User.last.pseudo %></p>
      <p class="points">
-      <tr >
+<!--       <tr > -->
         <% track.answers.where(status:true).each do |answer| %>
-
-      <% if answer.user == current_user %>
-       <div class="result text-right green">
-
-            <p><%= answer.user.pseudo %> </p>
+            <div class="user-result <%= answer.user == current_user ? "green" : ""%>" data-user="<%= answer.user.id  %>">
+              <p><%= answer.user.pseudo %> </p>
               <% if answer.answering_time < 3 %>
-                <td>+ 1000 </td>
+                <p>+ 1000 </p>
               <% elsif answer.answering_time < 5 %>
-                <td>+ 200 </td>
+                <p>+ 200 </p>
               <% elsif answer.answering_time < 10 %>
-                <td>+ 50 </td>
+                <p>+ 50 </p>
               <% else %>
-                <td>+ 10 </td>
+                <p>+ 10 </p>
               <% end %>
-          <% end %> <!-- fin de |answer| do -->
-        </div>
-      <% end %>
-       </tr>
+            </div>
+
+
+        <% end %> <!-- fin de |answer| do -->
+<!--          </tr> -->
      </p>
     </div>
     <% link = result[0].album.external_urls["spotify"] %>
