@@ -77,9 +77,6 @@ if (gameElt) {
               user.classList.remove("green")
             }
            })
-
-
-
           // if (userIdClicked !== currentUserPageIdElt) {
           //  // document.querySelector('.replay').classList.add('d-none');
 
