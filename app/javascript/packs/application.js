@@ -28,7 +28,7 @@ import { confetti } from '../components/confettis';
 import { removeBubbleGood } from '../components/bubble';
 import { removeBubbleBad } from '../components/bubble';
 import { SpeechToText } from '../components/speechtotext';
-
+import { countDown} from '../components/countDown';
 // import { getCode } from '../plugins/fetch';
 
 
@@ -40,6 +40,7 @@ document.addEventListener('turbolinks:load', () => {
   confetti();
   removeBubbleGood();
   removeBubbleBad();
+  countDown();
 
 const buzz = document.getElementById("buzz");
 if (buzz) {
