@@ -6,6 +6,7 @@ const buzzImgElt = document.getElementById("buzz-img");
 
 const countDown = () => {
   buzzImgElt.style.visibility = "hidden";
+  setTimeout(() => {
     if (three) {
       setTimeout(() => {
         three.classList.remove('d-block');
@@ -23,6 +24,7 @@ const countDown = () => {
         }, 1000);
       }, 1000);
     }
+  }, 200);
 }
 
 
