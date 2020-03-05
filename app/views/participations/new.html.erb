@@ -1,23 +1,26 @@
 <div class="game-container" style="background-image: linear-gradient(to right top, #df2866, #d8377f, #cc4794, #bc56a6, #aa63b3)">
   <div class="welcome-top pt-5">
-    <h4>Bienvenue !</h4>
-    <h4>Connecte-toi pour jouer</h4>
-    <h4 class='mb-5'></h4>
-
-    <div class="token-card-participant">
-
-      <div class="avatar-key d-flex justify-content-around align-items-center mt-5 mb-3" >
-        <i class="fas fa-key"></i>
-      </div>
+    <h3>Bienvenue !</h3>
+    <h3>Connecte-toi pour jouer</h3>
+<!--     <h4 class='mb-5'></h4> -->
+    <br>
+    <br>
+  <div class="token-card-participant">
+    <div class="avatar-key d-flex justify-content-around align-items-center" >
+      <i class="fas fa-key"></i>
+    </div>
+    <br>
+    <br>
 <!--         <h6 class="token-part mt-3 mb-5">Saisis ton code ici pour rejoindre la partie :</h6>
 -->
-      <%= simple_form_for @participation do |p| %>
-        <%= p.text_field :token, autofocus: true, placeholder: 'saisis ton code', class: 'code-input-field' %>
-        <hr>
-        <div class="pt-5">
-            <%= p.submit 'CONNEXION', class: 'btn-home-participant mb-5 mt-5'%>
-        </div>
-      <% end %>
-    </div>
+    <%= simple_form_for @participation do |p| %>
+      <%= p.text_field :token, autofocus: true, placeholder: 'saisis ton code', class: 'code-input-field' %>
+
+      <hr>
+      <div class="pt-5">
+          <%= p.submit 'CONNEXION', class: 'btn-home-participant mb-5 mt-5'%>
+      </div>
+    <% end %>
+  </div>
   </div>
 </div>

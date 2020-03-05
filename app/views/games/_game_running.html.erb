@@ -1,21 +1,27 @@
 <ul class="list-inline d-flex align-items-center">
   <!--          creer une data-audio-id = user.id -->
   <li class="d-none list-inline-item audio" data-time="<%= @answering_time %>">
-    <%= audio_tag("#{@current_track.url_preview}", autoplay: true, controls: true, id:"song") %>
+    <%= audio_tag("#{@current_track.url_preview}", autoplay: false, controls: true, id:"song") %>
   </li>
 </ul>
 
 <div class="buzzer-content">
   <!-- creer une variable idBuzzer = 'buzz' + user.id -->
   <div class="consigne text-center">
-    <h3>Touche pour donner ta réponse</h3>
+    <h3>Touche pour donner <br> <br> ta réponse</h3>
   </div>
 
   <%= link_to paused_game_path(@game), method: :patch, id:"buzz" do %>
 
   <figure class="profile">
-    <%= image_tag "image.png", class: "logo-show" %>
+    <%= image_tag "image.png", class: "logo-show", id:"buzz-img"%>
   </figure>
   <% end %>
+  <div class="countdown d-flex justify-content-center align-items-center" id="countdown">
+    <p class="d-block" id="3">3</p>
+    <p class="d-none" id="2">2</p>
+    <p class="d-none" id="1">1</p>
+  </div>
+
 </div>
 

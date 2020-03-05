@@ -35,15 +35,17 @@
 
 
   <% if total_mj > total_player2 %>
-    <p>Le gagnant est</p>
+    <i class="fas fa-crown fa-4x"></i>
+    <br>
     <span class="particletext confetti"> <%= @game.user.pseudo %></span>
-
-    <p><%= total_mj %> pts</p>
+    <p><%= total_mj %> points</p>
   <% else %>
-    <p>Le gagnant est</p>
+
+    <i class="fas fa-crown fa-4x"></i>
+    <br>
 
     <span class="particletext confetti"> <%= @game.participants[0].pseudo %></span>
-    <p><%= total_player2 %> pts</p>
+    <p><%= total_player2 %> points</p>
   <% end %>
 </div>
 
