@@ -50,7 +50,6 @@ if (gameElt) {
 
             // const songDelay = () => {
             const songElt = document.getElementById("song");
-            // console.log(songElt)
               if (songElt) {
                 setTimeout(() => {
                 songElt.play();
@@ -62,10 +61,10 @@ if (gameElt) {
             const two = document.getElementById("2");
             const one = document.getElementById("1");
             const buzzImgElt = document.getElementById("buzz-img");
+            const consigneElt = document.getElementById('consigne');
 
             // const countDown = () => {
-            buzzImgElt.style.visibility = "hidden";
-
+            // buzzImgElt.style.visibility = "hidden";
             if (three) {
               setTimeout(() => {
                 three.classList.remove('d-block');
@@ -79,6 +78,8 @@ if (gameElt) {
                     one.classList.remove('d-block');
                     one.classList.add('d-none');
                     buzzImgElt.style.visibility = "visible";
+                    consigneElt.style.visibility = "visible";
+
                   }, 1000);
                 }, 1000);
               }, 1000);
