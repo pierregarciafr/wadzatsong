@@ -68,18 +68,24 @@
      <p class="points">
       <tr >
         <% track.answers.where(status:true).each do |answer| %>
-          <p><%= answer.user.pseudo %> </p>
-            <% if answer.answering_time < 3 %>
-              <td class="top-score">+ 1000 </td>
-            <% elsif answer.answering_time < 5 %>
-              <td>+ 200 </td>
-            <% elsif answer.answering_time < 10 %>
-              <td>+ 50 </td>
-            <% else %>
-              <td>+ 10 </td>
-            <% end %>
-        <% end %> <!-- fin de |answer| do -->
-         </tr>
+
+      <% if answer.user == current_user %>
+       <div class="result text-right green">
+
+            <p><%= answer.user.pseudo %> </p>
+              <% if answer.answering_time < 3 %>
+                <td>+ 1000 </td>
+              <% elsif answer.answering_time < 5 %>
+                <td>+ 200 </td>
+              <% elsif answer.answering_time < 10 %>
+                <td>+ 50 </td>
+              <% else %>
+                <td>+ 10 </td>
+              <% end %>
+          <% end %> <!-- fin de |answer| do -->
+        </div>
+      <% end %>
+       </tr>
      </p>
     </div>
     <% link = result[0].album.external_urls["spotify"] %>
