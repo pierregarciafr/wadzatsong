@@ -1,5 +1,7 @@
 import consumer from "./consumer";
 import { confetti } from '../components/confettis';
+import { countDown } from '../components/countDown';
+import { songDelay } from '../components/songDelay';
 
 const answersContainer = document.getElementById('answers');
 
@@ -29,7 +31,8 @@ if (gameElt) {
           if (data) {
             gameElt.insertAdjacentHTML('beforeend',data.navbar);
             gameElt.insertAdjacentHTML('beforeend',data.content);
-            console.log(data.answering_time);
+
+
             const buzz = document.getElementById("buzz");
             if (buzz) {
               buzz.addEventListener('click', () => {
@@ -39,11 +42,48 @@ if (gameElt) {
                 buzz.href = buzz.href + current_time;
               })
             }
-              const audio = document.querySelector(".audio");
-              const song = document.getElementById("song");
-              if (song) {
-                song.currentTime = audio.dataset.time;
+            const audio = document.querySelector(".audio");
+            const song = document.getElementById("song");
+            if (song) {
+              song.currentTime = audio.dataset.time;
+            }
+
+            // const songDelay = () => {
+            const songElt = document.getElementById("song");
+            // console.log(songElt)
+              if (songElt) {
+                setTimeout(() => {
+                songElt.play();
+                }, 3000);
               }
+            // }
+
+            const three = document.getElementById("3");
+            const two = document.getElementById("2");
+            const one = document.getElementById("1");
+            const buzzImgElt = document.getElementById("buzz-img");
+
+            // const countDown = () => {
+            buzzImgElt.style.visibility = "hidden";
+
+            if (three) {
+              setTimeout(() => {
+                three.classList.remove('d-block');
+                three.classList.add('d-none');
+                two.classList.add('d-block');
+                setTimeout(() => {
+                  two.classList.remove('d-block');
+                  two.classList.add('d-none');
+                  one.classList.add('d-block');
+                  setTimeout (() => {
+                    one.classList.remove('d-block');
+                    one.classList.add('d-none');
+                    buzzImgElt.style.visibility = "visible";
+                  }, 1000);
+                }, 1000);
+              }, 1000);
+            }
+            // }
           }
         }
         if (data.status === "paused") {
