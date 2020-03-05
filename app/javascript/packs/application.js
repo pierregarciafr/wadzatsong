@@ -42,6 +42,7 @@ document.addEventListener('turbolinks:load', () => {
   removeBubbleGood();
   removeBubbleBad();
   if (countDownElt) {
+
     countDown();
   }
   songDelay();
