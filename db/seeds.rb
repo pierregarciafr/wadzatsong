@@ -31,10 +31,10 @@ user6 = User.new(password: "password", pseudo: "Bertrand", email: "bertrand@gues
 end
 
 playlist1 = Playlist.new(name:"Classic Rock", picture:'classicrock.jpg')
-playlist2 = Playlist.new(name:"Variété française", picture:'french.jpg')
+playlist2 = Playlist.new(name:"Dancefloor", picture:'rapus.jpg')
 playlist3 = Playlist.new(name:"Disney", picture:'disney.jpg')
 playlist4 = Playlist.new(name:"Années 90", picture:'90s.jpg')
-playlist5 = Playlist.new(name:"Rap", picture:'rapus.jpg')
+playlist5 = Playlist.new(name:"Variété française", picture:'french.jpg')
 playlist6 = Playlist.new(name:"French touch", picture:'frenchtouch.jpg')
 
 [ playlist1, playlist2, playlist3, playlist4, playlist5, playlist6].each do |playlist|
@@ -48,11 +48,11 @@ track3 = Track.new(title: "London Calling", artist: "The Clash", url_preview: "h
 track4 = Track.new(title: "Go Your Own Way", artist: "Fleetwood Mac", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-c4ecacbbdb8880240d2796565e060bdf-8.mp3", playlist_id: playlist1.id)
 track5 = Track.new(title: "Gimme Shelter", artist: "The Rolling Stones", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-debe09adb05b7e628c7ad2efea3d74cd-6.mp3", playlist_id: playlist1.id)
 
-track6 = Track.new(title: "La groupie du pianiste", artist: "Michel Berger", url_preview: "https://cdns-preview-f.dzcdn.net/stream/c-fc071a2b3bc797a9793552c60e461806-3.mp3", playlist_id: playlist2.id)
-track7 = Track.new(title: "Dejeuner en paix", artist: "Stephan Eicher", url_preview: "https://cdns-preview-6.dzcdn.net/stream/c-660a5b28ca451ba42b1c38a89d93dfad-5.mp3", playlist_id: playlist2.id)
-track8 = Track.new(title: "Place des grands hommes", artist: "Patrick Bruel", url_preview: "https://cdns-preview-1.dzcdn.net/stream/c-11d15f3244a2b2bd079ba020988b608a-4.mp3", playlist_id: playlist2.id)
-track9 = Track.new(title: "Balance ton quoi", artist: "Angèle", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-ca57b0750b3e6b8f38230a9169f64d73-4.mp3", playlist_id: playlist2.id)
-track10 = Track.new(title: "Pour que tu m'aimes encore", artist: "Celine Dion", url_preview: "https://cdns-preview-a.dzcdn.net/stream/c-a480b87e307ebe9a11026eb14a467727-3.mp3", playlist_id: playlist2.id)
+track6 = Track.new(title: "La groupie du pianiste", artist: "Michel Berger", url_preview: "https://cdns-preview-f.dzcdn.net/stream/c-fc071a2b3bc797a9793552c60e461806-3.mp3", playlist_id: playlist5.id)
+track7 = Track.new(title: "Dejeuner en paix", artist: "Stephan Eicher", url_preview: "https://cdns-preview-6.dzcdn.net/stream/c-660a5b28ca451ba42b1c38a89d93dfad-5.mp3", playlist_id: playlist5.id)
+track8 = Track.new(title: "Place des grands hommes", artist: "Patrick Bruel", url_preview: "https://cdns-preview-1.dzcdn.net/stream/c-11d15f3244a2b2bd079ba020988b608a-4.mp3", playlist_id: playlist5.id)
+track9 = Track.new(title: "Balance ton quoi", artist: "Angèle", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-ca57b0750b3e6b8f38230a9169f64d73-4.mp3", playlist_id: playlist5.id)
+track10 = Track.new(title: "Pour que tu m'aimes encore", artist: "Celine Dion", url_preview: "https://cdns-preview-a.dzcdn.net/stream/c-a480b87e307ebe9a11026eb14a467727-3.mp3", playlist_id: playlist5.id)
 
 track11 = Track.new(title: "Can You Feel the Love Tonight", artist: "Le roi lion", url_preview: "https://cdns-preview-5.dzcdn.net/stream/c-5e4e893751de1f4b4af514bf59f71d3c-6.mp3", playlist_id: playlist3.id)
 track12 = Track.new(title: "Libérée, Délivrée", artist: "La Reine des Neiges", url_preview: "https://cdns-preview-8.dzcdn.net/stream/c-83fb25c04bc36a2c7034d65af631641a-2.mp3", playlist_id: playlist3.id)
@@ -66,11 +66,11 @@ track18 = Track.new(title: "Baby One More Time", artist: "Britney Spears", url_p
 track19 = Track.new(title: "Wannabe", artist: "Spice Girls", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-d6ef220200cf4b1a3fc7b5093dd403a9-7.mp3", playlist_id: playlist4.id)
 track20 = Track.new(title: "Smells Like Teen Spirit", artist: "Nirvana", url_preview: "https://cdns-preview-3.dzcdn.net/stream/c-358eb79e55e30b4719d976e15d41e230-6.mp3", playlist_id: playlist4.id)
 
-track21 = Track.new(title: "California Love", artist: "Tupac", url_preview: "https://cdns-preview-4.dzcdn.net/stream/c-40b01772972d99e577c98d3a41d3d24e-2.mp3", playlist_id: playlist5.id)
-track22 = Track.new(title: "The Real Slim Shady", artist: "Eminem", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-d28ee67c24d60e740866c7709d772f55-10.mp3", playlist_id: playlist5.id)
-track23 = Track.new(title: "Je danse le Mia", artist: "I am", url_preview: "https://cdns-preview-3.dzcdn.net/stream/c-30e264852c9f592ae6cdc0edfdefee05-14.mp3", playlist_id: playlist5.id)
-track24 = Track.new(title: "Pose ton Gun", artist: "Suprème N.T.M.", url_preview: "https://cdns-preview-1.dzcdn.net/stream/c-1c281fcb5b744461382588cb9579cf0e-3.mp3", playlist_id: playlist5.id)
-track25 = Track.new(title: "Walk This Way", artist: "Run DMC", url_preview: "https://cdns-preview-b.dzcdn.net/stream/c-b774279388cbde8bddee1415c77a14cc-3.mp3", playlist_id: playlist5.id)
+track21 = Track.new(title: "Ces soirées la", artist: "Yannick", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-d4f21daccee31ed7ef3ed24fccceea95-4.mp3", playlist_id: playlist2.id)
+track22 = Track.new(title: "It's raining men", artist: "Weather girls", url_preview: "https://cdns-preview-b.dzcdn.net/stream/c-b784a20409fe9d1c6bf6e7f312b71788-4.mp3", playlist_id: playlist2.id)
+track23 = Track.new(title: "Wannabe", artist: "Spice Girls", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-d6ef220200cf4b1a3fc7b5093dd403a9-7.mp3", playlist_id: playlist2.id)
+track24 = Track.new(title: "Dancing queen", artist: "Abba", url_preview: "https://cdns-preview-8.dzcdn.net/stream/c-8708a478849e903d5065f4c9caaf8641-13.mp3", playlist_id: playlist2.id)
+track25 = Track.new(title: "Baby One More Time", artist: "Britney Spears", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-cd9497093c088d198b226e058044787d-4.mp3", playlist_id: playlist2.id)
 
 track26 = Track.new(title: "Around the World", artist: "Daft Punk", url_preview: "https://cdns-preview-a.dzcdn.net/stream/c-a2ce94cf0655f6cb526e94f5c046b7d5-6.mp3", playlist_id: playlist6.id)
 track27 = Track.new(title: "Sexy Boy", artist: "Air", url_preview: "https://cdns-preview-e.dzcdn.net/stream/c-eae6dede7f3d6501df832dc810c89476-6.mp3", playlist_id: playlist6.id)
@@ -85,8 +85,8 @@ track.save
 puts "Created #{track.title}"
 end
 
-Game.create(status: 0, user: user1 , playlist: playlist3)
-p Game.all.last
+# Game.create(status: 0, user: user1 , playlist: playlist3)
+# p Game.all.last
 
 puts "Finished..."
 
