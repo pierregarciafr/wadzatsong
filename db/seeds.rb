@@ -34,7 +34,7 @@ playlist1 = Playlist.new(name:"Classic Rock", picture:'classicrock.jpg')
 playlist2 = Playlist.new(name:"Variété française", picture:'french.jpg')
 playlist3 = Playlist.new(name:"Disney", picture:'disney.jpg')
 playlist4 = Playlist.new(name:"Années 90", picture:'90s.jpg')
-playlist5 = Playlist.new(name:"Rap", picture:'rapus.jpg')
+playlist5 = Playlist.new(name:"Dancefloor", picture:'rapus.jpg')
 playlist6 = Playlist.new(name:"French touch", picture:'frenchtouch.jpg')
 
 [ playlist1, playlist2, playlist3, playlist4, playlist5, playlist6].each do |playlist|
@@ -66,11 +66,11 @@ track18 = Track.new(title: "Baby One More Time", artist: "Britney Spears", url_p
 track19 = Track.new(title: "Wannabe", artist: "Spice Girls", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-d6ef220200cf4b1a3fc7b5093dd403a9-7.mp3", playlist_id: playlist4.id)
 track20 = Track.new(title: "Smells Like Teen Spirit", artist: "Nirvana", url_preview: "https://cdns-preview-3.dzcdn.net/stream/c-358eb79e55e30b4719d976e15d41e230-6.mp3", playlist_id: playlist4.id)
 
-track21 = Track.new(title: "California Love", artist: "Tupac", url_preview: "https://cdns-preview-4.dzcdn.net/stream/c-40b01772972d99e577c98d3a41d3d24e-2.mp3", playlist_id: playlist5.id)
-track22 = Track.new(title: "The Real Slim Shady", artist: "Eminem", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-d28ee67c24d60e740866c7709d772f55-10.mp3", playlist_id: playlist5.id)
-track23 = Track.new(title: "Je danse le Mia", artist: "I am", url_preview: "https://cdns-preview-3.dzcdn.net/stream/c-30e264852c9f592ae6cdc0edfdefee05-14.mp3", playlist_id: playlist5.id)
-track24 = Track.new(title: "Pose ton Gun", artist: "Suprème N.T.M.", url_preview: "https://cdns-preview-1.dzcdn.net/stream/c-1c281fcb5b744461382588cb9579cf0e-3.mp3", playlist_id: playlist5.id)
-track25 = Track.new(title: "Walk This Way", artist: "Run DMC", url_preview: "https://cdns-preview-b.dzcdn.net/stream/c-b774279388cbde8bddee1415c77a14cc-3.mp3", playlist_id: playlist5.id)
+track21 = Track.new(title: "Dancing queen", artist: "Abba", url_preview: "https://cdns-preview-8.dzcdn.net/stream/c-8708a478849e903d5065f4c9caaf8641-13.mp3", playlist_id: playlist5.id)
+track22 = Track.new(title: "Je danse le Mia", artist: "I am", url_preview: "https://cdns-preview-3.dzcdn.net/stream/c-30e264852c9f592ae6cdc0edfdefee05-14.mp3", playlist_id: playlist5.id)
+track23 = Track.new(title: "It's raining men", artist: "Weather girls", url_preview: "https://cdns-preview-b.dzcdn.net/stream/c-b784a20409fe9d1c6bf6e7f312b71788-4.mp3", playlist_id: playlist5.id)
+track24 = Track.new(title: "Ces soirées la", artist: "Yannick", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-d4f21daccee31ed7ef3ed24fccceea95-4.mp3", playlist_id: playlist5.id)
+track25 = Track.new(title: "Baby One More Time", artist: "Britney Spears", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-cd9497093c088d198b226e058044787d-4.mp3", playlist_id: playlist5.id)
 
 track26 = Track.new(title: "Around the World", artist: "Daft Punk", url_preview: "https://cdns-preview-a.dzcdn.net/stream/c-a2ce94cf0655f6cb526e94f5c046b7d5-6.mp3", playlist_id: playlist6.id)
 track27 = Track.new(title: "Sexy Boy", artist: "Air", url_preview: "https://cdns-preview-e.dzcdn.net/stream/c-eae6dede7f3d6501df832dc810c89476-6.mp3", playlist_id: playlist6.id)
