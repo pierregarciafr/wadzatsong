@@ -85,8 +85,8 @@ track.save
 puts "Created #{track.title}"
 end
 
-Game.create(status: 0, user: user1 , playlist: playlist3)
-p Game.all.last
+# Game.create(status: 0, user: user1 , playlist: playlist3)
+# p Game.all.last
 
 puts "Finished..."
 
