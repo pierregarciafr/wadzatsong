@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
   def create
     # @game = policy_scope(Game.find(params[:id]))
-    Answer.destroy_all
+    # Answer.destroy_all
     @game = Game.new(user: current_user)
     authorize @game
     @game.status = :created
