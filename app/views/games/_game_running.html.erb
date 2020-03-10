@@ -1,6 +1,6 @@
 <ul class="list-inline d-flex align-items-center">
   <!--          creer une data-audio-id = user.id -->
-  <li class="d-none list-inline-item audio" data-time="<%= @answering_time %>">
+  <li class=" list-inline-item audio" data-time="<%= @answering_time %>">
     <%= audio_tag("#{@current_track.url_preview}", autoplay: false, controls: true, id:"song") %>
   </li>
 </ul>
