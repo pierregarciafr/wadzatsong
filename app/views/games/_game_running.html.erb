@@ -25,11 +25,11 @@
 
 </div>
 
-<div class="d-none ghost" data-answer="<%= @current_track.artist %>">
+<div class="ghost" data-answer="<%= @current_track.artist %>" data-user="<%=  %>">
   <%= simple_form_for [ @game, @answer ], html: { id: :ghost_new_answer } do |f| %>
     <%= f.input :content, autofocus: true, label: false, input_html: { id: 'ghost_answer_content' }%>
     <%= f.hidden_field :track, value: @current_track.id %>
-    <%= f.hidden_field :answering_time, value: params[:current_time] %>
+    <%#= f.hidden_field :answering_time, value: params[:current_time] %>
     <%= f.submit "Réponse ?", class: 'btn btn-flat', id:"ghost_answer"%>
   <% end %>
 </div>
