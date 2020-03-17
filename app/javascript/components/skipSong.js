@@ -4,7 +4,6 @@ const skipSong = () => {
   if (ghostForm){
     if (song) {
       song.addEventListener("ended", () => {
-        console.log("!!! test skip song!!!")
         const ghostInputField = document.getElementById('ghost_answer_content');
         const answer = document.querySelector('.ghost');
         ghostInputField.value = answer.dataset.answer;
