@@ -30,6 +30,7 @@ import { removeBubbleBad } from '../components/bubble';
 import { SpeechToText } from '../components/speechtotext';
 import { countDown } from '../components/countDown';
 import { songDelay } from '../components/songDelay';
+import { skipSong } from '../components/skipSong';
 // import { getCode } from '../plugins/fetch';
 
 
@@ -62,7 +63,7 @@ document.addEventListener('turbolinks:load', () => {
     console.log("test currenttime");
     song.currentTime = audio.dataset.time;
   }
-
+  skipSong();
 })
   SpeechToText ();
 
