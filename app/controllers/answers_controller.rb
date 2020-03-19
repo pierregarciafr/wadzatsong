@@ -4,13 +4,18 @@ class AnswersController < ApplicationController
     @game = Game.find(params[:game_id])
     @answer = Answer.new(params_answer)
     @answer.game = @game
-    @answer.user = current_user
+    if @answer.answering_time.nil?
+      @answer.user = User.first
+    else
+      @answer.user = current_user
+    end
     @answer.track = @track
     @answer.save
     @tracks = @game.playlist.tracks
     @user = current_user
     @playlist = @game.playlist
     check_answer(@answer, @track)
+    @ghost = User.first
 
     if @answer.save
       @game.running!

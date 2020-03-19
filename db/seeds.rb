@@ -17,15 +17,15 @@ Playlist.destroy_all
 
 
 puts "Creating users..."
+user1 = User.new(password: "password", pseudo: "Ghost", email: "ghost@guesswhat.live")
+user2 = User.new(password: "password", pseudo: "Mick", email: "mick@jagger.com")
+user3 = User.new(password: "password", pseudo: "Gaga", email: "lady@gaga.com")
+user4 = User.new(password: "password", pseudo: "Ludo", email: "ludo@guesswhat.live")
+user5 = User.new(password: "password", pseudo: "Pierre", email: "pierre@guesswhat.live")
+user6 = User.new(password: "password", pseudo: "Estelle", email: "estelle@guesswhat.live")
+user7 = User.new(password: "password", pseudo: "Bertrand", email: "bertrand@guesswhat.live")
 
-user1 = User.new(password: "password", pseudo: "Mick", email: "mick@jagger.com")
-user2 = User.new(password: "password", pseudo: "Gaga", email: "lady@gaga.com")
-user3 = User.new(password: "password", pseudo: "Ludo", email: "ludo@guesswhat.live")
-user4 = User.new(password: "password", pseudo: "Pierre", email: "pierre@guesswhat.live")
-user5 = User.new(password: "password", pseudo: "Estelle", email: "estelle@guesswhat.live")
-user6 = User.new(password: "password", pseudo: "Bertrand", email: "bertrand@guesswhat.live")
-
-[ user1, user2, user3, user4, user5, user6 ].each do |user|
+[ user1, user2, user3, user4, user5, user6, user7 ].each do |user|
   user.save
   puts "Created #{user.pseudo}"
 end

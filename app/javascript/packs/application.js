@@ -30,6 +30,7 @@ import { removeBubbleBad } from '../components/bubble';
 import { SpeechToText } from '../components/speechtotext';
 import { countDown } from '../components/countDown';
 import { songDelay } from '../components/songDelay';
+import { skipSong } from '../components/skipSong';
 // import { getCode } from '../plugins/fetch';
 
 
@@ -42,26 +43,24 @@ document.addEventListener('turbolinks:load', () => {
   removeBubbleGood();
   removeBubbleBad();
   if (countDownElt) {
-
     countDown();
   }
   songDelay();
 
-const buzz = document.getElementById("buzz");
-if (buzz) {
-  console.log(buzz);
-  buzz.addEventListener('click', () => {
-    const song = document.getElementById("song");
-    const time = Math.floor(song.currentTime);
-    const current_time = `?current_time=${time}`;
-    buzz.href = buzz.href + current_time;
-    console.log("buzz")
-    console.log(buzz.href);
-    // mettre le player en pause
-    // lancer la callback de saisie vocale
-
-  })
-}
+  const buzz = document.getElementById("buzz");
+  if (buzz) {
+    console.log(buzz);
+    buzz.addEventListener('click', () => {
+      const song = document.getElementById("song");
+      const time = Math.floor(song.currentTime);
+      const current_time = `?current_time=${time}`;
+      buzz.href = buzz.href + current_time;
+      console.log("buzz")
+      console.log(buzz.href);
+      // mettre le player en pause
+      // lancer la callback de saisie vocale
+    })
+  }
 
   const audio = document.querySelector(".audio");
   const song = document.getElementById("song");
@@ -69,7 +68,7 @@ if (buzz) {
     song.currentTime = audio.dataset.time;
   }
 
-
+  skipSong();
 })
   SpeechToText ();
 
