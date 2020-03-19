@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
   def create
     # @game = policy_scope(Game.find(params[:id]))
-    Answer.destroy_all
+    # Answer.destroy_all
     @game = Game.new(user: current_user)
     authorize @game
     @game.status = :created
@@ -23,7 +23,7 @@ class GamesController < ApplicationController
     @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
     authorize @game
     if @current_track
-      if @current_track.answers.empty? || @current_track.answers.last == true
+      if @current_track.answers.empty? || @current_track.answers.last.status == true
         @answering_time = 0
       else
         @answering_time = @current_track.answers.last.answering_time
@@ -45,7 +45,7 @@ class GamesController < ApplicationController
     if @game.participants.any?
       @answers = @game.answers
       @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
-      if @current_track.answers.empty? || @current_track.answers.last == true
+      if @current_track.answers.empty? || @current_track.answers.last.status == true
         @answering_time = 0
       else
         @answering_time = @current_track.answers.last.answering_time
@@ -85,7 +85,7 @@ class GamesController < ApplicationController
       @answers = @game.answers
 
       @current_track = @game.playlist.tracks.where.not(id: @answers.where(status: true).pluck(:track_id)).first
-      if @current_track.answers.empty? || @current_track.answers.last == true
+      if @current_track.answers.empty? || @current_track.answers.last.status == true
         @answering_time = 0
       else
         @answering_time = @current_track.answers.last.answering_time
