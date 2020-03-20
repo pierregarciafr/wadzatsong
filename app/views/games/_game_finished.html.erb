@@ -85,7 +85,7 @@
       <% game_guess_track = guess_track.where(game_id:@game.id) %>
       <% game_guess_track.each do |answer| %>
             <div class="user-result <%= answer.user == current_user ? "green" : ""%>" data-user="<%= answer.user.id  %>">
-              <% if answer.pseudo == "ghost" %>
+              <% if answer.user.pseudo == "Ghost" %>
                 <p> - </p>
               <% else %>
                 <p><%= answer.user.pseudo %> </p>
