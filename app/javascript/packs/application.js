@@ -60,7 +60,6 @@ document.addEventListener('turbolinks:load', () => {
   const audio = document.querySelector(".audio");
   const song = document.getElementById("song");
   if (song) {
-    console.log("test currenttime");
     song.currentTime = audio.dataset.time;
   }
   skipSong();
