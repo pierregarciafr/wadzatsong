@@ -85,19 +85,23 @@
       <% game_guess_track = guess_track.where(game_id:@game.id) %>
       <% game_guess_track.each do |answer| %>
             <div class="user-result <%= answer.user == current_user ? "green" : ""%>" data-user="<%= answer.user.id  %>">
-              <p><%= answer.user.pseudo %> </p>
-              <% if answer.answering_time < 2 %>
-                <p>+ 500 </p>
-              <% elsif answer.answering_time < 5 %>
-                <p>+ 350 </p>
-              <% elsif answer.answering_time < 8 %>
-                <p>+ 175 </p>
-              <% elsif answer.answering_time < 11 %>
-                <p>+ 70 </p>
-              <% elsif answer.answering_time < 15 %>
-                <p>+ 35 </p>
+              <% if answer.pseudo == "ghost" %>
+                <p> - </p>
               <% else %>
-                <p>+ 10 </p>
+                <p><%= answer.user.pseudo %> </p>
+                <% if answer.answering_time < 2 %>
+                  <p>+ 500 </p>
+                <% elsif answer.answering_time < 5 %>
+                  <p>+ 350 </p>
+                <% elsif answer.answering_time < 8 %>
+                  <p>+ 175 </p>
+                <% elsif answer.answering_time < 11 %>
+                  <p>+ 70 </p>
+                <% elsif answer.answering_time < 15 %>
+                  <p>+ 35 </p>
+                <% else %>
+                  <p>+ 10 </p>
+                <% end %>
               <% end %>
             </div>
         <% end %> <!-- fin de |answer| do -->
