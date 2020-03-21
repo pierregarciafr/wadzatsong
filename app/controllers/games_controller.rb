@@ -2,7 +2,6 @@ class GamesController < ApplicationController
 
   def create
     # @game = policy_scope(Game.find(params[:id]))
-    # Answer.destroy_all
     @game = Game.new(user: current_user)
     authorize @game
     @game.status = :created
@@ -39,6 +38,7 @@ class GamesController < ApplicationController
 
   def running
     @game = Game.find(params[:id])
+    @answer = Answer.new
     @user = current_user
     @game.running!
     @playlist = @game.playlist
@@ -59,7 +59,8 @@ class GamesController < ApplicationController
         locals: {
           answering_time: @answering_time,
           current_track: @current_track,
-          game: @game
+          game: @game,
+          answer: @answer
         }),
       navbar: render_to_string(
         partial: "navbar",
