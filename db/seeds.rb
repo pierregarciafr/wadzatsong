@@ -42,11 +42,11 @@ playlist6 = Playlist.new(name:"French touch", picture:'frenchtouch.jpg')
   puts "Created #{playlist.name}"
 end
 
-track1 = Track.new(title: "Under Pressure", artist: "Queen", url_preview: "https://cdns-preview-1.dzcdn.net/stream/c-1fd0525f2f9cbf39468204210e8c1610-11.mp3", playlist_id: playlist1.id)
-track2 = Track.new(title: "Another Brick In The Wall", artist: "Pink Floyd", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-cad0610e7785b919b2771dd13fb329ef-3.mp3", playlist_id: playlist1.id)
-track3 = Track.new(title: "London Calling", artist: "The Clash", url_preview: "https://cdns-preview-f.dzcdn.net/stream/c-feb1aded79fa066a1355c2c4ebe40bfb-2.mp3", playlist_id: playlist1.id)
-track4 = Track.new(title: "Go Your Own Way", artist: "Fleetwood Mac", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-c4ecacbbdb8880240d2796565e060bdf-8.mp3", playlist_id: playlist1.id)
-track5 = Track.new(title: "Gimme Shelter", artist: "The Rolling Stones", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-debe09adb05b7e628c7ad2efea3d74cd-6.mp3", playlist_id: playlist1.id)
+# track1 = Track.new(title: "Under Pressure", artist: "Queen", url_preview: "https://cdns-preview-1.dzcdn.net/stream/c-1fd0525f2f9cbf39468204210e8c1610-11.mp3", playlist_id: playlist1.id)
+# track2 = Track.new(title: "Another Brick In The Wall", artist: "Pink Floyd", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-cad0610e7785b919b2771dd13fb329ef-3.mp3", playlist_id: playlist1.id)
+# track3 = Track.new(title: "London Calling", artist: "The Clash", url_preview: "https://cdns-preview-f.dzcdn.net/stream/c-feb1aded79fa066a1355c2c4ebe40bfb-2.mp3", playlist_id: playlist1.id)
+# track4 = Track.new(title: "Go Your Own Way", artist: "Fleetwood Mac", url_preview: "https://cdns-preview-c.dzcdn.net/stream/c-c4ecacbbdb8880240d2796565e060bdf-8.mp3", playlist_id: playlist1.id)
+# track5 = Track.new(title: "Gimme Shelter", artist: "The Rolling Stones", url_preview: "https://cdns-preview-d.dzcdn.net/stream/c-debe09adb05b7e628c7ad2efea3d74cd-6.mp3", playlist_id: playlist1.id)
 
 track6 = Track.new(title: "La groupie du pianiste", artist: "Michel Berger", url_preview: "https://cdns-preview-f.dzcdn.net/stream/c-fc071a2b3bc797a9793552c60e461806-3.mp3", playlist_id: playlist5.id)
 track7 = Track.new(title: "Dejeuner en paix", artist: "Stephan Eicher", url_preview: "https://cdns-preview-6.dzcdn.net/stream/c-660a5b28ca451ba42b1c38a89d93dfad-5.mp3", playlist_id: playlist5.id)
