@@ -28,7 +28,7 @@
     <% RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"]) %>
     <%# classicRock = RSpotify::Playlist.search('classic rock').first.tracks(limit:10) %>
     <% french = RSpotify::Recommendations.generate(limit: 100, seed_genres: ["french"]).tracks %>
-    <%# french.shuffle %>
+    <% french.shuffle %>
     <% french_playlist = [] %>
     <% french.each do |track| %>
       <% result = RSpotify::Track.search("#{track.name}") %>
