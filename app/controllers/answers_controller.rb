@@ -71,7 +71,7 @@ class AnswersController < ApplicationController
   private
 
   def check_answer(answer, track)
-     if (String::Similarity.cosine @answer.content.downcase, @track.title.downcase) >= 0.8 || (String::Similarity.cosine @answer.content.downcase, @track.artist.downcase) >= 0.8
+     if (String::Similarity.cosine @answer.content.downcase, @track.title.downcase) >= 0.75 || (String::Similarity.cosine @answer.content.downcase, @track.artist.downcase) >= 0.8
      answer.status = true
     else
       answer.status = false
