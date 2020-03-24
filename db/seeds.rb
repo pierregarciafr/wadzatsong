@@ -33,7 +33,7 @@ end
 playlist1 = Playlist.new(name:"Rock", picture:'classicrock.jpg')
 playlist2 = Playlist.new(name:"Dancefloor", picture:'rapus.jpg')
 playlist3 = Playlist.new(name:"Disney", picture:'disney.jpg')
-playlist4 = Playlist.new(name:"Rap", picture:'90s.jpg')
+playlist4 = Playlist.new(name:"R-N-B", picture:'90s.jpg')
 playlist5 = Playlist.new(name:"French", picture:'french.jpg')
 playlist6 = Playlist.new(name:"Electro", picture:'frenchtouch.jpg')
 

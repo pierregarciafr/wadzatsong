@@ -137,24 +137,32 @@ class GamesController < ApplicationController
 
 
   def set_playlist(playlist)
-    if playlist.name == "Classic Rock"
-      rock_playlist
+    if playlist.name == "Rock"
+      set_playlist(Rock)
     elsif playlist.name == "Variété française"
       french_playlist
     end
   end
 
-  def rock_playlist
+  def set_playlist(name)
     RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
-    classicRock = RSpotify::Recommendations.generate(limit: 100, seed_genres: ["rock"]).tracks
-    classic_rock_playlist = []
-    classicRock.each do |track|
-      if track.popularity > 70 && track.preview_url
-        classic_rock_playlist << track
-      end
+    result_array = RSpotify::Recommendations.generate(limit: 100, seed_genres: ["#{name.downcase}"]).tracks
+    result_array.shuffle
+    get_tracks(result_array)
+  end
+
+  def get_tracks(result)
+    playlist = []
+    result.each do |track|
+      track_result = RSpotify::Track.search("#{track.name}")
+        if track_result.first
+          if track_result.first.preview_url != nil && track_result.first.popularity > 50
+            new_playlist << track_result.first
+          end
+        end
     end
-    new_playlist = Playlist.create(name:"Classic Rock")
-    classic_rock_playlist.first(5).each do |track|
+    new_playlist = Playlist.create
+    playlist.first(5).each do |track|
       new_track = Track.create(title: "#{track.name}", artist: "#{track.artists[0].name}", url_preview: "#{track.preview_url}")
       new_track.playlist_id = new_playlist.id
       new_track.save
@@ -162,23 +170,41 @@ class GamesController < ApplicationController
     @game.playlist = new_playlist
   end
 
-  def french_playlist
-    RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
-    french = RSpotify::Recommendations.generate(limit: 100, seed_genres: ["french"]).tracks
-    french_playlist = []
-    french.each do |track|
-      if track.popularity > 65 && track.preview_url
-        french_playlist << track
-      end
-    end
-    new_playlist = Playlist.create(name:"Variété Française")
-    french_playlist.first(5).each do |track|
-      new_track = Track.create(title: "#{track.name}", artist: "#{track.artists[0].name}", url_preview: "#{track.preview_url}")
-      new_track.playlist_id = new_playlist.id
-      new_track.save
-    end
-    @game.playlist = new_playlist
-  end
+  # def rock_playlist
+  #   RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
+  #   classicRock = RSpotify::Recommendations.generate(limit: 100, seed_genres: ["rock"]).tracks
+  #   classic_rock_playlist = []
+  #   classicRock.each do |track|
+  #     if track.popularity > 70 && track.preview_url
+  #       classic_rock_playlist << track
+  #     end
+  #   end
+  #   new_playlist = Playlist.create(name:"Classic Rock")
+  #   classic_rock_playlist.first(5).each do |track|
+  #     new_track = Track.create(title: "#{track.name}", artist: "#{track.artists[0].name}", url_preview: "#{track.preview_url}")
+  #     new_track.playlist_id = new_playlist.id
+  #     new_track.save
+  #   end
+  #   @game.playlist = new_playlist
+  # end
+
+  # def french_playlist
+  #   RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
+  #   french = RSpotify::Recommendations.generate(limit: 100, seed_genres: ["french"]).tracks
+  #   french_playlist = []
+  #   french.each do |track|
+  #     if track.popularity > 65 && track.preview_url
+  #       french_playlist << track
+  #     end
+  #   end
+  #   new_playlist = Playlist.create(name:"Variété Française")
+  #   french_playlist.first(5).each do |track|
+  #     new_track = Track.create(title: "#{track.name}", artist: "#{track.artists[0].name}", url_preview: "#{track.preview_url}")
+  #     new_track.playlist_id = new_playlist.id
+  #     new_track.save
+  #   end
+  #   @game.playlist = new_playlist
+  # end
 
   private
 
