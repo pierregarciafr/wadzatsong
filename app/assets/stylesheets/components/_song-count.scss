@@ -9,8 +9,8 @@ font-size: 12px;
 
   .flashit {
     color: white;
-    -webkit-animation: flash linear 0.7s ;
-    animation: flash linear 0.7s ;
+    -webkit-animation: flash linear 0.7s infinite;
+    animation: flash linear 0.7s infinite;
   }
   @-webkit-keyframes flash {
     0% { opacity: 1; }
