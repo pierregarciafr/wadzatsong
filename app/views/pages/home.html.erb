@@ -25,27 +25,7 @@
     </div>
     <h1>GUESS WHAT</h1>
     <p>SHARE MUSIC ANYWHERE</p>
-    <% RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"]) %>
-    <%# classicRock = RSpotify::Playlist.search('classic rock').first.tracks(limit:10) %>
-    <% french = RSpotify::Recommendations.generate(limit: 100, seed_genres: ["french"]).tracks %>
-    <% french.shuffle %>
-    <% french_playlist = [] %>
-    <% french.each do |track| %>
-      <% result = RSpotify::Track.search("#{track.name}") %>
-        <% if result.first %>
-          <% if result.first.preview_url != nil && result.first.popularity > 50 %>
-            <% french_playlist << result.first %>
-          <% end %>
-        <% end %>
-      <%# else %>
-        <%# if track.popularity > 65 && track.preview_url%>
-          <%# french_playlist << track %>
-        <%# end %>
-      <%# end %>
-    <% end %>
-    <% french_playlist.first(5).each do |track| %>
-        <p><%= track.name %>---<%= track.artists[0].name %>!!!!<%= track.preview_url %>/p>
-    <% end %>
+
   </div>
 
 
