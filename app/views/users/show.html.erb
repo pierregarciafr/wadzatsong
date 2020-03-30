@@ -11,3 +11,6 @@
 
 <% pourcent = (total_good_answers * 100) / total_tracks %>
 <h5>pourcentage de bonnes réponse: <%= pourcent %>%</h5>
+<% faster_answer = @user.answers.order("answering_time ASC").first %>
+
+<h5>réponse la plus rapide: <%= faster_answer.answering_time %>s - <%= faster_answer.track.artist %> - <%= faster_answer.track.title %></h5>
