@@ -122,26 +122,7 @@ class GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
     @game.playlist_id = params[:playlist_id]
-
-    if @game.playlist.name == "Classic Rock"
-      RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
-      # classicRock = RSpotify::Playlist.search('classic rock').first.tracks(limit:10)
-     classicRock = RSpotify::Recommendations.generate(limit: 100, seed_genres: ["rock"]).tracks
-     classic_rock_playlist = []
-     classicRock.each do |track|
-       if track.popularity > 65 && track.preview_url
-         classic_rock_playlist << track
-       end
-     end
-     new_playlist = Playlist.create(name:"Classic Rock", picture:'classicrock.jpg')
-     classic_rock_playlist.first(5).each do |track|
-      puts track.name
-      new_track = Track.create(title: "#{track.name}", artist: "#{track.artists[0].name}", url_preview: "#{track.preview_url}")
-      new_track.playlist_id = new_playlist.id
-      new_track.save
-     end
-     @game.playlist = new_playlist
-    end
+    get_playlist(@game.playlist.name)
 
     if @game.playlist_id != nil
         @game.save
@@ -154,8 +135,39 @@ class GamesController < ApplicationController
 
   end
 
-  private
+  def get_playlist(name)
+    RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
+    genre = name.downcase
+    result_array = RSpotify::Recommendations.generate(limit: 100, seed_genres: ["#{genre}"]).tracks
+    result_array.shuffle
+    get_tracks(result_array)
+  end
 
+  def get_tracks(result)
+    playlist = []
+    if @game.playlist.name == "French"
+      level = 50
+    else
+      level = 65
+    end
+    result.each do |track|
+      track_result = RSpotify::Track.search("#{track.name}")
+        if track_result.first
+          if track_result.first.preview_url != nil && track_result.first.popularity > level
+            playlist << track_result.first
+          end
+        end
+    end
+    new_playlist = Playlist.create(name:@game.playlist.name)
+    playlist.first(5).each do |track|
+      new_track = Track.create(title: "#{track.name}", artist: "#{track.artists[0].name}", url_preview: "#{track.preview_url}")
+      new_track.playlist_id = new_playlist.id
+      new_track.save
+    end
+    @game.playlist = new_playlist
+  end
+
+  private
 
   def game_params
     params.require(:game).permit(:status, :playlist_id)

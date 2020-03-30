@@ -30,12 +30,12 @@ user7 = User.new(password: "password", pseudo: "Bertrand", email: "bertrand@gues
   puts "Created #{user.pseudo}"
 end
 
-playlist1 = Playlist.new(name:"Classic Rock", picture:'classicrock.jpg')
-playlist2 = Playlist.new(name:"Dancefloor", picture:'rapus.jpg')
-playlist3 = Playlist.new(name:"Disney", picture:'disney.jpg')
-playlist4 = Playlist.new(name:"Années 90", picture:'90s.jpg')
-playlist5 = Playlist.new(name:"Variété française", picture:'french.jpg')
-playlist6 = Playlist.new(name:"French touch", picture:'frenchtouch.jpg')
+playlist1 = Playlist.new(name:"Rock", picture:'classicrock.jpg')
+playlist2 = Playlist.new(name:"Disco", picture:'90s.jpg')
+playlist3 = Playlist.new(name:"Pop", picture:'disney.jpg')
+playlist4 = Playlist.new(name:"R-N-B", picture:'rapus.jpg')
+playlist5 = Playlist.new(name:"French", picture:'french.jpg')
+playlist6 = Playlist.new(name:"Electro", picture:'frenchtouch.jpg')
 
 [ playlist1, playlist2, playlist3, playlist4, playlist5, playlist6].each do |playlist|
   playlist.save
