@@ -1,1 +1,13 @@
 <%= @user.pseudo %>
+<p>nombre de parties: <%= @user.games.count %></p>
+<p>nombre de bonnes réponses: <%= @user.answers.where(status: true).count %></p>
+<% total_good_answers = @user.answers.where(status: true).count %>
+<% total_tracks = 0 %>
+<% @user.games.each do |game| %>
+  <%= game.playlist.tracks.count %>
+  <% total_tracks += game.playlist.tracks.count %>
+<% end %>
+<p><%= total_tracks %></p>
+
+<% pourcent = (total_good_answers * 100) / total_tracks %>
+<h5>pourcentage de bonnes réponse: <%= pourcent %>%</h5>
