@@ -31,6 +31,7 @@ import { SpeechToText } from '../components/speechtotext';
 import { countDown } from '../components/countDown';
 import { songDelay } from '../components/songDelay';
 import { skipSong } from '../components/skipSong';
+import { flashSong } from '../components/flashSong';
 // import { getCode } from '../plugins/fetch';
 
 
@@ -40,6 +41,7 @@ confetti();
 
 document.addEventListener('turbolinks:load', () => {
   confetti();
+  flashSong();
   removeBubbleGood();
   removeBubbleBad();
   if (countDownElt) {
