@@ -51,7 +51,7 @@ document.addEventListener('turbolinks:load', () => {
   if (buzz) {
     buzz.addEventListener('click', () => {
     const song = document.getElementById("song");
-    const time = Math.floor(song.currentTime);
+    const time = parseFloat((song.currentTime).toFixed(2));
     const current_time = `?current_time=${time}`;
     buzz.href = buzz.href + current_time;
     })
