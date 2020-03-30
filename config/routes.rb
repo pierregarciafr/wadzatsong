@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :participations, only: [ :edit, :update ]
     resources :answers, only: [ :create, :show ]
   end
+  get "users/:id", to: "users#show"
   resources :participations, only: [ :new, :create, :show ]
 end
