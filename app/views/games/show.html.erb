@@ -32,21 +32,25 @@
           game: @game %>
 
         <% if @game.answers.any? %>
-          <% if @game.answers.last.status == true %>
+            <% if @game.answers.last.user.pseudo == "Ghost" %>
+              <% ghost_answers = "#{@game.answers.last.track.artist}, tu connais pas?", "Dommage... c'était #{@game.answers.last.track.title} de #{@game.answers.last.track.artist}"%>
+                <div class="speech-bubble-bad-answer animated">
+                <i class="far fa-times-circle fa-3x"></i>
+                <p><%= ghost_answers.sample %></p>
+              </div>
+            <% elsif @game.answers.last.status == true %>
               <% good_answers = ["Bien joué petit génie de la zik 🕺", "Yes ! #{@game.answers.last.track.artist}, moi aussi j'adore 😍", "Yes ! Je te veux dans ma team !"] %>
               <div class="speech-bubble-good-answer animated">
                 <i class="far fa-check-circle fa-3x"></i>
                 <p><%= good_answers.sample %></p>
               </div>
-              <% elsif @game.answers.last.status == false %>
+            <% else %>
               <% bad_answers = ["Même ma petite soeur connaît ça ! 😔", "#{@game.answers.last.content} ?? Sérieusement... 🙄", "#{@game.playlist.name}, c'est définitivement pas ton truc"] %>
               <div class="speech-bubble-bad-answer animated">
                 <i class="far fa-times-circle fa-3x"></i>
                 <p><%= bad_answers.sample %></p>
               </div>
-              <% else %>
-                <%= "nil" %>
-          <% end %>
+            <% end %>
         <% end %>
           <!-- fin de la section mise dans partial par Victor -->
       </div>
