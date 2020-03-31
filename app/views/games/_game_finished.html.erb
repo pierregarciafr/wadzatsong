@@ -1,17 +1,13 @@
-
-<!-- creer une classe Score pour calculer et archiver le score total -->
-
-
 <div class="dashboard-container text-center">
 
   <!-- mj_good : on récupère les bonnes réponses du maître du jeu... -->
   <!-- mj_game_good : ... pour la partie en cours -->
   <% mj_good = @game.user.answers.where(status:true) %>
   <% mj_game_good = mj_good.where(game_id:@game.id) %>
-  <% total_mj = 0 %>
 
+  <!-- Récupérer le total score qui correspond à ce game : @game.total_score -->
   <% mj_game_good.each do |answer| %>
-    <% total_mj += answer.score %>
+    <% @game.total_score += answer.score %>
   <% end %>
 
   <% total_player2 = 0 %>
@@ -24,11 +20,11 @@
     <% end %>
   <% end %>
 
-  <% if total_mj >= total_player2 %>
+  <% if @game.total_score >= total_player2 %>
     <i class="fas fa-crown fa-4x"></i>
     <br>
     <span class="particletext confetti"> <%= @game.user.pseudo %></span>
-    <p><%= total_mj %> points</p>
+    <p><%= @game.total_score %> points</p>
 
   <% else %> <%# elsif  @game.participants[0] %>
     <i class="fas fa-crown fa-4x"></i>
