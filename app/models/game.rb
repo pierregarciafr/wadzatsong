@@ -8,8 +8,13 @@ class Game < ApplicationRecord
   enum status: [ :created, :ready, :running, :paused, :finished ]
   validates :token, uniqueness: true
   before_validation :set_token
+  after_initialize :set_defaults, unless: :persisted?
 
   NUMBER_OF_ROUNDS = 5
+
+  def set_defaults
+    self.total_score ||= 0
+  end
 
   private
 
