@@ -74,12 +74,6 @@ class AnswersController < ApplicationController
     answer.status = (String::Similarity.cosine @answer.content.downcase, @track.title.downcase) >= 0.75 || (String::Similarity.cosine @answer.content.downcase, @track.artist.downcase) >= 0.8
     # pas de reponse => status = true (et pas compris pourquoi)
     answer.score = answer_scoring(answer)
-    # raise
-    #  if (String::Similarity.cosine @answer.content.downcase, @track.title.downcase) >= 0.75 || (String::Similarity.cosine @answer.content.downcase, @track.artist.downcase) >= 0.8
-    #  answer.status = true
-    # else
-    #   answer.status = false
-    # end
   end
 
   def params_answer
@@ -87,10 +81,10 @@ class AnswersController < ApplicationController
   end
 
   def answer_scoring(answer)
-    # raise
+
     case answer.status
     when true
-      return 0 if answer.answering_time.nil?
+      return 0 if answer.answering_time.nil? # cas si aucune réponse n'est donnée.
 
       if answer.answering_time < 2
         return 500
