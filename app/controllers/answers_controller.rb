@@ -71,40 +71,38 @@ class AnswersController < ApplicationController
   private
 
   def check_answer(answer, track)
-     if (String::Similarity.cosine @answer.content.downcase, @track.title.downcase) >= 0.75 || (String::Similarity.cosine @answer.content.downcase, @track.artist.downcase) >= 0.8
-     answer.status = true
-    else
-      answer.status = false
-    end
+    answer.status = (String::Similarity.cosine @answer.content.downcase, @track.title.downcase) >= 0.75 || (String::Similarity.cosine @answer.content.downcase, @track.artist.downcase) >= 0.8
+    # pas de reponse => status = true (et pas compris pourquoi)
+    answer.score = answer_scoring(answer)
   end
 
   def params_answer
     params.require(:answer).permit(:content, :answering_time)
   end
 
-  #   def create # remise en état rapide
-  #   @track = Track.find(params[:answer][:track])
-  #   @game = Game.find(params[:game_id])
-  #   @answer = Answer.new(params_answer)
-  #   @answer.game = @game
-  #   @answer.user = current_user
-  #   @answer.track = @track
-  #   @answer.save # remplacer par answersave = @answer.save ?
-  #   @tracks = @game.playlist.tracks
-  #   # @answer.status = check_answer(@answer, @track) # modif --- call of check_answer
-  #   # @answer.save # modif
+  def answer_scoring(answer)
 
-  #   if (@answer.content.downcase == @track.title.downcase) || (@answer.content.downcase == @track.artist.downcase)
-  #     @answer.status = true
-  #     @answer.save
-  #   else
-  #     @answer.status = false
-  #     @answer.save
-  #   end
-  #   @game.running! # --- modif
+    case answer.status
+    when true
+      return 0 if answer.answering_time.nil? # cas si aucune réponse n'est donnée.
 
-  #   redirect_to game_path(@game)
-  #   authorize @game
-
-  # end
+      if answer.answering_time < 2
+        return 500
+      elsif answer.answering_time < 5
+        return 350
+      elsif answer.answering_time < 8
+        return 175
+      elsif answer.answering_time < 11
+        return 70
+      elsif answer.answering_time < 15
+        return 35
+      else
+        return 10
+      end
+    when false
+      return 0
+    else
+      return 0
+    end
+  end
 end
