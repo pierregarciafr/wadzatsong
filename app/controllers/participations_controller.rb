@@ -57,7 +57,7 @@ class ParticipationsController < ApplicationController
   private
 
   def participation_params
-    params.require(:participation).permit(:token, :user, :game)
+    params.require(:participation).permit(:token, :user, :game, :total_score)
   end
 
 end
