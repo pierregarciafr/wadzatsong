@@ -124,6 +124,7 @@ class GamesController < ApplicationController
     @game.playlist_id = params[:playlist_id]
     new_playlist = Playlist.where(name:@game.playlist.name).last
     @game.playlist = new_playlist
+    PlaylistJob.perform_later(@game.playlist.name)
 
     if @game.playlist_id != nil
         @game.save
