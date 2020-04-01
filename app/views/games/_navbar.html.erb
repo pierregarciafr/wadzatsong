@@ -14,9 +14,8 @@
   <!-- notif good answers -->
   <div class="d-flex justify-content-around align-items-center players-all">
     <div class="d-flex justify-content-center align-items-center">
-      <%= link_to "#{@game.user.pseudo.chars.first.capitalize}", user_path(@game.user), class:"players" %>
-      <!-- <div class="players"> --><%#= @game.user.pseudo.chars.first.capitalize %>
-      <!-- </div> -->
+      <div class="players"><%= @game.user.pseudo.chars.first.capitalize %>
+      </div>
     </div>
     <% if @game.participants[0] %>
       <div class="players"><%= @game.participants[0].pseudo.chars.first.capitalize %>
