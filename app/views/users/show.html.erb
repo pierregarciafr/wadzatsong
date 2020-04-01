@@ -1,0 +1,47 @@
+<%= @user.pseudo %>
+<p>nombre de parties: <%= @user.games.count %></p>
+<p>nombre de bonnes réponses: <%= @user.answers.where(status: true).count %></p>
+<% total_good_answers = @user.answers.where(status: true).count %>
+<% total_tracks = 0 %>
+<% @user.games.each do |game| %>
+  <% game.playlist.tracks.count %>
+  <% total_tracks += game.playlist.tracks.count %>
+<% end %>
+<p><%# total_tracks %></p>
+
+<% pourcent = (total_good_answers * 100) / total_tracks %>
+<h5>pourcentage de bonnes réponse: <%= pourcent %>%</h5>
+
+<% faster_answer = @user.answers.order("answering_time ASC").first %>
+<h5>réponse la plus rapide: <%= faster_answer.answering_time %>s - <%= faster_answer.track.artist %> - <%= faster_answer.track.title %></h5>
+
+<!-- <h6>Pourcentage de bonnes réponses par thèmes :</h6> -->
+<%# rock = Playlist.where(name:"Classic Rock") %>
+<%# dance = Playlist.where(name:"Dancefloor") %>
+<%# disney = Playlist.where(name:"Disney") %>
+<%# nines = Playlist.where(name:"Années 90") %>
+<%# french = Playlist.where(name:"Variété française") %>
+<%# electro = Playlist.where(name:"French touch") %>
+
+
+<%# all_rock = @user.games.where(playlist_id:rock[0].id) %>
+<%# all_dance = @user.games.where(playlist_id:dance[0].id) %>
+<%# all_disney = @user.games.where(playlist_id:disney[0].id) %>
+<%# all_nines = @user.games.where(playlist_id:nines[0].id) %>
+<%# all_french = @user.games.where(playlist_id:french[0].id) %>
+<%# all_electro = @user.games.where(playlist_id:electro[0].id) %>
+
+
+<%# total_french_tracks = 0 %>
+<%# total_french_good_answers = 0 %>
+<%# all_french.each do |game| %>
+  <%# game.playlist.tracks.count %>
+  <%# total_french_tracks += game.playlist.tracks.count %>
+  <%# good_answers = game.answers.where(status:true) %>
+  <%# user_good_answers = good_answers.where(user_id:@user.id).count %>
+  <%# total_french_good_answers += user_good_answers %>
+<%# end %>
+
+<%# french_pourcent = (total_french_good_answers * 100) / total_french_tracks %>
+<p>FRENCH : <%#= french_pourcent %>%</p>
+
