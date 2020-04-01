@@ -3,7 +3,12 @@
     <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
   </p> -->
   <div class="nav-item dropdown text-right w-100">
-    <i class="fas fa-bars dropdown-toggle mr-3 mt-3 text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></i>
+    <% if user_signed_in? %>
+      <div class="user-menu mt-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><%= @user.pseudo.chars.first.capitalize %>
+      </div>
+    <% else %>
+      <i class="fas fa-bars dropdown-toggle mr-3 mt-3 text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></i>
+    <% end %>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
       <% if user_signed_in? %>
       <%= link_to "dashboard", user_path(@user), class:"nav-link" %>

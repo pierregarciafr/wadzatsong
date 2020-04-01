@@ -28,3 +28,18 @@
 #homepage p {
   color:white;
 }
+
+.user-menu {
+  background-color: white;
+  color: #bc4e9c;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 1rem;
+}
+
