@@ -3,5 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @game = Game.new(user: current_user)  if user_signed_in?
+    @user = current_user
   end
 end

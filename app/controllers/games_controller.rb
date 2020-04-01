@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
   def create
     # @game = policy_scope(Game.find(params[:id]))
-    @game = Game.new(user: current_user)
+    @game = Game.new(user: current_user, total_score: 0)
     authorize @game
     @game.status = :created
     @game.save
@@ -172,7 +172,7 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:status, :playlist_id)
+    params.require(:game).permit(:status, :playlist_id, :total_score)
   end
 
 end

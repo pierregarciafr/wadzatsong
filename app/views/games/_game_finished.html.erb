@@ -1,55 +1,31 @@
-
 <div class="dashboard-container text-center">
+
+  <!-- mj_good : on récupère les bonnes réponses du maître du jeu... -->
+  <!-- mj_game_good : ... pour la partie en cours -->
   <% mj_good = @game.user.answers.where(status:true) %>
   <% mj_game_good = mj_good.where(game_id:@game.id) %>
-  <% total_mj = 0 %>
+
+  <!-- Récupérer le total score qui correspond à ce game : @game.total_score -->
   <% mj_game_good.each do |answer| %>
-    <% if answer %>
-      <% if answer.answering_time < 2  %>
-        <% total_mj += 500 %>
-      <% elsif answer.answering_time < 5  %>
-        <% total_mj += 350 %>
-      <% elsif answer.answering_time < 8 %>
-        <% total_mj += 175 %>
-      <% elsif answer.answering_time < 11 %>
-        <% total_mj += 70 %>
-      <% elsif answer.answering_time < 15 %>
-        <% total_mj += 35 %>
-      <% else%>
-        <% total_mj += 10 %>
-      <% end %>
-    <% end %>
+    <% @game.total_score += answer.score %>
   <% end %>
 
   <% total_player2 = 0 %>
+
   <% if @game.participants[0]%>
     <% player2_good = @game.participants[0].answers.where(status:true) %>
     <% player2_game_good = player2_good.where(game_id:@game.id) %>
     <% player2_game_good.each do |answer| %>
-      <% if answer %>
-        <% if answer.answering_time < 2  %>
-          <% total_player2 += 500 %>
-        <% elsif answer.answering_time < 5  %>
-          <% total_player2 += 350 %>
-        <% elsif answer.answering_time < 8 %>
-          <% total_player2 += 175 %>
-        <% elsif answer.answering_time < 11 %>
-          <% total_player2 += 70 %>
-        <% elsif answer.answering_time < 15 %>
-          <% total_player2 += 35 %>
-        <% else%>
-          <% total_player2 += 10 %>
-        <% end %>
-      <% end %>
+      <% total_player2 += answer.score %>
     <% end %>
   <% end %>
 
-
-  <% if total_mj >= total_player2 %>
+  <% if @game.total_score >= total_player2 %>
     <i class="fas fa-crown fa-4x"></i>
     <br>
     <span class="particletext confetti"> <%= @game.user.pseudo %></span>
-    <p><%= total_mj %> points</p>
+    <p><%= @game.total_score %> points</p>
+
   <% else %> <%# elsif  @game.participants[0] %>
     <i class="fas fa-crown fa-4x"></i>
     <br>
@@ -59,55 +35,39 @@
   <% end %>
 </div>
 
-
-
     <!-- <div class="album-photo" style="background-image: url(<%#= result[0].album.images[0]["url"] %>)" >
     </div> -->
 
 <!-- ---------------- -->
 
-
 <div class="mx-2" >
-<% RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"]) %>
+  <% RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"]) %>
   <% @game.playlist.tracks.each do |track| %>
     <% result = RSpotify::Track.search("#{track.title}") %>
     <div class="card-song">
       <img src="<%= result[0].album.images[0]["url"] %>"/>
     <div class="card-song-infos">
-     <h2><%= track.title %></h2>
-     <p><%= track.artist %></p>
+      <h2><%= track.title %></h2>
+      <p><%= track.artist %></p>
     </div>
     <div class="result text-right">
-     <p><%#= User.last.pseudo %></p>
-     <p class="points">
-<!--       <tr > -->
-      <% guess_track = track.answers.where(status:true) %>
-      <% game_guess_track = guess_track.where(game_id:@game.id) %>
-      <% game_guess_track.each do |answer| %>
-            <div class="user-result <%= answer.user == current_user ? "green" : ""%>" data-user="<%= answer.user.id  %>">
-              <% if answer.user.pseudo == "Ghost" %>
-                <p> - </p>
-              <% else %>
-                <p><%= answer.user.pseudo %> </p>
-                <% if answer.answering_time < 2 %>
-                  <p>+ 500 </p>
-                <% elsif answer.answering_time < 5 %>
-                  <p>+ 350 </p>
-                <% elsif answer.answering_time < 8 %>
-                  <p>+ 175 </p>
-                <% elsif answer.answering_time < 11 %>
-                  <p>+ 70 </p>
-                <% elsif answer.answering_time < 15 %>
-                  <p>+ 35 </p>
-                <% else %>
-                  <p>+ 10 </p>
-                <% end %>
-              <% end %>
-            </div>
+      <p><%#= User.last.pseudo %></p>
+      <p class="points">
+        <!-- AFFICHAGE DES SCORES (LA HAUT C'EST LE CALCUL DU SCORE TOTAL) -->
+        <% guess_track = track.answers.where(status:true) %>
+        <% game_guess_track = guess_track.where(game_id:@game.id) %>
+        <% game_guess_track.each do |answer| %>
+          <div class="user-result <%= answer.user == current_user ? "green" : ""%>" data-user="<%= answer.user.id  %>">
+            <% if answer.user.pseudo == "Ghost" %>
+              <p> - </p>
+            <% else %>
+              <p><%= answer.user.pseudo %> </p>
+                <%= answer.score %>
+            <% end %>
+          </div>
         <% end %> <!-- fin de |answer| do -->
-<!--          </tr> -->
-     </p>
-    </div>
+      </p>
+      </div>
     <% link = result[0].album.external_urls["spotify"] %>
     <%= link_to "#{link}", target: :_blank do %>
       <i class="fab fa-spotify spotify"></i>
@@ -117,13 +77,13 @@
 </div>
 
 <!-- bouton rejouer -->
-  <div class="replay">
-    <div class="text-center mt-5">
-      <% @game=Game.new(user: current_user) %>
-      <%= simple_form_for @game do |f| %>
-        <%= f.submit "Rejouer", class: "btn-home" %>
-      <% end %>
-    </div>
+<div class="replay">
+  <div class="text-center mt-5">
+    <% @game = Game.new(user: current_user) %>
+    <%= simple_form_for @game do |f| %>
+      <%= f.submit "Rejouer", class: "btn-home" %>
+    <% end %>
   </div>
+</div>
 
 
