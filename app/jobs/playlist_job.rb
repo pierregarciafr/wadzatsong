@@ -24,8 +24,8 @@ class PlaylistJob < ApplicationJob
       level = 70
       genres = ["east coast hip hop", "west coast rap" "gangster rap", "hardcore hip hop", "hip hop", "rap"]
     else
-      level = 70
-      genres = ["electro", "alternative dance", "new rave", "electro house", "electronica"]
+      level = 40
+      genres = ["electro", "alternative dance", "new rave", "electro house", "electronica", "deep euro house", "new french touch", "tropical house"]
     end
 
     result_array.each do |track|
@@ -43,7 +43,9 @@ class PlaylistJob < ApplicationJob
       new_track.playlist_id = new_playlist.id
       new_track.save
     end
-
+    if new_playlist.tracks.count < 5
+      perform(name)
+    end
   end
 end
 
