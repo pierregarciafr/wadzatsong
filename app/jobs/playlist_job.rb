@@ -9,15 +9,20 @@ class PlaylistJob < ApplicationJob
     result_array.shuffle
     playlist = []
     if name == "French"
-      level = 50
-    else
+      level = 40
+      genres = ["chanson", "french pop", "french rock", "nouvelle chanson francaise"]
+    elsif name == "Rock"
       level = 65
+      genres = ["album rock", "classic rock", "country rock", "rock", "roots rock", "southern rock"]
+    elsif name == "Dance"
+      level =70
+      genres = ["dance pop", "post-teen pop", "k-pop girl group", "disco"]
     end
 
     result_array.each do |track|
       track_result = RSpotify::Track.search("#{track.name}")
         if track_result.first
-          if track_result.first.preview_url  && track_result.first.popularity > level
+          if track_result.first.preview_url  && track_result.first.popularity > level && ((track_result.first.artists[0].genres & genres).empty? == false)
             playlist << track_result.first
           end
         end
