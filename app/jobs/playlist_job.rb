@@ -15,8 +15,17 @@ class PlaylistJob < ApplicationJob
       level = 65
       genres = ["album rock", "classic rock", "country rock", "rock", "roots rock", "southern rock"]
     elsif name == "Dance"
-      level =70
+      level = 70
       genres = ["dance pop", "post-teen pop", "k-pop girl group", "disco"]
+    elsif name == "Pop"
+      level = 65
+      genres = ["permanent wave", "pop", "uk pop"]
+    elsif name == "R-N-B"
+      level = 70
+      genres = ["east coast hip hop", "west coast rap" "gangster rap", "hardcore hip hop", "hip hop", "rap"]
+    else
+      level = 70
+      genres = ["electro", "alternative dance", "new rave", "electro house", "electronica"]
     end
 
     result_array.each do |track|
