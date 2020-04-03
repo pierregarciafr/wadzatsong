@@ -2,14 +2,14 @@
 
   <!-- mj_good : on récupère les bonnes réponses du maître du jeu... -->
   <!-- mj_game_good : ... pour la partie en cours -->
-  <% mj_game_good = @game.user.answers.where("status = ? AND game_id = ?", true, @game.id) %>
+  <%# mj_game_good = @game.user.answers.where("status = ? AND game_id = ?", true, @game.id) %>
   <%# mj_game_good = mj_good.where(game_id:@game.id) %>
 
 
   <!-- Récupérer le total score qui correspond à ce game : @game.total_score -->
-  <% mj_game_good.each do |answer| %>
-    <% @game.total_score += answer.score %>
-  <% end %>
+  <%# mj_game_good.each do |answer| %>
+    <%# @game.total_score += answer.score %>
+  <%# end %>
 
   <% total_player2 = 0 %>
 

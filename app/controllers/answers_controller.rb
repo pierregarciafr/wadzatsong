@@ -16,6 +16,7 @@ class AnswersController < ApplicationController
     @playlist = @game.playlist
     check_answer(@answer, @track)
     @ghost = User.first
+    @game.total_score = get_total(@game)
 
     if @answer.save
       @game.running!
@@ -104,5 +105,14 @@ class AnswersController < ApplicationController
     else
       return 0
     end
+  end
+
+  def get_total(game)
+    mj_game_good = game.user.answers.where("status = ? AND game_id = ?", true, game.id)
+    total_score = 0
+    mj_game_good.each do |answer|
+      total_score += answer.score
+    end
+    return total_score
   end
 end
