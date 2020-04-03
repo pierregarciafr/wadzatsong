@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2020_04_01_131549) do
-
+ActiveRecord::Schema.define(version: 2020_04_03_142429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_131549) do
   create_table "answers", force: :cascade do |t|
     t.boolean "status"
     t.string "content"
-    t.integer "answering_time"
+    t.float "answering_time"
     t.bigint "game_id", null: false
     t.bigint "track_id", null: false
     t.bigint "user_id", null: false
