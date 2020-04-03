@@ -1,25 +1,22 @@
 <%= @user.pseudo %>
-<p>nombre de parties: <%= @user.games.count %></p>
+<%#= @user.games.count %>
+<h1>High Score</h1>
 <% Game.order(total_score: :desc).first(3).each do |game| %>
-  <p><%= game.user.pseudo %></p>
-  <p><%= game.total_score %></p>
+  <p><%= game.user.pseudo %> - <%= game.total_score %></p>
 <% end %>
-<p>nombre de bonnes réponses: <%= @user.answers.where(status: true).count %></p>
-<% total_good_answers = @user.answers.where(status: true).count %>
-<% total_tracks = 0 %>
-<% @user.games.each do |game| %>
-  <% game.playlist.tracks.count %>
-  <% total_tracks += game.playlist.tracks.count %>
-<% end %>
-<p><%# total_tracks %></p>
 
-<% pourcent = (total_good_answers * 100) / total_tracks %>
-<h5>pourcentage de bonnes réponse: <%= pourcent %>%</h5>
+<h2>Réponse la + rapide</h2>
+<p><%= @faster_answer.user.pseudo %> - <%= @faster_answer.track.artist %> - <%= @faster_answer.track.title %> - <%= @faster_answer.answering_time %>s</p>
 
-<% faster_answer = @user.answers.order("answering_time ASC").first %>
-<h5>réponse la plus rapide: <%= faster_answer.answering_time %>s - <%= faster_answer.track.artist %> - <%= faster_answer.track.title %></h5>
+<p>----------------------------------------</p>
 
-<!-- <h6>Pourcentage de bonnes réponses par thèmes :</h6> -->
+<h2>pourcentage de bonnes réponse</h2>
+<p><%= @pourcent_user_good_answers %>%</p>
+
+<h2>Ta réponse la plus rapide</h2>
+<p><%= @user_faster_answer.track.artist %> - <%= @user_faster_answer.track.title %> - <%= @user_faster_answer.answering_time %>s</p>
+
+<h2>Pourcentage de bonnes réponses par thèmes</h2>
 <%# rock = Playlist.where(name:"Classic Rock") %>
 <%# dance = Playlist.where(name:"Dancefloor") %>
 <%# disney = Playlist.where(name:"Disney") %>

@@ -18,6 +18,7 @@ class AnswersController < ApplicationController
     @ghost = User.first
     @game.total_score = get_total(@game)
 
+
     if @answer.save
       @game.running!
       # l'id de la premiere des tracks qui n'a pas encore été jouée
