@@ -1,5 +1,9 @@
 <%= @user.pseudo %>
 <p>nombre de parties: <%= @user.games.count %></p>
+<% Game.order(total_score: :desc).first(3).each do |game| %>
+  <p><%= game.user.pseudo %></p>
+  <p><%= game.total_score %></p>
+<% end %>
 <p>nombre de bonnes réponses: <%= @user.answers.where(status: true).count %></p>
 <% total_good_answers = @user.answers.where(status: true).count %>
 <% total_tracks = 0 %>
