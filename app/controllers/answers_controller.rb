@@ -71,7 +71,7 @@ class AnswersController < ApplicationController
   private
 
   def check_answer(answer, track)
-    answer.status = (String::Similarity.cosine @answer.content.downcase, @track.title.downcase) >= 0.75 || (String::Similarity.cosine @answer.content.downcase, @track.artist.downcase) >= 0.8
+    answer.status = (String::Similarity.cosine @answer.content.downcase, @track.title.downcase) >= 0.75 || (String::Similarity.cosine @answer.content.downcase, @track.artist.downcase) >= 0.75
     # pas de reponse => status = true (et pas compris pourquoi)
     answer.score = answer_scoring(answer)
   end
