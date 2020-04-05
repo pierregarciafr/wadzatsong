@@ -14,8 +14,10 @@ class UsersController < ApplicationController
   def get_total_tracks(user)
     total_tracks = 0
     user.games.each do |game|
-      game.playlist.tracks.count
       total_tracks += game.playlist.tracks.count
+    end
+    user.participations.each do |participation|
+      total_tracks += participation.game.playlist.tracks.count
     end
     return total_tracks
   end

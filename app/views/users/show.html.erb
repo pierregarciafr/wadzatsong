@@ -17,13 +17,42 @@
 <p><%= @user_faster_answer.track.artist %> - <%= @user_faster_answer.track.title %> - <%= @user_faster_answer.answering_time %>s</p>
 
 <h2>Pourcentage de bonnes réponses par thèmes</h2>
+
+
+<% french_array = [] %>
+<% Playlist.where(name:"French").each do |playlist| %>
+<% french_array << playlist.id %>
+<% end %>
+
+<% count_games = 0 %>
+<% total_user_good_answers = 0 %>
+
+<% @user.games.each do |game| %>
+  <% if french_array.include?(game.playlist_id) %>
+    <% count_games += 1 %>
+    <% good_answers = game.answers.where("status = ? AND user_id = ?", true, @user.id).count %>
+    <% total_user_good_answers += good_answers %>
+  <% end %>
+<% end %>
+
+<% @user.participations.each do |participation| %>
+  <% if french_array.include?(participation.game.playlist_id) %>
+    <% count_games += 1 %>
+    <% good_answers = participation.game.answers.where("status = ? AND user_id = ?", true, @user.id).count %>
+    <% total_user_good_answers += good_answers %>
+  <% end %>
+<% end %>
+
+
+<% french_pourcent = (total_user_good_answers * 100) / (count_games * Game::NUMBER_OF_ROUNDS) %>
+<p>FRENCH : <%= french_pourcent %>%</p>
+
 <%# rock = Playlist.where(name:"Classic Rock") %>
 <%# dance = Playlist.where(name:"Dancefloor") %>
 <%# disney = Playlist.where(name:"Disney") %>
 <%# nines = Playlist.where(name:"Années 90") %>
 <%# french = Playlist.where(name:"Variété française") %>
 <%# electro = Playlist.where(name:"French touch") %>
-
 
 <%# all_rock = @user.games.where(playlist_id:rock[0].id) %>
 <%# all_dance = @user.games.where(playlist_id:dance[0].id) %>
@@ -44,5 +73,5 @@
 <%# end %>
 
 <%# french_pourcent = (total_french_good_answers * 100) / total_french_tracks %>
-<p>FRENCH : <%#= french_pourcent %>%</p>
+
 
