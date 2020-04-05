@@ -1,4 +1,8 @@
-<%= @user.pseudo %>
+<%= link_to "Back", :back %>
+<%= link_to "Home", root_path %>
+
+<h2><%= @user.pseudo %></h2>
+
 <%#= @user.games.count %>
 <h1>High Score</h1>
 <% Game.order(total_score: :desc).first(3).each do |game| %>
@@ -21,7 +25,7 @@
 
 <% french_array = [] %>
 <% Playlist.where(name:"French").each do |playlist| %>
-<% french_array << playlist.id %>
+  <% french_array << playlist.id %>
 <% end %>
 
 <% count_games = 0 %>
