@@ -62,7 +62,7 @@
             <% if answer.user.pseudo == "Ghost" %>
               <p> - </p>
             <% else %>
-              <p><%= answer.user.pseudo %> </p>
+              <p id="link-user-finished"><%= link_to "#{answer.user.pseudo}", user_path(answer.user) %> </p>
                 <%= answer.score %>
             <% end %>
           </div>

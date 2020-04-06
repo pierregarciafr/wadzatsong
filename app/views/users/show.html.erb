@@ -3,9 +3,12 @@
     <%= link_to root_path do %>
       <i class="fas fa-home"></i>
     <% end %>
-    <h2><%= @user.pseudo %></h2>
+    <h2 class="pseudo-stats"><%= @user.pseudo %></h2>
     <%= link_to :back do %>
       <i class="fas fa-arrow-left"></i>
+    <% end %>
+    <%= link_to game_path(Game.last) do %>
+      <i class="fas fa-poll-h"></i>
     <% end %>
   </div>
 
@@ -20,7 +23,7 @@
 
     <h3 class="text-center">le + rapide</h3>
     <div class="d-flex justify-content-between mx-3">
-      <p><%= @faster_answer.user.pseudo %></p>
+      <p><%= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %></p>
       <p><%= @faster_answer.answering_time %>s</p>
         <%#= @faster_answer.track.artist %>
         <%#= @faster_answer.track.title %>
