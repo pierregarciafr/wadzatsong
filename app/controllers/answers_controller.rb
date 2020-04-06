@@ -16,7 +16,9 @@ class AnswersController < ApplicationController
     @playlist = @game.playlist
     check_answer(@answer, @track)
     @ghost = User.first
-    @game.total_score = get_total(@game)
+    @game.total_score = get_total_game(@game)
+    @participation = @game.participations[0]
+    @participation.total_score = get_total_participation(@game)
 
 
     if @answer.save
@@ -108,7 +110,7 @@ class AnswersController < ApplicationController
     end
   end
 
-  def get_total(game)
+  def get_total_game(game)
     mj_game_good = game.user.answers.where("status = ? AND game_id = ?", true, game.id)
     total_score = 0
     mj_game_good.each do |answer|
@@ -116,4 +118,14 @@ class AnswersController < ApplicationController
     end
     return total_score
   end
+
+  def get_total_participation(game)
+    player2_game_good = game.participants[0].answers.where("status = ? AND game_id = ?", true, @game.id)
+    total_score = 0
+    player2_game_good.each do |answer|
+      total_score += answer.score
+    end
+    return total_score
+  end
+
 end

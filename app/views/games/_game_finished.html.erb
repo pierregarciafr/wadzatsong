@@ -1,38 +1,16 @@
 <div class="dashboard-container text-center">
 
-  <!-- mj_good : on récupère les bonnes réponses du maître du jeu... -->
-  <!-- mj_game_good : ... pour la partie en cours -->
-  <%# mj_game_good = @game.user.answers.where("status = ? AND game_id = ?", true, @game.id) %>
-  <%# mj_game_good = mj_good.where(game_id:@game.id) %>
-
-
-  <!-- Récupérer le total score qui correspond à ce game : @game.total_score -->
-  <%# mj_game_good.each do |answer| %>
-    <%# @game.total_score += answer.score %>
-  <%# end %>
-
-  <% total_player2 = 0 %>
-
-  <% if @game.participants[0]%>
-    <% player2_game_good = @game.participants[0].answers.where("status = ? AND game_id = ?", true, @game.id) %>
-    <%# player2_game_good = player2_good.where(game_id:@game.id) %>
-    <% player2_game_good.each do |answer| %>
-      <% total_player2 += answer.score %>
-    <% end %>
-  <% end %>
-
-  <% if @game.total_score >= total_player2 %>
+  <% if @game.total_score >= @participation.total_score %>
     <i class="fas fa-crown fa-4x"></i>
     <br>
     <span class="particletext confetti"> <%= @game.user.pseudo %></span>
     <p><%= @game.total_score %> points</p>
 
-  <% else %> <%# elsif  @game.participants[0] %>
+  <% else %>
     <i class="fas fa-crown fa-4x"></i>
     <br>
-
     <span class="particletext confetti"> <%= @game.participants[0].pseudo %></span>
-    <p><%= total_player2 %> points</p>
+    <p><%= @participation.total_score %> points</p>
   <% end %>
 </div>
 
