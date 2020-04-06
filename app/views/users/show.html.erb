@@ -1,32 +1,89 @@
-<%= link_to "Back", :back %>
-<%= link_to "Home", root_path %>
+<div class="container-showuser">
+  <div class="navbar mb-1">
+    <%= link_to root_path do %>
+      <i class="fas fa-home"></i>
+    <% end %>
+    <h2><%= @user.pseudo %></h2>
+    <%= link_to :back do %>
+      <i class="fas fa-arrow-left"></i>
+    <% end %>
+  </div>
 
-<h2><%= @user.pseudo %></h2>
+  <div class="highscore mb-3">
+    <h1 class="text-center">High Score</h1>
+    <% Game.order(total_score: :desc).first(3).each do |game| %>
+      <div class="d-flex justify-content-between mx-3">
+        <p><%= link_to "#{game.user.pseudo}", user_path(game.user) %></p>
+        <p><%= game.total_score %></p>
+      </div>
+    <% end %>
 
-<h1>High Score</h1>
-<% Game.order(total_score: :desc).first(3).each do |game| %>
-  <p><%= link_to "#{game.user.pseudo}", user_path(game.user) %> - <%= game.total_score %></p>
-<% end %>
-
-<h2>Réponse la + rapide</h2>
-<p><%= @faster_answer.user.pseudo %> - <%= @faster_answer.track.artist %> - <%= @faster_answer.track.title %> - <%= @faster_answer.answering_time %>s</p>
-
-<p>----------------------------------------</p>
-
-<h2>pourcentage de bonnes réponse</h2>
-<p><%= @percent_user_good_answers %>%</p>
-
-<h2>Ta réponse la plus rapide</h2>
-<p><%= @user_faster_answer.track.artist %> - <%= @user_faster_answer.track.title %> - <%= @user_faster_answer.answering_time %>s</p>
-
-<h2>Pourcentage de bonnes réponses par thèmes</h2>
+    <h3 class="text-center">le + rapide</h3>
+    <div class="d-flex justify-content-between mx-3">
+      <p><%= @faster_answer.user.pseudo %></p>
+      <p><%= @faster_answer.answering_time %>s</p>
+        <%#= @faster_answer.track.artist %>
+        <%#= @faster_answer.track.title %>
 
 
-<p>FRENCH : <%= @french_percent %>%</p>
-<p>ROCK : <%= @rock_percent %>%</p>
-<p>POP : <%= @pop_percent %>%</p>
-<p>R-N-B : <%= @rnb_percent %>%</p>
-<p>ELECTRO : <%= @electro_percent %>%</p>
-<p>DISCO : <%= @disco_percent %>%</p>
+    </div>
+  </div>
+
+  <div class="statperso">
+    <!-- <h3>pourcentage de bonnes réponse</h3> -->
+    <div class="d-flex justify-content-between resume">
+      <div class="item-stat">
+        <p class="item-stat-content"><%= @user.games.order(total_score: :desc).first.total_score %></p>
+      </div>
+      <div class="item-stat">
+        <p class="item-stat-content"><%= @percent_user_good_answers %>%</p>
+      </div>
+      <div class="item-stat">
+        <p class="item-stat-content"><%= @user_faster_answer.answering_time %>s</p>
+      </div>
+    </div>
+
+    <!-- <h3>la plus rapide</h3> -->
+
+    <%#= @user_faster_answer.track.artist %>
+    <%#= @user_faster_answer.track.title %>
+
+    <!-- <h3>Pourcentage de bonnes réponses par thèmes</h3> -->
+    <div class="d-flex justify-content-around my-3">
+      <div class="percent-card">
+        <h6 class="text-center">FRENCH</h6>
+        <p class="text-center"><%= @french_percent %>%</p>
+      </div>
+
+      <div class="percent-card">
+        <h6 class="text-center">ROCK</h6>
+        <p class="text-center"><%= @rock_percent %>%</p>
+      </div>
+
+      <div class="percent-card">
+        <h6 class="text-center">POP</h6>
+        <p class="text-center"><%= @pop_percent %>%</p>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-around my-3">
+      <div class="percent-card">
+        <h6 class="text-center">DISCO</h6>
+        <p class="text-center"><%= @disco_percent %>%</p>
+      </div>
+
+      <div class="percent-card">
+        <h6 class="text-center">R-N-B</h6>
+        <p class="text-center"><%= @rnb_percent %>%</p>
+      </div>
+
+      <div class="percent-card">
+        <h6 class="text-center">ELECTRO</h6>
+        <p class="text-center"><%= @electro_percent %>%</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 

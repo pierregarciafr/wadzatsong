@@ -1,0 +1,62 @@
+.container-showuser {
+  margin: 0 5px;
+  height: 100vh;
+}
+
+a, h2 {
+  color: #bc4e9c;
+}
+
+.highscore {
+  background-color: #bc4e9c;
+  color: white;
+  padding: 10px;
+  border-radius: 60px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 5px #bc4e9c;
+    & a {
+      color: white;
+    }
+}
+
+.statperso {
+  background-color: white;
+  color: #bc4e9c;
+  padding: 10px;
+  border-radius: 60px;
+  border: 1px solid #bc4e9c;
+  box-shadow: 0 0 5px #bc4e9c;
+}
+
+.resume {
+  padding: 10px 50px;
+}
+
+.item-stat {
+  background-color: #bc4e9c;
+  color: white;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & p {
+    margin-bottom: 0;
+  }
+}
+
+.percent-card {
+  border: 1px solid #bc4e9c;
+  width: 85px;
+  border-radius: 4px;
+  & h6 {
+    background-color: #bc4e9c;
+    color:white;
+    padding: 5px;
+  }
+  & p {
+    color: #bc4e9c;
+    margin-bottom: 5px;
+  }
+}
