@@ -1,16 +1,38 @@
 <div class="dashboard-container text-center">
 
-  <% if @game.total_score >= @participation.total_score %>
-    <i class="fas fa-crown fa-4x"></i>
-    <br>
-    <span class="particletext confetti"> <%= @game.user.pseudo %></span>
-    <p><%= @game.total_score %> points</p>
+    <% mj_game_good = @game.user.answers.where("status = ? AND game_id = ?", true, @game.id) %>
+    <% total_score = 0 %>
+    <% mj_game_good.each do |answer| %>
+      <% total_score += answer.score %>
+    <% end %>
+    <% @game.total_score = total_score %>
+    <% @game.save %>
 
+  <% if @participation %>
+    <% player2_game_good = @game.participants[0].answers.where("status = ? AND game_id = ?", true, @game.id) %>
+    <% total_player2 = 0 %>
+    <% player2_game_good.each do |answer| %>
+      <% total_player2 += answer.score %>
+    <% end %>
+    <% @participation.total_score = total_player2 %>
+    <% @participation.save %>
+
+    <% if @game.total_score >= @participation.total_score %>
+      <i class="fas fa-crown fa-4x"></i>
+      <br>
+      <span class="particletext confetti"> <%= @game.user.pseudo %></span>
+      <p><%= @game.total_score %> points</p>
+    <% else %>
+      <i class="fas fa-crown fa-4x"></i>
+      <br>
+      <span class="particletext confetti"> <%= @game.participants[0].pseudo %></span>
+      <p><%= @participation.total_score %> points</p>
+    <% end %>
   <% else %>
     <i class="fas fa-crown fa-4x"></i>
-    <br>
-    <span class="particletext confetti"> <%= @game.participants[0].pseudo %></span>
-    <p><%= @participation.total_score %> points</p>
+      <br>
+      <span class="particletext confetti"> <%= @game.user.pseudo %></span>
+      <p><%= @game.total_score %> points</p>
   <% end %>
 </div>
 
