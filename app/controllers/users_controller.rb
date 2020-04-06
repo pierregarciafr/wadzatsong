@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @pop_percent = get_playlist_percent(@user, "Pop")
     @rnb_percent = get_playlist_percent(@user, "R-N-B")
     @electro_percent = get_playlist_percent(@user, "Electro")
+    @user_hight_score = get_highscore(@user)
   end
 
   private
@@ -53,5 +54,16 @@ class UsersController < ApplicationController
     result = "-"
     end
     return result
+  end
+
+  def get_highscore(user)
+    highscore = []
+    if user.games.count != 0
+      highscore << user.games.order(total_score: :desc).first.total_score
+    end
+    if user.participations.count !=0
+      highscore << user.participations.order(total_score: :desc).first.total_score
+    end
+    highscore.sort.last
   end
 end

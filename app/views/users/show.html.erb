@@ -38,7 +38,7 @@
       <div class="stats">
         <i class="fas fa-trophy" id="best-scores"></i>
         <div class="item-stat">
-          <p><%= @user.games.order(total_score: :desc).first.total_score %></p>
+          <p><%= @user_hight_score %></p>
         </div>
       </div>
       <div class="stats">
@@ -55,12 +55,9 @@
       </div>
     </div>
 
-    <!-- <h3>la plus rapide</h3> -->
-
     <%#= @user_faster_answer.track.artist %>
     <%#= @user_faster_answer.track.title %>
 
-    <!-- <h3>Pourcentage de bonnes réponses par thèmes</h3> -->
     <div class="d-flex justify-content-around my-3">
       <div class="percent-card">
         <h6 class="text-center">FRENCH</h6>
