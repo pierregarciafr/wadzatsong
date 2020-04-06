@@ -5,7 +5,7 @@
 
 <h1>High Score</h1>
 <% Game.order(total_score: :desc).first(3).each do |game| %>
-  <p><%= link_to "game.user.pseudo", user_path(game.user) %> - <%= game.total_score %></p>
+  <p><%= link_to "#{game.user.pseudo}", user_path(game.user) %> - <%= game.total_score %></p>
 <% end %>
 
 <h2>Réponse la + rapide</h2>
