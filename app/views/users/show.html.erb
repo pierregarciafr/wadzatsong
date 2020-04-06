@@ -1,53 +1,104 @@
-<%= @user.pseudo %>
-<p>nombre de parties: <%= @user.games.count %></p>
-<% if @user.games.count != 0 %>
-  <p>nombre de bonnes réponses: <%= @user.answers.where(status: true).count %></p>
-  <% total_good_answers = @user.answers.where(status: true).count %>
-  <% total_tracks = 0 %>
-  <% @user.games.each do |game| %>
-    <% game.playlist.tracks.count %>
-    <% total_tracks += game.playlist.tracks.count %>
-  <% end %>
-  <p><%# total_tracks %></p>
 
-  <% if total_tracks != 0 %>
-  <% pourcent = (total_good_answers * 100) / total_tracks %>
-  <% end %>
-  <h5>pourcentage de bonnes réponse: <%= pourcent %>%</h5>
+<div class="container-showuser">
+  <div class="navbar mb-1">
+    <%= link_to root_path do %>
+      <i class="fas fa-home"></i>
+    <% end %>
+    <h2 class="pseudo-stats"><%= @user.pseudo %></h2>
+    <%= link_to :back do %>
+      <i class="fas fa-arrow-left"></i>
+    <% end %>
+    <%= link_to game_path(Game.last) do %>
+      <i class="fas fa-poll-h"></i>
+    <% end %>
+  </div>
 
-  <% faster_answer = @user.answers.order("answering_time ASC").first %>
-  <h5>réponse la plus rapide: <%= faster_answer.answering_time %>s - <%= faster_answer.track.artist %> - <%= faster_answer.track.title %></h5>
+  <div class="highscore mb-3">
+    <h1 class="text-center">High Score</h1>
+    <% Game.order(total_score: :desc).first(3).each do |game| %>
+      <div class="d-flex justify-content-between mx-3">
+        <p><%= link_to "#{game.user.pseudo}", user_path(game.user) %></p>
+        <p><%= game.total_score %></p>
+      </div>
+    <% end %>
 
-  <!-- <h6>Pourcentage de bonnes réponses par thèmes :</h6> -->
-  <%# rock = Playlist.where(name:"Classic Rock") %>
-  <%# dance = Playlist.where(name:"Dancefloor") %>
-  <%# disney = Playlist.where(name:"Disney") %>
-  <%# nines = Playlist.where(name:"Années 90") %>
-  <%# french = Playlist.where(name:"Variété française") %>
-  <%# electro = Playlist.where(name:"French touch") %>
-
-
-  <%# all_rock = @user.games.where(playlist_id:rock[0].id) %>
-  <%# all_dance = @user.games.where(playlist_id:dance[0].id) %>
-  <%# all_disney = @user.games.where(playlist_id:disney[0].id) %>
-  <%# all_nines = @user.games.where(playlist_id:nines[0].id) %>
-  <%# all_french = @user.games.where(playlist_id:french[0].id) %>
-  <%# all_electro = @user.games.where(playlist_id:electro[0].id) %>
+    <h3 class="text-center">le + rapide</h3>
+    <div class="d-flex justify-content-between mx-3">
+      <p><%= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %></p>
+      <p><%= @faster_answer.answering_time %>s</p>
+        <%#= @faster_answer.track.artist %>
+        <%#= @faster_answer.track.title %>
 
 
-  <%# total_french_tracks = 0 %>
-  <%# total_french_good_answers = 0 %>
-  <%# all_french.each do |game| %>
-    <%# game.playlist.tracks.count %>
-    <%# total_french_tracks += game.playlist.tracks.count %>
-    <%# good_answers = game.answers.where(status:true) %>
-    <%# user_good_answers = good_answers.where(user_id:@user.id).count %>
-    <%# total_french_good_answers += user_good_answers %>
-  <%# end %>
+    </div>
+  </div>
 
-  <%# french_pourcent = (total_french_good_answers * 100) / total_french_tracks %>
-  <p>FRENCH : <%#= french_pourcent %>%</p>
-  <% else %>
-  <p>vous n'avez pas encore joué</p>
-  <% end %>
+  <div class="statperso">
+    <!-- <h3>pourcentage de bonnes réponse</h3> -->
+    <div class="legend d-flex justify-content-around">
+    </div>
+
+    <div class="d-flex justify-content-between resume">
+      <div class="stats">
+        <i class="fas fa-trophy" id="best-scores"></i>
+        <div class="item-stat">
+          <p><%= @user_hight_score %></p>
+        </div>
+      </div>
+      <div class="stats">
+          <i class="fas fa-check" id="good-answers"></i>
+        <div class="item-stat">
+          <p><%= @percent_user_good_answers %>%</p>
+        </div>
+      </div>
+      <div class="stats">
+          <i class="fas fa-stopwatch" id="faster-answer"></i>
+        <div class="item-stat">
+          <p><%= @user_faster_answer.answering_time %>s</p>
+        </div>
+      </div>
+    </div>
+
+    <%#= @user_faster_answer.track.artist %>
+    <%#= @user_faster_answer.track.title %>
+
+    <div class="d-flex justify-content-around my-3">
+      <div class="percent-card">
+        <h6 class="text-center">FRENCH</h6>
+        <p class="text-center"><%= @french_percent %>%</p>
+      </div>
+
+      <div class="percent-card">
+        <h6 class="text-center">ROCK</h6>
+        <p class="text-center"><%= @rock_percent %>%</p>
+      </div>
+
+      <div class="percent-card">
+        <h6 class="text-center">POP</h6>
+        <p class="text-center"><%= @pop_percent %>%</p>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-around my-3">
+      <div class="percent-card">
+        <h6 class="text-center">DISCO</h6>
+        <p class="text-center"><%= @disco_percent %>%</p>
+      </div>
+
+      <div class="percent-card">
+        <h6 class="text-center">R-N-B</h6>
+        <p class="text-center"><%= @rnb_percent %>%</p>
+      </div>
+
+      <div class="percent-card">
+        <h6 class="text-center">ELECTRO</h6>
+        <p class="text-center"><%= @electro_percent %>%</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  
 

@@ -2,7 +2,9 @@ class AnswersController < ApplicationController
   def create
     @track = Track.find(params[:answer][:track])
     @game = Game.find(params[:game_id])
+    @participation = Participation.find_by game_id:@game.id
     @answer = Answer.new(params_answer)
+    @ghost = User.first
     @answer.game = @game
     if @answer.answering_time.nil?
       @answer.user = User.first
@@ -15,7 +17,12 @@ class AnswersController < ApplicationController
     @user = current_user
     @playlist = @game.playlist
     check_answer(@answer, @track)
-    @ghost = User.first
+    # @game.total_score = get_total_game(@game)
+    # if @participation
+    #   @participation.total_score = get_total_participation(@game)
+    # end
+    # @participation.save
+
 
     if @answer.save
       @game.running!
@@ -105,4 +112,23 @@ class AnswersController < ApplicationController
       return 0
     end
   end
+
+  # def get_total_game(game)
+  #   mj_game_good = game.user.answers.where("status = ? AND game_id = ?", true, game.id)
+  #   total_score = 0
+  #   mj_game_good.each do |answer|
+  #     total_score += answer.score
+  #   end
+  #   return total_score
+  # end
+
+  # def get_total_participation(game)
+  #   player2_game_good = game.participants[0].answers.where("status = ? AND game_id = ?", true, @game.id)
+  #   total_score = 0
+  #   player2_game_good.each do |answer|
+  #     total_score += answer.score
+  #   end
+  #   return total_score
+  # end
+
 end
