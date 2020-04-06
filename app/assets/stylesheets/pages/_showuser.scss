@@ -22,7 +22,7 @@ a, h2 {
 .statperso {
   background-color: white;
   color: #bc4e9c;
-  padding: 10px;
+  padding: 1rem;
   border-radius: 60px;
   border: 1px solid #bc4e9c;
   box-shadow: 0 0 5px #bc4e9c;
@@ -59,4 +59,26 @@ a, h2 {
     color: #bc4e9c;
     margin-bottom: 5px;
   }
+}
+
+.stats {
+  position: relative;
+}
+
+#best-scores {
+  position: absolute;
+  top: -20px;
+  left: 20px;
+}
+
+#good-answers {
+  position: absolute;
+  top: -20px;
+  left: 20px;
+}
+
+#faster-answer {
+  position: absolute;
+  top: -20px;
+  left: 20px;
 }

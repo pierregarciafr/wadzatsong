@@ -31,15 +31,27 @@
 
   <div class="statperso">
     <!-- <h3>pourcentage de bonnes réponse</h3> -->
+    <div class="legend d-flex justify-content-around">
+    </div>
+
     <div class="d-flex justify-content-between resume">
-      <div class="item-stat">
-        <p class="item-stat-content"><%= @user.games.order(total_score: :desc).first.total_score %></p>
+      <div class="stats">
+        <i class="fas fa-trophy" id="best-scores"></i>
+        <div class="item-stat">
+          <p><%= @user.games.order(total_score: :desc).first.total_score %></p>
+        </div>
       </div>
-      <div class="item-stat">
-        <p class="item-stat-content"><%= @percent_user_good_answers %>%</p>
+      <div class="stats">
+          <i class="fas fa-check" id="good-answers"></i>
+        <div class="item-stat">
+          <p><%= @percent_user_good_answers %>%</p>
+        </div>
       </div>
-      <div class="item-stat">
-        <p class="item-stat-content"><%= @user_faster_answer.answering_time %>s</p>
+      <div class="stats">
+          <i class="fas fa-stopwatch" id="faster-answer"></i>
+        <div class="item-stat">
+          <p><%= @user_faster_answer.answering_time %>s</p>
+        </div>
       </div>
     </div>
 
