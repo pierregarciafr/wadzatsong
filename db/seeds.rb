@@ -15,7 +15,6 @@ User.destroy_all
 Track.destroy_all
 Playlist.destroy_all
 
-
 puts "Creating users..."
 user1 = User.new(password: "password", pseudo: "Ghost", email: "ghost@guesswhat.live")
 user2 = User.new(password: "password", pseudo: "Mick", email: "mick@jagger.com")
@@ -85,8 +84,25 @@ track.save
 puts "Created #{track.title}"
 end
 
-# Game.create(status: 0, user: user1 , playlist: playlist3)
-# p Game.all.last
+puts "Creating games..."
+game1 = Game.new(status: "finished", user_id: user1.id, playlist_id: playlist1.id, token: "006d0a", total_score: 1050)
+game1.save
+
+puts "Creating participations..."
+participation1 = Participation.new(user_id: user2.id, game_id: game1.id, token: "006d0a", total_score: 700)
+participation1.save
+
+puts "Creating answers..."
+answer1 = Answer.new(status: false, content: "tu connais cher", answering_time: 1.0, game_id: 1, track_id: track7.id, user_id: user1.id, score: 0)
+answer2 = Answer.new(status: true, content: "Stephan Eicher", answering_time: 4.0, game_id: 1, track_id: track7.id, user_id: user1.id, score: 350)
+answer3 = Answer.new(status: true, content: "Patrick Bruel", answering_time: 3.0, game_id: 1, track_id: track8.id, user_id: user2.id, score: 350)
+answer4 = Answer.new(status: true, content: "Michel Berger", answering_time: 2.39, game_id: 1, track_id: track6.id, user_id: user1.id, score: 350)
+
+[answer1, answer2, answer3, answer4].each do |answer|
+  answer.save
+  puts "Created #{answer.content}"
+end
+
 
 puts "Finished..."
 
