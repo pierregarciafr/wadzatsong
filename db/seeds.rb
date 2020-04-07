@@ -30,7 +30,7 @@ user7 = User.new(password: "password", pseudo: "Bertrand", email: "bertrand@gues
 end
 
 playlist1 = Playlist.new(name:"Rock", picture:'classicrock.jpg')
-playlist2 = Playlist.new(name:"Disco", picture:'90s.jpg')
+playlist2 = Playlist.new(name:"Dance", picture:'90s.jpg')
 playlist3 = Playlist.new(name:"Pop", picture:'disney.jpg')
 playlist4 = Playlist.new(name:"R-N-B", picture:'rapus.jpg')
 playlist5 = Playlist.new(name:"French", picture:'french.jpg')
