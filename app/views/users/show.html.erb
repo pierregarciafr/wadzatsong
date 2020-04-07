@@ -5,31 +5,43 @@
       <i class="fas fa-home"></i>
     <% end %>
     <h2 class="pseudo-stats"><%= @user.pseudo %></h2>
-    <%= link_to :back do %>
-      <i class="fas fa-arrow-left"></i>
-    <% end %>
-    <%= link_to game_path(Game.last) do %>
+    <% if Game.last %>
+      <%= link_to game_path(Game.last) do %>
+        <i class="fas fa-poll-h"></i>
+      <% end %>
+    <% else %>
       <i class="fas fa-poll-h"></i>
     <% end %>
   </div>
 
   <div class="highscore mb-3">
     <h1 class="text-center">High Score</h1>
-    <% Game.order(total_score: :desc).first(3).each do |game| %>
-      <div class="d-flex justify-content-between mx-3">
-        <p><%= link_to "#{game.user.pseudo}", user_path(game.user) %></p>
-        <p><%= game.total_score %></p>
-      </div>
+    <% ranking = 1 %>
+    <% if Game.count != 0 %>
+      <% Game.order(total_score: :desc).first(3).each do |game| %>
+        <div class="d-flex justify-content-between mx-3">
+          <p><%= ranking %></p>
+          <p class ="mx-2"><%= link_to "#{game.user.pseudo}", user_path(game.user) %></p>
+          <p class="ml-auto"><%= game.total_score %></p>
+          <% ranking += 1 %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
     <% end %>
 
     <h3 class="text-center">le + rapide</h3>
     <div class="d-flex justify-content-between mx-3">
-      <p><%= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %></p>
-      <p><%= @faster_answer.answering_time %>s</p>
+      <% if Answer.count != 0 %>
+        <p><%= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %></p>
+        <p><%= @faster_answer.answering_time %>s</p>
+      <% else %>
+        <p>-</p>
+      <% end %>
         <%#= @faster_answer.track.artist %>
         <%#= @faster_answer.track.title %>
-
-
     </div>
   </div>
 
@@ -42,19 +54,31 @@
       <div class="stats">
         <i class="fas fa-trophy" id="best-scores"></i>
         <div class="item-stat">
-          <p><%= @user_hight_score %></p>
+          <% if @user.games.count != 0 %>
+            <p><%= @user_hight_score %></p>
+          <% else %>
+            <p>-</p>
+          <% end %>
         </div>
       </div>
       <div class="stats">
-          <i class="fas fa-check" id="good-answers"></i>
+        <i class="fas fa-check" id="good-answers"></i>
         <div class="item-stat">
-          <p><%= @percent_user_good_answers %>%</p>
+          <% if @user.games.count != 0 %>
+            <p><%= @percent_user_good_answers %>%</p>
+          <% else %>
+            <p>-</p>
+          <% end %>
         </div>
       </div>
       <div class="stats">
-          <i class="fas fa-stopwatch" id="faster-answer"></i>
+        <i class="fas fa-stopwatch" id="faster-answer"></i>
         <div class="item-stat">
-          <p><%= @user_faster_answer.answering_time %>s</p>
+          <% if @user.answers.count != 0 %>
+            <p><%= @user_faster_answer.answering_time %>s</p>
+          <% else %>
+            <p>-</p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -100,5 +124,5 @@
 
 
 
-  
+
 

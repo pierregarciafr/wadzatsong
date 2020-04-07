@@ -2,7 +2,7 @@ class AnswersController < ApplicationController
   def create
     @track = Track.find(params[:answer][:track])
     @game = Game.find(params[:game_id])
-    @participation = Participation.find_by game_id:@game.id
+    # @participation = Participation.find_by game_id:@game.id
     @answer = Answer.new(params_answer)
     @ghost = User.first
     @answer.game = @game

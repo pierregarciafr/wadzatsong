@@ -2,8 +2,17 @@
   margin: 0 5px;
   height: 100vh;
 }
+
 .pseudo-stats {
   color: #bc4e9c;
+}
+
+.navbar > a {
+  color: #bc4e9c;
+}
+
+.navbar > i {
+ color: #bc4e9c;
 }
 
 .highscore {
@@ -73,11 +82,11 @@
 #good-answers {
   position: absolute;
   top: -20px;
-  left: 20px;
+  left: 22px;
 }
 
 #faster-answer {
   position: absolute;
   top: -20px;
-  left: 20px;
+  left: 22px;
 }
