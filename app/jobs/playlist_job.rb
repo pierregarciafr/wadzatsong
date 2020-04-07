@@ -18,7 +18,7 @@ class PlaylistJob < ApplicationJob
       level = 70
       genres = ["dance pop", "post-teen pop", "k-pop girl group", "disco"]
     elsif name == "Pop"
-      level = 65
+      level = 70
       genres = ["permanent wave", "pop", "uk pop"]
     elsif name == "R-N-B"
       level = 70
