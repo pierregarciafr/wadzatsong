@@ -21,7 +21,9 @@ class UsersController < ApplicationController
   end
 
   def get_total_percent(user)
-    (user.answers.where(status: true).count * 100) / total_tracks(user)
+    if user.games.count != 0
+      (user.answers.where(status: true).count * 100) / total_tracks(user)
+    end
   end
 
   def get_playlist_percent(user, playlist)
