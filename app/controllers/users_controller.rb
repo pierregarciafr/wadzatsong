@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @percent_user_good_answers = get_total_percent(@user)
     @french_percent = get_playlist_percent(@user, "French")
     @rock_percent = get_playlist_percent(@user, "Rock")
-    @disco_percent = get_playlist_percent(@user, "Disco")
+    @dance_percent = get_playlist_percent(@user, "Dance")
     @pop_percent = get_playlist_percent(@user, "Pop")
     @rnb_percent = get_playlist_percent(@user, "R-N-B")
     @electro_percent = get_playlist_percent(@user, "Electro")
