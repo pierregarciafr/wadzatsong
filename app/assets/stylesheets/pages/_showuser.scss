@@ -23,8 +23,19 @@
   margin-bottom: 10px;
   box-shadow: 0 0 5px #bc4e9c;
     & a {
-      color: white;
+      color: #bc4e9c;
+      background-color: white;
+      border-radius: 10px;
+      padding: 2px 10px;
     }
+}
+
+.highscore-playlist {
+  font-weight: lighter;
+}
+
+.highscore-score {
+  font-weight: bolder;
 }
 
 .statperso {
