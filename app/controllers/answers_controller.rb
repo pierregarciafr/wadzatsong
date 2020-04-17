@@ -95,14 +95,18 @@ class AnswersController < ApplicationController
 
       if answer.answering_time < 2
         return 500
-      elsif answer.answering_time < 5
+      elsif answer.answering_time < 3
         return 350
+      elsif answer.answering_time < 5
+        return 250
       elsif answer.answering_time < 8
         return 175
       elsif answer.answering_time < 11
-        return 70
+        return 100
       elsif answer.answering_time < 15
-        return 35
+        return 70
+      elsif answer.answering_time < 20
+        return 50
       else
         return 10
       end
@@ -112,23 +116,5 @@ class AnswersController < ApplicationController
       return 0
     end
   end
-
-  # def get_total_game(game)
-  #   mj_game_good = game.user.answers.where("status = ? AND game_id = ?", true, game.id)
-  #   total_score = 0
-  #   mj_game_good.each do |answer|
-  #     total_score += answer.score
-  #   end
-  #   return total_score
-  # end
-
-  # def get_total_participation(game)
-  #   player2_game_good = game.participants[0].answers.where("status = ? AND game_id = ?", true, @game.id)
-  #   total_score = 0
-  #   player2_game_good.each do |answer|
-  #     total_score += answer.score
-  #   end
-  #   return total_score
-  # end
 
 end
