@@ -57,6 +57,19 @@ if (gameElt) {
               }
             // }
 
+
+            const guessedSongs = document.querySelectorAll(".guessed");
+            if (guessedSongs) {
+              guessedSongs.forEach((item) => {
+              item.classList.remove('flashit');
+              const lastItem = guessedSongs[guessedSongs.length - 1];
+              setTimeout(() => {
+                lastItem.classList.add('flashit');
+              }, 3000);
+              });
+            }
+
+
             const three = document.getElementById("3");
             const two = document.getElementById("2");
             const one = document.getElementById("1");
