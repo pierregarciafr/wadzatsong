@@ -15,6 +15,7 @@
 }
 
 
+
 .btn-home { // class initiale du bouton de la homepage
   background: white !important;
   color: black !important; /* ancienne couleur #bc4e9c */
@@ -59,6 +60,43 @@
   padding: 1rem;
 
     &:hover {
+      opacity: 1;
+      background-position: right center;
+      color: white;
+    }
+}
+
+.btn-devise-plein { // class initiale du bouton de la homepage
+  float: right;
+  background: rgba(255,255,255,1) !important;
+  color: black !important; /* ancienne couleur #bc4e9c */
+  border-radius: 50px;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  font-weight: bolder;
+  border: 1px solid White;
+  letter-spacing: 0.5px;
+  mix-blend-mode: color-dodge;
+
+    &:hover {
+      opacity: 1;
+      background-position: right center;
+      color: white;
+      background: rgba(255,255,255,0.8)
+    }
+}
+
+.btn-devise-vide { // class initiale du bouton de la homepage
+  color: white;
+  border-radius: 50px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-weight: bold;
+  border: 1px solid White;
+  letter-spacing: 0.5px;
+  padding: 1px 9px 3px 9px;
+    &:hover {
+      background-color: rgba(255,255,255,0.15);
       opacity: 1;
       background-position: right center;
       color: white;

@@ -21,12 +21,13 @@
   }
 }
 
-#homepage h1 {
+#homepage h1, h2, h3, p, a, label, button {
   color:white;
 }
 
-#homepage p {
-  color:white;
+a:hover {
+  color: inherit;
+  font-weight: bold;
 }
 
 .user-menu {
