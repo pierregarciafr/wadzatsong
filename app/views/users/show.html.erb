@@ -5,12 +5,15 @@
       <i class="fas fa-home"></i>
     <% end %>
     <h2 class="pseudo-stats"><%= @user.pseudo %></h2>
-    <% if Game.last %>
-      <%= link_to game_path(Game.last) do %>
-        <i class="fas fa-poll-h"></i>
-      <% end %>
-    <% else %>
-      <i class="fas fa-poll-h"></i>
+    <%# if Game.last %>
+      <%#= link_to game_path(Game.last) do %>
+        <!-- <i class="fas fa-poll-h"></i> -->
+      <%# end %>
+    <%# else %>
+      <!-- <i class="fas fa-poll-h"></i> -->
+    <%# end %>
+    <%= link_to :back do %>
+      <i class="fas fa-arrow-left"></i>
     <% end %>
   </div>
 
@@ -21,8 +24,9 @@
       <% Game.order(total_score: :desc).first(3).each do |game| %>
         <div class="d-flex justify-content-between mx-3">
           <p><%= ranking %></p>
-          <p class ="mx-2"><%= link_to "#{game.user.pseudo}", user_path(game.user) %></p>
-          <p class="ml-auto"><%= game.total_score %></p>
+          <p class ="mx-2 mr-auto"><%= link_to "#{game.user.pseudo}", user_path(game.user) %></p>
+          <p class="highscore-playlist"><%= game.playlist.name %></p>
+          <p class="highscore-score ml-3"><%= game.total_score %></p>
           <% ranking += 1 %>
         </div>
       <% end %>
@@ -36,12 +40,12 @@
     <div class="d-flex justify-content-between mx-3">
       <% if Answer.count != 0 %>
         <p><%= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %></p>
+        <p class="text-justify px-2"><%= @faster_answer.track.artist %> / <%= @faster_answer.track.title %></p>
         <p><%= @faster_answer.answering_time %>s</p>
       <% else %>
         <p>-</p>
       <% end %>
-        <%#= @faster_answer.track.artist %>
-        <%#= @faster_answer.track.title %>
+
     </div>
   </div>
 
