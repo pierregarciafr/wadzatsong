@@ -48,5 +48,16 @@
     <%# end %>
     <%= render 'shared/flashes' %>
     <%= yield %>
+    <script>
+      function menuDisplay() {
+        menuElt = document.getElementById('menu');
+        menuElt.style.display = 'block';
+        console.log(menuElt);
+
+      }
+      const homepageElt = document.getElementById('homepage');
+      homepageElt.addEventListener('click', menuDisplay);
+
+    </script>
   </body>
 </html>
