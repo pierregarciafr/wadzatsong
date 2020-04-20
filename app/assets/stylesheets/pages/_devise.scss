@@ -30,19 +30,19 @@
 
 .btn-devise-plein:hover {
       color: white;
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.3);
     }
 
 .link-devise { // class initiale du bouton de la homepage
-  color: white;
+  color: rgba(255,255,255,0.85);
   border-radius: 50px;
   margin-top: 40px;
   margin-bottom: 40px;
-  font-weight: bold;
+  font-weight: normal;
   letter-spacing: 0.5px;
   padding: 1px 9px 3px 9px;
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
       border: 1px solid White;
       opacity: 1;
       background-position: right center;

@@ -1,4 +1,74 @@
 // Specific CSS for your home-page
+.background-gradient {
+    padding: 20px;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+/*
+#homepage h1, h2, h3, p, a, label, button, small {
+  color:white;
+}
+*/
+a:hover {
+  color: inherit;
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: 0.1px
+}
+
+.user-icon {
+  float: right;
+  background-color: white;
+  color: #bc4e9c;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+ul.user-menu {
+  display: none;
+  padding: 1em 2em;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+}
+.user-menu {
+  position: absolute;
+  right: 0;
+  top: 50px;
+
+}
+.user-menu li {
+  text-align: left;
+  list-style: none;
+  line-height: 2.5em;
+  letter-spacing: 0.4px;
+}
+
+
+
 .homepage-menu {
 
 }
@@ -8,3 +78,4 @@
 .display-none {
   display: none;
 }
+
