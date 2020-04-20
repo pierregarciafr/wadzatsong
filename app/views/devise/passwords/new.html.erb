@@ -7,17 +7,16 @@
     <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= f.error_notification %>
 
-    <div class="form-inputs">
+    <div>
       <%= f.input :email,
       required: true,
       autofocus: true,
       input_html: { autocomplete: "email" } %>
+
+      <%= f.button :submit, class: 'btn-devise-plein', value: "Reset password", label: "Reset password" do %>Reset password<% end %>
+    <% end %>
     </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, class: 'btn-devise-plein', value: "Reset password" %>
-    </div>
-    <% end %>
     <div class='devise-footer'>
       <%= render "devise/shared/links" %>
     </div>

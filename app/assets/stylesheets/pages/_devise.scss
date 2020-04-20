@@ -1,0 +1,62 @@
+.devise-form-container {
+  margin: 80px auto;
+  width: 85%;
+  background-color: rgba(255,255,255,0.35);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  padding: 20px;
+  opacity: 0.9;
+  border-radius: 2px;
+
+  a {
+    text-decoration: none;
+    color: #bc4e9c;
+  }
+}
+
+
+.btn-devise-plein { // class initiale du bouton de la homepage
+  float: right;
+  background: rgba(255,255,255,1);
+  color: black !important; /* ancienne couleur #bc4e9c */
+  border-radius: 50px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding: 0 10px 3px 10px;
+  font-weight: bold;
+  border: 1px solid White;
+  letter-spacing: 0.5px;
+  mix-blend-mode: color-dodge;
+}
+
+.btn-devise-plein:hover {
+      color: white;
+      background: rgba(255,255,255,0.2);
+    }
+
+.link-devise { // class initiale du bouton de la homepage
+  color: white;
+  border-radius: 50px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding: 1px 9px 3px 9px;
+    &:hover {
+      text-decoration: underline;
+      border: 1px solid White;
+      opacity: 1;
+      background-position: right center;
+      color: white;
+    }
+}
+
+.devise-footer {
+  margin-top: 80px;
+}
+small.form-text.text-muted {
+  color: white !important;
+}
+input.form-control {
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 2px 1px #AAAAAA;
+}
