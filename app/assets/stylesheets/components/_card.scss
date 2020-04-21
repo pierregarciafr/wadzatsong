@@ -7,8 +7,11 @@
 }
 
 .playlist_card {
-width: 100%;
-height: 20vh;
+
+// width: 100%;
+width: 15vh;
+height: 15vh;
+// max-height: 20vh;
 background-color: white;
 border-radius: 14%;
 display:flex;
@@ -17,8 +20,8 @@ align-items: center;
 }
 
 .playlist_image {
- background-size: cover;
- object-fit: cover;
+ background-size: 100%;
+ background-size: contain;
 }
 
 .playlist_card label {

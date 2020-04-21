@@ -66,6 +66,20 @@
     }
 }
 
+.btn-edit-2 {
+  width: 100%;
+  background: rgba(255,255,255,1);
+  color: black !important; /* ancienne couleur #bc4e9c */
+  border-radius: 50px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding: 3px 10px 3px 10px;
+  font-weight: bold;
+  border: 1px solid White;
+  letter-spacing: 0.5px;
+  mix-blend-mode: color-dodge;
+}
+
 .btn-edit {
   background: $my-pink;
   color: white;
