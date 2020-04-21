@@ -52,7 +52,8 @@
       // Affichage du menu sur la Homepage , pas de user connecté
       function menuDisplay() {
         menuElt = document.getElementById('homeMenu');
-        if (menuElt) {menuElt.style.display = 'block';}
+        if (menuElt) { menuElt.style.display = 'block'; }
+
 
       }
       const homepageElt = document.getElementById('homepage');
@@ -63,6 +64,7 @@
       function userMenuDisplay() {
         userMenuElt = document.getElementById('userMenu');
         userMenuElt.style.display = 'block';
+        this.classList.add('active');
       }
       const userIconElt = document.querySelector('.user-icon');
       userIconElt.addEventListener('click', userMenuDisplay);

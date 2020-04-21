@@ -37,6 +37,7 @@ a:hover {
 .user-icon {
   float: right;
   background-color: white;
+  border: 1px solid rgba(255, 255, 255, 0.9);
   /*color: #bc4e9c;*/
   color: black;
   font-weight: bold;
@@ -50,10 +51,14 @@ a:hover {
   position: relative;
   mix-blend-mode: color-dodge;
 }
+.active {
+    background-color: black !important;
+    color: white !important;
+  }
 
 ul.user-menu {
   display: none;
-  padding: 1em 2em;
+  padding: 0.5em 1em;
   border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 14px;
 }
@@ -66,9 +71,10 @@ ul.user-menu {
 .user-menu li {
   text-align: left;
   list-style: none;
-  line-height: 2.5em;
+  line-height: 1.5em;
   letter-spacing: 0.4px;
 }
+
 
 .homepage-menu {
 

@@ -4,25 +4,19 @@
     <% if user_signed_in? %>
       <div class="user-icon"><%= @user.pseudo[0].capitalize %>
 
-      <!-- <div class="user-menu mt-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><%= @user.pseudo[0].capitalize %> -->
+        <ul id="userMenu" class="user-menu">
+          <li><%= link_to "Dashboard", user_path(@user), class: "nav-user-menu" %></li>
+          <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-user-menu" %></li>
+        </ul>
+
       </div>
+
     <% else %>
       <div id="homeMenu" class="homepage-menu display-none">
         <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         <%= link_to "Signup ", new_user_registration_path, class: "nav-link" %>
       </div>
-      <!--<i class="fas fa-bars dropdown-toggle mr-3 mt-3 text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></i> <!-- petit carré à retirer -->
-
     <% end %>
-
-    <!--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">-->
-      <% if user_signed_in? %>
-      <ul id="userMenu" class="user-menu">
-        <li><%= link_to "Dashboard", user_path(@user), class: "nav-user-menu" %></li>
-        <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-user-menu" %></li>
-      </ul>
-      <% end %>
-    <!--</div>-->
   </div>
 
   <% if user_signed_in? %>
