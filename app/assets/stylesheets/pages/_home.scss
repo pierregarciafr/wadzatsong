@@ -37,7 +37,9 @@ a:hover {
 .user-icon {
   float: right;
   background-color: white;
-  color: #bc4e9c;
+  /*color: #bc4e9c;*/
+  color: black;
+  font-weight: bold;
   border-radius: 50%;
   height: 30px;
   width: 30px;
@@ -46,6 +48,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   position: relative;
+  mix-blend-mode: color-dodge;
 }
 
 ul.user-menu {
@@ -66,8 +69,6 @@ ul.user-menu {
   line-height: 2.5em;
   letter-spacing: 0.4px;
 }
-
-
 
 .homepage-menu {
 
