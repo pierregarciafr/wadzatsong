@@ -33,8 +33,8 @@
 }
 
 .edit-title {
-  color: #bc4e9c;
-  letter-spacing: 3px;
+  /* color: #bc4e9c; */
+  /* letter-spacing: 3px; -- C'est ce paramètre qui crée la disymétrie des marges droite et gauche sur la page */
   font-weight: bolder;
   text-transform: uppercase;
   font-size: 1.2em;
