@@ -12,10 +12,12 @@
       </div>
 
     <% else %>
+
       <div id="homeMenu" class="homepage-menu display-none">
         <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         <%= link_to "Signup ", new_user_registration_path, class: "nav-link" %>
       </div>
+
     <% end %>
   </div>
 
