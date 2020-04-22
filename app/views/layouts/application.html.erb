@@ -49,22 +49,25 @@
     <%= render 'shared/flashes' %>
     <%= yield %>
     <script>
-      // Affichage du menu sur la Homepage , pas de user connecté
+      // Affichage du menu sur la landing page - pas de user connecté
       function menuDisplay() {
         menuElt = document.getElementById('homeMenu');
-        if (menuElt) {menuElt.style.display = 'block';}
-
+        if (menuElt) {
+          menuElt.style.display = (menuElt.style.display === 'none') ? 'block' : 'none';
+        }
       }
       const homepageElt = document.getElementById('homepage');
       homepageElt.addEventListener('click', menuDisplay);
 
-
       // Affichage du menu sur la Homepage , lorsque user connecté
       function userMenuDisplay() {
         userMenuElt = document.getElementById('userMenu');
-        userMenuElt.style.display = 'block';
+        // userMenuElt.style.display = 'block';
+        userMenuElt.style.display = (userMenuElt.style.display === 'none') ? 'block' : 'none';
+        userIconElt.classList.add('active');
       }
       const userIconElt = document.querySelector('.user-icon');
+      // if (userIconElt) {
       userIconElt.addEventListener('click', userMenuDisplay);
 
     </script>

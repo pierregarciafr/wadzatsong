@@ -27,7 +27,7 @@
   color:white;
 }
 */
-a:hover {
+#homeMenu > a:hover {
   color: inherit;
   font-weight: bold;
   text-decoration: none;
@@ -37,7 +37,9 @@ a:hover {
 .user-icon {
   float: right;
   background-color: white;
-  color: #bc4e9c;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: black;
+  font-weight: bold;
   border-radius: 50%;
   height: 30px;
   width: 30px;
@@ -46,35 +48,48 @@ a:hover {
   justify-content: center;
   align-items: center;
   position: relative;
+  mix-blend-mode: color-dodge;
+}
+
+.active {
+    background-color: black !important;
+    color: white !important;
 }
 
 ul.user-menu {
-  display: none;
-  padding: 1em 2em;
+  padding: 0.5em 1em;
   border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 14px;
 }
 .user-menu {
   position: absolute;
   right: 0;
-  top: 50px;
+  top: 40px;
 
 }
 .user-menu li {
   text-align: left;
   list-style: none;
-  line-height: 2.5em;
-  letter-spacing: 0.4px;
+  line-height: 1.5em;
+  font-weight: normal;
 }
+.user-menu a:hover {
+  color: inherit;
+  font-weight: bold;
+  text-decoration: none;
+  }
+ a.narrow:hover {
 
+    letter-spacing: -0.02em;
+  }
 
-
-.homepage-menu {
-
+.red {
+  color: red !important;
 }
 .display {
   display: block;
 }
+
 .display-none {
   display: none;
 }
