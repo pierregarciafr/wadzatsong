@@ -54,19 +54,17 @@
         menuElt = document.getElementById('homeMenu');
         if (menuElt) {
           menuElt.style.display = (menuElt.style.display === 'none') ? 'block' : 'none';
-                         }
-
-
+        }
       }
       const homepageElt = document.getElementById('homepage');
       homepageElt.addEventListener('click', menuDisplay);
 
-
       // Affichage du menu sur la Homepage , lorsque user connecté
       function userMenuDisplay() {
         userMenuElt = document.getElementById('userMenu');
-        userMenuElt.style.display = 'block';
-        this.classList.add('active');
+        // userMenuElt.style.display = 'block';
+        userMenuElt.style.display = (userMenuElt.style.display === 'none') ? 'block' : 'none';
+        userIconElt.classList.add('active');
       }
       const userIconElt = document.querySelector('.user-icon');
       // if (userIconElt) {
