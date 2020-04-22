@@ -40,12 +40,14 @@
   font-weight: 500;
   letter-spacing: 3px;
   font-size: 15px;
+  opacity: 0.85;
 
     &:hover {
       opacity: 1;
       background-position: right center;
-      letter-spacing: 2.8px;
+      letter-spacing: 0.2em;
       color: white;
+      text-decoration: none;
     }
 }
 
