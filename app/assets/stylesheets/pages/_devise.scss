@@ -29,8 +29,9 @@
 }
 
 .btn-devise-plein:hover {
-      color: white;
-      background: rgba(255,255,255,0.3);
+      color: white !important;
+      background: none;
+      font-weight: normal;
     }
 
 .link-devise { // class initiale du bouton de la homepage

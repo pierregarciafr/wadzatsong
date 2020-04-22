@@ -4,3 +4,15 @@
   right: 16px;
   z-index: 1000;
 }
+
+.alert-info {
+  border: 1px solid rgba(255,255,255,0.85);
+  color:white;
+  //background: none;
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+}
+
+button.close:hover {
+  color: white;
+}
