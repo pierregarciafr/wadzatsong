@@ -18,22 +18,110 @@
  color: #bc4e9c;
 }
 
-.highscore {
-  // background-color: #bc4e9c;
+.scores-card {
   box-sizing: border-box;
   width: 80%;
   max-width: 500px;
-  color: white;
+  padding: 0px;
+  margin-bottom: 2em;
+  border-radius: 20px;
+  border: 1px solid white;
+
+  & h4 {
+    font-weight: bold;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    mix-blend-mode: color-dodge;
+    background-clip: border;
+    text-align: center;
+  }
+
+  & p {
+    color: white;
+    margin-bottom: 5px;
+  }
+  & a {
+      color: black;
+      background-color: white;
+      border-radius: 10px;
+      padding: 2px 8px 3px 6px;
+      mix-blend-mode: color-dodge;
+      text-decoration: none;
+      border: 1px solid white;
+
+      &:hover {
+        color: white;
+        background: none;
+      }
+    }
+}
+
+#ranking {
+  display: flex;
+  justify-content: center;
+
+  & th {
+    width: 1em;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  & td {
+    font-size: 1.3em;
+    padding: 0 1em;
+    &.pseudo-ranking {
+    width: 50%;
+    }
+    &.playlist-ranking {
+    width: 20%;
+    margin: 0 1em;
+    text-align: right;
+    }
+    &.score-ranking {
+    font-weight: bold;
+    text-align: right;
+    }
+  }
+}
+
+#time-ranking {
+  display: flex;
+  justify-content: center;
+
+  & dt{
+    font-size: 1.3em;
+    font-weight: 400;
+    padding-bottom: 1.3em;
+
+    & b {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+  }
+  & dd {
+    text-align: center;
+    font-size: 1.3em;
+    font-style: normal;
+    line-height: 1.2em;
+  }
+  }
+/*
+.highscore {
+  box-sizing: border-box;
+  width: 80%;
+  max-width: 500px;
   padding: 40px;
   border-radius: 20px;
   margin-bottom: 10px;
-  // box-shadow: 0 0 5px #bc4e9c;
   border: 1px solid white;
+  color: white;
     & p {
       font-size: 1.3em;
     }
     & a {
-      // color: #bc4e9c;
       color: black;
       background-color: white;
       border-radius: 10px;
@@ -56,6 +144,7 @@
 .highscore-score {
   font-weight: bolder;
 }
+*/
 
 .statperso {
   //background-color: white;
@@ -71,49 +160,54 @@
   padding: 10px 50px;
 }
 
-.item-stat {
-  // background-color: #bc4e9c;
-  background-color: white;
-  color: white;
-  margin: 1em 0.5em;
-  border-radius: 50%;
-  height: 60px;
-  width: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  font-weight: bold;
-  mix-blend-mode: color-dodge;
-  & p {
-    margin-bottom: 0;
-  }
-}
-
 ul.list-stats {
   padding: 1em 0.5em;
   margin: 1em;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   border: 1px solid white;
   border-radius: 20px;
-
 }
+
 .list-stats li{
   padding: 0;
   list-style: none;
+  font-family: Arial;
+  color: white;
+  margin: 0.5em 0.5em;
+  & i {
+    text-align: center;
+  }
+  &.description {
+    font-size: 1.2em;
+    text-align: center;
+  }
+  &.item-stat {
+    font-weight: bold;
+    //background-color: white;
+    // border-radius: 50%;
+    height: 60px;
+    width: 100%;
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
+    & h1, h2 {
+      text-align: center;
+      margin-bottom: 0;
+    }
+  }
 }
 
+
+
 .percent-card {
-  // border: 1px solid #bc4e9c;
   border: 1px solid white;
   padding: 0px;
   width: 85px;
   border-radius: 20px;
   & h6 {
-    // background-color: #bc4e9c;
     font-weight: bold;
     background-color: white;
     color: black;
@@ -121,10 +215,9 @@ ul.list-stats {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     mix-blend-mode: color-dodge;
-
+    background-clip: border;
   }
   & p {
-    // color: #bc4e9c;
     color: white;
     margin-bottom: 5px;
   }

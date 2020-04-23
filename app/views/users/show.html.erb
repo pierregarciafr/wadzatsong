@@ -23,35 +23,48 @@
   </div>
 
   <!--<div class="container-showuser">-->
-    <div class="highscore">
-      <h3 class="text-center mb-5">Top Scores</h3>
-      <div id="ranking" class="mb-3">
+  <div id="highscore" class="scores-card">               <!-- Affiche les 3 meilleurs scores -->
+    <h4>Meilleurs scores ever</h4>
+    <div id="ranking" class="p-3">
       <% ranking = 1 %>
       <% if Game.count != 0 %>
-        <% Game.order(total_score: :desc).first(3).each do |game| %>
-        <div class="d-flex justify-content-between">
-          <h4 class="px-2"><%= ranking %>.</h4>
-          <p class ="mx-2 mr-auto"><%= link_to "#{game.user.pseudo}", user_path(game.user) %></p>
-          <p class="highscore-playlist"><%= game.playlist.name %></p>
-          <p class="highscore-score ml-3"><%= game.total_score %></p>
-          <% ranking += 1 %>
-        </div>
-      <% end %>
+        <table>
+          <tbody>
+            <% Game.order(total_score: :desc).first(3).each do |game| %>
+              <tr>
+                <th><%= ranking %></th>
+                <td class='pseudo-ranking'><%= link_to "#{game.user.pseudo}", user_path(game.user) %></td>
+                <td class='score-ranking'><%= game.total_score %></td>
+                <td class='playlist-ranking'><%= game.playlist.name %></td>
+              </tr>
+              <% ranking += 1 %>
+            <% end %>
+            </tbody>
+          </table>
       <% else %>
       <p>1</p>
       <p>2</p>
       <p>3</p>
       <% end %>
-      </div>
+    </div>
+  </div>
 
-      <h3 class="text-center">Le + rapide</h3>
-      <div class="d-flex justify-content-between mx-3">
+    <div class="scores-card">
+      <h4>Meilleur temps ever</h4>   <!-- Affiche le meilleur temps -->
+      <div id="time-ranking" class="p-3">
         <% if Answer.count != 0 %>
-        <p><%= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %></p>
-        <p class="text-justify px-2"><%= @faster_answer.track.artist %> / <%= @faster_answer.track.title %></p>
-        <p><%= @faster_answer.answering_time %>s</p>
-        <% else %>
-        <p>-</p>
+          <dl>
+            <dt><%= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %> a trouvé en <b><%= @faster_answer.answering_time %> s</b></dt>
+            <dd><em><%= @faster_answer.track.title %></em></dd><dd><strong><%= @faster_answer.track.artist %>.</strong></dd>
+          </dl>
+          <!--
+          <p class="d-flex justify-content-between mx-3">
+            <span><%#= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %></span>
+            <span><%#= @faster_answer.answering_time %> s</span>
+          </p>
+          <p class="text-justify px-2"><%#= @faster_answer.track.artist %> / <%#= @faster_answer.track.title %></p>
+          --><% else %>
+          <p>-</p>
         <% end %>
 
       </div>
@@ -61,43 +74,50 @@
       <!-- <h3>pourcentage de bonnes réponse</h3> -->
       <div class="d-flex flex-column justify-content-between resume">
       <div class="d-flex flex-row justify-content-center mb-5">
-        <ul class="list-stats">
-          <li><i class="fas fa-trophy fa-2x"></i><li>
 
-          <li><div class="item-stat">
-            <% if @user.games.count != 0 %>
-            <p><%= @user_hight_score %></p>
-            <% else %>
-            <p>-</p>
-            <% end %>
-          </div>
+        <ul class="list-stats">
+          <li>
+            <i class="fas fa-trophy fa-2x"></i>
           </li>
+
+          <li class="item-stat ">
+            <% if @user.games.count != 0 %>
+              <h2><%= @user_hight_score %></h2>
+            <% else %>
+              <h2>-</h2>
+            <% end %>
+          </li>
+
+          <li class="description">Ton best score</li>
         </ul>
 
         <ul class="list-stats">
           <li><i class="fas fa-check fa-2x"></i><li>
-
-          <li><div class="item-stat">
-            <% if @user.games.count != 0 %>
-            <p><%= @percent_user_good_answers %></p>
-            <% else %>
-            <p>-</p>
-            <% end %>
-          </div>
+          <li class="item-stat">
+              <% if @user.games.count != 0 %>
+                  <h2><%= @percent_user_good_answers %> %</h2>
+                <% else %>
+                  <h1>-</h1>
+              <% end %>
           </li>
+          <li class="description">de bonnes réponses</li>
+
         </ul>
 
         <ul class="list-stats">
-          <li><i class="fas fa-stopwatch fa-2x"></i><li>
-
-          <li><div class="item-stat">
-            <% if @user.games.count != 0 %>
-            <p><%= @user_faster_answer.answering_time %></p>
-            <% else %>
-            <p>-</p>
-            <% end %>
-          </div>
+          <li>
+            <i class="fas fa-stopwatch fa-2x"></i>
           </li>
+
+          <li class="item-stat">
+            <% if @user.games.count != 0 %>
+              <h2><%= @user_faster_answer.answering_time %>s</h2>
+            <% else %>
+              <h2>-</h2>
+            <% end %>
+          </li>
+          <li class="description">best chrono</li>
+
         </ul>
       </div>
 
