@@ -137,18 +137,18 @@ input[type="radio"], input[type="checkbox"] {
   margin-bottom: 5px;
   position:relative;
   border-radius: 15px;
-}
-.card-song img {
- height: 100%;
- width: 25%;
- object-fit: cover;
-}
-.card-song h2 {
- font-size: 17px;
- font-weight: bold;
- color: #BC4E9C;
- margin: 0;
-width: 140px;
+  & img {
+   height: 100%;
+   width: 25%;
+   object-fit: cover;
+  }
+  & h2 {
+   font-size: 17px;
+   font-weight: bold;
+   color: #BC4E9C;
+   margin: 0;
+  width: 140px;
+  }
 }
 .card-song p {
  font-size: 12px;
@@ -161,11 +161,11 @@ width: 140px;
 .card-song .card-song-infos {
  padding: 16px;
  flex-grow:1;
-
- p{
+ & p {
   font-size: 1em;
  }
 }
+
 .result {
  padding-right: 12px;
 
