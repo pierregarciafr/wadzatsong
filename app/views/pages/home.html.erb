@@ -36,8 +36,8 @@
   </div>
 
 
-  <div class="text-center h-25">
     <% if user_signed_in? %>
+  <div class="text-center h-25">
     <div class="pb-5">
       <%= simple_form_for @game do |f| %>
         <%= f.submit "Crée une partie", class: "btn-home pb-10" %>
@@ -46,8 +46,8 @@
       <div>
         <%= link_to "REJOINS UNE PARTIE", new_participation_path , class: "btn-home2" %>
       </div>
-  <% end %>
     </div>
+  <% end %>
 </div>
 
 
