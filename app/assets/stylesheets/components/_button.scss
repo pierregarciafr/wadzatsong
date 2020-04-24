@@ -13,15 +13,20 @@
       color: white;
     }
 }
-
+.playlist_btn {
+  height: 25vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 .btn-home { // class initiale du bouton de la homepage
   background: white !important;
+  font-weight: bold;
   color: black !important; /* ancienne couleur #bc4e9c */
   border-radius: 50px;
-  margin-bottom: 50px;
-  font-weight: bold;
+  // margin-bottom: 50px;
   border: 1px solid White;
   letter-spacing: 3px;
   text-transform: uppercase;

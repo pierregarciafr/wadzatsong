@@ -1,12 +1,13 @@
 <div id="playlists" class="background-gradient height-100">
   <!--<div class="container">-->
-  <div class="d-flex flex-column justify-content-around h-100">
-    <div class="d-flex justify-content-between">
+  <div class="d-flex flex-column align-items-center justify-content-between w-100">
+    <div class="d-flex justify-content-left mb-3 w-100">
       <div>
-      <%= link_to root_path do %>
+        <%= link_to root_path do %>
         <%= image_tag "logo-icon.png"%>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+
 
     </div>
 
@@ -15,19 +16,21 @@
     </div>
 
     <%= simple_form_for @game do |f| %>
-      <div class="playlist_grid">
-        <% @playlists.first(6).each do |playlist| %>
-          <div class="playlist_card playlist_image" style="background-image: linear-gradient(rgba(0,0,255,0.15), rgba(0,0,100,0.4)), url(<%= asset_path playlist.picture %>)"  >
-            <%= radio_button_tag 'playlist_id', playlist.id, false, class: "d-none" %>
-            <%= label_tag "playlist_id_#{playlist.id}", playlist.name %>
-          </div>
-        <% end %>
-      </div>
+      <div class="h-70">
 
-      <div class="pt-3">
-        <div class="text-center my-3 py-5">
+        <div class="playlist_grid">
+          <% @playlists.first(6).each do |playlist| %>
+            <div class="playlist_card playlist_image" style="background-image: linear-gradient(rgba(0,0,255,0.15), rgba(0,0,100,0.4)), url(<%= asset_path playlist.picture %>)"  >
+              <%= radio_button_tag 'playlist_id', playlist.id, false, class: "d-none" %>
+              <%= label_tag "playlist_id_#{playlist.id}", playlist.name %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="playlist_btn">
           <%= f.submit "C'EST PARTI !", class: "btn-home" %>
         </div>
+
       </div>
     <% end %>
   </div>
