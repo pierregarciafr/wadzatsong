@@ -1,5 +1,21 @@
-<div class="dashboard-container text-center">
+<div id="dashboard" class="background-gradient force-height">
+  <div class="d-flex justify-content-between w-100 pb-3">
+    <div>
+      <%= link_to root_path do %>
+      <%= image_tag "logo-icon.png"%>
+      <% end %>
+    </div>
+    <h3><%= @user.pseudo %></h3>
 
+    <div class="user-icon"><%= @user.pseudo[0].capitalize %>
+      <ul id="userMenu" class="user-menu" style="display: none">
+        <li><%= link_to "Dashboard", user_path(@user), class: "nav-user-menu narrow" %></li>
+        <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-user-menu" %></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dashboard-container text-center">
     <% mj_game_good = @game.user.answers.where("status = ? AND game_id = ?", true, @game.id) %>
     <% total_score = 0 %>
     <% mj_game_good.each do |answer| %>
@@ -41,7 +57,7 @@
 
 <!-- ---------------- -->
 
-<div class="mx-2" >
+<div id="playlist-display" class="mx-2" >
   <% RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"]) %>
   <% @game.playlist.tracks.each do |track| %>
     <% result = RSpotify::Track.search("#{track.title}") %>
@@ -87,4 +103,4 @@
   </div>
 </div>
 
-
+</div>

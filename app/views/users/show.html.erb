@@ -1,4 +1,4 @@
-<div id="dashboard" class="background-gradient">
+<div id="dashboard" class="background-gradient force-height">
   <!-- <div class="navbar"> -->
   <div class="d-flex justify-content-between w-100 pb-5">
     <div>
@@ -49,30 +49,33 @@
     </div>
   </div>
 
-    <div class="scores-card">
-      <h4>Meilleur temps ever</h4>   <!-- Affiche le meilleur temps -->
-      <div id="time-ranking" class="p-3">
-        <% if Answer.count != 0 %>
-          <dl>
-            <dt><%= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %> a trouvé en <b><%= @faster_answer.answering_time %> s</b></dt>
-            <dd><em><%= @faster_answer.track.title %></em></dd><dd><strong><%= @faster_answer.track.artist %>.</strong></dd>
-          </dl>
-          <!--
-          <p class="d-flex justify-content-between mx-3">
-            <span><%#= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %></span>
-            <span><%#= @faster_answer.answering_time %> s</span>
-          </p>
-          <p class="text-justify px-2"><%#= @faster_answer.track.artist %> / <%#= @faster_answer.track.title %></p>
-          --><% else %>
-          <p>-</p>
-        <% end %>
+  <div class="scores-card">
+    <h4>Meilleur temps ever</h4>   <!-- Affiche le meilleur temps -->
+    <div id="time-ranking" class="p-3">
+      <% if Answer.count != 0 %>
+        <dl>
+          <dt><%= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %> a trouvé en <b><%= @faster_answer.answering_time %> s</b></dt>
+          <dd><em><%= @faster_answer.track.title %></em></dd><dd><strong><%= @faster_answer.track.artist %>.</strong></dd>
+        </dl>
+        <!--
+        <p class="d-flex justify-content-between mx-3">
+          <span><%#= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %></span>
+          <span><%#= @faster_answer.answering_time %> s</span>
+        </p>
+        <p class="text-justify px-2"><%#= @faster_answer.track.artist %> / <%#= @faster_answer.track.title %></p>
+        -->
+      <% else %>
+        <p>-</p>
+      <% end %>
 
-      </div>
     </div>
+  </div>
 
-    <div class="statperso">
-      <!-- <h3>pourcentage de bonnes réponse</h3> -->
+    <!-- les trois icones -->
+    <div id="statperso">
       <div class="d-flex flex-column justify-content-between resume">
+      <!--<h3>Bonnes réponses par playlist</h3>-->
+
       <div class="d-flex flex-row justify-content-center mb-5">
 
         <ul class="list-stats">

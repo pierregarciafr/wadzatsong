@@ -1,3 +1,6 @@
+#dashboard {
+  font-size: 16px;
+}
 .container-showuser {
   /*
   display: flex;
@@ -20,7 +23,7 @@
 
 .scores-card {
   box-sizing: border-box;
-  width: 80%;
+  // width: 80%;
   max-width: 500px;
   padding: 0px;
   margin-bottom: 2em;
@@ -70,10 +73,10 @@
     font-weight: bold;
   }
   & td {
-    font-size: 1.3em;
+    font-size: 1em;
     padding: 0 1em;
     &.pseudo-ranking {
-    width: 50%;
+
     }
     &.playlist-ranking {
     width: 20%;
@@ -92,9 +95,9 @@
   justify-content: center;
 
   & dt{
-    font-size: 1.3em;
+    font-size: 1em;
     font-weight: 400;
-    padding-bottom: 1.3em;
+    padding-bottom: 1.2em;
 
     & b {
       font-size: 1.5em;
@@ -103,9 +106,9 @@
   }
   & dd {
     text-align: center;
-    font-size: 1.3em;
+    font-size: 1em;
     font-style: normal;
-    line-height: 1.2em;
+    line-height: 1em;
   }
   }
 /*
@@ -146,13 +149,9 @@
 }
 */
 
-.statperso {
-  //background-color: white;
-  //color: #bc4e9c;
+.statperso {  // supprimer la class
   padding: 40px;
   border-radius: 20px;
-  // border: 1px solid white;
-  //box-shadow: 0 0 5px #bc4e9c;
   margin-bottom: 2em;
 }
 
@@ -161,8 +160,8 @@
 }
 
 ul.list-stats {
-  padding: 1em 0.5em;
-  margin: 1em;
+  padding: 1em 0.3em;
+  margin: 0.5em;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -181,7 +180,6 @@ ul.list-stats {
     text-align: center;
   }
   &.description {
-    font-size: 1.2em;
     text-align: center;
   }
   &.item-stat {
