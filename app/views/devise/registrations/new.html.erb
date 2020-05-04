@@ -1,37 +1,42 @@
-<div id="devisepage">
+<div id="devisepage" class="background-gradient height-100">
 <div class="container">
 <!--  <div class="devise-form-container"> -->
     <div class="content padding-t-10">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <h2>Sign up</h2>
+        <br>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= f.error_notification %>
 
-      <h2>Sign up</h2>
-      <br>
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= f.error_notification %>
+          <div>
+            <%= f.input :email,
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" }%>
+            <%= f.input :pseudo,
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "pseudo" }%>
+            <%= f.input :password,
+                        required: true,
+                        hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                        input_html: { autocomplete: "new-password" } %>
+            <%= f.input :password_confirmation,
+                        required: true,
+                        input_html: { autocomplete: "new-password" } %>
+          </div>
 
-        <div>
-          <%= f.input :email,
-                      required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "email" }%>
-          <%= f.input :pseudo,
-                      required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "pseudo" }%>
-          <%= f.input :password,
-                      required: true,
-                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                      input_html: { autocomplete: "new-password" } %>
-          <%= f.input :password_confirmation,
-                      required: true,
-                      input_html: { autocomplete: "new-password" } %>
-        </div>
+          <div>
+            <%= f.submit "Sign up", class: "btn-devise-plein" %>
+          </div>
+        <% end %>
+        <br>
+        <%= render "devise/shared/links" %>
 
-        <div>
-          <%= f.submit "Sign up", class: "btn-devise-plein" %>
-        </div>
-      <% end %>
-      <br>
-      <%= render "devise/shared/links" %>
+      </div>
+      <div class="col-md-4"></div>
+
     </div>
   </div>
 </div>
