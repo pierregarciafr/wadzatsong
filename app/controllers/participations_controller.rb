@@ -10,12 +10,12 @@ class ParticipationsController < ApplicationController
   end
 
   def create
-    authorize @participation
     @participation = Participation.new(participation_params)
     @participation.user = current_user
     token = @participation.token
     @game = Game.find_by(token: token)
     @participation.game = @game
+    authorize @participation
     if @participation.save && @game
       GameChannel.broadcast_to(
         @game,
