@@ -5,9 +5,12 @@ class GamePolicy < ApplicationPolicy
     end
   end
 
-  def new?
+  def new? # n'importe quel user connecté peut créer un game
     true
-    # record.user == user ## || record.game.user == user
+    # Game.first.participations.map do |participation|
+    #   participation.user
+    # end
+    # record.user == current_user || record.game.user == current_user
   end
 
   def show?
@@ -20,8 +23,7 @@ class GamePolicy < ApplicationPolicy
   end
 
   def edit?
-    true
-    # record.user == user
+    record.user == @user
   end
 
   def update?

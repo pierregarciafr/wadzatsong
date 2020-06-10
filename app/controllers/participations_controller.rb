@@ -10,8 +10,8 @@ class ParticipationsController < ApplicationController
   end
 
   def create
-    @participation = Participation.new(participation_params)
     authorize @participation
+    @participation = Participation.new(participation_params)
     @participation.user = current_user
     token = @participation.token
     @game = Game.find_by(token: token)
