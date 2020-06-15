@@ -11,8 +11,8 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @participation = Participation.find_by(token: @game.token)
     @answer = Answer.new
+    @participation = Participation.find_by(token: @game.token)
     authorize @game
     @user = @game.user # MJ
     # @partipants = @game.participants # player 2

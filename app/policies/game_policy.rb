@@ -6,17 +6,30 @@ class GamePolicy < ApplicationPolicy
   end
 
   def show?
+    # creation de l'array des participants du @game
     participants = record.participations.map do |participation|
       participation.user
     end
-    record.user == user || !![user] & participants
+    # le @game.user interrogé par authorize doit être
+    # - le user connecté
+    # OU
+    # - un user présent dans l'array des participants
+    record.user == user || !([user] & participants).empty?
   end
 
   def new?
+    true
   end
 
   def create?
     true
+  end
+
+  def created?
+    participants = record.participations.map do |participation|
+      participation.user
+    end
+    record.user == user || !([user] & participants).empty?
   end
 
   def edit?
@@ -25,10 +38,6 @@ class GamePolicy < ApplicationPolicy
 
   def update?
     record.user == @user
-  end
-
-  def ready?
-    true
   end
 
   def paused?

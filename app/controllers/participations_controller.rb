@@ -31,7 +31,6 @@ class ParticipationsController < ApplicationController
     else
       render :new
     end
-    # @game.ready!
   end
 
   def show
