@@ -30,7 +30,8 @@
       <% if Game.count != 0 %>
         <table>
           <tbody>
-            <% Game.order(total_score: :desc).first(3).each do |game| %>
+
+            <% Game.order(total_score: :desc).where.not(user_id:22).first(3).each do |game| %>
               <tr>
                 <th><%= ranking %></th>
                 <td class='pseudo-ranking'><%= link_to "#{game.user.pseudo}", user_path(game.user) %></td>
