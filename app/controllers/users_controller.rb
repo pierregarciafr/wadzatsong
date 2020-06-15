@@ -2,16 +2,18 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize @user
+
     @faster_answer = Answer.where(status:true).order(answering_time: :ASC).first
     @user_faster_answer = @user.answers.where(status:true).order(answering_time: :ASC).first
     @percent_user_good_answers = get_total_percent(@user)
+    @user_hight_score = get_highscore(@user)
+
     @french_percent = get_playlist_percent(@user, "French")
     @rock_percent = get_playlist_percent(@user, "Rock")
     @dance_percent = get_playlist_percent(@user, "Dance")
     @pop_percent = get_playlist_percent(@user, "Pop")
     @rnb_percent = get_playlist_percent(@user, "R-N-B")
     @electro_percent = get_playlist_percent(@user, "Electro")
-    @user_hight_score = get_highscore(@user)
   end
 
   private

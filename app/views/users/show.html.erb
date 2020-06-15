@@ -85,11 +85,11 @@
           </li>
 
           <li class="item-stat ">
-            <% if @user.games.count != 0 %>
-              <h2><%= @user_hight_score %></h2>
-            <% else %>
+<!--             <%# if @user.games.count != 0 %>
+ -->              <h2><%= @user.highest_score %></h2>
+ <!--            <%# else %>
               <h2>-</h2>
-            <% end %>
+            <%# end %> -->
           </li>
 
           <li class="description">Ton best score</li>
@@ -105,7 +105,6 @@
               <% end %>
           </li>
           <li class="description">de bonnes réponses</li>
-
         </ul>
 
         <ul class="list-stats">
