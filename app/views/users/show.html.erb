@@ -92,19 +92,19 @@
             <%# end %> -->
           </li>
 
-          <li class="description">Ton best score</li>
+          <li class="description">Ton best<br />score</li>
         </ul>
 
         <ul class="list-stats">
           <li><i class="fas fa-check fa-2x"></i><li>
           <li class="item-stat">
-              <% if @user.games.count != 0 %>
-                  <h2><%= @percent_user_good_answers %> %</h2>
-                <% else %>
+<!--               <%# if @user.games.count != 0 %>
+ -->        <h2><%= @user.good_answers_percentage %> %</h2>
+<!--                 <%# else %>
                   <h1>-</h1>
-              <% end %>
+              <%# end %> -->
           </li>
-          <li class="description">de bonnes réponses</li>
+          <li class="description">Tes<br />bonnes<br />réponses</li>
         </ul>
 
         <ul class="list-stats">

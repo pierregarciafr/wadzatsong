@@ -18,4 +18,12 @@ class User < ApplicationRecord
     highestscore.sort.last ? highestscore.sort.last : '-'
   end
 
+  def played_tracks
+    (games.count + participations.count) * Game::NUMBER_OF_ROUNDS
+  end
+
+  def good_answers_percentage
+    return '-' if games.count == 0 && participations.count == 0
+    played_tracks != 0 ? (answers.where(status: true).count * 100) / played_tracks : '-'
+  end
 end
