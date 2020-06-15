@@ -53,11 +53,15 @@
   <div class="scores-card">
     <h4>Meilleur temps ever</h4>   <!-- Affiche le meilleur temps -->
     <div id="time-ranking" class="p-3">
-      <% if Answer.count != 0 %>
+      <% best_chrono_ever = Answer.best_chrono_ever %>
         <dl>
-          <dt><%= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %> a trouvé en <b><%= @faster_answer.answering_time %> s</b></dt>
-          <dd><em><%= @faster_answer.track.title %></em></dd><dd><strong><%= @faster_answer.track.artist %>.</strong></dd>
-        </dl>
+          <dt><%= link_to "#{best_chrono_ever[:pseudo]}", user_path(best_chrono_ever[:user]) %> a trouvé en <b><%= best_chrono_ever[:chrono] %> s</b></dt>
+          <dd><em><%= best_chrono_ever[:title] %></em></dd><dd><strong><%= best_chrono_ever[:artist] %>.</strong></dd>
+
+
+<!--           <dt><%#= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %> a trouvé en <b><%= @faster_answer.answering_time %> s</b></dt>
+          <dd><em><%#= @faster_answer.track.title %></em></dd><dd><strong><%= @faster_answer.track.artist %>.</strong></dd>
+ -->        </dl>
         <!--
         <p class="d-flex justify-content-between mx-3">
           <span><%#= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %></span>
@@ -65,9 +69,9 @@
         </p>
         <p class="text-justify px-2"><%#= @faster_answer.track.artist %> / <%#= @faster_answer.track.title %></p>
         -->
-      <% else %>
+<!--       <%# else %>
         <p>-</p>
-      <% end %>
+      <%# end %> -->
 
     </div>
   </div>
@@ -92,7 +96,7 @@
             <%# end %> -->
           </li>
 
-          <li class="description">Ton best<br />score</li>
+          <li class="description">Ton best<brscore</li>
         </ul>
 
         <ul class="list-stats">
@@ -113,11 +117,12 @@
           </li>
 
           <li class="item-stat">
-            <% if @user.games.count != 0 %>
-              <h2><%= @user_faster_answer.answering_time %>s</h2>
-            <% else %>
+            <h2><%= @user.best_chrono %></h2>
+<!--             <%# if @user.games.count != 0 %>
+              <h2><%#= @user_faster_answer.answering_time %>s</h2>
+            <%# else %>
               <h2>-</h2>
-            <% end %>
+            <%# end %> -->
           </li>
           <li class="description">best chrono</li>
 

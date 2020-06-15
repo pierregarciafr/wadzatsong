@@ -7,6 +7,10 @@ class User < ApplicationRecord
   has_many :participations
   has_many :answers
 
+  def test(param)
+    return param.nil? || param.zero? ? '-' : param
+  end
+
   def highest_score
     highestscore = []
     if self.games.count != 0
@@ -26,4 +30,10 @@ class User < ApplicationRecord
     return '-' if games.count == 0 && participations.count == 0
     played_tracks != 0 ? (answers.where(status: true).count * 100) / played_tracks : '-'
   end
+
+  def best_chrono
+    right_answers = answers.where(status:true).order(answering_time: :ASC).first
+    right_answers ? right_answers.answering_time : '-'
+  end
+
 end

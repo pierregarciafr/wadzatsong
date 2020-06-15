@@ -5,8 +5,8 @@ class UsersController < ApplicationController
 
     @faster_answer = Answer.where(status:true).order(answering_time: :ASC).first
     @user_faster_answer = @user.answers.where(status:true).order(answering_time: :ASC).first
-    @percent_user_good_answers = get_total_percent(@user)
-    @user_hight_score = get_highscore(@user)
+    # @percent_user_good_answers = get_total_percent(@user)
+    # @user_hight_score = get_highscore(@user)
 
     @french_percent = get_playlist_percent(@user, "French")
     @rock_percent = get_playlist_percent(@user, "Rock")
@@ -22,11 +22,11 @@ class UsersController < ApplicationController
     (user.games.count + user.participations.count) * Game::NUMBER_OF_ROUNDS
   end
 
-  def get_total_percent(user)
-    if user.games.count != 0
-      (user.answers.where(status: true).count * 100) / total_tracks(user)
-    end
-  end
+  # def get_total_percent(user)
+  #   if user.games.count != 0
+  #     (user.answers.where(status: true).count * 100) / total_tracks(user)
+  #   end
+  # end
 
   def get_playlist_percent(user, playlist)
     playlist_theme_array = []
