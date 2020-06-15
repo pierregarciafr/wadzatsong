@@ -1,5 +1,32 @@
 class GamesController < ApplicationController
 
+  def new
+    @game = Game.new(user: current_user) if current_user
+  end
+
+  def edit
+    @game = Game.find(params[:id])
+    @playlists = Playlist.all
+    authorize @game
+  end
+
+  def update
+    @game = Game.find(params[:id])
+    @game.playlist_id = params[:playlist_id]
+    new_playlist = Playlist.where(name:@game.playlist.name).last
+    @game.playlist = new_playlist
+    PlaylistJob.perform_later(@game.playlist.name)
+
+    if @game.playlist_id != nil
+        @game.save
+        authorize @game
+        redirect_to game_path(@game)
+    else
+        authorize @game
+        redirect_to edit_game_path(@game)
+    end
+  end
+
   def create
     # @game = policy_scope(Game.find(params[:id]))
     @game = Game.new(user: current_user, total_score: 0)
@@ -109,33 +136,6 @@ class GamesController < ApplicationController
     redirect_to game_path(@game, current_time: params[:current_time])
   end
 
-  def new
-    @game = Game.new(user: current_user) if current_user
-  end
-
-  def edit
-    @game = Game.find(params[:id])
-    @playlists = Playlist.all
-    authorize @game
-  end
-
-  def update
-    @game = Game.find(params[:id])
-    @game.playlist_id = params[:playlist_id]
-    new_playlist = Playlist.where(name:@game.playlist.name).last
-    @game.playlist = new_playlist
-    PlaylistJob.perform_later(@game.playlist.name)
-
-    if @game.playlist_id != nil
-        @game.save
-        authorize @game
-        redirect_to game_path(@game)
-    else
-        authorize @game
-        redirect_to edit_game_path(@game)
-    end
-
-  end
 
   private
 

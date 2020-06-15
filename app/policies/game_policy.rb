@@ -33,25 +33,25 @@ class GamePolicy < ApplicationPolicy
   end
 
   def edit?
-    record.user == @user
+    record.user == user
   end
 
   def update?
-    record.user == @user
+    record.user == user
   end
 
   def paused?
     participants = record.participations.map do |participation|
       participation.user
     end
-    record.user == user || !![user] & participants
+    record.user == user || !([user] & participants).empty?
   end
 
   def running?
     participants = record.participations.map do |participation|
       participation.user
     end
-    record.user == user || !![user] & participants
+    record.user == user || !([user] & participants).empty?
   end
 
 end
