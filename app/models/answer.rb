@@ -13,4 +13,8 @@ class Answer < ApplicationRecord
                      artist: fastest_answer.track.artist
                     } : '-'
   end
+
+  def self.good_answers_per_genre
+
+  end
 end

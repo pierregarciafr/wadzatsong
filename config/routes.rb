@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   get "users/:id", to: "users#show", as: :user
   resources :participations, only: [ :new, :create, :show ]
+
   Rails.application.routes.draw do
     # Sidekiq Web UI, only for admins.
     require "sidekiq/web"

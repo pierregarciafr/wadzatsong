@@ -1,6 +1,12 @@
 require 'test_helper'
 
 class GamePolicyTest < ActiveSupport::TestCase
+
+  def setup
+
+
+  end
+
   def test_scope
   end
 
