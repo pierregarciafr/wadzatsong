@@ -10,4 +10,13 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  class ActionDispatch::IntegrationTest # for chapter 10
+    # login as a particular user
+    def log_in_as(user)
+      post user_session_path, params: { session: { email: user.email,
+                                           encrypted_password: user.encrypted_password
+                                           } }
+    end
+  end
+
 end
