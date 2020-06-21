@@ -50,6 +50,17 @@ class User < ApplicationRecord
   private
 
   def get_playlist_percent(genre)
+
+    # 21 06 20
+    # nombre total de tracks jouées pour un genre donné
+
+    # total_good_answers(user) = Answer.where(user_id:user.id)
+                                     # .where(status:true)
+                                     # .joins(track: :playlist).count
+
+    # total_tracks(genre) = Playlist.where(name: genre).joins(:tracks).count
+
+
     # good_answers_per_genre = Playlist.where(name:genre).joins(tracks: :answers).where(answers:{status: true,user_id: self}).count
     # good_answers_per_genre = Track.joins(:answers).where(answers:{status: true, user_id: self}).joins(:playlist).where(playlist:{name: genre})
     #good_answers_per_genre = Answer.joins(:track, :playlist).where(answers:{status: true, user_id: self},playlist:{name: genre})
