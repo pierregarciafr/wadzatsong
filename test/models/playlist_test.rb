@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class PlaylistTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  # Playlist has a name and a picture
+
 end
