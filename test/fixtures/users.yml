@@ -1,0 +1,12 @@
+michel:
+  pseudo: michelchardou
+  email: mich@chardou.com
+  encrypted_password: User.digest('password')
+  admin: false
+
+lady:
+  pseudo: ladygaga
+  email: lady@gaga.com
+  encrypted_password: User.digest('password')
+  admin: false
+
