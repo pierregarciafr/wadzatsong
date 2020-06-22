@@ -57,6 +57,8 @@ class User < ApplicationRecord
     # total_good_answers(user) = Answer.where(user_id:user.id)
                                      # .where(status:true)
                                      # .joins(track: :playlist).count
+# Answer.where(user_id:user.id).where(status:true).joins(track: :playlist).count
+# Track.find_by_sql('SELECT * FROM tracks t JOIN answers a ON a.id = t.answer_id JOIN playlist p ON p.id = t.playlist_id WHERE a.status = true AND p.name = ?', 'French');
 
     # total_tracks(genre) = Playlist.where(name: genre).joins(:tracks).count
 
