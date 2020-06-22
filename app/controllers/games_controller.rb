@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
 
   def new
+    raise
     @game = Game.new(user: current_user) if current_user
   end
 

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class AnswersControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
+  include Devise::Test::IntegrationHelpers
   #   assert true
   # end
 end

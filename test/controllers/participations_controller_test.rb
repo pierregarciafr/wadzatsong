@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ParticipationsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
+  include Devise::Test::ControllerHelpers
   #   assert true
   # end
 end

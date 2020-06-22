@@ -1,15 +1,18 @@
 require 'test_helper'
 
 class GamesControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::ControllerHelpers
 
   def setup
-    @user = User.new(pseudo: 'user', email:'user@gmail.com',
-                 password:'password', password_confirmation: 'password',
-                 admin: false)
+    @user = users(:michel)
   end
 
   test "should create a new game" do
+    get games_path
+    assert_redirected_to edit_games_path
+  end
 
+  test "should begin " do
   end
 
 end
