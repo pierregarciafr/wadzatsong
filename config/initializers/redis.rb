@@ -16,3 +16,10 @@ if url
   end
   $redis = Redis.new(:url => url)
 end
+
+
+# if Rails.env.development?
+#   TheService.config = ENV['THE_SERVICE_VAR_DEV']
+# elsif Rails.env.production?
+#   TheService.config = ENV['THE_SERVICE_VAR_PROD']
+# end
