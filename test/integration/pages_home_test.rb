@@ -17,6 +17,7 @@ class PagesHomeTest < ActionDispatch::IntegrationTest
   test 'should display links if user not logged in clicks anywhere' do
     get root_path
     assert_template 'pages/home'
+    assert_equal "home", @controller.action_name
     # assert_not user_signed_in?
   end
 
@@ -25,6 +26,11 @@ class PagesHomeTest < ActionDispatch::IntegrationTest
     assert_difference 'Game.count', +1 do
       post games_path, params: { game: { user: @user }}
     end
+    assert_response :redirect
+    follow_redirect!
+    assert_response :success
+    assert_template 'games/edit'
+    assert_select "form input", 2
   end
 
   test 'if user logged in should display 2 buttons and icon with 2 links' do
@@ -33,15 +39,10 @@ class PagesHomeTest < ActionDispatch::IntegrationTest
     assert is_logged_in?
     get root_path
     assert_template 'pages/home'
-
-    # verifier que les liens sont affiches :
-
+    @game = Game.new(user: @user)
     assert_select "a[href=?]", new_participation_path
-    # assert_select "a[href=?]", games_path # ne marche pas
+    # assert_select "a[href=?]", games_path(@game) # ne marche pas
 
-    # - lien vers le game
-    # lien vers les participations
-    # lien à cliquer
   end
 
 end
