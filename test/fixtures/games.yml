@@ -1,11 +1,10 @@
 game1:
   user: michel
+  token: 123456
+  total_score: 0
 
 game2:
   user: lady
+  token: ABCDEF
+  total_score: 0
 
-game3:
-  user: michel
-
-game4:
-  user: lady
