@@ -1,53 +1,83 @@
 require 'test_helper'
 
 class GameTest < ActiveSupport::TestCase
+  self.use_instantiated_fixtures = true   # for instanciation fo work @game1
 
   def setup
     @user = User.new(pseudo: 'test', email:'test@gmail.com',
                  password:'password', password_confirmation: 'password',
                  admin: false)
     @game = Game.new
-
   end
 
-  test "game should have a token" do
-    @game.save
-    assert @game.token
+
+  test "should count 2 game fixtures" do
+    assert_equal 2, Game.count
   end
 
-  test "should reject game without a token" do
-    @game.token = nil
+  test "should get expected game fixture token" do
+    @game1.save
+    assert_equal '123456', @game1.token
+    assert_equal 'ABCDEF', @game2.token
+  end
+
+  test "should get expected game fixture user" do
+    assert_equal 'michelchardou', @game1.user.pseudo
+    assert_equal 'ladygaga', @game2.user.pseudo
+  end
+
+  test "should get expected game fixture total_score" do
+    assert_equal 0, games(:game1).total_score
+  end
+
+
+
+  test "should accept game without a token" do
+    @game1.token = nil
+    assert @game1.valid?
+  end
+
+  test "token must be unique on a wide sample" do
+    array_of_tokens = []
+    1000.times do
+      game = Game.new(user: @user)
+      game.save
+      array_of_tokens << game.token
+    end
+    assert_equal array_of_tokens.count, array_of_tokens.uniq.count
+  end
+
+  test "new instance of Game should initialize with a score" do
+    assert_equal 0, @game.total_score
+  end
+
+  test "game should not be valid without user" do
+    assert_nil @game.user
     assert_not @game.valid?
+    assert_not @game.save
   end
 
-  test "game should get a user" do
-    @game.user = @user
-    assert @game.user
-  end
-
-  test "game should reject a non valid user" do
-    @game.user = @user
-    assert_not @game.valid?
-  end
-
-  test "game should validate if user is valid" do
-    @user.save
-    @game.user = @user
-    assert @game.valid?
-  end
-
-  test "should reject a game without user" do
-    assert_not @game.valid?
-  end
-
-  test "should have a score for user" do
-    assert @game.total_score
-  end
-
-  test "should not record game without user" do
+  test "model should reject a game without user" do
     assert_difference 'Game.count', 0 do
       @game.save
     end
+  end
+
+  test "game should not be valid when has unrecorded user" do
+    @game.user = @user
+    assert_not @game.valid?
+  end
+
+
+  test "game should be valid when has recorded user" do
+    @game.user = @michel
+    assert @game.valid?
+  end
+
+  test "game should save when game.user is a record" do
+    @user.save
+    @game.user = @user
+    assert @game.save
   end
 
   test "game should record in db when has user" do
@@ -65,16 +95,6 @@ class GameTest < ActiveSupport::TestCase
     assert_difference 'Game.count', 0 do
       @user.destroy
     end
-  end
-
-  test "token must be unique" do
-    array_of_tokens = []
-    1000.times do
-      game = Game.new(user: @user)
-      game.save
-      array_of_tokens << game.token
-    end
-    assert array_of_tokens.uniq.count == array_of_tokens.count
   end
 
 end

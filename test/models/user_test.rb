@@ -1,23 +1,36 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+self.use_instantiated_fixtures = true   # for l 24 to work
+
   def setup
     @user = User.new(pseudo: 'test', email:'test@gmail.com',
                      password:'password', password_confirmation: 'password',
                      admin: false)
-    @user2 = User.new(pseudo: 'test2', email:'test2@gmail.com',
-                     password:'password', password_confirmation: 'password',
-                     admin: false)
-    # @game = Game.new
+  end
+
+  test "should count 2 user fixtures" do
+    assert_equal 2, User.count
+    assert_equal 2, users.length
+  end
+
+  test "shoul get the expected user fixture pseudo" do
+    assert_equal "michelchardou", users(:michel).pseudo
+    assert_equal "michelchardou", @michel.pseudo
+  end
+
+  test "should raise error if fixture name doesn't exist" do
+    assert_raise(StandardError) { users(:nicolas) }
   end
 
   test "should be valid" do
+    assert @michel.valid?
     assert @user.valid?
   end
 
   test "no pseudo should be valid" do
-    @user.pseudo = ''
-    assert @user.valid?
+    @michel.pseudo = ''
+    assert @michel.valid?
   end
 
   test "pseudo should not be too long" do
@@ -52,9 +65,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "email address should be unique" do
-    @user2.email = 'test@gmail.com'
-    @user.save
-    assert_not @user2.valid?
+    @user.email = 'mich@chardou.com'
+    assert_not @user.valid?
   end
 
   test "email addresses should be saved lowercase" do
@@ -67,8 +79,6 @@ class UserTest < ActiveSupport::TestCase
     @user.password_confirmation = '123456'
     assert_not @user.valid?
   end
-
-  #____ verifier sur le model de staticpages =
 
   test "password should reject if not equal to confirmation" do
     @user.password_confirmation = '123456'
