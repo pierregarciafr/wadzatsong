@@ -1,8 +1,17 @@
 class GamesController < ApplicationController
 
-  def new
-    raise
-    @game = Game.new(user: current_user) if current_user
+  # def new
+  #   # raise # to check that action is no use
+  #   @game = Game.new(user: current_user) if current_user
+  # end
+
+  def create
+    # @game = policy_scope(Game.find(params[:id]))
+    @game = Game.new(user: current_user, total_score: 0)
+    authorize @game
+    @game.status = :created
+    @game.save
+    redirect_to edit_game_path(@game)
   end
 
   def edit
@@ -26,15 +35,6 @@ class GamesController < ApplicationController
         authorize @game
         redirect_to edit_game_path(@game)
     end
-  end
-
-  def create
-    # @game = policy_scope(Game.find(params[:id]))
-    @game = Game.new(user: current_user, total_score: 0)
-    authorize @game
-    @game.status = :created
-    @game.save
-    redirect_to edit_game_path(@game)
   end
 
   def show
