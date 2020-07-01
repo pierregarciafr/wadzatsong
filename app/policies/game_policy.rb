@@ -1,7 +1,7 @@
 class GamePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(user: @participation.user)
+      scope.where(user: @participation.user) # no use.
     end
   end
 
@@ -22,7 +22,7 @@ class GamePolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    record.user = user  # doesn't verify the test post game: { user: @other_user } - user scope
   end
 
   def created?

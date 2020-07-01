@@ -15,7 +15,7 @@ class ParticipationsController < ApplicationController
     token = @participation.token
     @game = Game.find_by(token: token)
     @participation.game = @game
-    authorize @participation
+    authorize @participation     # added test for participation.user != game.user
     if @participation.save && @game
       GameChannel.broadcast_to(
         @game,
