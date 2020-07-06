@@ -37,7 +37,7 @@ class User < ApplicationRecord
   end
 
   def percentages
-    get_playlist_percent("French")
+    # get_playlist_percent("French")
     # { french_percent: get_playlist_percent("French"),
     #   rock_percent: get_playlist_percent("Rock"),
     #   dance_percent: get_playlist_percent("Dance"),
@@ -49,7 +49,12 @@ class User < ApplicationRecord
 
   private
 
-  def get_playlist_percent(genre)
+  def get_playlist_percent(genre, user)
+    good_answers_per_genre = Playlist.where(name:genre).joins(tracks: :answers).where(answers:{status:true, user_id: user.id}).count
+    total_tracks = Game.where(playlist_id:Playlist.find_by(name:genre)).joins(playlist: :tracks).count
+    print "#{good_answers_per_genre} / #{total_tracks} "
+    total_tracks ? good_answers_per_genre.fdiv(total_tracks) : 'Division par 0!'
+  end
 
     # 21 06 20
     # nombre total de tracks jouées pour un genre donné
@@ -60,13 +65,12 @@ class User < ApplicationRecord
 # Answer.where(user_id:user.id).where(status:true).joins(track: :playlist).count
 # Track.find_by_sql('SELECT * FROM tracks t JOIN answers a ON a.id = t.answer_id JOIN playlist p ON p.id = t.playlist_id WHERE a.status = true AND p.name = ?', 'French');
 
-    # total_tracks(genre) = Playlist.where(name: genre).joins(:tracks).count
 
 
     # good_answers_per_genre = Playlist.where(name:genre).joins(tracks: :answers).where(answers:{status: true,user_id: self}).count
     # good_answers_per_genre = Track.joins(:answers).where(answers:{status: true, user_id: self}).joins(:playlist).where(playlist:{name: genre})
     #good_answers_per_genre = Answer.joins(:track, :playlist).where(answers:{status: true, user_id: self},playlist:{name: genre})
-    'NR'
+
 
     # tracks_per_genre = Playlist.where(name:genre).joins(:tracks).count
     # (good_answers_per_genre.fdiv(tracks_per_genre)).round
@@ -97,7 +101,7 @@ class User < ApplicationRecord
     # result = "-"
     # end
     # return result
-  end
+  # end
 
 
 end
