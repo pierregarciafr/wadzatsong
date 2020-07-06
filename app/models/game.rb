@@ -6,6 +6,7 @@ class Game < ApplicationRecord
   has_many :answers
   # has_many :tracks, through: :playlists
   enum status: [ :created, :running, :paused, :finished ]
+  validates :user_id, presence: true
   validates :token, uniqueness: true
   before_validation :set_token
   after_initialize :set_defaults, unless: :persisted?
@@ -22,6 +23,7 @@ class Game < ApplicationRecord
     if self.id.nil?
       self.token = SecureRandom.hex(3)
     end
+    # set_token if Game.all.map{|game| game.token}.include?(self.token) # to check later / 20 06 20
   end
 end
 

@@ -1,0 +1,6 @@
+<% 1.upto(10) do |i| %>
+track_<%= i %>:
+  title: title_<%= i %>
+  artist: artist_<%= i %>
+  playlist: french
+<% end %>

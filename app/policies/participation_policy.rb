@@ -10,7 +10,8 @@ class ParticipationPolicy < ApplicationPolicy
   end
 
   def create?
-    record.user == user
+
+    record.user == user && record.user != record.game.user
   end
 
   def show?

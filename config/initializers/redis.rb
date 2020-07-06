@@ -1,6 +1,10 @@
 $redis = Redis.new
 
-url = ENV["REDISCLOUD_URL"]
+if Rails.env=="production"
+  url = ENV["REDISCLOUD_URL"]
+elsif Rails.env=="development"
+  url = "redis://localhost:6379/1"
+end
 
 if url
   Sidekiq.configure_server do |config|
@@ -12,3 +16,10 @@ if url
   end
   $redis = Redis.new(:url => url)
 end
+
+
+# if Rails.env.development?
+#   TheService.config = ENV['THE_SERVICE_VAR_DEV']
+# elsif Rails.env.production?
+#   TheService.config = ENV['THE_SERVICE_VAR_PROD']
+# end
