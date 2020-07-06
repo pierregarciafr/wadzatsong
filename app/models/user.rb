@@ -20,11 +20,11 @@ class User < ApplicationRecord
 
   def highest_score
     highestscore = []
-    if self.games.count != 0
-      highestscore << self.games.order(total_score: :desc).first.total_score
+    if games.count != 0
+      highestscore << games.order(total_score: :desc).first.total_score
     end
-    if self.participations.count !=0
-      highestscore << self.participations.order(total_score: :desc).first.total_score
+    if participations.count !=0
+      highestscore << participations.order(total_score: :desc).first.total_score
     end
     highestscore.sort.last ? highestscore.sort.last : '-'
   end
@@ -34,13 +34,30 @@ class User < ApplicationRecord
   end
 
   def good_answers_percentage
-    return '-' if games.count == 0 && participations.count == 0
     played_tracks != 0 ? (answers.where(status: true).count * 100) / played_tracks : '-'
   end
 
   def best_chrono
     right_answers = answers.where(status:true).order(answering_time: :ASC).first
     right_answers ? right_answers.answering_time : '-'
+  end
+
+  def percentages
+    { french: success_percentage("French"),
+      rock: success_percentage("Rock"),
+      dance: success_percentage("Dance"),
+      pop: success_percentage("Pop"),
+      RNB: success_percentage("R-N-B"),
+      electro: success_percentage("Electro")
+    }
+  end
+
+  private
+
+  def success_percentage(genre)
+    good_answers_per_genre = Playlist.where(name:genre).joins(tracks: :answers).where(answers:{status:true, user_id: self.id}).count
+    total_tracks = Game.where(playlist_id:Playlist.find_by(name:genre)).joins(playlist: :tracks).count
+    total_tracks != 0 ? "#{(good_answers_per_genre*100.fdiv(total_tracks)).round}%" : '-'
   end
 
 end

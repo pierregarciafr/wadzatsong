@@ -14,15 +14,8 @@
         <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-user-menu" %></li>
       </ul>
     </div>
-      <!--
-      <%#= link_to :back do %>
-      <i class="fas fa-arrow-left"></i>
-      <%# end %>
-      </div>
-      -->
   </div>
 
-  <!--<div class="container-showuser">-->
   <div id="highscore" class="scores-card">               <!-- Affiche les 3 meilleurs scores -->
     <h4>Meilleurs scores ever</h4>
     <div id="ranking" class="p-3">
@@ -57,22 +50,7 @@
         <dl>
           <dt><%= link_to "#{best_chrono_ever[:pseudo]}", user_path(best_chrono_ever[:user]) %> a trouvé en <b><%= best_chrono_ever[:chrono] %> s</b></dt>
           <dd><em><%= best_chrono_ever[:title] %></em></dd><dd><strong><%= best_chrono_ever[:artist] %>.</strong></dd>
-
-
-<!--           <dt><%#= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %> a trouvé en <b><%= @faster_answer.answering_time %> s</b></dt>
-          <dd><em><%#= @faster_answer.track.title %></em></dd><dd><strong><%= @faster_answer.track.artist %>.</strong></dd>
- -->        </dl>
-        <!--
-        <p class="d-flex justify-content-between mx-3">
-          <span><%#= link_to "#{@faster_answer.user.pseudo}", user_path(@faster_answer.user) %></span>
-          <span><%#= @faster_answer.answering_time %> s</span>
-        </p>
-        <p class="text-justify px-2"><%#= @faster_answer.track.artist %> / <%#= @faster_answer.track.title %></p>
-        -->
-<!--       <%# else %>
-        <p>-</p>
-      <%# end %> -->
-
+       </dl>
     </div>
   </div>
 
@@ -89,11 +67,7 @@
           </li>
 
           <li class="item-stat ">
-<!--             <%# if @user.games.count != 0 %>
- -->              <h2><%= @user.highest_score %></h2>
- <!--            <%# else %>
-              <h2>-</h2>
-            <%# end %> -->
+            <h2><%= @user.highest_score %></h2>
           </li>
 
           <li class="description">Ton best<brscore</li>
@@ -102,11 +76,7 @@
         <ul class="list-stats">
           <li><i class="fas fa-check fa-2x"></i><li>
           <li class="item-stat">
-<!--               <%# if @user.games.count != 0 %>
- -->        <h2><%= @user.good_answers_percentage %> %</h2>
-<!--                 <%# else %>
-                  <h1>-</h1>
-              <%# end %> -->
+            <h2><%= @user.good_answers_percentage %> %</h2>
           </li>
           <li class="description">Tes<br />bonnes<br />réponses</li>
         </ul>
@@ -118,55 +88,46 @@
 
           <li class="item-stat">
             <h2><%= @user.best_chrono %></h2>
-<!--             <%# if @user.games.count != 0 %>
-              <h2><%#= @user_faster_answer.answering_time %>s</h2>
-            <%# else %>
-              <h2>-</h2>
-            <%# end %> -->
           </li>
           <li class="description">best chrono</li>
 
         </ul>
       </div>
 
-      <%#= @user_faster_answer.track.artist %>
-      <%#= @user_faster_answer.track.title %>
-
       <div class="d-flex justify-content-around my-3">
         <div class="percent-card">
-          <h6 class="text-center">FRENCH</h6>
-          <p class="text-center"><%= @french_percent %>%</p>
+          <h6 class="text-center">name</h6>
+          <p class="text-center"><%= @user.percentages[:french] %></p>
         </div>
 
         <div class="percent-card">
           <h6 class="text-center">ROCK</h6>
-          <p class="text-center"><%= @rock_percent %>%</p>
+          <p class="text-center"><%= @user.percentages[:rock] %></p>
         </div>
 
         <div class="percent-card">
           <h6 class="text-center">POP</h6>
-          <p class="text-center"><%= @pop_percent %>%</p>
+          <p class="text-center"><%= @user.percentages[:pop] %></p>
         </div>
       </div>
 
       <div class="d-flex justify-content-around my-3">
         <div class="percent-card">
           <h6 class="text-center">DANCE</h6>
-          <p class="text-center"><%= @dance_percent %>%</p>
+          <p class="text-center"><%= @user.percentages[:dance] %></p>
         </div>
 
         <div class="percent-card">
           <h6 class="text-center">R-N-B</h6>
-          <p class="text-center"><%= @rnb_percent %>%</p>
+          <p class="text-center"><%= @user.percentages[:RNB] %></p>
         </div>
 
         <div class="percent-card">
           <h6 class="text-center">ELECTRO</h6>
-          <p class="text-center"><%= @electro_percent %>%</p>
+          <p class="text-center"><%= @user.percentages[:electro] %></p>
         </div>
       </div>
     </div>
-  <!--</div>-->
 </div>
 
 

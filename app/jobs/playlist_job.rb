@@ -39,9 +39,7 @@ class PlaylistJob < ApplicationJob
 
     new_playlist = Playlist.create(name:name)
     playlist.first(5).each do |track|
-    new_track = Track.create(title: "#{track.name}", artist: "#{track.artists[0].name}", url_preview: "#{track.preview_url}", playlist_id: "#{new_playlist.id}")
-      # new_track.playlist_id = new_playlist.id
-      # new_track.save
+      new_track = Track.create(title: "#{track.name}", artist: "#{track.artists[0].name}", url_preview: "#{track.preview_url}", playlist_id: "#{new_playlist.id}")
     end
     if new_playlist.tracks.count < 5
       perform_async(name)

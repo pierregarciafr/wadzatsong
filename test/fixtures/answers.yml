@@ -1,0 +1,30 @@
+answer_game1_1:
+  game: game1
+  user: michel
+  playlist: french
+  status: false
+
+answer_game1_2:
+  game: game1
+  user: michel
+  playlist: french
+  status: true
+
+answer_game1_3:
+  game: game1
+  user: michel
+  playlist: french
+  status: true
+
+answer_game1_4:
+  game: game1
+  user: michel
+  playlist: french
+  status: true
+
+answer_game1_5:
+  game: game1
+  user: michel
+  playlist: french
+  status: false
+

@@ -101,4 +101,8 @@ self.use_instantiated_fixtures = true   # for l 24 to work
   test "should (not?) destroy answers when destroying user" do
   end
 
+  test "should compute percentage of good answers" do
+    # @michel.percentages
+  end
+
 end
