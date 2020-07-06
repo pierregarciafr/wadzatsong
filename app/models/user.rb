@@ -56,7 +56,7 @@ class User < ApplicationRecord
 
   def success_percentage(genre)
     good_answers_per_genre = Playlist.where(name:genre).joins(tracks: :answers).where(answers:{status:true, user_id: self.id}).count
-    total_tracks = Game.where(playlist_id:Playlist.find_by(name:genre)).joins(playlist: :tracks).count
+    total_tracks = Game.where(user_id:self.id).joins(playlist:[:tracks]).where(playlists:{name:genre}).count
     total_tracks != 0 ? "#{(good_answers_per_genre*100.fdiv(total_tracks)).round}%" : '-'
   end
 
